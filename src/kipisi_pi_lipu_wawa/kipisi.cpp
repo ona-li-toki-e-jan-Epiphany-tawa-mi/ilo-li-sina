@@ -20,7 +20,7 @@ namespace kipisi {
 
 
 		std::string linjaSitelen;
-		size_t nanpaLinja = 0;
+		size_t nanpaLinja = 1;
 
 		while (lipuWawa.good() && std::getline(lipuWawa, linjaSitelen)) {
 			if (linjaSitelen.size() != 0)
@@ -29,7 +29,7 @@ namespace kipisi {
 						// li kama jo e nimi pi pana lon poki nanpa.
 						case '=': {
 							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::PANA_LON_POKI_NANPA, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
-							continue;
+							break;
 						}
 
 						// li kama jo e poki sitelen.
@@ -56,7 +56,7 @@ namespace kipisi {
 							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_SITELEN, std::move(pokiSitelen), KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki));
 
 							alasaSitelen--;
-							continue;
+							break;
 						}
 
 						// li kama jo e poki pi ijo tawa nimi wawa e nimi wawa.
@@ -80,7 +80,7 @@ namespace kipisi {
 									ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a function name before '('!");
 							}
 
-							continue;
+							break;
 						}
 
 						default:
@@ -99,12 +99,12 @@ namespace kipisi {
 								pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_NANPA, std::move(nimiPiPokiNanpa), KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
 
 								alasaSitelen--;
-								continue;
+								break;
 							}
 
 							// li weka e sitelen pi lukin ala.
 							if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_LUKIN_ALA))
-								continue;
+								break;
 					}
 				}
 

@@ -1,14 +1,9 @@
-tokiELinja("Quadratic solver V1.0")
+    niLaTawa(FakeSlimShady "no" "yaaas" "Are you the real slim shady?")
+    tokiELinja("Would you please stand up?")
+    tawa(EndSlimShady)
+FakeSlimShady: 
+    tokiELinja("Would the real slim shady please stand up?")
+EndSlimShady:
+    tokiELinja()
 
-quadratic = kamaJoTanJan("Enter the quadratic you wish to solve")
-a = kamaJoTanJan("What is the multiple for the squared variable? (a)")
-b = kamaJoTanJan("What is the multiple for the normal variable? (b)")
-c = kamaJoTanJan("What is the constant? (c)")
-
-kamaJoTanJan("Type in your social security number")
-kamaJoTanJan("Lol, thanks. Hit ENTER to continue")
-
-tokiELinja("I do not currently have the ability to make decisions, and thus cannot solve it myself")
-toki("But I can create the formula you need to solve. Here: ")
-tokiELinja("(" b " +- sqrt(4 * " a " * " c ") / 2 * " a)
-kamaJoTanJan("Have fun!") 
+    tokiELinja("YOU ARE " kamaJoTanJan("WHAT ARE YOU?") "!")

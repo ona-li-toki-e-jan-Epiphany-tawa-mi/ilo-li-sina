@@ -5,6 +5,8 @@
 #include "pali_pi_lipu_wawa_tan_kulupu_nimi/pali.hpp"
 #include "lawa_pi_ilo_nanpa/lawa.hpp"
 
+// TODO o pona e ike lon toki pona.
+
 int main(int argc, char** argv) {
 	if (argc <= 1) {
 		std::cerr << "Insufficient number of arguments!" << std::endl;
@@ -26,4 +28,6 @@ int main(int argc, char** argv) {
 
 	for (pali::KasiPiKasiSuli* kasi : lipuWawaTanKulupuNimi)
 		delete kasi;
+
+	return 0;
 }

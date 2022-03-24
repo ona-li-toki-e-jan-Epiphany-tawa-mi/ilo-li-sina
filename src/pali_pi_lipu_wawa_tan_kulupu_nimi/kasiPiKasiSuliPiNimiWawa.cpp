@@ -1,5 +1,7 @@
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 
+// FIXME o kepeken e nimi wawa pi pali sama pi kiwen ala e nimi wawa pali ala pi pali sama.
+
 namespace pali {
 	KasiPiKasiSuli::~KasiPiKasiSuli() {}
 
@@ -84,7 +86,7 @@ namespace pali {
 
 	KasiPiNimiWawa::KasiPiNimiWawa(const KasiPiNimiWawa& ante) {
 		this->nimiPiNimiWawa = ante.nimiPiNimiWawa;
-		for (pali::KasiPiKasiSuli* ijo : ante.kulupuPiIjoTawaNimiWawa)
+		for (KasiPiKasiSuli* ijo : ante.kulupuPiIjoTawaNimiWawa)
 			this->kulupuPiIjoTawaNimiWawa.push_back(new KasiPiKasiSuli(*ijo));
 
 		this->nimiKasi = NimiKasi::NIMI_WAWA;
@@ -116,5 +118,83 @@ namespace pali {
 
 	const std::vector<KasiPiKasiSuli*>& KasiPiNimiWawa::kamaJoEKulupuPiIjoTawaNimiWawa() const {
 		return this->kulupuPiIjoTawaNimiWawa;
+	}
+
+
+
+	KasiPiNimiTawa::KasiPiNimiTawa(const std::string* nimiPiNimiTawa) {
+		this->nimiPiNimiTawa = nimiPiNimiTawa;
+
+		this->nimiKasi = NimiKasi::NIMI_TAWA;
+	}
+
+	const std::string* KasiPiNimiTawa::kamaJoENimiPiNimiTawa() const {
+		return this->nimiPiNimiTawa;
+	}
+
+
+
+	KasiTawa::KasiTawa() {
+		this->nimiKasi = NimiKasi::TAWA;
+	}
+
+
+
+	KasiPiTawaKen::KasiPiTawaKen(KasiPiKasiSuli* kasiLon, KasiPiKasiSuli* kasiPiLonAla, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaToki) {
+		this->linjaTawaTawa = -1;
+		this->kasiLon = kasiLon;
+		this->kasiPiLonAla = kasiPiLonAla;
+		this->kulupuPiIjoTawaToki = kulupuPiIjoTawaToki;
+
+		this->nimiKasi = NimiKasi::TAWA_KEN;
+	}
+
+	KasiPiTawaKen::KasiPiTawaKen(const KasiPiTawaKen& ante) {
+		this->linjaTawaTawa = ante.linjaTawaTawa;
+		this->kasiLon = new KasiPiKasiSuli(*ante.kasiLon);
+		this->kasiPiLonAla = new KasiPiKasiSuli(*ante.kasiPiLonAla);
+		for (KasiPiKasiSuli* ijo : ante.kulupuPiIjoTawaToki)
+			this->kulupuPiIjoTawaToki.push_back(new KasiPiKasiSuli(*ijo));
+
+		this->nimiKasi = NimiKasi::TAWA_KEN;
+	}
+
+	KasiPiTawaKen::KasiPiTawaKen(KasiPiTawaKen&& ante) {
+		*this = std::move(ante);
+	}
+
+	KasiPiTawaKen& KasiPiTawaKen::operator=(KasiPiTawaKen&& ante) {
+		this->linjaTawaTawa = ante.linjaTawaTawa;
+		this->kasiLon = ante.kasiLon;
+		this->kasiPiLonAla = ante.kasiPiLonAla;
+		this->kulupuPiIjoTawaToki = std::move(ante.kulupuPiIjoTawaToki);
+
+		this->nimiKasi = NimiKasi::TAWA_KEN;
+
+		ante.linjaTawaTawa = -1;
+		ante.kasiLon = nullptr;
+		ante.kasiPiLonAla = nullptr;
+		ante.nimiKasi = NimiKasi::ALA;
+
+		return *this;
+	}
+
+	KasiPiTawaKen::~KasiPiTawaKen() {
+		delete this->kasiLon;
+		delete this->kasiPiLonAla;
+		for (pali::KasiPiKasiSuli* ijo : this->kulupuPiIjoTawaToki)
+			delete ijo;
+	}
+
+	const KasiPiKasiSuli* KasiPiTawaKen::kamaJoEKasiLon() const {
+		return this->kasiLon;
+	}
+
+	const KasiPiKasiSuli* KasiPiTawaKen::kamaJoEKasiPiLonAla() const {
+		return this->kasiPiLonAla;
+	}
+
+	const std::vector<KasiPiKasiSuli*>& KasiPiTawaKen::kamaJoEKulupuPiIjoToki() const {
+		return this->kulupuPiIjoTawaToki;
 	}
 }

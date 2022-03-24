@@ -15,7 +15,7 @@ std::string toki(size_t nanpaIjo, std::string* ijoTawaNi) {
 }
 
 /**
- * li toki e ijo e linja sin lon ilo pi pana nimi.
+ * @breif li toki e ijo e linja sin lon ilo pi pana nimi.
  *
  * @param nanpaIjo nanpa ijo.
  * @param ijoTawaNi ijo tawa toki.
@@ -28,7 +28,7 @@ std::string tokiKepekenLinjaSin(size_t nanpaIjo, std::string* ijoTawaNi) {
 }
 
 /**
- * li kama jo e nimi tan jan.
+ * @breif li kama jo e nimi tan jan.
  *
  * @param nanpaIjo nanpa ijo.
  * @param ijoTawaNi ijo tawa toki.

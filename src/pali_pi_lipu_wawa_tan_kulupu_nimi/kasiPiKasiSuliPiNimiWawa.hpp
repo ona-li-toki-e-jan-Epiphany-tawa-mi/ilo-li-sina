@@ -13,6 +13,9 @@ namespace pali {
 			KAMA_JO_TAN_POKI,
 			KAMA_JO_TAN_POKI_PI_ANTE_ALA,
 			NIMI_WAWA,
+			NIMI_TAWA,
+			TAWA,
+			TAWA_KEN,
 			ALA
 	};
 
@@ -117,5 +120,76 @@ namespace pali {
 		protected:
 			std::string nimiPiNimiWawa;
 			std::vector<KasiPiKasiSuli*> kulupuPiIjoTawaNimiWawa;
+	};
+
+	/**
+	 * kasi ni li tawa ni: nimi wawa tawa li ken kama lon ante.
+	 */
+	class KasiPiNimiTawa : public KasiPiKasiSuli {
+		public:
+			/**
+			 * @param nimiPiNimiTawa nimi pi nimi tawa. nimi wawa tawa li kepeken e nimi ni tawa tawa.
+			 */
+			KasiPiNimiTawa(const std::string* nimiPiNimiTawa);
+
+			/**
+			 * @attention ni li ken kama ijo "nullptr". o kepeken e ni lon tenpo taso pi pali pi lipu wawa.
+			 */
+			const std::string* kamaJoENimiPiNimiTawa() const;
+
+		protected:
+			const std::string* nimiPiNimiTawa;
+	};
+
+	/**
+	 * kasi ni li tawa lon ante.
+	 */
+	class KasiTawa : public KasiPiKasiSuli {
+		public:
+			/**
+			 * @attention sina li wile pana e nanpa lon linjaTawaTawa.
+			 */
+			KasiTawa();
+
+			/**
+			 * kasi li tawa linja ni.
+			 */
+			size_t linjaTawaTawa;
+	};
+
+	/**
+	 * @breif kasi li ken tawa tan nimi jan.
+	 * 
+	 * ni li toki e nimi li toki e nimi lon e nimi pi lon ala.
+	 * jan li toki e nimi lon la ni li tawa.
+	 * ni ala la ni li tawa ala.
+	 */
+	class KasiPiTawaKen : public KasiTawa {
+		public:
+			/**
+			 * @brief sina li wile pana e nanpa lon linjaTawaTawa. kasi li tawa linja ni.
+			 *
+			 * @param kasiLon kasi tawa kama jo e nimi lon.
+			 * @param kasiPiLonAla kasi tawa kama jo e nimi pi lon ala.
+			 * @param kulupuPiIjoTawaToki kulupu kasi ni li kama jo e ijo tawa toki tawa jan.
+			 */
+			KasiPiTawaKen(KasiPiKasiSuli* kasiLon, KasiPiKasiSuli* kasiPiLonAla, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaToki);
+
+			KasiPiTawaKen(const KasiPiTawaKen& ante);
+
+			KasiPiTawaKen(KasiPiTawaKen&& ante);
+
+			KasiPiTawaKen& operator=(KasiPiTawaKen&& ante);
+
+			~KasiPiTawaKen() override;
+
+			const KasiPiKasiSuli* kamaJoEKasiLon() const;
+			const KasiPiKasiSuli* kamaJoEKasiPiLonAla() const;
+			const std::vector<KasiPiKasiSuli*>& kamaJoEKulupuPiIjoToki() const;
+
+		protected:
+			KasiPiKasiSuli* kasiLon;
+			KasiPiKasiSuli* kasiPiLonAla;
+			std::vector<KasiPiKasiSuli*> kulupuPiIjoTawaToki;
 	};
 }

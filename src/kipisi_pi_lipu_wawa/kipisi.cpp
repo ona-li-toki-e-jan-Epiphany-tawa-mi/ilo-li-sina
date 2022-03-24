@@ -4,6 +4,10 @@
 #include <regex>
 #include "../ike.hpp"
 
+// TODO o pali e ni: ilo li sona ala e sitelen la li toki e ike.
+// TODO o pana e sitelen tawa sitelen nasa (sama \n en \t).
+// TODO o pana e ni: kan li ken sitlen e nimi pi wawa ala.
+
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) std::distance(linjaSitelen.begin(), alasaSitelen) + 1
 
 namespace kipisi {
@@ -29,6 +33,27 @@ namespace kipisi {
 						// li kama jo e nimi pi pana lon poki nanpa.
 						case '=': {
 							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::PANA_LON_POKI_NANPA, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
+							break;
+						}
+
+						// li kama jo e nimi pi nimi tawa tawa.
+						case ':': {
+							bool liPaliELonTawaTawa = false;
+							if (pokiPiKulupuNimi.size() >= 1) {
+								auto kulupuNimiLonMonsi = pokiPiKulupuNimi.end() - 1;
+
+								if (kulupuNimiLonMonsi->nimiPiKulupuNimi == NimiPiKulupuNimi::POKI_NANPA) {
+									kulupuNimiLonMonsi->nimiPiKulupuNimi = NimiPiKulupuNimi::NIMI_TAWA_TAWA;
+									liPaliELonTawaTawa = true;
+								}
+							}
+
+							if (!liPaliELonTawaTawa)
+								ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a label name before ':'!");
+
+							if (pokiPiKulupuNimi.size() >= 2 && (pokiPiKulupuNimi.end() - 2)->nimiPiKulupuNimi != NimiPiKulupuNimi::LINJA_SITELEN_SIN)
+								ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), "A label can only occur at the start of a line!");
+
 							break;
 						}
 

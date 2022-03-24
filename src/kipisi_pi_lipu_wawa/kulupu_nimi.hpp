@@ -16,6 +16,7 @@ namespace kipisi {
 		NIMI_WAWA,
 		POKI_PI_IJO_TAWA_NIMI_WAWA,
 		LINJA_SITELEN_SIN,
+		NIMI_TAWA_TAWA,
 		ALA
 	};
 

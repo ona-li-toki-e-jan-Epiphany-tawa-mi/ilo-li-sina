@@ -207,6 +207,7 @@ namespace pali {
 		size_t nanpaLinja = 1;
 		std::vector<IjoTawaTawa> nimiWawaTawaTawa;
 
+		// li pali e lipu wawa.
 		for (auto alasaPiKulupuNimi = kulupuNimi.begin(); alasaPiKulupuNimi != kulupuNimi.end(); alasaPiKulupuNimi++) {
 			switch (alasaPiKulupuNimi->nimiPiKulupuNimi) {
 				// nimi wawa pi nanpa 1 en pana pi nanpa 1 lon poki nanpa li kulupu nimi suli suli lon linja sitelen li wile lon open pi kasi suli.
@@ -229,6 +230,8 @@ namespace pali {
 			}
 		}
 
+
+		// li wan e nimi tawa e nimi wawa tawa.
 		for (size_t nanpa = 0; nanpa < pokiTawaLipuWawa.size(); nanpa++)
 			if (pokiTawaLipuWawa.at(nanpa)->kamaJoENimiKasi() == NimiKasi::NIMI_TAWA) {
 				auto kasiTawaTawa = static_cast<KasiPiNimiTawa*>(pokiTawaLipuWawa.at(nanpa));
@@ -237,6 +240,11 @@ namespace pali {
 					if (ijo.nimiPiNimiTawaTawa == *kasiTawaTawa->kamaJoENimiPiNimiTawa())
 						ijo.nimiWawaTawaTawa->linjaTawaTawa = nanpa;
 			}
+
+		for (IjoTawaTawa& ijo : nimiWawaTawaTawa)
+			if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1)
+				ike::tokiEIke(nimiPiLipuWawa, "TODO Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
+
 
 		return pokiTawaLipuWawa;
 	}

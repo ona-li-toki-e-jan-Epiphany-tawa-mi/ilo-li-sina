@@ -135,6 +135,7 @@ namespace pali {
 
 
 	KasiTawa::KasiTawa() {
+		this->linjaTawaTawa = -1;
 		this->nimiKasi = NimiKasi::TAWA;
 	}
 

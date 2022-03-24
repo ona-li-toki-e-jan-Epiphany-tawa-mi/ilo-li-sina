@@ -1,9 +1,10 @@
+    # Asks the real slim shady to please stand up, even if he is the user.
     niLaTawa(FakeSlimShady "no" "yaaas" "Are you the real slim shady?")
     tokiELinja("Would you please stand up?")
     tawa(EndSlimShady)
 FakeSlimShady: 
     tokiELinja("Would the real slim shady please stand up?")
 EndSlimShady:
-    tokiELinja()
 
+    # "AN IDIOT SANDWICH" is the correct-est response.
     tokiELinja("YOU ARE " kamaJoTanJan("WHAT ARE YOU?") "!")

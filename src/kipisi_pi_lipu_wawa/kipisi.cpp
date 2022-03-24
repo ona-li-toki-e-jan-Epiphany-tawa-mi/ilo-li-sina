@@ -6,7 +6,6 @@
 
 // TODO o pali e ni: ilo li sona ala e sitelen la li toki e ike.
 // TODO o pana e sitelen tawa sitelen nasa (sama \n en \t).
-// TODO o pana e ni: kan li ken sitlen e nimi pi wawa ala.
 
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) std::distance(linjaSitelen.begin(), alasaSitelen) + 1
 
@@ -84,6 +83,10 @@ namespace kipisi {
 							break;
 						}
 
+						// li ken e ni: jan li sitelen e nimi pi wawa ala tawa toki e sona.
+						case '#':
+							goto liNimiPiWawaAla;
+
 						// li kama jo e poki pi ijo tawa nimi wawa e nimi wawa.
 						case '(':
 						case ')': {
@@ -132,6 +135,7 @@ namespace kipisi {
 								break;
 					}
 				}
+			liNimiPiWawaAla:
 
 			nanpaLinja++;
 			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, linjaSitelen.size() + 1);

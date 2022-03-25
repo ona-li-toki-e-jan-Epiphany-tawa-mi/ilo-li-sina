@@ -1,0 +1,27 @@
+# Runs through solving the quadratic equation.
+    tokiELinja("Quadratic solver v4.43654784")
+    tokiELinja()
+
+    quadratic = kamaJoTanJan("Enter the equation you would like to solve: ")
+    a = kamaJoTanJan("What is the mutiple on x^2 (a)? ")
+    b = kamaJoTanJan("What is the mutiple on x (b)? ")
+    c = kamaJoTanJan("What is the constant (c)? ")
+
+    discriminant = kamaJoTanJan("What is " kamaJoTanJan("What is " b "^2?") "-" kamaJoTanJan("What is " kamaJoTanJan("What is 4*" a "?") "*" c "?") "?")
+    divisor = kamaJoTanJan("What is 2*" a "?")
+    niLaTawa(IsNotZero "no" "yes" "Is '" divisor "' equal to 0?")
+    tokiELinja("No solution")
+    tawa(ProgramEnd)
+
+IsNotZero:
+    niLaTawa(IsNegative "yes" "no" "Is " discriminant " negative?")
+    discriminant = kamaJoTanJan("What is the square root of " discriminant " ?")
+    tawa(PrintSolutions)
+IsNegative:
+    discriminant = wan(kamaJoTanJan("What is the square root of " discriminant "*-1?") "i")
+
+PrintSolutions:
+    tokiELinja("The possible unsimplified solutions for the equation " quadratic " are:")
+    tokiELinja("\t(-" b "+" discriminant ")/" divisor " and (-" b "-" discriminant ")/" divisor)
+
+ProgramEnd:

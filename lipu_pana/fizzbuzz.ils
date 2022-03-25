@@ -1,0 +1,19 @@
+# fizzbuzz.
+    i = "0"
+Start:
+    output = ""
+    niLaTawa(NotModulo3 "no" "yes" "Is " i " divisible by 3?")
+    output = "fizz"
+NotModulo3:
+    niLaTawa(NotModulo5 "no" "yes" "Is " i " divisible by 5?")
+    output = wan(output "buzz")
+    tawa(Print)
+NotModulo5:
+    niLaTawa(NoModulo "yes" "no" "Is '" output "' empty?")
+    tawa(Print)
+NoModulo:
+    output = i
+Print:
+    tokiELinja("output: " output)
+    i = kamaJoTanJan("What is " i "+1?")
+    tawa(Start)

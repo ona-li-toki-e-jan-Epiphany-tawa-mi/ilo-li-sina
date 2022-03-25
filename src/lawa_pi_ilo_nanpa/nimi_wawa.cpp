@@ -43,10 +43,28 @@ std::string kamaJoTanJan(size_t nanpaIjo, std::string* ijoTawaNi) {
 	return nimiTanJan;
 }
 
+/**
+ * @brief li wan e ijo.
+ * 
+ * @param nanpaIjo nanpa ijo.
+ * @param ijoTawaNi ijo ni li kama wan.
+ * 
+ * @return std::string ijo wan tan ijo mute.
+ */
+std::string wan(size_t nanpaIjo, std::string* ijoTawaNi) {
+	std::string pokiSitelenSin;
+
+	for (size_t nanpa = 0; nanpa < nanpaIjo; nanpa++)
+		pokiSitelenSin += ijoTawaNi[nanpa];
+
+	return pokiSitelenSin;
+}
+
 namespace lawa {
 	const std::unordered_map<std::string, std::string(*)(size_t, std::string[])> pokiPiNimiWawaAli = {
 			{"toki", toki},
 			{"tokiELinja", tokiKepekenLinjaSin},
-			{"kamaJoTanJan", kamaJoTanJan}
+			{"kamaJoTanJan", kamaJoTanJan},
+			{"wan", wan}
 	};
 }

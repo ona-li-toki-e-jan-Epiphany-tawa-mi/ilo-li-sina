@@ -2,16 +2,19 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <unordered_map>
+#include <stdexcept>
 #include "../ike.hpp"
 
 // TODO o pali e ni: ilo li sona ala e sitelen la li toki e ike.
-// TODO o pana e sitelen tawa sitelen nasa (sama \n en \t).
 
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) std::distance(linjaSitelen.begin(), alasaSitelen) + 1
 
 namespace kipisi {
 	const std::regex SITELEN_PI_LUKIN_ALA("\\s", std::regex_constants::optimize);
 	const std::regex SITELEN_PI_POKI_NANPA("[a-zA-Z_0-9]", std::regex_constants::optimize);
+	const std::unordered_map<char, char> sitelenNasaTanNimi = {
+		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
 
 	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa) {
 		std::ifstream lipuWawa(nimiPiLipuWawa, std::ifstream::in);
@@ -64,15 +67,33 @@ namespace kipisi {
 
 							alasaSitelen++;
 							for (; alasaSitelen != linjaSitelen.end(); alasaSitelen++) {
-								if (*alasaSitelen == '"') {
-									alasaSitelen++;
-									liJoEPini = true;
+								switch (*alasaSitelen) {
+									// pini pi poki sitelen.
+									case '"':
+										alasaSitelen++;
+										liJoEPini = true;
+										goto liPiniPiPokiSitelen;
 
-									break;
+									// nimi pi sitelen nasa (sama \n anu \v).
+									case '\\':
+										alasaSitelen++;
+										if (alasaSitelen == linjaSitelen.end())
+											goto liPiniPiPokiSitelen;
+
+										try {
+											pokiSitelen.push_back(sitelenNasaTanNimi.at(*alasaSitelen));
+										
+										} catch (std::out_of_range& liSuliAla) {	
+											ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), std::string("Unknown escape sequence: \\") + *alasaSitelen);
+										}
+
+										continue;
+
+									default:
+										pokiSitelen.push_back(*alasaSitelen);
 								}
-
-								pokiSitelen.push_back(*alasaSitelen);
 							}
+						liPiniPiPokiSitelen:
 
 							if (!liJoEPini)
 								ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki), "Unterminated string!");

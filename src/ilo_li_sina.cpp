@@ -6,6 +6,7 @@
 #include "lawa_pi_ilo_nanpa/lawa.hpp"
 
 // TODO o pona e ike lon toki pona.
+// TODO o pali e ni: toki ike li pini ala e lipu wawa ni.
 
 int main(int argc, char** argv) {
 	if (argc <= 1) {

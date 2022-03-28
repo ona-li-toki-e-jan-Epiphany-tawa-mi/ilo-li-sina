@@ -77,7 +77,8 @@ namespace lawa {
 			}
 
 			case pali::NimiKasi::TAWA:
-				nanpaLinja = static_cast<const pali::KasiTawa*>(kasi)->linjaTawaTawa; 
+				nanpaLinja = static_cast<const pali::KasiTawa*>(kasi)->linjaTawaTawa;
+				break;
 
 			case pali::NimiKasi::NIMI_TAWA:
 				break;

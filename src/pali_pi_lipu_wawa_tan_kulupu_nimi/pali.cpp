@@ -196,7 +196,7 @@ namespace pali {
 			}
 
 			case kipisi::NimiPiKulupuNimi::NIMI_TAWA_TAWA:
-				return new KasiPiNimiTawa(&alasaPiKulupuNimi->kamaJoENimiPoki());
+				return new KasiPiNimiTawa(alasaPiKulupuNimi->kamaJoENimiPoki());
 		}
 
 		return nullptr;
@@ -237,14 +237,13 @@ namespace pali {
 				auto kasiTawaTawa = static_cast<KasiPiNimiTawa*>(pokiTawaLipuWawa.at(nanpa));
 
 				for (IjoTawaTawa& ijo : nimiWawaTawaTawa)
-					if (ijo.nimiPiNimiTawaTawa == *kasiTawaTawa->kamaJoENimiPiNimiTawa())
+					if (ijo.nimiPiNimiTawaTawa == kasiTawaTawa->kamaJoENimiPiNimiTawa())
 						ijo.nimiWawaTawaTawa->linjaTawaTawa = nanpa;
 			}
 
 		for (IjoTawaTawa& ijo : nimiWawaTawaTawa)
 			if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1)
 				ike::tokiEIke(nimiPiLipuWawa, "TODO Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
-
 
 		return pokiTawaLipuWawa;
 	}

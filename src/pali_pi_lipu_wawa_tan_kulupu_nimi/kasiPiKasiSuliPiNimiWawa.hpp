@@ -25,15 +25,17 @@ namespace pali {
 	 */
 	class KasiPiKasiSuli {
 		public:
-			virtual ~KasiPiKasiSuli();
+			/**
+			 * @brief li pali e kasi sama kasi ni.
+			 */
+			virtual KasiPiKasiSuli* paliSama() const = 0;
+
+			virtual ~KasiPiKasiSuli() = 0;
 
 			/**
 			 * @retval nimi kasi pi kasi ni.
 			 */
-			NimiKasi kamaJoENimiKasi() const;
-
-		protected:
-			NimiKasi nimiKasi = NimiKasi::ALA;
+			virtual NimiKasi kamaJoENimiKasi() const;
 	};
 
 	/**
@@ -47,14 +49,16 @@ namespace pali {
 			 */
 			KasiPiPanaLonPoki(const std::string& nimiPoki, KasiPiKasiSuli* ijoTawaPana);
 
-			KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante);
+			KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante) = delete;
+			virtual KasiPiPanaLonPoki* paliSama() const override;
 
 			KasiPiPanaLonPoki(KasiPiPanaLonPoki&& ante);
-
 			KasiPiPanaLonPoki& operator=(KasiPiPanaLonPoki&& ante);
 
-			~KasiPiPanaLonPoki() override;
+			virtual ~KasiPiPanaLonPoki() override;
 
+			virtual NimiKasi kamaJoENimiKasi() const override;
+			
 			const std::string& kamaJoENimiPoki() const;
 			const KasiPiKasiSuli* kamaJoEIjoTawaPana() const;
 
@@ -73,6 +77,13 @@ namespace pali {
 			 */
 			KasiPiKamaJoTanPoki(const std::string& nimiPoki);
 
+			KasiPiKamaJoTanPoki(const KasiPiKamaJoTanPoki& ante) = delete;
+			virtual KasiPiKamaJoTanPoki* paliSama() const override;
+
+			virtual ~KasiPiKamaJoTanPoki() override;
+
+			virtual NimiKasi kamaJoENimiKasi() const override;
+
 			const std::string& kamaJoENimiPoki() const;
 
 		protected:
@@ -88,6 +99,13 @@ namespace pali {
 			 * @param ijoTawaKama lipu lawa li kepeken e kasi ni la ijo ni li pana tawa ona.
 			 */
 			KasiPiKamaJoTanPokiPiAnteAla(const std::string& ijoTawaKama);
+
+			KasiPiKamaJoTanPokiPiAnteAla(const KasiPiKamaJoTanPokiPiAnteAla& ante) = delete;
+			virtual KasiPiKamaJoTanPokiPiAnteAla* paliSama() const override;
+
+			virtual ~KasiPiKamaJoTanPokiPiAnteAla() override;
+
+			virtual NimiKasi kamaJoENimiKasi() const override;
 
 			const std::string& kamaJoEIjoPoki() const;
 
@@ -106,13 +124,16 @@ namespace pali {
 			 */
 			KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaNimiWawa);
 
-			KasiPiNimiWawa(const KasiPiNimiWawa& ante);
+			KasiPiNimiWawa(const KasiPiNimiWawa& ante) = delete;
+			virtual KasiPiNimiWawa* paliSama() const override;
 
 			KasiPiNimiWawa(KasiPiNimiWawa&& ante);
 
 			KasiPiNimiWawa& operator=(KasiPiNimiWawa&& ante);
 
-			~KasiPiNimiWawa() override;
+			virtual ~KasiPiNimiWawa() override;
+
+			virtual NimiKasi kamaJoENimiKasi() const override;
 
 			const std::string& kamaJoENimiPiNimiWawa() const;
 			const std::vector<KasiPiKasiSuli*>& kamaJoEKulupuPiIjoTawaNimiWawa() const;
@@ -130,15 +151,19 @@ namespace pali {
 			/**
 			 * @param nimiPiNimiTawa nimi pi nimi tawa. nimi wawa tawa li kepeken e nimi ni tawa tawa.
 			 */
-			KasiPiNimiTawa(const std::string* nimiPiNimiTawa);
+			KasiPiNimiTawa(const std::string nimiPiNimiTawa);
 
-			/**
-			 * @attention ni li ken kama ijo "nullptr". o kepeken e ni lon tenpo taso pi pali pi lipu wawa.
-			 */
-			const std::string* kamaJoENimiPiNimiTawa() const;
+			KasiPiNimiTawa(const KasiPiNimiTawa& ante) = delete;
+			virtual KasiPiNimiTawa* paliSama() const override;
+
+			virtual ~KasiPiNimiTawa() override;
+
+			virtual NimiKasi kamaJoENimiKasi() const override;
+
+			const std::string kamaJoENimiPiNimiTawa() const;
 
 		protected:
-			const std::string* nimiPiNimiTawa;
+			std::string nimiPiNimiTawa;
 	};
 
 	/**
@@ -147,9 +172,16 @@ namespace pali {
 	class KasiTawa : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @attention sina li wile pana e nanpa lon linjaTawaTawa.
+			 * @attention sina li wile pana e nanpa lon this->linjaTawaTawa.
 			 */
 			KasiTawa();
+
+			KasiTawa(const KasiTawa& ante) = delete;
+			virtual KasiTawa* paliSama() const override;
+
+			virtual ~KasiTawa() override;
+
+			virtual NimiKasi kamaJoENimiKasi() const override;
 
 			/**
 			 * kasi li tawa linja ni.
@@ -175,13 +207,16 @@ namespace pali {
 			 */
 			KasiPiTawaKen(KasiPiKasiSuli* kasiLon, KasiPiKasiSuli* kasiPiLonAla, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaToki);
 
-			KasiPiTawaKen(const KasiPiTawaKen& ante);
+			KasiPiTawaKen(const KasiPiTawaKen& ante) = delete;
+			virtual KasiPiTawaKen* paliSama() const override;
 
 			KasiPiTawaKen(KasiPiTawaKen&& ante);
 
 			KasiPiTawaKen& operator=(KasiPiTawaKen&& ante);
 
-			~KasiPiTawaKen() override;
+			virtual ~KasiPiTawaKen() override;
+
+			virtual NimiKasi kamaJoENimiKasi() const override;
 
 			const KasiPiKasiSuli* kamaJoEKasiLon() const;
 			const KasiPiKasiSuli* kamaJoEKasiPiLonAla() const;

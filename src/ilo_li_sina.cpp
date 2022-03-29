@@ -7,6 +7,7 @@
 
 // TODO o pona e ike lon toki pona.
 // TODO o pali e ni: toki ike li pini ala e lipu wawa ni.
+// TODO o pali e ni: sina ken sitelen e ijo tawa ni: lipu wawa ni li toki e kasi pi lipu wawa li lawa ala kekpeken ona.
 
 int main(int argc, char** argv) {
 	if (argc <= 1) {

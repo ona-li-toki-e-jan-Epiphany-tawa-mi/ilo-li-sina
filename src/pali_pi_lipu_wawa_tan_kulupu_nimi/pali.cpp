@@ -4,7 +4,6 @@
 #include <stdexcept>
 #include "../ike.hpp"
 
-// TODO linja li jo ala e nimi wawa anu pana lon poki la o toki e ike.
 // TODO o kepeken e poki "shared_pointer" tawa poki e kasi.
 
 namespace pali {
@@ -250,57 +249,104 @@ namespace pali {
 
 
 
-	// TODO ni li wile: ni li kama pona mute. 
+	/**
+	 * @brief li toki e sitelen pi lukin ala lon open pi toki kasi.
+	 * 
+	 * @param lonInsaPiNanpaNi nanpa ni li nanpa sitelen tawa toki. kasi li lon insa pi kasi pi nanpa ni.
+	 */
+	void tokiEOpenPiTokiKasi(unsigned int lonInsaPiNanpaNi) {
+		for (int nanpa = 0; nanpa < lonInsaPiNanpaNi; nanpa++)
+			std::cout << "  ";
+	}
+
 	/**
 	 * @breif li pana e kasi pi kasi suli pi lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
 	 *
 	 * @param kasi kasi pi kasi suli tawa pana.
 	 * @param lonInsaPiNanpaNi kasi li lon insa pi kasi pi nanpa ni.
+	 * @param nanpaPiKasiLonSewi kasi li kasi pi nanpa ni lon poki pi lipu wawa anu lon kasi ni.
 	 */
-	void tokiEKasiPiKasiSuli(const KasiPiKasiSuli* kasi, int lonInsaPiNanpaNi) {
-		for (int nanpa = 0; nanpa < lonInsaPiNanpaNi; nanpa++)
-					std::cout << "  ";
+	void tokiEKasiPiKasiSuli(const KasiPiKasiSuli* kasi, unsigned int lonInsaPiNanpaNi, size_t nanpaPiKasiLonSewi) {
+		tokiEOpenPiTokiKasi(lonInsaPiNanpaNi);
 
 		switch (kasi->kamaJoENimiKasi()) {
 			case NimiKasi::PANA_LON_POKI: {
 				const KasiPiPanaLonPoki* kasiPiPanaLonPoki = static_cast<const KasiPiPanaLonPoki*>(kasi);
-				std::cout << "ASSIGN='" << kasiPiPanaLonPoki->kamaJoENimiPoki() << "':" << std::endl;
-				tokiEKasiPiKasiSuli(kasiPiPanaLonPoki->kamaJoEIjoTawaPana(), lonInsaPiNanpaNi + 2);
+				std::cout << "PANA_LON_POKI='" << kasiPiPanaLonPoki->kamaJoENimiPoki() << "':\n";
+				tokiEKasiPiKasiSuli(kasiPiPanaLonPoki->kamaJoEIjoTawaPana(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
 
 				break;
 			}
 
 			case NimiKasi::KAMA_JO_TAN_POKI: {
 				const KasiPiKamaJoTanPoki* kasiPiKamaJoTanPoki = static_cast<const KasiPiKamaJoTanPoki*>(kasi);
-				std::cout << "VARIABLE_GET='" << kasiPiKamaJoTanPoki->kamaJoENimiPoki() << "'" << std::endl;
+				std::cout << "KAMA_JO_TAN_POKI='" << kasiPiKamaJoTanPoki->kamaJoENimiPoki() << "'\n";
 
 				break;
 			}
 
 			case NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA: {
 				const KasiPiKamaJoTanPokiPiAnteAla* kasiPiKamaJoTanPokiPiAnteAla = static_cast<const KasiPiKamaJoTanPokiPiAnteAla*>(kasi);
-				std::cout << "CONST_GET='" << kasiPiKamaJoTanPokiPiAnteAla->kamaJoEIjoPoki() << "'" << std::endl;
+				std::cout << "KAMA_JO_TAN_POKI_PI_ANTE_ALA='" << kasiPiKamaJoTanPokiPiAnteAla->kamaJoEIjoPoki() << "'\n";
 
 				break;
 			}
 
 			case NimiKasi::NIMI_WAWA: {
 				const KasiPiNimiWawa* kasiPiNimiWawa = static_cast<const KasiPiNimiWawa*>(kasi);
-				std::cout << "FUNCTION='" << kasiPiNimiWawa->kamaJoENimiPiNimiWawa() << "':" << std::endl;
-				for (KasiPiKasiSuli* kasiPiIjoTawaNimiWawa : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
-					tokiEKasiPiKasiSuli(kasiPiIjoTawaNimiWawa, lonInsaPiNanpaNi + 2);
+				std::cout << "NIMI_WAWA='" << kasiPiNimiWawa->kamaJoENimiPiNimiWawa() << '\'';
+
+				if (kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa().size() > 0) {
+					std::cout << ":\n";
+
+					for (KasiPiKasiSuli* kasiPiIjoTawaNimiWawa : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
+						tokiEKasiPiKasiSuli(kasiPiIjoTawaNimiWawa, lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
+				
+				} else
+					std::cout << '\n';
+
+				break;
+			}
+
+			case NimiKasi::NIMI_TAWA:
+				std::cout << "NIMI_TAWA=" << nanpaPiKasiLonSewi << '\n';
+				break;
+
+			case NimiKasi::TAWA: {
+				const KasiTawa* kasiTawa = static_cast<const KasiTawa*>(kasi);
+				std::cout << "TAWA=" << kasiTawa->linjaTawaTawa << '\n';
+
+				break;
+			}
+
+			case NimiKasi::TAWA_KEN: {
+				const KasiPiTawaKen* kasiPiTawaKen = static_cast<const KasiPiTawaKen*>(kasi);
+				std::cout << "TAWA_KEN=" << kasiPiTawaKen->linjaTawaTawa << ":\n";
+
+				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 2);
+				std::cout << "NIMI_LON:\n";
+				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiLon(), lonInsaPiNanpaNi + 4, nanpaPiKasiLonSewi);
+				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 2);
+				std::cout << "NIMI_PI_LON_ALA:\n";
+				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiPiLonAla(), lonInsaPiNanpaNi + 4, nanpaPiKasiLonSewi);
+				
+				if (kasiPiTawaKen->kamaJoEKulupuPiIjoToki().size() > 0) {
+					tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 2);
+					std::cout << "IJO_TAWA_TOKI:\n";
+					for (KasiPiKasiSuli* ijo : kasiPiTawaKen->kamaJoEKulupuPiIjoToki())
+						tokiEKasiPiKasiSuli(ijo, lonInsaPiNanpaNi + 4, nanpaPiKasiLonSewi);
+				}
 
 				break;
 			}
 
 			default:
-				std::cout << "INVALID" << std::endl;
+				std::cout << "ALA\n";
 		}
 	}
 
 	void tokiEKasiSuli(const std::vector<KasiPiKasiSuli*>& pokiTawaLipuWawa) {
-		for (KasiPiKasiSuli* kasi : pokiTawaLipuWawa) {
-			tokiEKasiPiKasiSuli(kasi, 0);
-		}
+		for (size_t nanpa; nanpa < pokiTawaLipuWawa.size(); nanpa++)
+			tokiEKasiPiKasiSuli(pokiTawaLipuWawa.at(nanpa), 0, nanpa);
 	}
 }

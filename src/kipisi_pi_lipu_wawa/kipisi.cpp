@@ -6,8 +6,6 @@
 #include <stdexcept>
 #include "../ike.hpp"
 
-// TODO o pali e ni: ilo li sona ala e sitelen la li toki e ike.
-
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) std::distance(linjaSitelen.begin(), alasaSitelen) + 1
 
 namespace kipisi {
@@ -154,6 +152,8 @@ namespace kipisi {
 							// li weka e sitelen pi lukin ala.
 							if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_LUKIN_ALA))
 								break;
+
+							ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), std::string("Unknown symbol: ") + *alasaSitelen);
 					}
 				}
 			liNimiPiWawaAla:

@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <memory>
 
 /**
  * kasi pi kasi suli tawa pali e lipu wawa tan kulupu nimi.
@@ -47,24 +48,21 @@ namespace pali {
 			 * @param nimiPoki ijo li pana lon poki pi nimi ni.
 			 * @param ijoTawaPana kasi ni li kama jo e ijo tawa poki.
 			 */
-			KasiPiPanaLonPoki(const std::string& nimiPoki, KasiPiKasiSuli* ijoTawaPana);
+			KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana);
 
 			KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante) = delete;
 			virtual KasiPiPanaLonPoki* paliSama() const override;
-
-			KasiPiPanaLonPoki(KasiPiPanaLonPoki&& ante);
-			KasiPiPanaLonPoki& operator=(KasiPiPanaLonPoki&& ante);
 
 			virtual ~KasiPiPanaLonPoki() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 			
 			const std::string& kamaJoENimiPoki() const;
-			const KasiPiKasiSuli* kamaJoEIjoTawaPana() const;
+			std::shared_ptr<const KasiPiKasiSuli> kamaJoEIjoTawaPana() const;
 
 		protected:
 			std::string nimiPoki;
-			KasiPiKasiSuli* ijoTawaPana;
+			std::shared_ptr<KasiPiKasiSuli> ijoTawaPana;
 	};
 
 	/**
@@ -122,25 +120,21 @@ namespace pali {
 			 * @param nimiPiNimiWawa ni li nimi pi nimi wawa li toki e ni: ona li pali e seme.
 			 * @param kulupuPiIjoTawaNimiWawa kasi pi kulupu ni li kama jo e ijo tawa kepeken pi nimi wawa.
 			 */
-			KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaNimiWawa);
+			KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa);
 
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante) = delete;
 			virtual KasiPiNimiWawa* paliSama() const override;
-
-			KasiPiNimiWawa(KasiPiNimiWawa&& ante);
-
-			KasiPiNimiWawa& operator=(KasiPiNimiWawa&& ante);
 
 			virtual ~KasiPiNimiWawa() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
 			const std::string& kamaJoENimiPiNimiWawa() const;
-			const std::vector<KasiPiKasiSuli*>& kamaJoEKulupuPiIjoTawaNimiWawa() const;
+			const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoTawaNimiWawa() const;
 
 		protected:
 			std::string nimiPiNimiWawa;
-			std::vector<KasiPiKasiSuli*> kulupuPiIjoTawaNimiWawa;
+			std::vector<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaNimiWawa;
 	};
 
 	/**
@@ -160,7 +154,7 @@ namespace pali {
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
-			const std::string kamaJoENimiPiNimiTawa() const;
+			const std::string& kamaJoENimiPiNimiTawa() const;
 
 		protected:
 			std::string nimiPiNimiTawa;
@@ -205,26 +199,22 @@ namespace pali {
 			 * @param kasiPiLonAla kasi tawa kama jo e nimi pi lon ala.
 			 * @param kulupuPiIjoTawaToki kulupu kasi ni li kama jo e ijo tawa toki tawa jan.
 			 */
-			KasiPiTawaKen(KasiPiKasiSuli* kasiLon, KasiPiKasiSuli* kasiPiLonAla, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaToki);
+			KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki);
 
 			KasiPiTawaKen(const KasiPiTawaKen& ante) = delete;
 			virtual KasiPiTawaKen* paliSama() const override;
-
-			KasiPiTawaKen(KasiPiTawaKen&& ante);
-
-			KasiPiTawaKen& operator=(KasiPiTawaKen&& ante);
 
 			virtual ~KasiPiTawaKen() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
-			const KasiPiKasiSuli* kamaJoEKasiLon() const;
-			const KasiPiKasiSuli* kamaJoEKasiPiLonAla() const;
-			const std::vector<KasiPiKasiSuli*>& kamaJoEKulupuPiIjoToki() const;
+			std::shared_ptr<const KasiPiKasiSuli> kamaJoEKasiLon() const;
+			std::shared_ptr<const KasiPiKasiSuli> kamaJoEKasiPiLonAla() const;
+			const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoToki() const;
 
 		protected:
-			KasiPiKasiSuli* kasiLon;
-			KasiPiKasiSuli* kasiPiLonAla;
-			std::vector<KasiPiKasiSuli*> kulupuPiIjoTawaToki;
+			std::shared_ptr<KasiPiKasiSuli> kasiLon;
+			std::shared_ptr<KasiPiKasiSuli> kasiPiLonAla;
+			std::vector<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaToki;
 	};
 }

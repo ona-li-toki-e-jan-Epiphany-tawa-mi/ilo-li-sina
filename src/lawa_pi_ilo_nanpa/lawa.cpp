@@ -22,7 +22,7 @@ namespace lawa {
 		switch (kasi->kamaJoENimiKasi()) {
 			case pali::NimiKasi::PANA_LON_POKI: {
 				auto kasiPiPanaLonPoki = static_cast<const pali::KasiPiPanaLonPoki*>(kasi);
-				pokiPiPokiNanpaAli[kasiPiPanaLonPoki->kamaJoENimiPoki()] = paliEKasi(kasiPiPanaLonPoki->kamaJoEIjoTawaPana(), pokiPiPokiNanpaAli, nanpaLinja);
+				pokiPiPokiNanpaAli[kasiPiPanaLonPoki->kamaJoENimiPoki()] = paliEKasi(kasiPiPanaLonPoki->kamaJoEIjoTawaPana().get(), pokiPiPokiNanpaAli, nanpaLinja);
 
 				break;
 			}
@@ -38,8 +38,8 @@ namespace lawa {
 				std::vector<std::string> ijoTawaNimiWawa;
 
 				ijoTawaNimiWawa.reserve(kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa().size());
-				for (const pali::KasiPiKasiSuli* ijo : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
-					ijoTawaNimiWawa.push_back(paliEKasi(ijo, pokiPiPokiNanpaAli, nanpaLinja));
+				for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijo : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
+					ijoTawaNimiWawa.push_back(paliEKasi(ijo.get(), pokiPiPokiNanpaAli, nanpaLinja));
 
 				try {
 					return pokiPiNimiWawaAli.at(kasiPiNimiWawa->kamaJoENimiPiNimiWawa())(ijoTawaNimiWawa.size(), ijoTawaNimiWawa.data());
@@ -53,12 +53,12 @@ namespace lawa {
 
 			case pali::NimiKasi::TAWA_KEN: {
 				auto kasiPiPaliKen = static_cast<const pali::KasiPiTawaKen*>(kasi);
-				std::string nimiLon = paliEKasi(kasiPiPaliKen->kamaJoEKasiLon(), pokiPiPokiNanpaAli, nanpaLinja);
-				std::string nimiPiLonAla = paliEKasi(kasiPiPaliKen->kamaJoEKasiPiLonAla(), pokiPiPokiNanpaAli, nanpaLinja);
+				std::string nimiLon = paliEKasi(kasiPiPaliKen->kamaJoEKasiLon().get(), pokiPiPokiNanpaAli, nanpaLinja);
+				std::string nimiPiLonAla = paliEKasi(kasiPiPaliKen->kamaJoEKasiPiLonAla().get(), pokiPiPokiNanpaAli, nanpaLinja);
 
 				while (true) {
-					for (pali::KasiPiKasiSuli* ijoTawaToki : kasiPiPaliKen->kamaJoEKulupuPiIjoToki())
-						std::cout << paliEKasi(ijoTawaToki, pokiPiPokiNanpaAli, nanpaLinja);
+					for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijoTawaToki : kasiPiPaliKen->kamaJoEKulupuPiIjoToki())
+						std::cout << paliEKasi(ijoTawaToki.get(), pokiPiPokiNanpaAli, nanpaLinja);
 					std::cout << " (" << nimiLon << '/' << nimiPiLonAla << ")\n";
 
 					std::string nimiTanJan;
@@ -90,10 +90,10 @@ namespace lawa {
 		return "";
 	}
 
-	void lawaEIloNanpa(const std::vector<pali::KasiPiKasiSuli*>& lipuWawa) {
+	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa) {
 		std::unordered_map<std::string, std::string> pokiPiPokiNanpaAli;
 
 		for (size_t nanpa = 0; nanpa != lipuWawa.size(); nanpa++)
-			paliEKasi(lipuWawa.at(nanpa), pokiPiPokiNanpaAli, nanpa);
+			paliEKasi(lipuWawa.at(nanpa).get(), pokiPiPokiNanpaAli, nanpa);
 	}
 }

@@ -9,32 +9,17 @@ namespace pali {
 
 
 
-	KasiPiPanaLonPoki::KasiPiPanaLonPoki(const std::string& nimiPoki, KasiPiKasiSuli* ijoTawaPana) {
+	KasiPiPanaLonPoki::KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana) {
 		this->nimiPoki = nimiPoki;
 		this->ijoTawaPana = ijoTawaPana;
 	}
 
 	KasiPiPanaLonPoki* KasiPiPanaLonPoki::paliSama() const {
 		return new KasiPiPanaLonPoki(
-			this->nimiPoki, this->ijoTawaPana->paliSama());
+			this->nimiPoki, std::shared_ptr<KasiPiKasiSuli>(this->ijoTawaPana->paliSama()));
 	}
 
-	KasiPiPanaLonPoki::KasiPiPanaLonPoki(KasiPiPanaLonPoki&& ante) {
-		*this = std::move(ante);
-	}
-
-	KasiPiPanaLonPoki& KasiPiPanaLonPoki::operator=(KasiPiPanaLonPoki&& ante) {
-		this->nimiPoki = std::move(ante.nimiPoki);
-		this->ijoTawaPana = ante.ijoTawaPana;
-
-		ante.ijoTawaPana = nullptr;
-
-		return *this;
-	}
-
-	KasiPiPanaLonPoki::~KasiPiPanaLonPoki() {
-		delete this->ijoTawaPana;
-	}
+	KasiPiPanaLonPoki::~KasiPiPanaLonPoki() {}
 
 	NimiKasi KasiPiPanaLonPoki::kamaJoENimiKasi() const {
 		return NimiKasi::PANA_LON_POKI;
@@ -44,7 +29,7 @@ namespace pali {
 		return this->nimiPoki;
 	}
 
-	const KasiPiKasiSuli* KasiPiPanaLonPoki::kamaJoEIjoTawaPana() const {
+	std::shared_ptr<const KasiPiKasiSuli> KasiPiPanaLonPoki::kamaJoEIjoTawaPana() const {
 		return this->ijoTawaPana;
 	}
 
@@ -92,37 +77,23 @@ namespace pali {
 
 
 
-	KasiPiNimiWawa::KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaNimiWawa) {
+	KasiPiNimiWawa::KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa) {
 		this->nimiPiNimiWawa = nimiPiNimiWawa;
 		this->kulupuPiIjoTawaNimiWawa = kulupuPiIjoTawaNimiWawa;
 	}
 
 	KasiPiNimiWawa* KasiPiNimiWawa::paliSama() const {
-		std::vector<KasiPiKasiSuli*> ijoTawaNimiWawa;
+		std::vector<std::shared_ptr<KasiPiKasiSuli>> ijoTawaNimiWawa;
 		ijoTawaNimiWawa.reserve(this->kulupuPiIjoTawaNimiWawa.size());
 
-		for (KasiPiKasiSuli* ijo : this->kamaJoEKulupuPiIjoTawaNimiWawa())
-			ijoTawaNimiWawa.push_back(ijo->paliSama());
+		for (auto alasaIjo = this->kulupuPiIjoTawaNimiWawa.begin(); alasaIjo != this->kulupuPiIjoTawaNimiWawa.end(); alasaIjo++)
+			ijoTawaNimiWawa.push_back(std::shared_ptr<KasiPiKasiSuli>((*alasaIjo)->paliSama()));
 
 		return new KasiPiNimiWawa(
 			this->nimiPiNimiWawa, ijoTawaNimiWawa);
 	}
 
-	KasiPiNimiWawa::KasiPiNimiWawa(KasiPiNimiWawa&& ante) {
-		*this = std::move(ante);
-	}
-
-	KasiPiNimiWawa& KasiPiNimiWawa::operator=(KasiPiNimiWawa&& ante) {
-		this->nimiPiNimiWawa = std::move(ante.nimiPiNimiWawa);
-		this->kulupuPiIjoTawaNimiWawa = std::move(ante.kulupuPiIjoTawaNimiWawa);
-
-		return *this;
-	}
-
-	KasiPiNimiWawa::~KasiPiNimiWawa() {
-		for (pali::KasiPiKasiSuli* ijo : this->kulupuPiIjoTawaNimiWawa)
-			delete ijo;
-	}
+	KasiPiNimiWawa::~KasiPiNimiWawa() {}
 
 	NimiKasi KasiPiNimiWawa::kamaJoENimiKasi() const {
 		return NimiKasi::NIMI_WAWA;
@@ -132,7 +103,7 @@ namespace pali {
 		return this->nimiPiNimiWawa;
 	}
 
-	const std::vector<KasiPiKasiSuli*>& KasiPiNimiWawa::kamaJoEKulupuPiIjoTawaNimiWawa() const {
+	const std::vector<std::shared_ptr<KasiPiKasiSuli>>& KasiPiNimiWawa::kamaJoEKulupuPiIjoTawaNimiWawa() const {
 		return this->kulupuPiIjoTawaNimiWawa;
 	}
 
@@ -152,7 +123,7 @@ namespace pali {
 		return NimiKasi::NIMI_TAWA;
 	}
 
-	const std::string KasiPiNimiTawa::kamaJoENimiPiNimiTawa() const {
+	const std::string& KasiPiNimiTawa::kamaJoENimiPiNimiTawa() const {
 		return this->nimiPiNimiTawa;
 	}
 
@@ -169,15 +140,15 @@ namespace pali {
 		return kasiTawaSin;
 	}
 
+	KasiTawa::~KasiTawa() {}
+
 	NimiKasi KasiTawa::kamaJoENimiKasi() const {
 		return NimiKasi::TAWA;
 	}
 
-	KasiTawa::~KasiTawa() {}
 
 
-
-	KasiPiTawaKen::KasiPiTawaKen(KasiPiKasiSuli* kasiLon, KasiPiKasiSuli* kasiPiLonAla, const std::vector<KasiPiKasiSuli*>& kulupuPiIjoTawaToki) 
+	KasiPiTawaKen::KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki) 
 		: KasiTawa() {
 		this->kasiLon = kasiLon;
 		this->kasiPiLonAla = kasiPiLonAla;
@@ -185,53 +156,31 @@ namespace pali {
 	}
 
 	KasiPiTawaKen* KasiPiTawaKen::paliSama() const {
-		std::vector<KasiPiKasiSuli*> ijoTawaToki;
+		std::vector<std::shared_ptr<KasiPiKasiSuli>> ijoTawaToki;
 		ijoTawaToki.reserve(this->kulupuPiIjoTawaToki.size());
 
-		for (KasiPiKasiSuli* ijo : this->kulupuPiIjoTawaToki)
-			ijoTawaToki.push_back(ijo->paliSama());
+		for (auto alasaIjo = this->kulupuPiIjoTawaToki.begin(); alasaIjo != this->kulupuPiIjoTawaToki.end(); alasaIjo++)
+			ijoTawaToki.push_back(std::shared_ptr<KasiPiKasiSuli>((*alasaIjo)->paliSama()));
 
 		return new KasiPiTawaKen(
-			this->kasiLon->paliSama(), this->kasiPiLonAla->paliSama(), ijoTawaToki);
+			std::shared_ptr<KasiPiKasiSuli>(this->kasiLon->paliSama()), std::shared_ptr<KasiPiKasiSuli>(this->kasiPiLonAla->paliSama()), ijoTawaToki);
 	}
 
-	KasiPiTawaKen::KasiPiTawaKen(KasiPiTawaKen&& ante) {
-		*this = std::move(ante);
-	}
-
-	KasiPiTawaKen& KasiPiTawaKen::operator=(KasiPiTawaKen&& ante) {
-		this->linjaTawaTawa = ante.linjaTawaTawa;
-		this->kasiLon = ante.kasiLon;
-		this->kasiPiLonAla = ante.kasiPiLonAla;
-		this->kulupuPiIjoTawaToki = std::move(ante.kulupuPiIjoTawaToki);
-
-		ante.linjaTawaTawa = -1;
-		ante.kasiLon = nullptr;
-		ante.kasiPiLonAla = nullptr;
-
-		return *this;
-	}
-
-	KasiPiTawaKen::~KasiPiTawaKen() {
-		delete this->kasiLon;
-		delete this->kasiPiLonAla;
-		for (pali::KasiPiKasiSuli* ijo : this->kulupuPiIjoTawaToki)
-			delete ijo;
-	}
+	KasiPiTawaKen::~KasiPiTawaKen() {}
 
 	NimiKasi KasiPiTawaKen::kamaJoENimiKasi() const {
 		return NimiKasi::TAWA_KEN;
 	}
 
-	const KasiPiKasiSuli* KasiPiTawaKen::kamaJoEKasiLon() const {
+	std::shared_ptr<const KasiPiKasiSuli> KasiPiTawaKen::kamaJoEKasiLon() const {
 		return this->kasiLon;
 	}
 
-	const KasiPiKasiSuli* KasiPiTawaKen::kamaJoEKasiPiLonAla() const {
+	std::shared_ptr<const KasiPiKasiSuli> KasiPiTawaKen::kamaJoEKasiPiLonAla() const {
 		return this->kasiPiLonAla;
 	}
 
-	const std::vector<KasiPiKasiSuli*>& KasiPiTawaKen::kamaJoEKulupuPiIjoToki() const {
+	const std::vector<std::shared_ptr<KasiPiKasiSuli>>& KasiPiTawaKen::kamaJoEKulupuPiIjoToki() const {
 		return this->kulupuPiIjoTawaToki;
 	}
 }

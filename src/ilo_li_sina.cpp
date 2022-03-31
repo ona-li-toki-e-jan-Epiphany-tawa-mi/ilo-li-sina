@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "kipisi_pi_lipu_wawa/kipisi.hpp"
 #include "pali_pi_lipu_wawa_tan_kulupu_nimi/pali.hpp"
 #include "lawa_pi_ilo_nanpa/lawa.hpp"
@@ -15,7 +16,7 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	std::vector<pali::KasiPiKasiSuli*> lipuWawaTanKulupuNimi;
+	std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> lipuWawaTanKulupuNimi;
 	lipuWawaTanKulupuNimi.reserve(25);
 
 	{
@@ -27,9 +28,6 @@ int main(int argc, char** argv) {
 	}
 
 	lawa::lawaEIloNanpa(lipuWawaTanKulupuNimi);
-
-	for (pali::KasiPiKasiSuli* kasi : lipuWawaTanKulupuNimi)
-		delete kasi;
 
 	return 0;
 }

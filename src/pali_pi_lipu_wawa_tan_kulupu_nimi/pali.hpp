@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "../kipisi_pi_lipu_wawa/kulupu_nimi.hpp"
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 
@@ -18,12 +19,12 @@ namespace pali {
 	 *
 	 * @retval pokiTawaLipuWawa;
 	 */
-	const std::vector<KasiPiKasiSuli*>& paliELipuWawa(std::vector<KasiPiKasiSuli*>& pokiTawaLipuWawa, const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa);
+	const std::vector<std::shared_ptr<KasiPiKasiSuli>>& paliELipuWawa(std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa, const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa);
 
 	/**
 	 * @breif li pana e lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
 	 *
 	 * @param pokiTawaLipuWawa lipu wawa.
 	 */
-	void tokiEKasiSuli(const std::vector<KasiPiKasiSuli*>& pokiTawaLipuWawa);
+	void tokiEKasiSuli(const std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa);
 }

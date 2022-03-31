@@ -62,7 +62,7 @@ namespace pali {
 		std::shared_ptr<KasiPiKasiSuli> kasiPiLonAla = pokiPiIjoTawaNimiWawa.at(2);
 		pokiPiIjoTawaNimiWawa.erase(pokiPiIjoTawaNimiWawa.begin(), pokiPiIjoTawaNimiWawa.begin() + 3);
 
-		std::shared_ptr<KasiPiTawaKen> kasiPiPaliKen = std::make_shared<KasiPiTawaKen>(kasiLon, kasiPiLonAla, pokiPiIjoTawaNimiWawa);
+		std::shared_ptr<KasiPiTawaKen> kasiPiPaliKen = std::make_shared<KasiPiTawaKen>(kasiLon, kasiPiLonAla, pokiPiIjoTawaNimiWawa, nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
 		nimiWawaTawaTawa.emplace_back(nimiPiKasiTawaTawa, kasiPiPaliKen);
 		return kasiPiPaliKen;
 	}
@@ -85,7 +85,7 @@ namespace pali {
 		if (pokiPiIjoTawaNimiWawa.at(0)->kamaJoENimiKasi() != NimiKasi::KAMA_JO_TAN_POKI)
 			ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, (kulupuNimiPiNimiWawa+2)->kamaJoENanpaSitelen(), "Invalid label name. Expected token matching [a-zA-Z0-9_]");
 
-		auto kasiTawa = std::make_shared<KasiTawa>();
+		auto kasiTawa = std::make_shared<KasiTawa>(nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
 		nimiWawaTawaTawa.emplace_back(static_cast<KasiPiPanaLonPoki*>(pokiPiIjoTawaNimiWawa.at(0).get())->kamaJoENimiPoki(), kasiTawa);
 		return kasiTawa;
 	}
@@ -129,14 +129,14 @@ namespace pali {
 						ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, ijoTawaPoki->kamaJoENanpaSitelen(), "Invalid secondary expression after '=' token. Must be or return some kind of value!");
 				}
 
-				return std::make_shared<KasiPiPanaLonPoki>(pokiNanpa->kamaJoENimiPoki(), paliEKasi(kulupuNimi, alasaPiKulupuNimi + 1, nimiWawaTawaTawa, nanpaLinja, nimiPiLipuWawa));
+				return std::make_shared<KasiPiPanaLonPoki>(pokiNanpa->kamaJoENimiPoki(), paliEKasi(kulupuNimi, alasaPiKulupuNimi + 1, nimiWawaTawaTawa, nanpaLinja, nimiPiLipuWawa), nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
 			}
 
 			case kipisi::NimiPiKulupuNimi::POKI_NANPA:
-				return std::make_shared<KasiPiKamaJoTanPoki>(alasaPiKulupuNimi->kamaJoENimiPoki());
+				return std::make_shared<KasiPiKamaJoTanPoki>(alasaPiKulupuNimi->kamaJoENimiPoki(), nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
 
 			case kipisi::NimiPiKulupuNimi::POKI_SITELEN: 
-				return std::make_shared<KasiPiKamaJoTanPokiPiAnteAla>(alasaPiKulupuNimi->kamaJoENimiPoki());
+				return std::make_shared<KasiPiKamaJoTanPokiPiAnteAla>(alasaPiKulupuNimi->kamaJoENimiPoki(), nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
 
 			case kipisi::NimiPiKulupuNimi::NIMI_WAWA: {
 				auto kulupuNimiPiNimiWawa = alasaPiKulupuNimi;
@@ -187,11 +187,11 @@ namespace pali {
 					return paliEKasiTawa(kulupuNimiPiNimiWawa, pokiPiIjoTawaNimiWawa, nimiWawaTawaTawa, nanpaLinja, nimiPiLipuWawa);
 
 				// li pali e nimi wawa pi tawa ala.
-				return std::make_shared<KasiPiNimiWawa>(kulupuNimiPiNimiWawa->kamaJoENimiPoki(), pokiPiIjoTawaNimiWawa);
+				return std::make_shared<KasiPiNimiWawa>(kulupuNimiPiNimiWawa->kamaJoENimiPoki(), pokiPiIjoTawaNimiWawa, nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
 			}
 
 			case kipisi::NimiPiKulupuNimi::NIMI_TAWA_TAWA:
-				return std::make_shared<KasiPiNimiTawa>(alasaPiKulupuNimi->kamaJoENimiPoki());
+				return std::make_shared<KasiPiNimiTawa>(alasaPiKulupuNimi->kamaJoENimiPoki(), nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
 		}
 
 		return nullptr;

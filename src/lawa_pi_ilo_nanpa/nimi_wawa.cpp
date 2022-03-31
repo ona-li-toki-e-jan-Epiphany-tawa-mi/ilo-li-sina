@@ -33,7 +33,7 @@ std::string tokiKepekenLinjaSin(size_t nanpaIjo, std::string* ijoTawaNi) {
  * @param nanpaIjo nanpa ijo.
  * @param ijoTawaNi ijo tawa toki.
  *
- * @retval nimi tan jan.
+ * @return nimi tan jan.
  */
 std::string kamaJoTanJan(size_t nanpaIjo, std::string* ijoTawaNi) {
 	tokiKepekenLinjaSin(nanpaIjo, ijoTawaNi);

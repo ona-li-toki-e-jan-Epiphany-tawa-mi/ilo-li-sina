@@ -50,12 +50,12 @@ namespace kipisi {
 				: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(""), nanpaSitelenLonLinja(nanpaSitelenLonLinja) {}
 
 			/**
-			 * @retval nimi poki lon kulupu nimi ni.
+			 * @return nimi poki lon kulupu nimi ni.
 			 */
 			const std::string& kamaJoENimiPoki() const;
 
 			/**
-			 * @retval kulupu nimi ni li open lon sitelen pi nanpa ni lon linja sitelen.
+			 * @return kulupu nimi ni li open lon sitelen pi nanpa ni lon linja sitelen.
 			 */
 			size_t kamaJoENanpaSitelen() const;
 

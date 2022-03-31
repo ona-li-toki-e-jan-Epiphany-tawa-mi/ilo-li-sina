@@ -21,11 +21,23 @@ namespace pali {
 	};
 
 	/**
+	 * li poki e nanpa linja pi kasi pi kasi suli e nanpa sitelen ona lon linja.
+	 */
+	struct LonKasiLonLipuWawa {
+		size_t nanpaLinja, nanpaSitelenLonLinja;
+	};
+
+	/**
 	 * li mama pi kasi ali.
-	 * kasi ni li wile ala kepeken. o pali ala e ona.
 	 */
 	class KasiPiKasiSuli {
 		public:
+			/**
+			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
+			 */
+			KasiPiKasiSuli(size_t nanpaLinja, size_t nanpaSitelenLonLinja);
+
 			/**
 			 * @brief li pali e kasi sama kasi ni.
 			 */
@@ -34,9 +46,17 @@ namespace pali {
 			virtual ~KasiPiKasiSuli() = 0;
 
 			/**
-			 * @retval nimi kasi pi kasi ni.
+			 * @return nimi kasi pi kasi ni.
 			 */
 			virtual NimiKasi kamaJoENimiKasi() const;
+
+			/**
+			 * @return lon pi kasi ni lon lipu wawa.
+			 */
+			const LonKasiLonLipuWawa& kamaJoELonKasi() const;
+
+		protected:
+			LonKasiLonLipuWawa lonKasiLonLipuWawa;
 	};
 
 	/**
@@ -47,8 +67,10 @@ namespace pali {
 			/**
 			 * @param nimiPoki ijo li pana lon poki pi nimi ni.
 			 * @param ijoTawaPana kasi ni li kama jo e ijo tawa poki.
+			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana);
+			KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante) = delete;
 			virtual KasiPiPanaLonPoki* paliSama() const override;
@@ -72,8 +94,10 @@ namespace pali {
 		public:
 			/**
 			 * @param nimiPoki ijo li kama tan poki pi nimi ni.
+			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiKamaJoTanPoki(const std::string& nimiPoki);
+			KasiPiKamaJoTanPoki(const std::string& nimiPoki, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiPiKamaJoTanPoki(const KasiPiKamaJoTanPoki& ante) = delete;
 			virtual KasiPiKamaJoTanPoki* paliSama() const override;
@@ -95,8 +119,10 @@ namespace pali {
 		public:
 			/**
 			 * @param ijoTawaKama lipu lawa li kepeken e kasi ni la ijo ni li pana tawa ona.
+			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiKamaJoTanPokiPiAnteAla(const std::string& ijoTawaKama);
+			KasiPiKamaJoTanPokiPiAnteAla(const std::string& ijoTawaKama, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiPiKamaJoTanPokiPiAnteAla(const KasiPiKamaJoTanPokiPiAnteAla& ante) = delete;
 			virtual KasiPiKamaJoTanPokiPiAnteAla* paliSama() const override;
@@ -119,8 +145,10 @@ namespace pali {
 			/**
 			 * @param nimiPiNimiWawa ni li nimi pi nimi wawa li toki e ni: ona li pali e seme.
 			 * @param kulupuPiIjoTawaNimiWawa kasi pi kulupu ni li kama jo e ijo tawa kepeken pi nimi wawa.
+			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa);
+			KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante) = delete;
 			virtual KasiPiNimiWawa* paliSama() const override;
@@ -144,8 +172,10 @@ namespace pali {
 		public:
 			/**
 			 * @param nimiPiNimiTawa nimi pi nimi tawa. nimi wawa tawa li kepeken e nimi ni tawa tawa.
+			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiNimiTawa(const std::string nimiPiNimiTawa);
+			KasiPiNimiTawa(const std::string nimiPiNimiTawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiPiNimiTawa(const KasiPiNimiTawa& ante) = delete;
 			virtual KasiPiNimiTawa* paliSama() const override;
@@ -167,8 +197,11 @@ namespace pali {
 		public:
 			/**
 			 * @attention sina li wile pana e nanpa lon this->linjaTawaTawa.
+			 * 
+			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiTawa();
+			KasiTawa(size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiTawa(const KasiTawa& ante) = delete;
 			virtual KasiTawa* paliSama() const override;
@@ -198,8 +231,10 @@ namespace pali {
 			 * @param kasiLon kasi tawa kama jo e nimi lon.
 			 * @param kasiPiLonAla kasi tawa kama jo e nimi pi lon ala.
 			 * @param kulupuPiIjoTawaToki kulupu kasi ni li kama jo e ijo tawa toki tawa jan.
+			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki);
+			KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiPiTawaKen(const KasiPiTawaKen& ante) = delete;
 			virtual KasiPiTawaKen* paliSama() const override;

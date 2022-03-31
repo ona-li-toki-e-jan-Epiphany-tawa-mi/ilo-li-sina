@@ -15,7 +15,7 @@ namespace kipisi {
 	 * @param pokiPiKulupuNimi li pana e kulupu nimi lon ni.
 	 * @param nimiPiLipuWawa nimi pi lipu wawa tawa kipisi.
 	 *
-	 * @retval pokiPiKulupuNimi.
+	 * @return pokiPiKulupuNimi.
 	 */
 	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa);
 }

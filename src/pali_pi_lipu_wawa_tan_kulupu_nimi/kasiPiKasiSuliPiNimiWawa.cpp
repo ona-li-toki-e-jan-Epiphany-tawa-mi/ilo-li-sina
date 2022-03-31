@@ -1,22 +1,33 @@
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 
 namespace pali {
+	KasiPiKasiSuli::KasiPiKasiSuli(size_t nanpaLinja, size_t nanpaSitelenLonLinja) {
+		this->lonKasiLonLipuWawa = {nanpaLinja, nanpaSitelenLonLinja};
+	}
+
 	NimiKasi KasiPiKasiSuli::kamaJoENimiKasi() const {
 		return NimiKasi::ALA;
 	}
 
 	KasiPiKasiSuli::~KasiPiKasiSuli() {}
 
+	const LonKasiLonLipuWawa& KasiPiKasiSuli::kamaJoELonKasi() const {
+		return this->lonKasiLonLipuWawa;
+	}
 
 
-	KasiPiPanaLonPoki::KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana) {
+
+	KasiPiPanaLonPoki::KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana, size_t nanpaLinja, size_t nanpaSitelenLonLinja)
+		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiPoki = nimiPoki;
 		this->ijoTawaPana = ijoTawaPana;
 	}
 
 	KasiPiPanaLonPoki* KasiPiPanaLonPoki::paliSama() const {
 		return new KasiPiPanaLonPoki(
-			this->nimiPoki, std::shared_ptr<KasiPiKasiSuli>(this->ijoTawaPana->paliSama()));
+			this->nimiPoki, 
+			std::shared_ptr<KasiPiKasiSuli>(this->ijoTawaPana->paliSama()), 
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 	}
 
 	KasiPiPanaLonPoki::~KasiPiPanaLonPoki() {}
@@ -35,13 +46,15 @@ namespace pali {
 
 
 
-	KasiPiKamaJoTanPoki::KasiPiKamaJoTanPoki(const std::string& nimiPoki) {
+	KasiPiKamaJoTanPoki::KasiPiKamaJoTanPoki(const std::string& nimiPoki, size_t nanpaLinja, size_t nanpaSitelenLonLinja)
+		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiPoki = nimiPoki;
 	}
 
 	KasiPiKamaJoTanPoki* KasiPiKamaJoTanPoki::paliSama() const {
 		return new KasiPiKamaJoTanPoki(
-			this->nimiPoki);
+			this->nimiPoki,
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 	}
 
 	KasiPiKamaJoTanPoki::~KasiPiKamaJoTanPoki() {}
@@ -56,13 +69,15 @@ namespace pali {
 
 
 
-	KasiPiKamaJoTanPokiPiAnteAla::KasiPiKamaJoTanPokiPiAnteAla(const std::string& ijoTawaKama) {
+	KasiPiKamaJoTanPokiPiAnteAla::KasiPiKamaJoTanPokiPiAnteAla(const std::string& ijoTawaKama, size_t nanpaLinja, size_t nanpaSitelenLonLinja) 
+		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->ijoTawaKama = ijoTawaKama;
 	}
 
 	KasiPiKamaJoTanPokiPiAnteAla* KasiPiKamaJoTanPokiPiAnteAla::paliSama() const {
 		return new KasiPiKamaJoTanPokiPiAnteAla(
-			this->ijoTawaKama);
+			this->ijoTawaKama,
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 	}
 
 	KasiPiKamaJoTanPokiPiAnteAla::~KasiPiKamaJoTanPokiPiAnteAla() {}
@@ -77,7 +92,8 @@ namespace pali {
 
 
 
-	KasiPiNimiWawa::KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa) {
+	KasiPiNimiWawa::KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja)
+		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiPiNimiWawa = nimiPiNimiWawa;
 		this->kulupuPiIjoTawaNimiWawa = kulupuPiIjoTawaNimiWawa;
 	}
@@ -90,7 +106,9 @@ namespace pali {
 			ijoTawaNimiWawa.push_back(std::shared_ptr<KasiPiKasiSuli>((*alasaIjo)->paliSama()));
 
 		return new KasiPiNimiWawa(
-			this->nimiPiNimiWawa, ijoTawaNimiWawa);
+			this->nimiPiNimiWawa, 
+			ijoTawaNimiWawa,
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 	}
 
 	KasiPiNimiWawa::~KasiPiNimiWawa() {}
@@ -109,12 +127,15 @@ namespace pali {
 
 
 
-	KasiPiNimiTawa::KasiPiNimiTawa(const std::string nimiPiNimiTawa) {
+	KasiPiNimiTawa::KasiPiNimiTawa(const std::string nimiPiNimiTawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja)
+		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiPiNimiTawa = nimiPiNimiTawa;
 	}
 
 	KasiPiNimiTawa* KasiPiNimiTawa::paliSama() const {
-		return new KasiPiNimiTawa(this->nimiPiNimiTawa);
+		return new KasiPiNimiTawa(
+			this->nimiPiNimiTawa,
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 	}
 
 	KasiPiNimiTawa::~KasiPiNimiTawa() {}
@@ -129,12 +150,14 @@ namespace pali {
 
 
 
-	KasiTawa::KasiTawa() {
+	KasiTawa::KasiTawa(size_t nanpaLinja, size_t nanpaSitelenLonLinja) 
+		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->linjaTawaTawa = -1;
 	}
 
 	KasiTawa* KasiTawa::paliSama() const {
-		KasiTawa* kasiTawaSin = new KasiTawa();
+		KasiTawa* kasiTawaSin = new KasiTawa(
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 		kasiTawaSin->linjaTawaTawa = this->linjaTawaTawa;
 
 		return kasiTawaSin;
@@ -148,8 +171,8 @@ namespace pali {
 
 
 
-	KasiPiTawaKen::KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki) 
-		: KasiTawa() {
+	KasiPiTawaKen::KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki, size_t nanpaLinja, size_t nanpaSitelenLonLinja) 
+		: KasiTawa(nanpaLinja, nanpaSitelenLonLinja) {
 		this->kasiLon = kasiLon;
 		this->kasiPiLonAla = kasiPiLonAla;
 		this->kulupuPiIjoTawaToki = kulupuPiIjoTawaToki;
@@ -163,7 +186,10 @@ namespace pali {
 			ijoTawaToki.push_back(std::shared_ptr<KasiPiKasiSuli>((*alasaIjo)->paliSama()));
 
 		return new KasiPiTawaKen(
-			std::shared_ptr<KasiPiKasiSuli>(this->kasiLon->paliSama()), std::shared_ptr<KasiPiKasiSuli>(this->kasiPiLonAla->paliSama()), ijoTawaToki);
+			std::shared_ptr<KasiPiKasiSuli>(this->kasiLon->paliSama()), 
+			std::shared_ptr<KasiPiKasiSuli>(this->kasiPiLonAla->paliSama()), 
+			ijoTawaToki,
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 	}
 
 	KasiPiTawaKen::~KasiPiTawaKen() {}

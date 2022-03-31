@@ -17,7 +17,7 @@ namespace pali {
 	 * @param kulupuNimi poki pi kulupu nimi tan kipisi tawa pali pi lipu wawa.
 	 * @param nimiPiLipuWawa nimi pi lipu wawa pi tenpo ni. li tawa toki e ike.
 	 *
-	 * @retval pokiTawaLipuWawa;
+	 * @return pokiTawaLipuWawa;
 	 */
 	const std::vector<std::shared_ptr<KasiPiKasiSuli>>& paliELipuWawa(std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa, const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa);
 

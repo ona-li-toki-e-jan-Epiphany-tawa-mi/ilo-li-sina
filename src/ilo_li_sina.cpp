@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 		pali::paliELipuWawa(lipuWawaTanKulupuNimi, kulupuNimiPiLipuWawa, argv[1]);
 	}
 
-	lawa::lawaEIloNanpa(lipuWawaTanKulupuNimi);
+	lawa::lawaEIloNanpa(lipuWawaTanKulupuNimi, argv[1]);
 
 	return 0;
 }

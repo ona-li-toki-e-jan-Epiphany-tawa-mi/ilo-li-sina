@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 #include "../pali_pi_lipu_wawa_tan_kulupu_nimi/pali.hpp"
 
 /**
@@ -10,7 +11,9 @@
 namespace lawa {
 	/**
 	 * @breif li lawa e ilo nanpa kepeken lipu wawa.
+	 * 
 	 * @param lipuWawa li tawa lawa.
+	 * @param nimiPiLipuWawa nimi pi lipu wawa.
 	 */
-	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa);
+	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa);
 }

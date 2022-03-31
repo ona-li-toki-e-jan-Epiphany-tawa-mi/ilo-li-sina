@@ -163,7 +163,6 @@ namespace kipisi {
 		}
 
 
-		lipuWawa.close();
 		return pokiPiKulupuNimi;
 	}
 }

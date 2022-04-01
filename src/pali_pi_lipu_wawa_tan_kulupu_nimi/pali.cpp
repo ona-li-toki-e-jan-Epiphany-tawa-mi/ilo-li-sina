@@ -248,9 +248,11 @@ namespace pali {
 						ijo.nimiWawaTawaTawa->linjaTawaTawa = nanpa;
 			}
 
-		for (IjoTawaTawa& ijo : nimiWawaTawaTawa)
-			if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1)
-				ike::tokiEIke(nimiPiLipuWawa, "TODO Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
+		for (const IjoTawaTawa& ijo : nimiWawaTawaTawa)
+			if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1) {
+				const auto [linja, sitelen] = ijo.nimiWawaTawaTawa->kamaJoELonKasi();
+				ike::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
+			}
 
 		return pokiTawaLipuWawa;
 	}

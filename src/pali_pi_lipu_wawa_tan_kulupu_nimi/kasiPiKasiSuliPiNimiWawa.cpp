@@ -92,9 +92,9 @@ namespace pali {
 
 
 
-	KasiPiNimiWawa::KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja)
+	KasiPiNimiWawa::KasiPiNimiWawa(nimi_wawa nimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja)
 		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
-		this->nimiPiNimiWawa = nimiPiNimiWawa;
+		this->nimiWawa = nimiWawa;
 		this->kulupuPiIjoTawaNimiWawa = kulupuPiIjoTawaNimiWawa;
 	}
 
@@ -106,7 +106,7 @@ namespace pali {
 			ijoTawaNimiWawa.push_back(std::shared_ptr<KasiPiKasiSuli>((*alasaIjo)->paliSama()));
 
 		return new KasiPiNimiWawa(
-			this->nimiPiNimiWawa, 
+			this->nimiWawa, 
 			ijoTawaNimiWawa,
 			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 	}
@@ -117,8 +117,8 @@ namespace pali {
 		return NimiKasi::NIMI_WAWA;
 	}
 
-	const std::string& KasiPiNimiWawa::kamaJoENimiPiNimiWawa() const {
-		return this->nimiPiNimiWawa;
+	nimi_wawa KasiPiNimiWawa::kamaJoENimiWawa() const {
+		return this->nimiWawa;
 	}
 
 	const std::vector<std::shared_ptr<KasiPiKasiSuli>>& KasiPiNimiWawa::kamaJoEKulupuPiIjoTawaNimiWawa() const {

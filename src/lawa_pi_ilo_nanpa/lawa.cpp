@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
-#include "nimi_wawa.hpp"
 #include "../ike.hpp"
 
 namespace lawa {
@@ -40,15 +39,7 @@ namespace lawa {
 				for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijo : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
 					ijoTawaNimiWawa.push_back(paliEKasi(ijo.get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa));
 
-				try {
-					return pokiPiNimiWawaAli.at(kasiPiNimiWawa->kamaJoENimiPiNimiWawa())(ijoTawaNimiWawa.size(), ijoTawaNimiWawa.data());
-
-				} catch (std::out_of_range& liSuliAla) {
-					const auto [linja, sitelen] = kasiPiNimiWawa->kamaJoELonKasi();
-					ike::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Unknown function '" + kasiPiNimiWawa->kamaJoENimiPiNimiWawa() + "'");
-				}
-
-				break;
+				return kasiPiNimiWawa->kamaJoENimiWawa()(ijoTawaNimiWawa.size(), ijoTawaNimiWawa.data());
 			}
 
 			case pali::NimiKasi::TAWA_KEN: {

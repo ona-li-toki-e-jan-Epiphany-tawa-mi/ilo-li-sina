@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "nimi_wawa.hpp"
 
 /**
  * kasi pi kasi suli tawa pali e lipu wawa tan kulupu nimi.
@@ -143,12 +144,12 @@ namespace pali {
 	class KasiPiNimiWawa : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @param nimiPiNimiWawa ni li nimi pi nimi wawa li toki e ni: ona li pali e seme.
+			 * @param nimiWawa ijo pana tawa nimi wawa tawa pali.
 			 * @param kulupuPiIjoTawaNimiWawa kasi pi kulupu ni li kama jo e ijo tawa kepeken pi nimi wawa.
 			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiNimiWawa(const std::string& nimiPiNimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
+			KasiPiNimiWawa(nimi_wawa nimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja);
 
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante) = delete;
 			virtual KasiPiNimiWawa* paliSama() const override;
@@ -157,11 +158,11 @@ namespace pali {
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
-			const std::string& kamaJoENimiPiNimiWawa() const;
+			nimi_wawa kamaJoENimiWawa() const;
 			const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoTawaNimiWawa() const;
 
 		protected:
-			std::string nimiPiNimiWawa;
+			nimi_wawa nimiWawa;
 			std::vector<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaNimiWawa;
 	};
 

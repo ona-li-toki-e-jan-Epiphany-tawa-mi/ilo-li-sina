@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <stdexcept>
 #include "../ike.hpp"
+#include "nimi_wawa.hpp"
 
 namespace pali {
 	/**
@@ -186,8 +187,19 @@ namespace pali {
 				} else if (kulupuNimiPiNimiWawa->kamaJoENimiPoki() == "tawa") 
 					return paliEKasiTawa(kulupuNimiPiNimiWawa, pokiPiIjoTawaNimiWawa, nimiWawaTawaTawa, nanpaLinja, nimiPiLipuWawa);
 
+
+				nimi_wawa nimiWawa;
+
+				try {					
+					nimiWawa = pokiPiNimiWawaAli.at(kulupuNimiPiNimiWawa->kamaJoENimiPoki());
+
+				} catch (std::out_of_range& liSuliAla) {
+					ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen(), "Unknown function '" + kulupuNimiPiNimiWawa->kamaJoENimiPoki() + "'");
+				}
+				
+
 				// li pali e nimi wawa pi tawa ala.
-				return std::make_shared<KasiPiNimiWawa>(kulupuNimiPiNimiWawa->kamaJoENimiPoki(), pokiPiIjoTawaNimiWawa, nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
+				return std::make_shared<KasiPiNimiWawa>(nimiWawa, pokiPiIjoTawaNimiWawa, nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
 			}
 
 			case kipisi::NimiPiKulupuNimi::NIMI_TAWA_TAWA:
@@ -290,7 +302,13 @@ namespace pali {
 
 			case NimiKasi::NIMI_WAWA: {
 				auto kasiPiNimiWawa = static_cast<const KasiPiNimiWawa*>(kasi);
-				std::cout << "NIMI_WAWA='" << kasiPiNimiWawa->kamaJoENimiPiNimiWawa() << '\'';
+				auto nimiPiNimiWawa = kamaJoENimiTanNimiWawa(kasiPiNimiWawa->kamaJoENimiWawa());
+
+				if (!nimiPiNimiWawa.has_value())
+					throw std::out_of_range("Found either nullptr or pointer to an unknown function");
+
+				std::cout << "NIMI_WAWA='" << nimiPiNimiWawa.value() << '\'';
+
 
 				if (kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa().size() > 0) {
 					std::cout << ":\n";
@@ -300,6 +318,7 @@ namespace pali {
 				
 				} else
 					std::cout << '\n';
+
 
 				break;
 			}

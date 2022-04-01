@@ -1,5 +1,7 @@
 #include "nimi_wawa.hpp"
 #include <iostream>
+#include <algorithm>
+#include <utility>
 
 /**
  * @breif li toki e ijo lon ilo pi pana nimi.
@@ -60,11 +62,22 @@ std::string wan(size_t nanpaIjo, std::string* ijoTawaNi) {
 	return pokiSitelenSin;
 }
 
-namespace lawa {
-	const std::unordered_map<std::string, std::string(*)(size_t, std::string[])> pokiPiNimiWawaAli = {
+namespace pali {
+	const std::unordered_map<std::string, nimi_wawa> pokiPiNimiWawaAli = {
 			{"toki", toki},
 			{"tokiELinja", tokiKepekenLinjaSin},
 			{"kamaJoTanJan", kamaJoTanJan},
 			{"wan", wan}
 	};
+
+	std::optional<const std::string> kamaJoENimiTanNimiWawa(nimi_wawa nimiWawa) {
+		auto alasaNimi = std::find_if(pokiPiNimiWawaAli.cbegin(), pokiPiNimiWawaAli.cend(), [nimiWawa](const std::pair<std::string, nimi_wawa>& nimiWawaEnNimi) {
+			return nimiWawa == nimiWawaEnNimi.second;
+		});
+
+		if (alasaNimi == pokiPiNimiWawaAli.end())
+			return {};
+
+		return (*alasaNimi).first;
+	}
 }

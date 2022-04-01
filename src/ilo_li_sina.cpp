@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
 		kipisi::kipisiELipuWawa(kulupuNimiPiLipuWawa, argv[1]);
 
 		pali::paliELipuWawa(lipuWawaTanKulupuNimi, kulupuNimiPiLipuWawa, argv[1]);
+		//pali::tokiEKasiSuli(lipuWawaTanKulupuNimi);
 	}
 
 	lawa::lawaEIloNanpa(lipuWawaTanKulupuNimi, argv[1]);

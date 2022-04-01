@@ -1,8 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <string>
-#include <memory>
 #include "../kipisi_pi_lipu_wawa/kulupu_nimi.hpp"
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 

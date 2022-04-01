@@ -22,5 +22,5 @@ namespace ike {
 	 * @param nanpaSitelenLonLinja ike li lon sitelen pi nanpa ni lon linja.
 	 * @param nimiIke sona pi kama ike.
 	 */
-	void tokiEIke(const std::string& nimiPiLipuWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja, const std::string& nimiIke);
+	void tokiEIke(const std::string& nimiPiLipuWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja, const std::string& nimiIke);
 }

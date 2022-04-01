@@ -1,9 +1,6 @@
 #include "kipisi.hpp"
-#include <iostream>
-#include <string>
 #include <regex>
 #include <unordered_map>
-#include <stdexcept>
 #include "../ike.hpp"
 
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) std::distance(linjaSitelen.begin(), alasaSitelen) + 1
@@ -17,10 +14,8 @@ namespace kipisi {
 	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa) {
 		std::ifstream lipuWawa(nimiPiLipuWawa, std::ifstream::in);
 
-		if (!lipuWawa.is_open()) {
+		if (!lipuWawa.is_open())
 			ike::tokiEIke(nimiPiLipuWawa, "Unable to open file");
-			exit(-1);
-		}
 
 
 		std::string linjaSitelen;
@@ -61,7 +56,7 @@ namespace kipisi {
 						case '"': {
 							std::string pokiSitelen;
 							bool liJoEPini = false;
-							auto openPoki = alasaSitelen;
+							const auto openPoki = alasaSitelen;
 
 							alasaSitelen++;
 							for (; alasaSitelen != linjaSitelen.end(); alasaSitelen++) {
@@ -96,7 +91,7 @@ namespace kipisi {
 							if (!liJoEPini)
 								ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki), "Unterminated string!");
 
-							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_SITELEN, std::move(pokiSitelen), KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki));
+							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_SITELEN, pokiSitelen, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki));
 
 							alasaSitelen--;
 							break;
@@ -115,7 +110,7 @@ namespace kipisi {
 								bool liPaliENimiWawa = false;
 
 								if (pokiPiKulupuNimi.size() > 1) {
-									auto kulupuNimiLonMonsi = pokiPiKulupuNimi.end() - 2;
+									const auto kulupuNimiLonMonsi = pokiPiKulupuNimi.end() - 2;
 
 									if (kulupuNimiLonMonsi->nimiPiKulupuNimi == NimiPiKulupuNimi::POKI_NANPA) {
 										kulupuNimiLonMonsi->nimiPiKulupuNimi = NimiPiKulupuNimi::NIMI_WAWA;
@@ -143,7 +138,7 @@ namespace kipisi {
 									nimiPiPokiNanpa.push_back(*alasaSitelen);
 								}
 
-								pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_NANPA, std::move(nimiPiPokiNanpa), KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
+								pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_NANPA, nimiPiPokiNanpa, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
 
 								alasaSitelen--;
 								break;

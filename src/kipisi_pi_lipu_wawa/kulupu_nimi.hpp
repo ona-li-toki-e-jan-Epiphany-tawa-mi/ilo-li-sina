@@ -25,29 +25,20 @@ namespace kipisi {
 	 */
 	struct KulupuNimi {
 		public:
-			NimiPiKulupuNimi nimiPiKulupuNimi = NimiPiKulupuNimi::ALA;
-
 			/**
 			 * @param nimiPiKulupuNimi nimi pi kulupu nimi ni.
 			 * @param nimiPokiPiKulupuNimi nimi ni li poki lon kulupu nimi ni. nimi poki ali li jo e nimi kulupu.
+			 * @param nanpaSitelenLonLinja kulupu nimi li open lon sitelen pi nanpa ni lon linja
 			 */
-			KulupuNimi(NimiPiKulupuNimi nimiPiKulupuNimi, const std::string& nimiPokiPiKulupuNimi, size_t nanpaSitelenLonLinja)
-				: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(nimiPokiPiKulupuNimi), nanpaSitelenLonLinja(nanpaSitelenLonLinja) {}
-
-			/**
-			 * @param nimiPiKulupuNimi nimi pi kulupu nimi ni.
-			 * @param nimiPokiPiKulupuNimi nimi ni li poki lon kulupu nimi ni. nimi poki ali li jo e nimi kulupu.
-			 */
-			KulupuNimi(NimiPiKulupuNimi nimiPiKulupuNimi, std::string&& nimiPokiPiKulupuNimi, size_t nanpaSitelenLonLinja)
-				: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(std::move(nimiPokiPiKulupuNimi)), nanpaSitelenLonLinja(nanpaSitelenLonLinja) {}
+			KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const std::string& nimiPokiPiKulupuNimi, const size_t nanpaSitelenLonLinja);
 
 			/**
 			 * @breif nimi poki pi kulupu nimi li kama jo e poki pi sitelen ala ("") kepeken ni.
 			 *
 			 * @param nimiPiKulupuNimi nimi pi kulupu nimi ni.
+			 * @param nanpaSitelenLonLinja kulupu nimi li open lon sitelen pi nanpa ni lon linja
 			 */
-			KulupuNimi(NimiPiKulupuNimi nimiPiKulupuNimi, size_t nanpaSitelenLonLinja)
-				: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(""), nanpaSitelenLonLinja(nanpaSitelenLonLinja) {}
+			KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const size_t nanpaSitelenLonLinja);
 
 			/**
 			 * @return nimi poki lon kulupu nimi ni.
@@ -59,8 +50,11 @@ namespace kipisi {
 			 */
 			size_t kamaJoENanpaSitelen() const;
 
+
+			NimiPiKulupuNimi nimiPiKulupuNimi;
+
 		private:
-			std::string nimiPokiPiKulupuNimi;
-			size_t nanpaSitelenLonLinja;
+			const std::string nimiPokiPiKulupuNimi;
+			const size_t nanpaSitelenLonLinja;
 	};
 }

@@ -1,8 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <memory>
-#include <string>
 #include "../pali_pi_lipu_wawa_tan_kulupu_nimi/pali.hpp"
 
 /**

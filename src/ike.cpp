@@ -7,7 +7,7 @@ namespace ike {
 		exit(1);
 	}
 
-	void tokiEIke(const std::string& nimiPiLipuWawa, size_t nanpaLinja, size_t nanpaSitelenLonLinja, const std::string& nimiIke) {
+	void tokiEIke(const std::string& nimiPiLipuWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja, const std::string& nimiIke) {
 		std::cerr << "ilo_li_sina: " << nimiPiLipuWawa << "(" << nanpaLinja << "," << nanpaSitelenLonLinja << "): Error: " << nimiIke << std::endl;
 		exit(1);
 	}

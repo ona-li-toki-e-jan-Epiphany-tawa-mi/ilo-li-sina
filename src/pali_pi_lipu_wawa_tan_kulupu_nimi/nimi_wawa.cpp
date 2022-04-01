@@ -1,7 +1,6 @@
 #include "nimi_wawa.hpp"
 #include <iostream>
 #include <algorithm>
-#include <utility>
 
 /**
  * @breif li toki e ijo lon ilo pi pana nimi.
@@ -9,7 +8,7 @@
  * @param nanpaIjo nanpa ijo.
  * @param ijoTawaNi ijo tawa toki.
  */
-std::string toki(size_t nanpaIjo, std::string* ijoTawaNi) {
+std::string toki(const size_t nanpaIjo, const std::string *const ijoTawaNi) {
 	for (size_t nanpa = 0; nanpa < nanpaIjo; nanpa++)
 		std::cout << ijoTawaNi[nanpa];
 
@@ -22,7 +21,7 @@ std::string toki(size_t nanpaIjo, std::string* ijoTawaNi) {
  * @param nanpaIjo nanpa ijo.
  * @param ijoTawaNi ijo tawa toki.
  */
-std::string tokiKepekenLinjaSin(size_t nanpaIjo, std::string* ijoTawaNi) {
+std::string tokiKepekenLinjaSin(const size_t nanpaIjo, const std::string *const ijoTawaNi) {
 	toki(nanpaIjo, ijoTawaNi);
 	std::cout << '\n';
 
@@ -37,7 +36,7 @@ std::string tokiKepekenLinjaSin(size_t nanpaIjo, std::string* ijoTawaNi) {
  *
  * @return nimi tan jan.
  */
-std::string kamaJoTanJan(size_t nanpaIjo, std::string* ijoTawaNi) {
+std::string kamaJoTanJan(const size_t nanpaIjo, const std::string *const ijoTawaNi) {
 	tokiKepekenLinjaSin(nanpaIjo, ijoTawaNi);
 
 	std::string nimiTanJan;
@@ -53,7 +52,7 @@ std::string kamaJoTanJan(size_t nanpaIjo, std::string* ijoTawaNi) {
  * 
  * @return std::string ijo wan tan ijo mute.
  */
-std::string wan(size_t nanpaIjo, std::string* ijoTawaNi) {
+std::string wan(const size_t nanpaIjo, const std::string *const ijoTawaNi) {
 	std::string pokiSitelenSin;
 
 	for (size_t nanpa = 0; nanpa < nanpaIjo; nanpa++)
@@ -70,13 +69,13 @@ namespace pali {
 			{"wan", wan}
 	};
 
-	std::optional<const std::string> kamaJoENimiTanNimiWawa(nimi_wawa nimiWawa) {
-		auto alasaNimi = std::find_if(pokiPiNimiWawaAli.cbegin(), pokiPiNimiWawaAli.cend(), [nimiWawa](const std::pair<std::string, nimi_wawa>& nimiWawaEnNimi) {
+	std::optional<std::string> kamaJoENimiTanNimiWawa(const nimi_wawa nimiWawa) {
+		const auto alasaNimi = std::find_if(pokiPiNimiWawaAli.cbegin(), pokiPiNimiWawaAli.cend(), [nimiWawa](const std::pair<std::string, nimi_wawa>& nimiWawaEnNimi) {
 			return nimiWawa == nimiWawaEnNimi.second;
 		});
 
 		if (alasaNimi == pokiPiNimiWawaAli.end())
-			return {};
+			return std::nullopt;
 
 		return (*alasaNimi).first;
 	}

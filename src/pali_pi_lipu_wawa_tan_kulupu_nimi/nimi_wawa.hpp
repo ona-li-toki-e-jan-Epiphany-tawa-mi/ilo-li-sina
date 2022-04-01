@@ -14,7 +14,7 @@ namespace pali {
 	 * nanpa size_t li suli pi poki sitelen string[].
 	 * poki string[] li jo e poki tawa nimi wawa tan ijo kepeken.
 	 */
-	typedef std::string(*nimi_wawa)(size_t, std::string[]);
+	typedef std::string(*nimi_wawa)(const size_t, const std::string[]);
 
 	// poki pi nimi wawa ali.
 	extern const std::unordered_map<std::string, nimi_wawa> pokiPiNimiWawaAli;
@@ -26,5 +26,5 @@ namespace pali {
 	 * 
 	 * @return nimi pi nimi wawa.
 	 */
-	std::optional<const std::string> kamaJoENimiTanNimiWawa(nimi_wawa nimiWawa);
+	std::optional<std::string> kamaJoENimiTanNimiWawa(const nimi_wawa nimiWawa);
 }

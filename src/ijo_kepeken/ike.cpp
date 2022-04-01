@@ -1,7 +1,7 @@
 #include "ike.hpp"
 #include <iostream>
 
-namespace ike {
+namespace kepeken {
 	void tokiEIke(const std::string& nimiPiLipuWawa, const std::string& nimiIke) {
 		std::cerr << "ilo_li_sina: " << nimiPiLipuWawa << ": Error: " << nimiIke << std::endl;
 		exit(1);

@@ -5,7 +5,7 @@
 /**
  * ilo tawa toki e ike.
  */
-namespace ike {
+namespace kepeken {
 	/**
 	 * @breif li toki e ike tawa jan pi lawa e ilo nanpa.
 	 *

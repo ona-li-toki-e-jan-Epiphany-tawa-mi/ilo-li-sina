@@ -9,6 +9,7 @@
 // TODO o pona e ike lon toki pona.
 // TODO o pali e ni: toki ike li pini ala e lipu wawa ni.
 // TODO o pali e ni: sina ken sitelen e ijo tawa ni: lipu wawa ni li toki e kasi pi lipu wawa li lawa ala kekpeken ona.
+// TODO o kepeken e poki List en ForwardList lon ni: ona li kepeken li lili e tenpo tawa lawa.
 
 int main(int argc, char** argv) {
 	if (argc <= 1) {

@@ -1,7 +1,6 @@
 #include "kipisi.hpp"
 #include <regex>
-#include <unordered_map>
-#include "../ike.hpp"
+#include "../ijo_kepeken/ike.hpp"
 
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) std::distance(linjaSitelen.begin(), alasaSitelen) + 1
 
@@ -15,7 +14,7 @@ namespace kipisi {
 		std::ifstream lipuWawa(nimiPiLipuWawa, std::ifstream::in);
 
 		if (!lipuWawa.is_open())
-			ike::tokiEIke(nimiPiLipuWawa, "Unable to open file");
+			kepeken::tokiEIke(nimiPiLipuWawa, "Unable to open file");
 
 
 		std::string linjaSitelen;
@@ -44,10 +43,10 @@ namespace kipisi {
 							}
 
 							if (!liPaliELonTawaTawa)
-								ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a label name before ':'!");
+								kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a label name before ':'!");
 
 							if (pokiPiKulupuNimi.size() >= 2 && (pokiPiKulupuNimi.end() - 2)->nimiPiKulupuNimi != NimiPiKulupuNimi::LINJA_SITELEN_SIN)
-								ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), "A label can only occur at the start of a line!");
+								kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), "A label can only occur at the start of a line!");
 
 							break;
 						}
@@ -77,7 +76,7 @@ namespace kipisi {
 											pokiSitelen.push_back(sitelenNasaTanNimi.at(*alasaSitelen));
 										
 										} catch (std::out_of_range& liSuliAla) {	
-											ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), std::string("Unknown escape sequence: \\") + *alasaSitelen);
+											kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), std::string("Unknown escape sequence: \\") + *alasaSitelen);
 										}
 
 										continue;
@@ -89,7 +88,7 @@ namespace kipisi {
 						liPiniPiPokiSitelen:
 
 							if (!liJoEPini)
-								ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki), "Unterminated string!");
+								kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki), "Unterminated string!");
 
 							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_SITELEN, pokiSitelen, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki));
 
@@ -119,7 +118,7 @@ namespace kipisi {
 								}
 
 								if (!liPaliENimiWawa)
-									ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a function name before '('!");
+									kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a function name before '('!");
 							}
 
 							break;
@@ -148,7 +147,7 @@ namespace kipisi {
 							if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_LUKIN_ALA))
 								break;
 
-							ike::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), std::string("Unknown symbol: ") + *alasaSitelen);
+							kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), std::string("Unknown symbol: ") + *alasaSitelen);
 					}
 				}
 			liNimiPiWawaAla:

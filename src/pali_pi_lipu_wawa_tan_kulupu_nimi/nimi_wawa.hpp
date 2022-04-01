@@ -2,7 +2,6 @@
 
 #include <unordered_map>
 #include <string>
-#include <optional>
 
 /**
  * ilo tawa pali e nimi wawa pi "ilo li sina".
@@ -20,11 +19,7 @@ namespace pali {
 	extern const std::unordered_map<std::string, nimi_wawa> pokiPiNimiWawaAli;
 
 	/**
-	 * @brief li kama jo e nimi pi nimi wawa tan ijo pana tawa ona.
-	 * 
-	 * @param nimiWawa ijo pana tawa nimi wawa.
-	 * 
-	 * @return nimi pi nimi wawa.
+	 * @return poki pi nimi pi nimi wawa ali.
 	 */
-	std::optional<std::string> kamaJoENimiTanNimiWawa(const nimi_wawa nimiWawa);
+	const std::unordered_map<nimi_wawa, std::string>& kamaJoEPokiPiNimiPiNimiWawa();
 }

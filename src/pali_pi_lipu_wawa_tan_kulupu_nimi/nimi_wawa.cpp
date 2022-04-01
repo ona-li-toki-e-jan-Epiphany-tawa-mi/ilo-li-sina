@@ -1,6 +1,8 @@
 #include "nimi_wawa.hpp"
 #include <iostream>
 #include <algorithm>
+#include <optional>
+#include "../ijo_kepeken/ijoTawaPokiMAP.hpp"
 
 /**
  * @breif li toki e ijo lon ilo pi pana nimi.
@@ -68,15 +70,20 @@ namespace pali {
 			{"kamaJoTanJan", kamaJoTanJan},
 			{"wan", wan}
 	};
+	
 
-	std::optional<std::string> kamaJoENimiTanNimiWawa(const nimi_wawa nimiWawa) {
-		const auto alasaNimi = std::find_if(pokiPiNimiWawaAli.cbegin(), pokiPiNimiWawaAli.cend(), [nimiWawa](const std::pair<std::string, nimi_wawa>& nimiWawaEnNimi) {
-			return nimiWawa == nimiWawaEnNimi.second;
-		});
+	
+	/**
+	 * poki li wile la nimi wawa ni li pali e ona.
+	 * 
+	 * @return poki Map pi nimi pi nimi wawa lon nasin ante. 
+	 */
+	const std::unordered_map<nimi_wawa, std::string>& kamaJoEPokiPiNimiPiNimiWawa() {
+		static std::optional<std::unordered_map<nimi_wawa, std::string>> pokiPiNimiPiNimiWawa = std::nullopt;
 
-		if (alasaNimi == pokiPiNimiWawaAli.end())
-			return std::nullopt;
+		if (!pokiPiNimiPiNimiWawa.has_value())
+			pokiPiNimiPiNimiWawa = std::optional(kepeken::paliEPokiMAPLonNasinAnte(pokiPiNimiWawaAli));
 
-		return (*alasaNimi).first;
+		return *pokiPiNimiPiNimiWawa;
 	}
 }

@@ -1,6 +1,6 @@
 #include "lawa.hpp"
 #include <iostream>
-#include "../ike.hpp"
+#include "../ijo_kepeken/ike.hpp"
 
 namespace lawa {
 	/**
@@ -76,7 +76,7 @@ namespace lawa {
 
 			default:
 				const auto [linja, sitelen] = kasi->kamaJoELonKasi();
-				ike::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
+				kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
 		}
 
 		return "";

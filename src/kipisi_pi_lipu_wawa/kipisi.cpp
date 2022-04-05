@@ -13,12 +13,15 @@ namespace kipisi {
 	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa) {
 		std::ifstream lipuWawa(nimiPiLipuWawa, std::ifstream::in);
 
-		if (!lipuWawa.is_open())
+		if (!lipuWawa.is_open()) {
 			kepeken::tokiEIke(nimiPiLipuWawa, "Unable to open file");
+			exit(-1);
+		}
 
 
 		std::string linjaSitelen;
 		size_t nanpaLinja = 1;
+		bool liLipuPiPonaAla = false;
 
 		while (lipuWawa.good() && std::getline(lipuWawa, linjaSitelen)) {
 			if (linjaSitelen.size() != 0)
@@ -42,11 +45,15 @@ namespace kipisi {
 								}
 							}
 
-							if (!liPaliELonTawaTawa)
+							if (!liPaliELonTawaTawa) {
 								kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a label name before ':'!");
+								liLipuPiPonaAla = true;
+							}
 
-							if (pokiPiKulupuNimi.size() >= 2 && (pokiPiKulupuNimi.end() - 2)->nimiPiKulupuNimi != NimiPiKulupuNimi::LINJA_SITELEN_SIN)
+							if (pokiPiKulupuNimi.size() >= 2 && (pokiPiKulupuNimi.end() - 2)->nimiPiKulupuNimi != NimiPiKulupuNimi::LINJA_SITELEN_SIN) {
 								kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), "A label can only occur at the start of a line!");
+								liLipuPiPonaAla = true;
+							}
 
 							break;
 						}
@@ -77,6 +84,7 @@ namespace kipisi {
 										
 										} catch (std::out_of_range& liSuliAla) {	
 											kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), std::string("Unknown escape sequence: \\") + *alasaSitelen);
+											liLipuPiPonaAla = true;
 										}
 
 										continue;
@@ -87,8 +95,10 @@ namespace kipisi {
 							}
 						liPiniPiPokiSitelen:
 
-							if (!liJoEPini)
-								kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki), "Unterminated string!");
+							if (!liJoEPini) {
+								kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki), "Unterminated string");
+								liLipuPiPonaAla = true;
+							}
 
 							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_SITELEN, pokiSitelen, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki));
 
@@ -117,8 +127,10 @@ namespace kipisi {
 									}
 								}
 
-								if (!liPaliENimiWawa)
+								if (!liPaliENimiWawa) {
 									kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), "Expected a function name before '('!");
+									liLipuPiPonaAla = true;
+								}
 							}
 
 							break;
@@ -148,6 +160,7 @@ namespace kipisi {
 								break;
 
 							kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), std::string("Unknown symbol: ") + *alasaSitelen);
+							liLipuPiPonaAla = true;
 					}
 				}
 			liNimiPiWawaAla:
@@ -156,6 +169,9 @@ namespace kipisi {
 			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, linjaSitelen.size() + 1);
 		}
 
+
+		if (liLipuPiPonaAla)
+			exit(1);
 
 		return pokiPiKulupuNimi;
 	}

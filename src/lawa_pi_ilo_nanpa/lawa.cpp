@@ -46,6 +46,7 @@ namespace lawa {
 				const std::string nimiLon = paliEKasi(kasiPiPaliKen->kamaJoEKasiLon().get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
 				const std::string nimiPiLonAla = paliEKasi(kasiPiPaliKen->kamaJoEKasiPiLonAla().get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
 
+				// TODO o pali e ni: nimi tawa toki li lon ala la o toki ala e sitelen nasa " " lon open pi nimi pi lon en lon ala.
 				while (true) {
 					for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijoTawaToki : kasiPiPaliKen->kamaJoEKulupuPiIjoToki())
 						std::cout << paliEKasi(
@@ -77,6 +78,8 @@ namespace lawa {
 			default:
 				const auto [linja, sitelen] = kasi->kamaJoELonKasi();
 				kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
+
+				exit(1);
 		}
 
 		return "";

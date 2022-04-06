@@ -23,8 +23,19 @@ namespace lawa {
 				break;
 			}
 
-			case pali::NimiKasi::KAMA_JO_TAN_POKI:
-				return pokiPiPokiNanpaAli.at(static_cast<const pali::KasiPiKamaJoTanPoki*>(kasi)->kamaJoENimiPoki());
+			case pali::NimiKasi::KAMA_JO_TAN_POKI: {
+				const auto kasiPiKamaJoTanPoki = static_cast<const pali::KasiPiKamaJoTanPoki*>(kasi);
+
+				try {
+					return pokiPiPokiNanpaAli.at(kasiPiKamaJoTanPoki->kamaJoENimiPoki());
+
+				} catch (const std::out_of_range& liSuliAla) {
+					const auto [linja, sitelen] = kasiPiKamaJoTanPoki->kamaJoELonKasi();
+					kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
+
+					exit(1);
+				}
+			}
 
 			case pali::NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA:
 				return static_cast<const pali::KasiPiKamaJoTanPokiPiAnteAla*>(kasi)->kamaJoEIjoPoki();
@@ -79,7 +90,7 @@ namespace lawa {
 				const auto [linja, sitelen] = kasi->kamaJoELonKasi();
 				kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
 
-				exit(1);
+				exit(-1);
 		}
 
 		return "";

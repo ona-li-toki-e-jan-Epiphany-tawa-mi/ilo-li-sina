@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "../ijo_kepeken/ike.hpp"
 
 /**
  * kulupu nimi. ilo kipisi li kipisi e lipu wawa la ona li pali e kulupu pi ni mute.
@@ -30,7 +31,7 @@ namespace kipisi {
 			 * @param nimiPokiPiKulupuNimi nimi ni li poki lon kulupu nimi ni. nimi poki ali li jo e nimi kulupu.
 			 * @param nanpaSitelenLonLinja kulupu nimi li open lon sitelen pi nanpa ni lon linja
 			 */
-			KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const std::string& nimiPokiPiKulupuNimi, const size_t nanpaSitelenLonLinja);
+			KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const std::string& nimiPokiPiKulupuNimi, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
 
 			/**
 			 * @breif nimi poki pi kulupu nimi li kama jo e poki pi sitelen ala ("") kepeken ni.
@@ -38,7 +39,7 @@ namespace kipisi {
 			 * @param nimiPiKulupuNimi nimi pi kulupu nimi ni.
 			 * @param nanpaSitelenLonLinja kulupu nimi li open lon sitelen pi nanpa ni lon linja
 			 */
-			KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const size_t nanpaSitelenLonLinja);
+			KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
 
 			/**
 			 * @return nimi poki lon kulupu nimi ni.
@@ -46,15 +47,15 @@ namespace kipisi {
 			const std::string& kamaJoENimiPoki() const;
 
 			/**
-			 * @return kulupu nimi ni li open lon sitelen pi nanpa ni lon linja sitelen.
+			 * @return lon pi kulupu nimi
 			 */
-			size_t kamaJoENanpaSitelen() const;
+			const kepeken::LonIjoLonLipuLawa& kamaJoELon() const;
 
 
 			NimiPiKulupuNimi nimiPiKulupuNimi;
 
 		private:
 			const std::string nimiPokiPiKulupuNimi;
-			const size_t nanpaSitelenLonLinja;
+			const kepeken::LonIjoLonLipuLawa lon;
 	};
 }

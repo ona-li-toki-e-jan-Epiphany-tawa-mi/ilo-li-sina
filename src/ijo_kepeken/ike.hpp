@@ -7,6 +7,15 @@
  */
 namespace kepeken {
 	/**
+	 * li poki e nanpa linja pi ijo poki e nanpa sitelen ona lon linja lipu wawa.
+	 */
+	struct LonIjoLonLipuLawa {
+		public:
+			size_t nanpaLinja, nanpaSitelenLonLinja;
+	};
+
+
+	/**
 	 * @breif li toki e ike tawa jan pi lawa e ilo nanpa.
 	 *
 	 * @param nimiPiLipuWawa nimi pi lipu wawa pi tenpo ni.
@@ -23,4 +32,13 @@ namespace kepeken {
 	 * @param nimiIke sona pi kama ike.
 	 */
 	void tokiEIke(const std::string& nimiPiLipuWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja, const std::string& nimiIke);
+
+	/**
+	 * @brief li toki e ike e lon ona tawa jan pi lawa e ilo nanpa.
+	 * 
+	 * @param nimiPiLipuWawa nimi pi lipu wawa pi tenpo ni.
+	 * @param lonIjo lon ike lon lipu wawa.
+	 * @param nimiIke sona pi kama ike.
+	 */
+	void tokiEIke(const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa& lonIjo, const std::string& nimiIke);
 }

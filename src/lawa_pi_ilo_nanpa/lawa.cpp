@@ -1,8 +1,8 @@
 #include "lawa.hpp"
 #include <iostream>
-#include "../ijo_kepeken/ike.hpp"
 
 namespace lawa {
+	// TODO o pana e sona tawa lawa lon poki Struct.
 	/**
 	 * @breif li lawa e ilo nanpa kepeken kasi pi kasi suli pi lipu wawa.
 	 *
@@ -30,9 +30,7 @@ namespace lawa {
 					return pokiPiPokiNanpaAli.at(kasiPiKamaJoTanPoki->kamaJoENimiPoki());
 
 				} catch (const std::out_of_range& liSuliAla) {
-					const auto [linja, sitelen] = kasiPiKamaJoTanPoki->kamaJoELonKasi();
-					kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
-
+					kepeken::tokiEIke(nimiPiLipuWawa, kasiPiKamaJoTanPoki->kamaJoELonKasi(), "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
 					exit(1);
 				}
 			}
@@ -87,9 +85,7 @@ namespace lawa {
 				break;
 
 			default:
-				const auto [linja, sitelen] = kasi->kamaJoELonKasi();
-				kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
-
+				kepeken::tokiEIke(nimiPiLipuWawa, kasi->kamaJoELonKasi(), "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
 				exit(-1);
 		}
 

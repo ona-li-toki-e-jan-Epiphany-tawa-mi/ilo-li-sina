@@ -7,7 +7,6 @@
 #include "lawa_pi_ilo_nanpa/lawa.hpp"
 
 // TODO o pona e ike lon toki pona.
-// TODO o ken e ni: jan li ken sitelen e nimi wawa 1 e ijo ante 1 lon linja mute kepeken sitelen '\' lon pini pi linja pi pini ala. 
 // TODO o pali e ni: sina ken sitelen e ijo tawa ni: lipu wawa ni li toki e kasi pi lipu wawa li lawa ala kekpeken ona.
 // TODO o kepeken e poki List en ForwardList lon ni: ona li kepeken li lili e tenpo tawa lawa.
 

@@ -1,6 +1,7 @@
 #include <vector>
 #include <memory>
 #include "nimi_wawa.hpp"
+#include "../ijo_kepeken/ike.hpp"
 
 /**
  * kasi pi kasi suli tawa pali e lipu wawa tan kulupu nimi.
@@ -18,13 +19,6 @@ namespace pali {
 			TAWA,
 			TAWA_KEN,
 			ALA
-	};
-
-	/**
-	 * li poki e nanpa linja pi kasi pi kasi suli e nanpa sitelen ona lon linja.
-	 */
-	struct LonKasiLonLipuWawa {
-		size_t nanpaLinja, nanpaSitelenLonLinja;
 	};
 
 	/**
@@ -53,10 +47,10 @@ namespace pali {
 			/**
 			 * @return lon pi kasi ni lon lipu wawa.
 			 */
-			const LonKasiLonLipuWawa& kamaJoELonKasi() const;
+			const kepeken::LonIjoLonLipuLawa& kamaJoELonKasi() const;
 
 		protected:
-			LonKasiLonLipuWawa lonKasiLonLipuWawa;
+			kepeken::LonIjoLonLipuLawa lonKasiLonLipuWawa;
 	};
 
 	/**

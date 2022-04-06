@@ -29,7 +29,7 @@ namespace kipisi {
 					switch (*alasaSitelen) {
 						// li kama jo e nimi pi pana lon poki nanpa.
 						case '=': {
-							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::PANA_LON_POKI_NANPA, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
+							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::PANA_LON_POKI_NANPA, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
 							break;
 						}
 
@@ -100,7 +100,7 @@ namespace kipisi {
 								liLipuPiPonaAla = true;
 							}
 
-							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_SITELEN, pokiSitelen, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki));
+							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_SITELEN, pokiSitelen, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPoki));
 
 							alasaSitelen--;
 							break;
@@ -110,10 +110,14 @@ namespace kipisi {
 						case '#':
 							goto liNimiPiWawaAla;
 
+						// li ken e ni: jan li sitelen e ijo lon linja mute.
+						case '\\':
+							goto linjaSinLiWileAla;
+
 						// li kama jo e poki pi ijo tawa nimi wawa e nimi wawa.
 						case '(':
 						case ')': {
-							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_PI_IJO_TAWA_NIMI_WAWA, std::string(1, *alasaSitelen), KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
+							pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_PI_IJO_TAWA_NIMI_WAWA, std::string(1, *alasaSitelen), nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
 
 							if (*alasaSitelen == '(') {
 								bool liPaliENimiWawa = false;
@@ -150,7 +154,7 @@ namespace kipisi {
 									nimiPiPokiNanpa.push_back(*alasaSitelen);
 								}
 
-								pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_NANPA, nimiPiPokiNanpa, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPiPokiNanpa));
+								pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_NANPA, nimiPiPokiNanpa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPiPokiNanpa));
 
 								alasaSitelen--;
 								break;
@@ -164,11 +168,15 @@ namespace kipisi {
 							liLipuPiPonaAla = true;
 					}
 				}
-			liNimiPiWawaAla:
+		liNimiPiWawaAla:
 
+			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, nanpaLinja, linjaSitelen.size() + 1);
+		linjaSinLiWileAla:
 			nanpaLinja++;
-			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, linjaSitelen.size() + 1);
 		}
+
+		if (!pokiPiKulupuNimi.empty() && pokiPiKulupuNimi.back().nimiPiKulupuNimi != NimiPiKulupuNimi::LINJA_SITELEN_SIN)
+			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, nanpaLinja, linjaSitelen.size() + 1);
 
 
 		if (liLipuPiPonaAla)

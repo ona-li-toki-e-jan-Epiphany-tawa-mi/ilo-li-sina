@@ -1,6 +1,5 @@
 #include "pali.hpp"
 #include <iostream>
-#include "../ijo_kepeken/ike.hpp"
 #include "../ijo_kepeken/ijoTawaPokiMAP.hpp"
 #include "../kipisi_pi_lipu_wawa/kipisi.hpp"
 
@@ -50,7 +49,6 @@ namespace pali {
 			// li tawa wan e nimi wawa tawa e nimi tawa.
 			std::vector<IjoTawaTawa>& nimiWawaTawaTawa;
 			bool liLipuPiPonaAla;
-			size_t nanpaLinja;
 	};
 
 	/**
@@ -64,14 +62,14 @@ namespace pali {
 	 */
 	std::shared_ptr<KasiPiTawaKen> paliEKasiPiTawaKen(SonaTawaPali& sonaTawaPali, const std::vector<kipisi::KulupuNimi>::const_iterator& kulupuNimiPiNimiWawa, std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiPiIjoTawaNimiWawa) {
 		if (pokiPiIjoTawaNimiWawa.size() < 3) {
-			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen(), "Insufficient arguments for function 'niLaTawa'\n\tExpected: (label, yesMessage, noMessage [, messages...])");
+			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, kulupuNimiPiNimiWawa->kamaJoELon(), "Insufficient arguments for function 'niLaTawa'\n\tExpected: (label, yesMessage, noMessage [, messages...])");
 			
 			sonaTawaPali.liLipuPiPonaAla = true;
 			return nullptr;
 		}
 
 		if (pokiPiIjoTawaNimiWawa.at(0)->kamaJoENimiKasi() != NimiKasi::KAMA_JO_TAN_POKI) {
-			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, (kulupuNimiPiNimiWawa+2)->kamaJoENanpaSitelen(), "Invalid label name\n\tExpected token matching [a-zA-Z0-9_]");
+			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, (kulupuNimiPiNimiWawa+2)->kamaJoELon(), "Invalid label name\n\tExpected token matching [a-zA-Z0-9_]");
 			sonaTawaPali.liLipuPiPonaAla = true;
 		}
 
@@ -79,12 +77,13 @@ namespace pali {
 		const std::shared_ptr<KasiPiKasiSuli> kasiLon = pokiPiIjoTawaNimiWawa.at(1);
 		const std::shared_ptr<KasiPiKasiSuli> kasiPiLonAla = pokiPiIjoTawaNimiWawa.at(2);
 		pokiPiIjoTawaNimiWawa.erase(pokiPiIjoTawaNimiWawa.begin(), pokiPiIjoTawaNimiWawa.begin() + 3);
+		const auto [linja, sitelen] = kulupuNimiPiNimiWawa->kamaJoELon();
 
 		std::shared_ptr<KasiPiTawaKen> kasiPiPaliKen = std::make_shared<KasiPiTawaKen>(
 			kasiLon, 
 			kasiPiLonAla, 
 			pokiPiIjoTawaNimiWawa, 
-			sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
+			linja, sitelen);
 		sonaTawaPali.nimiWawaTawaTawa.emplace_back(nimiPiKasiTawaTawa, kasiPiPaliKen.get());
 		return kasiPiPaliKen;
 	}
@@ -100,20 +99,20 @@ namespace pali {
 	 */
 	std::shared_ptr<KasiTawa> paliEKasiTawa(SonaTawaPali& sonaTawaPali, const std::vector<kipisi::KulupuNimi>::const_iterator& kulupuNimiPiNimiWawa, std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiPiIjoTawaNimiWawa) {
 		if (pokiPiIjoTawaNimiWawa.size() != 1) {
-			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen(), "Incorrect number of arguments for function 'tawa'\n\tExpected: tawa(label)");
+			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, kulupuNimiPiNimiWawa->kamaJoELon(), "Incorrect number of arguments for function 'tawa'\n\tExpected: tawa(label)");
 			
 			sonaTawaPali.liLipuPiPonaAla = true;
 			return nullptr;
 		}
 				
 		if (pokiPiIjoTawaNimiWawa.at(0)->kamaJoENimiKasi() != NimiKasi::KAMA_JO_TAN_POKI) {
-			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, (kulupuNimiPiNimiWawa+2)->kamaJoENanpaSitelen(), "Invalid label name\n\tExpected token matching [a-zA-Z0-9_]");
+			kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, (kulupuNimiPiNimiWawa+2)->kamaJoELon(), "Invalid label name\n\tExpected token matching [a-zA-Z0-9_]");
 			sonaTawaPali.liLipuPiPonaAla = true;
 		}
 
 
-		auto kasiTawa = std::make_shared<KasiTawa>(
-			sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
+		const auto [linja, sitelen] = kulupuNimiPiNimiWawa->kamaJoELon(); 
+		auto kasiTawa = std::make_shared<KasiTawa>(linja, sitelen);
 
 		const std::string nimiPiNimiTawa = static_cast<KasiPiPanaLonPoki*>(pokiPiIjoTawaNimiWawa.at(0).get())->kamaJoENimiPoki();
 		sonaTawaPali.nimiWawaTawaTawa.emplace_back(nimiPiNimiTawa, kasiTawa.get());
@@ -140,19 +139,19 @@ namespace pali {
 			case kipisi::NimiPiKulupuNimi::PANA_LON_POKI_NANPA: {
 				const std::optional<const kipisi::KulupuNimi *const> pokiNanpa = kamaJoLonAnte(sonaTawaPali.kulupuNimi, alasaPiKulupuNimi, -1);
 				if (!pokiNanpa.has_value()) {
-					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen(), "Expected variable name before '=' token");
+					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, alasaPiKulupuNimi->kamaJoELon(), "Expected variable name before '=' token");
 					sonaTawaPali.liLipuPiPonaAla = true;
 
 					return nullptr;
 				}
 				if ((*pokiNanpa)->nimiPiKulupuNimi != kipisi::NimiPiKulupuNimi::POKI_NANPA) {
-					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, (*pokiNanpa)->kamaJoENanpaSitelen(), "Expected variable name before '=' token");
+					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, (*pokiNanpa)->kamaJoELon(), "Expected variable name before '=' token");
 					sonaTawaPali.liLipuPiPonaAla = true;
 				}
 
 				const std::optional<const kipisi::KulupuNimi *const> ijoTawaPoki = kamaJoLonAnte(sonaTawaPali.kulupuNimi, alasaPiKulupuNimi, 1);
 				if (!ijoTawaPoki.has_value()) {
-					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen(), "Expected secondary expression after '=' token");
+					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, alasaPiKulupuNimi->kamaJoELon(), "Expected secondary expression after '=' token");
 					sonaTawaPali.liLipuPiPonaAla = true;
 
 					return nullptr;
@@ -164,25 +163,34 @@ namespace pali {
 						break;
 
 					default:
-						kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, (*ijoTawaPoki)->kamaJoENanpaSitelen(), "Invalid secondary expression after '=' token. Must be or return some kind of value!");
+						kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, (*ijoTawaPoki)->kamaJoELon(), "Invalid secondary expression after '=' token\n\tMust be or return some kind of value!");
 						sonaTawaPali.liLipuPiPonaAla = true;
 				}
+
+
+				const auto [linja, sitelen] = alasaPiKulupuNimi->kamaJoELon();
 
 				return std::make_shared<KasiPiPanaLonPoki>(
 					(*pokiNanpa)->kamaJoENimiPoki(), 
 					paliEKasi(sonaTawaPali, alasaPiKulupuNimi + 1), 
-					sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
+					linja, sitelen);
 			}
 
-			case kipisi::NimiPiKulupuNimi::POKI_NANPA:
+			case kipisi::NimiPiKulupuNimi::POKI_NANPA: {
+				const auto [linja, sitelen] = alasaPiKulupuNimi->kamaJoELon();
+			
 				return std::make_shared<KasiPiKamaJoTanPoki>(
 					alasaPiKulupuNimi->kamaJoENimiPoki(), 
-					sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
+					linja, sitelen);
+			}
 
-			case kipisi::NimiPiKulupuNimi::POKI_SITELEN: 
+			case kipisi::NimiPiKulupuNimi::POKI_SITELEN: {
+				const auto [linja, sitelen] = alasaPiKulupuNimi->kamaJoELon();
+
 				return std::make_shared<KasiPiKamaJoTanPokiPiAnteAla>(
 					alasaPiKulupuNimi->kamaJoENimiPoki(), 
-					sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
+					linja, sitelen);
+			}
 
 			case kipisi::NimiPiKulupuNimi::NIMI_WAWA: {
 				const auto kulupuNimiPiNimiWawa = alasaPiKulupuNimi;
@@ -216,13 +224,13 @@ namespace pali {
 							continue;
 
 						case kipisi::NimiPiKulupuNimi::LINJA_SITELEN_SIN:
-							kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen(), "Unterminated function definition\n\tExpected ending ')' symbol");
+							kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, kulupuNimiPiNimiWawa->kamaJoELon(), "Unterminated function call\n\tExpected ending ')' symbol");
 							sonaTawaPali.liLipuPiPonaAla = true;
 
 							return nullptr;
 
 						default:
-							kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen(), "Unexpected token");
+							kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, alasaPiKulupuNimi->kamaJoELon(), "Unexpected token");
 							sonaTawaPali.liLipuPiPonaAla = true;
 					}
 				}
@@ -248,7 +256,7 @@ namespace pali {
 					nimiWawa = pokiPiNimiWawaAli.at(kulupuNimiPiNimiWawa->kamaJoENimiPoki());
 
 				} catch (const std::out_of_range& liSuliAla) {
-					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen(), "Unknown function '" + kulupuNimiPiNimiWawa->kamaJoENimiPoki() + "'");
+					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, kulupuNimiPiNimiWawa->kamaJoELon(), "Unknown function '" + kulupuNimiPiNimiWawa->kamaJoENimiPoki() + "'");
 					sonaTawaPali.liLipuPiPonaAla = true;
 
 					return nullptr;
@@ -256,16 +264,21 @@ namespace pali {
 				
 
 				// li pali e nimi wawa pi tawa ala.
+				const auto [linja, sitelen] = kulupuNimiPiNimiWawa->kamaJoELon();
+
 				return std::make_shared<KasiPiNimiWawa>(
 					nimiWawa, 
 					pokiPiIjoTawaNimiWawa, 
-					sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen());
+					linja, sitelen);
 			}
 
-			case kipisi::NimiPiKulupuNimi::NIMI_TAWA_TAWA:
+			case kipisi::NimiPiKulupuNimi::NIMI_TAWA_TAWA: {
+				const auto [linja, sitelen] = alasaPiKulupuNimi->kamaJoELon();
+
 				return std::make_shared<KasiPiNimiTawa>(
 					alasaPiKulupuNimi->kamaJoENimiPoki(), 
-					sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen());
+					linja, sitelen);
+			}
 		}
 
 		return nullptr;
@@ -275,7 +288,7 @@ namespace pali {
 		bool liPaliTanLinjaSitelen = false;
 		std::vector<IjoTawaTawa> nimiWawaTawaTawa;
 
-		SonaTawaPali sonaTawaKipisi = {kulupuNimi, nimiPiLipuWawa, nimiWawaTawaTawa, false, 1};
+		SonaTawaPali sonaTawaKipisi = {kulupuNimi, nimiPiLipuWawa, nimiWawaTawaTawa, false};
 
 		// li pali e lipu wawa.
 		for (auto alasaPiKulupuNimi = kulupuNimi.cbegin(); alasaPiKulupuNimi != kulupuNimi.cend(); alasaPiKulupuNimi++) {
@@ -301,7 +314,6 @@ namespace pali {
 
 				case kipisi::NimiPiKulupuNimi::LINJA_SITELEN_SIN:
 					liPaliTanLinjaSitelen = false;
-					sonaTawaKipisi.nanpaLinja++;
 			}
 		}
 
@@ -318,9 +330,7 @@ namespace pali {
 
 			for (const IjoTawaTawa& ijo : nimiWawaTawaTawa)
 				if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1) {
-					const auto [linja, sitelen] = ijo.nimiWawaTawaTawa->kamaJoELonKasi();
-					kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
-
+					kepeken::tokiEIke(nimiPiLipuWawa, ijo.nimiWawaTawaTawa->kamaJoELonKasi(), "Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
 					sonaTawaKipisi.liLipuPiPonaAla = true;
 				}
 		}

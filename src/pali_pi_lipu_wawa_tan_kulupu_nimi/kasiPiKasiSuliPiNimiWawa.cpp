@@ -11,7 +11,7 @@ namespace pali {
 
 	KasiPiKasiSuli::~KasiPiKasiSuli() {}
 
-	const LonKasiLonLipuWawa& KasiPiKasiSuli::kamaJoELonKasi() const {
+	const kepeken::LonIjoLonLipuLawa& KasiPiKasiSuli::kamaJoELonKasi() const {
 		return this->lonKasiLonLipuWawa;
 	}
 

@@ -1,27 +1,61 @@
-# Runs through solving the quadratic equation.
-    tokiELinja("Quadratic solver v4.43654784")
+# Quadratic solver.
+    tokiELinja("Quadratic solver v5.54765895")
     tokiELinja()
 
-    quadratic = kamaJoTanJan("Enter the equation you would like to solve: ")
-    a = kamaJoTanJan("What is the mutiple on x^2 (a)? ")
-    b = kamaJoTanJan("What is the mutiple on x (b)? ")
-    c = kamaJoTanJan("What is the constant (c)? ")
+    quadratic = kamaJoTanJan("Enter the equation you would like to solve (in the form ax^2+bx+c): ")
+    a = kamaJoTanJan("What is the multiple on x^2 (a) in " quadratic "?")
 
-    discriminant = kamaJoTanJan("What is " kamaJoTanJan("What is " b "^2?") "-" kamaJoTanJan("What is " kamaJoTanJan("What is 4*" a "?") "*" c "?") "?")
-    divisor = kamaJoTanJan("What is 2*" a "?")
-    niLaTawa(IsNotZero "no" "yes" "Is '" divisor "' equal to 0?")
+    niLaTawa(HasSolution "no" "yes" \
+            "Is " a " equal to 0?")
+    tokiELinja()
     tokiELinja("No solution")
     tawa(ProgramEnd)
+HasSolution:
 
-IsNotZero:
-    niLaTawa(IsNegative "yes" "no" "Is " discriminant " negative?")
-    discriminant = kamaJoTanJan("What is the square root of " discriminant " ?")
-    tawa(PrintSolutions)
-IsNegative:
-    discriminant = wan(kamaJoTanJan("What is the square root of " discriminant "*-1?") "i")
+    b = kamaJoTanJan("What is the multiple on x (b) in " quadratic "?")
+    c = kamaJoTanJan("What is the constant (c) in " quadratic "?")
+    discriminant = kamaJoTanJan(                           \
+            "What is (" kamaJoTanJan("What is (" b ")^2?") \
+            ")-("                                          \
+            kamaJoTanJan("What is ("                       \
+                kamaJoTanJan("What is 4*(" a ")?")         \
+                ")*(" c ")?")                              \
+            ")?")
+    divisor = kamaJoTanJan("What is 2*(" a ")?")
 
-PrintSolutions:
-    tokiELinja("The possible unsimplified solutions for the equation " quadratic " are:")
-    tokiELinja("\t(-" b "+" discriminant ")/" divisor " and (-" b "-" discriminant ")/" divisor)
+    niLaTawa(OneSolution "yes" "no"            \
+            "Is " discriminant " equal to 0?")
+    
+# 2 solution branch.
+    niLaTawa(NegativeDiscriminant "yes" "no" \
+            "Is " discriminant " negative?")
+    discriminant = kamaJoTanJan("What is the square root of " discriminant "?")
+    tawa(PositiveDisciminant)
+NegativeDiscriminant:
+    discriminant = wan(                                                           \
+            "(" kamaJoTanJan("What is the square root of (" discriminant ")*-1?") \
+            ")i")
+PositiveDisciminant:
+
+    positiveSolution = wan("(-(" b ")+(" discriminant "))/(" divisor ")")
+    negativeSolution = wan("(-(" b ")-(" discriminant "))/(" divisor ")")
+    niLaTawa(NoSimplificationTS "no" "yes" \
+            "Can " positiveSolution " and " negativeSolution " be simplified?")
+    positiveSolution = kamaJoTanJan("What is the simplified form of " positiveSolution "?")
+    negativeSolution = kamaJoTanJan("What is the simplified form of " negativeSolution "?")
+NoSimplificationTS:
+    tokiELinja("The solutions to the equation " quadratic " are " positiveSolution " and " negativeSolution)
+    tokiELinja()
+
+    tawa(ProgramEnd)
+
+OneSolution:
+    solution = wan("-(" b ")/(" divisor ")")
+    niLaTawa(NoSimplificationOS "no" "yes" \
+            "Can " solution " be simplified?")
+    solution = kamaJoTanJan("What is the simplified form of " solution "?")
+NoSimplificationOS:
+    tokiELinja()
+    tokiELinja("The solution to the equation " quadratic " is " solution)
 
 ProgramEnd:

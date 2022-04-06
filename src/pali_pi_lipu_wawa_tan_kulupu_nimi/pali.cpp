@@ -330,7 +330,7 @@ namespace pali {
 
 			for (const IjoTawaTawa& ijo : nimiWawaTawaTawa)
 				if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1) {
-					kepeken::tokiEIke(nimiPiLipuWawa, ijo.nimiWawaTawaTawa->kamaJoELonKasi(), "Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
+					kepeken::tokiEIke(nimiPiLipuWawa, ijo.nimiWawaTawaTawa->kamaJoELonKasi(), "Jump to undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
 					sonaTawaKipisi.liLipuPiPonaAla = true;
 				}
 		}

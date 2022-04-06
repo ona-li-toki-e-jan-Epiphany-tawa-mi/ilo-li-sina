@@ -140,6 +140,7 @@ namespace kipisi {
 							// li kama jo e poki nanpa.
 							if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_POKI_NANPA)) {
 								std::string nimiPiPokiNanpa(1, *alasaSitelen);
+								const auto openPiPokiNanpa = alasaSitelen;
 
 								alasaSitelen++;
 								for (; alasaSitelen != linjaSitelen.end(); alasaSitelen++) {
@@ -149,7 +150,7 @@ namespace kipisi {
 									nimiPiPokiNanpa.push_back(*alasaSitelen);
 								}
 
-								pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_NANPA, nimiPiPokiNanpa, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen));
+								pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::POKI_NANPA, nimiPiPokiNanpa, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, openPiPokiNanpa));
 
 								alasaSitelen--;
 								break;

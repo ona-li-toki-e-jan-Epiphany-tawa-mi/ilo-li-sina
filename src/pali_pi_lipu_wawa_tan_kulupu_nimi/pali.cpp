@@ -142,6 +142,8 @@ namespace pali {
 				if (!pokiNanpa.has_value()) {
 					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen(), "Expected variable name before '=' token");
 					sonaTawaPali.liLipuPiPonaAla = true;
+
+					return nullptr;
 				}
 				if ((*pokiNanpa)->nimiPiKulupuNimi != kipisi::NimiPiKulupuNimi::POKI_NANPA) {
 					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, (*pokiNanpa)->kamaJoENanpaSitelen(), "Expected variable name before '=' token");
@@ -152,6 +154,8 @@ namespace pali {
 				if (!ijoTawaPoki.has_value()) {
 					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen(), "Expected secondary expression after '=' token");
 					sonaTawaPali.liLipuPiPonaAla = true;
+
+					return nullptr;
 				}
 				switch ((*ijoTawaPoki)->nimiPiKulupuNimi) {
 					case kipisi::NimiPiKulupuNimi::NIMI_WAWA:
@@ -212,7 +216,10 @@ namespace pali {
 							continue;
 
 						case kipisi::NimiPiKulupuNimi::LINJA_SITELEN_SIN:
-							continue;
+							kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen(), "Unterminated function definition\n\tExpected ending ')' symbol");
+							sonaTawaPali.liLipuPiPonaAla = true;
+
+							return nullptr;
 
 						default:
 							kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen(), "Unexpected token");
@@ -220,11 +227,6 @@ namespace pali {
 					}
 				}
 			piniPiAlasaIjo:
-
-				if (alasaPiKulupuNimi == sonaTawaPali.kulupuNimi.cend()) {
-					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, alasaPiKulupuNimi->kamaJoENanpaSitelen(), "Unterminated function definition\n\tExpected ending ')' symbol");
-					sonaTawaPali.liLipuPiPonaAla = true;
-				}
 
 				// li pali e nimi wawa tawa.
 				if (kulupuNimiPiNimiWawa->kamaJoENimiPoki() == "niLaTawa") {
@@ -245,9 +247,11 @@ namespace pali {
 				try {					
 					nimiWawa = pokiPiNimiWawaAli.at(kulupuNimiPiNimiWawa->kamaJoENimiPoki());
 
-				} catch (std::out_of_range& liSuliAla) {
+				} catch (const std::out_of_range& liSuliAla) {
 					kepeken::tokiEIke(sonaTawaPali.nimiPiLipuWawa, sonaTawaPali.nanpaLinja, kulupuNimiPiNimiWawa->kamaJoENanpaSitelen(), "Unknown function '" + kulupuNimiPiNimiWawa->kamaJoENimiPoki() + "'");
 					sonaTawaPali.liLipuPiPonaAla = true;
+
+					return nullptr;
 				}
 				
 
@@ -301,24 +305,25 @@ namespace pali {
 			}
 		}
 
+		if (!sonaTawaKipisi.liLipuPiPonaAla) {
+			// li wan e nimi tawa e nimi wawa tawa.
+			for (size_t nanpa = 0; nanpa < pokiTawaLipuWawa.size(); nanpa++)
+				if (pokiTawaLipuWawa.at(nanpa)->kamaJoENimiKasi() == NimiKasi::NIMI_TAWA) {
+					const auto kasiTawaTawa = static_cast<const KasiPiNimiTawa*>(pokiTawaLipuWawa.at(nanpa).get());
 
-		// li wan e nimi tawa e nimi wawa tawa.
-		for (size_t nanpa = 0; nanpa < pokiTawaLipuWawa.size(); nanpa++)
-			if (pokiTawaLipuWawa.at(nanpa)->kamaJoENimiKasi() == NimiKasi::NIMI_TAWA) {
-				const auto kasiTawaTawa = static_cast<const KasiPiNimiTawa*>(pokiTawaLipuWawa.at(nanpa).get());
+					for (IjoTawaTawa& ijo : nimiWawaTawaTawa)
+						if (ijo.nimiPiNimiTawaTawa == kasiTawaTawa->kamaJoENimiPiNimiTawa())
+							ijo.nimiWawaTawaTawa->linjaTawaTawa = nanpa;
+				}
 
-				for (IjoTawaTawa& ijo : nimiWawaTawaTawa)
-					if (ijo.nimiPiNimiTawaTawa == kasiTawaTawa->kamaJoENimiPiNimiTawa())
-						ijo.nimiWawaTawaTawa->linjaTawaTawa = nanpa;
-			}
+			for (const IjoTawaTawa& ijo : nimiWawaTawaTawa)
+				if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1) {
+					const auto [linja, sitelen] = ijo.nimiWawaTawaTawa->kamaJoELonKasi();
+					kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
 
-		for (const IjoTawaTawa& ijo : nimiWawaTawaTawa)
-			if (ijo.nimiWawaTawaTawa->linjaTawaTawa == -1) {
-				const auto [linja, sitelen] = ijo.nimiWawaTawaTawa->kamaJoELonKasi();
-				kepeken::tokiEIke(nimiPiLipuWawa, linja, sitelen, "Undefined label '" + ijo.nimiPiNimiTawaTawa + "'");
-
-				sonaTawaKipisi.liLipuPiPonaAla = true;
-			}
+					sonaTawaKipisi.liLipuPiPonaAla = true;
+				}
+		}
 
 
 		if (sonaTawaKipisi.liLipuPiPonaAla)

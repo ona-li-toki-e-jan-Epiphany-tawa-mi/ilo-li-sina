@@ -82,7 +82,7 @@ namespace kipisi {
 										try {
 											pokiSitelen.push_back(sitelenNasaTanNimi.at(*alasaSitelen));
 										
-										} catch (std::out_of_range& liSuliAla) {	
+										} catch (const std::out_of_range& liSuliAla) {	
 											kepeken::tokiEIke(nimiPiLipuWawa, nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), std::string("Unknown escape sequence: \\") + *alasaSitelen);
 											liLipuPiPonaAla = true;
 										}

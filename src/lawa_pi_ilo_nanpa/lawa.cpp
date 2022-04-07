@@ -2,7 +2,16 @@
 #include <iostream>
 
 namespace lawa {
-	// TODO o pana e sona tawa lawa lon poki Struct.
+	/**
+	 * @brief sona tawa lawa e ilo nanpa.
+	 */
+	struct SonaTawaLawa {
+		const std::string& nimiPiLipuWawa;
+
+		std::unordered_map<std::string, std::string>& pokiPiPokiNanpaAli;
+		size_t& nanpaLinja;
+	};
+
 	/**
 	 * @breif li lawa e ilo nanpa kepeken kasi pi kasi suli pi lipu wawa.
 	 *
@@ -13,12 +22,12 @@ namespace lawa {
 	 *
 	 * @return poki sitelen kama tan lawa e ilo nanpa.
 	 */
-	std::string paliEKasi(const pali::KasiPiKasiSuli* kasi, std::unordered_map<std::string, std::string>& pokiPiPokiNanpaAli, size_t& nanpaLinja, const std::string& nimiPiLipuWawa) {
+	std::string paliEKasi(SonaTawaLawa& sonaTawaLawa, const pali::KasiPiKasiSuli* kasi) {
 		switch (kasi->kamaJoENimiKasi()) {
 			case pali::NimiKasi::PANA_LON_POKI: {
 				const auto kasiPiPanaLonPoki = static_cast<const pali::KasiPiPanaLonPoki*>(kasi);
-				pokiPiPokiNanpaAli[kasiPiPanaLonPoki->kamaJoENimiPoki()] = paliEKasi(
-					kasiPiPanaLonPoki->kamaJoEIjoTawaPana().get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
+				sonaTawaLawa.pokiPiPokiNanpaAli[kasiPiPanaLonPoki->kamaJoENimiPoki()] = paliEKasi(
+					sonaTawaLawa, kasiPiPanaLonPoki->kamaJoEIjoTawaPana().get());
 
 				break;
 			}
@@ -27,10 +36,10 @@ namespace lawa {
 				const auto kasiPiKamaJoTanPoki = static_cast<const pali::KasiPiKamaJoTanPoki*>(kasi);
 
 				try {
-					return pokiPiPokiNanpaAli.at(kasiPiKamaJoTanPoki->kamaJoENimiPoki());
+					return sonaTawaLawa.pokiPiPokiNanpaAli.at(kasiPiKamaJoTanPoki->kamaJoENimiPoki());
 
 				} catch (const std::out_of_range& liSuliAla) {
-					kepeken::tokiEIke(nimiPiLipuWawa, kasiPiKamaJoTanPoki->kamaJoELonKasi(), "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
+					kepeken::tokiEIke(sonaTawaLawa.nimiPiLipuWawa, kasiPiKamaJoTanPoki->kamaJoELonKasi(), "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
 					exit(1);
 				}
 			}
@@ -45,22 +54,22 @@ namespace lawa {
 				ijoTawaNimiWawa.reserve(kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa().size());
 				for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijo : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
 					ijoTawaNimiWawa.push_back(paliEKasi(
-						ijo.get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa));
+						sonaTawaLawa, ijo.get()));
 
 				return kasiPiNimiWawa->kamaJoENimiWawa()(ijoTawaNimiWawa.size(), ijoTawaNimiWawa.data());
 			}
 
 			case pali::NimiKasi::TAWA_KEN: {
 				const auto kasiPiPaliKen = static_cast<const pali::KasiPiTawaKen*>(kasi);
-				const std::string nimiLon = paliEKasi(kasiPiPaliKen->kamaJoEKasiLon().get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
-				const std::string nimiPiLonAla = paliEKasi(kasiPiPaliKen->kamaJoEKasiPiLonAla().get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
+				const std::string nimiLon = paliEKasi(sonaTawaLawa, kasiPiPaliKen->kamaJoEKasiLon().get());
+				const std::string nimiPiLonAla = paliEKasi(sonaTawaLawa, kasiPiPaliKen->kamaJoEKasiPiLonAla().get());
 
 				while (true) {
 					const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& kulupuPiIjoTawaToki = kasiPiPaliKen->kamaJoEKulupuPiIjoToki();
 					
 					if (!kulupuPiIjoTawaToki.empty()) {
 						for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijoTawaToki : kulupuPiIjoTawaToki)
-							std::cout << paliEKasi(ijoTawaToki.get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
+							std::cout << paliEKasi(sonaTawaLawa, ijoTawaToki.get());
 						std::cout << ' ';
 					}
 					std::cout << "(" << nimiLon << '/' << nimiPiLonAla << ")\n";
@@ -69,7 +78,7 @@ namespace lawa {
 					std::getline(std::cin, nimiTanJan);
 
 					if (nimiTanJan == nimiLon) {
-						nanpaLinja = kasiPiPaliKen->linjaTawaTawa;
+						sonaTawaLawa.nanpaLinja = kasiPiPaliKen->linjaTawaTawa;
 						break;
 					}
 
@@ -81,14 +90,14 @@ namespace lawa {
 			}
 
 			case pali::NimiKasi::TAWA:
-				nanpaLinja = static_cast<const pali::KasiTawa*>(kasi)->linjaTawaTawa;
+				sonaTawaLawa.nanpaLinja = static_cast<const pali::KasiTawa*>(kasi)->linjaTawaTawa;
 				break;
 
 			case pali::NimiKasi::NIMI_TAWA:
 				break;
 
 			default:
-				kepeken::tokiEIke(nimiPiLipuWawa, kasi->kamaJoELonKasi(), "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
+				kepeken::tokiEIke(sonaTawaLawa.nimiPiLipuWawa, kasi->kamaJoELonKasi(), "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
 				exit(-1);
 		}
 
@@ -97,8 +106,11 @@ namespace lawa {
 
 	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa) {
 		std::unordered_map<std::string, std::string> pokiPiPokiNanpaAli;
+		size_t nanpaLinja = 0;
 
-		for (size_t nanpa = 0; nanpa != lipuWawa.size(); nanpa++)
-			paliEKasi(lipuWawa.at(nanpa).get(), pokiPiPokiNanpaAli, nanpa, nimiPiLipuWawa);
+		SonaTawaLawa sonaTawaLawa = {nimiPiLipuWawa, pokiPiPokiNanpaAli, nanpaLinja};
+
+		for (; nanpaLinja != lipuWawa.size(); nanpaLinja++)
+			paliEKasi(sonaTawaLawa, lipuWawa.at(nanpaLinja).get());
 	}
 }

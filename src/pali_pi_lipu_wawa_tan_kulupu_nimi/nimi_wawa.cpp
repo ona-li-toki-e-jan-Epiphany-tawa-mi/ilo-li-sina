@@ -39,7 +39,8 @@ std::string tokiKepekenLinjaSin(const size_t nanpaIjo, const std::string *const 
  * @return nimi tan jan.
  */
 std::string kamaJoTanJan(const size_t nanpaIjo, const std::string *const ijoTawaNi) {
-	tokiKepekenLinjaSin(nanpaIjo, ijoTawaNi);
+	if (nanpaIjo != 0)
+		tokiKepekenLinjaSin(nanpaIjo, ijoTawaNi);
 
 	std::string nimiTanJan;
 	std::getline(std::cin, nimiTanJan);

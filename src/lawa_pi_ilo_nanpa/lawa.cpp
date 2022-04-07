@@ -55,18 +55,21 @@ namespace lawa {
 				const std::string nimiLon = paliEKasi(kasiPiPaliKen->kamaJoEKasiLon().get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
 				const std::string nimiPiLonAla = paliEKasi(kasiPiPaliKen->kamaJoEKasiPiLonAla().get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
 
-				// TODO o pali e ni: nimi tawa toki li lon ala la o toki ala e sitelen nasa " " lon open pi nimi pi lon en lon ala.
 				while (true) {
-					for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijoTawaToki : kasiPiPaliKen->kamaJoEKulupuPiIjoToki())
-						std::cout << paliEKasi(
-							ijoTawaToki.get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
-					std::cout << " (" << nimiLon << '/' << nimiPiLonAla << ")\n";
+					const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& kulupuPiIjoTawaToki = kasiPiPaliKen->kamaJoEKulupuPiIjoToki();
+					
+					if (!kulupuPiIjoTawaToki.empty()) {
+						for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijoTawaToki : kulupuPiIjoTawaToki)
+							std::cout << paliEKasi(ijoTawaToki.get(), pokiPiPokiNanpaAli, nanpaLinja, nimiPiLipuWawa);
+						std::cout << ' ';
+					}
+					std::cout << "(" << nimiLon << '/' << nimiPiLonAla << ")\n";
 
 					std::string nimiTanJan;
 					std::getline(std::cin, nimiTanJan);
 
 					if (nimiTanJan == nimiLon) {
-						nanpaLinja = kasiPiPaliKen->linjaTawaTawa - 1;
+						nanpaLinja = kasiPiPaliKen->linjaTawaTawa;
 						break;
 					}
 

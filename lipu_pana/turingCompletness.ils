@@ -1,0 +1,9 @@
+# ilo li sina program to figure out whether ilo li sina is turning complete.
+    niLaTawa(IsTuringComplete "yes" "no"                                  \
+            "Is the programming language 'ilo li sina' turing complete?")
+
+    tokiELinja("\nilo li sina is not a turing complete language")
+    tawa(ProgramEnd)
+IsTuringComplete:
+    tokiELinja("\nilo li sina is a turing complete language")
+ProgramEnd:

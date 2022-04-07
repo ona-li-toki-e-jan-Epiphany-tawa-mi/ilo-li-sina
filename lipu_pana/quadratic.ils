@@ -44,8 +44,8 @@ PositiveDisciminant:
     positiveSolution = kamaJoTanJan("What is the simplified form of " positiveSolution "?")
     negativeSolution = kamaJoTanJan("What is the simplified form of " negativeSolution "?")
 NoSimplificationTS:
-    tokiELinja("The solutions to the equation " quadratic " are " positiveSolution " and " negativeSolution)
     tokiELinja()
+    tokiELinja("The solutions to the equation " quadratic " are " positiveSolution " and " negativeSolution)
 
     tawa(ProgramEnd)
 

@@ -2,6 +2,10 @@
 #include <iostream>
 
 namespace kepeken {
+	void tokiEIke(const std::string& nimiIke) {
+		std::cerr << "ilo_li_sina: Error: " << nimiIke << '\n';
+	}
+
 	void tokiEIke(const std::string& nimiPiLipuWawa, const std::string& nimiIke) {
 		std::cerr << "ilo_li_sina: " << nimiPiLipuWawa << ": Error: " << nimiIke << '\n';
 	}

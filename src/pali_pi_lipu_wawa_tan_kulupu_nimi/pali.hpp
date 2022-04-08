@@ -22,6 +22,7 @@ namespace pali {
 	 * @breif li pana e lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
 	 *
 	 * @param pokiTawaLipuWawa lipu wawa.
+	 * @param nimiPiLipuWawa nimi pi lipu wawa.
 	 */
-	void tokiEKasiSuli(const std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa);
+	void tokiEKasiSuli(const std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa, const std::string& nimiPiLipuWawa);
 }

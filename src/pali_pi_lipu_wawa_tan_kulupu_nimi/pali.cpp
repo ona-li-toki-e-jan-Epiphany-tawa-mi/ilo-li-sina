@@ -1,6 +1,5 @@
 #include "pali.hpp"
 #include <iostream>
-#include "../ijo_kepeken/ijoTawaPokiMAP.hpp"
 #include "../kipisi_pi_lipu_wawa/kipisi.hpp"
 
 namespace pali {
@@ -344,20 +343,7 @@ namespace pali {
 
 
 
-	/**
-	 * poki li wile la nimi wawa ni li pali e ona.
-	 * 
-	 * @return poki Map pi sitelen nasa tan nimi lon nasin ante. 
-	 */
-	const std::unordered_map<char, char>& kamaJoEPokiPiNimiTanSitelenNasa() {
-		static std::optional<std::unordered_map<char, char>> nimiTanSitelenNasa = std::nullopt;
-
-		if (!nimiTanSitelenNasa.has_value())
-			nimiTanSitelenNasa = std::optional(kepeken::paliEPokiMAPLonNasinAnte(kipisi::sitelenNasaTanNimi));
-
-		return *nimiTanSitelenNasa;
-	}
-
+	// TODO o kepeken e \t.
 	/**
 	 * @brief li toki e sitelen pi lukin ala lon open pi toki kasi.
 	 * 
@@ -398,11 +384,11 @@ namespace pali {
 				const auto kasiPiKamaJoTanPokiPiAnteAla = static_cast<const KasiPiKamaJoTanPokiPiAnteAla*>(kasi);
 				std::cout << "KAMA_JO_TAN_POKI_PI_ANTE_ALA='";
 
-				const std::unordered_map<char, char>& nimiTanSitelenNasa = kamaJoEPokiPiNimiTanSitelenNasa();
+				const std::unordered_map<char, char>& nimiTanSitelenNasa = kipisi::kamaJoEPokiPiNimiTanSitelenNasa();
 				
 				for (const char sitelen : kasiPiKamaJoTanPokiPiAnteAla->kamaJoEIjoPoki())
 					try {
-						char sitelenPiNasaAla = nimiTanSitelenNasa.at(sitelen);
+						const char sitelenPiNasaAla = nimiTanSitelenNasa.at(sitelen);
 						std::cout << '\\' << sitelenPiNasaAla;
 
 					} catch (const std::out_of_range& liSuliAla) {
@@ -473,8 +459,16 @@ namespace pali {
 		}
 	}
 
-	void tokiEKasiSuli(const std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa) {
-		for (size_t nanpa; nanpa < pokiTawaLipuWawa.size(); nanpa++)
-			tokiEKasiPiKasiSuli(pokiTawaLipuWawa.at(nanpa).get(), 0, nanpa);
+	void tokiEKasiSuli(const std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa, const std::string& nimiPiLipuWawa) {
+		std::cout << "/-------------------\n| " << nimiPiLipuWawa << "\n\\-------------------\n";
+
+		for (size_t nanpa = 0; nanpa < pokiTawaLipuWawa.size(); nanpa++) {
+			const KasiPiKasiSuli *const kasiPiKasiSuli = pokiTawaLipuWawa.at(nanpa).get();
+
+			std::cout << "linja pi nanpa " << kasiPiKasiSuli->kamaJoELonKasi().nanpaLinja << ":\n";
+			tokiEKasiPiKasiSuli(pokiTawaLipuWawa.at(nanpa).get(), 2, nanpa);
+		}
+
+		std::cout << "\\-------------------\n";
 	}
 }

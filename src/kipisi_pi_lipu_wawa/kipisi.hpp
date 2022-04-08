@@ -15,6 +15,11 @@ namespace kipisi {
 	extern const std::unordered_map<char, char> sitelenNasaTanNimi;
 
 	/**
+	 * @return poki Map pi sitelen nasa tan nimi lon nasin ante. 
+	 */
+	const std::unordered_map<char, char>& kamaJoEPokiPiNimiTanSitelenNasa();
+
+	/**
 	 * @breif li kipisi e lipu wawa li pali e kulupu nimi tan kipisi li pana e ona lon
 	 * 	poki.
 	 *
@@ -24,4 +29,12 @@ namespace kipisi {
 	 * @return pokiPiKulupuNimi.
 	 */
 	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa);
+
+	/**
+	 * @brief li toki e kulupu nimi pi lipu wawa tawa jan lawa e ilo nanpa.
+	 * 
+	 * @param pokiPiKulupuNimi li jo e lipu wawa lon kulupu nimi.
+	 * @param nimiPiLipuWawa nimi pi lipu wawa
+	 */
+	void tokiELipuWawa(const std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa);
 }

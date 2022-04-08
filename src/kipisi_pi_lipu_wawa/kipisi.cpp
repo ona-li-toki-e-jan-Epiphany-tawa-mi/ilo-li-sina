@@ -1,6 +1,8 @@
 #include "kipisi.hpp"
 #include <regex>
+#include <iostream>
 #include "../ijo_kepeken/ike.hpp"
+#include "../ijo_kepeken/ijoTawaPokiMAP.hpp"
 
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) std::distance(linjaSitelen.begin(), alasaSitelen) + 1
 
@@ -183,5 +185,47 @@ namespace kipisi {
 			exit(1);
 
 		return pokiPiKulupuNimi;
+	}
+
+
+
+	const std::unordered_map<char, char>& kamaJoEPokiPiNimiTanSitelenNasa() {
+		static std::optional<std::unordered_map<char, char>> nimiTanSitelenNasa = std::nullopt;
+
+		if (!nimiTanSitelenNasa.has_value())
+			nimiTanSitelenNasa = std::optional(kepeken::paliEPokiMAPLonNasinAnte(kipisi::sitelenNasaTanNimi));
+
+		return *nimiTanSitelenNasa;
+	}
+
+	void tokiELipuWawa(const std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa) {
+		std::cout << "/-------------------\n| " << nimiPiLipuWawa << "\n\\-------------------\n";
+		
+		if (pokiPiKulupuNimi.size() != 0) {
+			size_t nanpaLinja = 1;
+			std::cout << "linja pi nanpa 1:\n";
+
+			for (auto alasaPiKulupuNimi = pokiPiKulupuNimi.cbegin(); alasaPiKulupuNimi != pokiPiKulupuNimi.cend(); alasaPiKulupuNimi++) {
+				std::cout << '\t' << alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu() << "='";
+
+				for (const char sitelen : alasaPiKulupuNimi->kamaJoENimiPoki())
+					try {
+						const char sitelenNasa = kamaJoEPokiPiNimiTanSitelenNasa().at(sitelen);
+						std::cout << '\\' << sitelenNasa;
+
+					} catch (const std::out_of_range& liSuliAla) {
+						std::cout << sitelen;
+					}
+				std::cout << "'\n";
+
+
+				if (alasaPiKulupuNimi->nimiPiKulupuNimi == NimiPiKulupuNimi::LINJA_SITELEN_SIN && alasaPiKulupuNimi != pokiPiKulupuNimi.cend() - 1)
+					std::cout << "linja pi nanpa " << ++nanpaLinja << ":\n";
+			}
+
+		} else
+			std::cout << '\n';
+
+		std::cout << "\\-------------------\n";
 	}
 }

@@ -16,6 +16,13 @@ namespace kepeken {
 
 
 	/**
+	 * @brief li toki e ike tawa jan pi lawa e ilo nanpa.
+	 * 
+	 * @param nimiIke sona pi kama ike.
+	 */
+	void tokiEIke(const std::string& nimiIke);
+
+	/**
 	 * @breif li toki e ike tawa jan pi lawa e ilo nanpa.
 	 *
 	 * @param nimiPiLipuWawa nimi pi lipu wawa pi tenpo ni.

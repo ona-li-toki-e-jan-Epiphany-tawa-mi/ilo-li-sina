@@ -1,10 +1,11 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required(VERSION 3.0.0)
 
-set(PROJECT_NAME ilo_li_sina)
-set(SOURCE_DIR src)
-file(GLOB_RECURSE SOURCES ${SOURCE_DIR}/*.cpp)
+project(ilo_li_sina VERSION 0.0)
 
-project (${PROJECT_NAME})
+set(pokiPiPokiPiNimiWawa src)
+file(GLOB_RECURSE pokiPiNimiWawa ${pokiPiPokiPiNimiWawa}/*.cpp)
+set(pokiPiNimiWawaPiILO_LI_SINAAla include)
 
-add_compile_options("-std=c++17")
-add_executable(ilo_li_sina ${SOURCES})
+add_compile_options(-std=c++17)
+add_executable(${PROJECT_NAME} ${pokiPiNimiWawa})
+target_include_directories(${PROJECT_NAME} PRIVATE ${pokiPiNimiWawaPiILO_LI_SINAAla})

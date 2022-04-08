@@ -51,6 +51,13 @@ namespace kipisi {
 			 */
 			const kepeken::LonIjoLonLipuLawa& kamaJoELon() const;
 
+			/**
+			 * @brief li kama jo e nimi pi nimi pi kulupu nimi tawa pana tawa jan.
+			 * 
+			 * @return nimi pi nimi pi kulupu nimi.
+			 */
+			std::string kamaJoENimiPiNimiKulupu() const;
+
 
 			NimiPiKulupuNimi nimiPiKulupuNimi;
 

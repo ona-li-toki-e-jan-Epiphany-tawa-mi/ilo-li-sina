@@ -28,7 +28,7 @@ namespace kipisi {
 	 *
 	 * @return pokiPiKulupuNimi.
 	 */
-	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa);
+	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 
 	/**
 	 * @brief li toki e kulupu nimi pi lipu wawa tawa jan lawa e ilo nanpa.

@@ -6,6 +6,7 @@ namespace lawa {
 	 * @brief sona tawa lawa e ilo nanpa.
 	 */
 	struct SonaTawaLawa {
+		const std::string& nimiPiILO_LI_SINA;
 		const std::string& nimiPiLipuWawa;
 
 		std::unordered_map<std::string, std::string>& pokiPiPokiNanpaAli;
@@ -39,7 +40,7 @@ namespace lawa {
 					return sonaTawaLawa.pokiPiPokiNanpaAli.at(kasiPiKamaJoTanPoki->kamaJoENimiPoki());
 
 				} catch (const std::out_of_range& liSuliAla) {
-					kepeken::tokiEIke(sonaTawaLawa.nimiPiLipuWawa, kasiPiKamaJoTanPoki->kamaJoELonKasi(), "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
+					kepeken::tokiEIke(sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, kasiPiKamaJoTanPoki->kamaJoELonKasi(), "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
 					exit(1);
 				}
 			}
@@ -97,18 +98,18 @@ namespace lawa {
 				break;
 
 			default:
-				kepeken::tokiEIke(sonaTawaLawa.nimiPiLipuWawa, kasi->kamaJoELonKasi(), "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
+				kepeken::tokiEIke(sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, kasi->kamaJoELonKasi(), "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
 				exit(-1);
 		}
 
 		return "";
 	}
 
-	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa) {
+	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 		std::unordered_map<std::string, std::string> pokiPiPokiNanpaAli;
 		size_t nanpaLinja = 0;
 
-		SonaTawaLawa sonaTawaLawa = {nimiPiLipuWawa, pokiPiPokiNanpaAli, nanpaLinja};
+		SonaTawaLawa sonaTawaLawa = {nimiPiILO_LI_SINA, nimiPiLipuWawa, pokiPiPokiNanpaAli, nanpaLinja};
 
 		for (; nanpaLinja != lipuWawa.size(); nanpaLinja++)
 			paliEKasi(sonaTawaLawa, lipuWawa.at(nanpaLinja).get());

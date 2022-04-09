@@ -12,5 +12,5 @@ namespace lawa {
 	 * @param lipuWawa li tawa lawa.
 	 * @param nimiPiLipuWawa nimi pi lipu wawa.
 	 */
-	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa);
+	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 }

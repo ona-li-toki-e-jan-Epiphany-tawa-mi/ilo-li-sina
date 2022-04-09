@@ -7,23 +7,24 @@
 // TODO o kepeken e poki List en ForwardList lon ni: ona li kepeken li lili e tenpo tawa lawa.
 // TODO o pana e pali pi poki Vector lon nimi wawa.
 // TODO o pana e nimi noexcept lon nimi wawa ken.
-// TODO o pali e ni: toki ike li kepeken e argv[0] tawa toki e nimi pi lipu wawa ni.
+// TODO o pali e ni: nimi wawa pi pali e lipu wawa li kepeken ala e nimi exit() li kepeken e optional<> tawa lipu ike.
+// TODO ilo "ilo li sina" li sona ala e kasi anu kulupu nimi la o toki ala e ike o kepkepen e nimi wawa Throw.
 
 /**
  * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
  * 
  * @param nimiPiLipuWawa nimi pi lipu wawa tawa lawa.
  */
-void lawaEIloNanpa(const std::string& nimiPiLipuWawa) {
+void lawaEIloNanpa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 	std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> lipuWawa;
 
 	{
 		std::vector<kipisi::KulupuNimi> kulupuNimi;
-		kipisi::kipisiELipuWawa(kulupuNimi, nimiPiLipuWawa);
-		pali::paliELipuWawa(lipuWawa, kulupuNimi, nimiPiLipuWawa);
+		kipisi::kipisiELipuWawa(kulupuNimi, nimiPiLipuWawa, nimiPiILO_LI_SINA);
+		pali::paliELipuWawa(lipuWawa, kulupuNimi, nimiPiLipuWawa, nimiPiILO_LI_SINA);
 	}
 
-	lawa::lawaEIloNanpa(lipuWawa, nimiPiLipuWawa);
+	lawa::lawaEIloNanpa(lipuWawa, nimiPiLipuWawa, nimiPiILO_LI_SINA);
 }
 
 /**
@@ -31,9 +32,9 @@ void lawaEIloNanpa(const std::string& nimiPiLipuWawa) {
  * 
  * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
  */
-void tokiEKulupuNimi(const std::string& nimiPiLipuWawa) {
+void tokiEKulupuNimi(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 	std::vector<kipisi::KulupuNimi> kulupuNimi;
-	kipisi::kipisiELipuWawa(kulupuNimi, nimiPiLipuWawa);
+	kipisi::kipisiELipuWawa(kulupuNimi, nimiPiLipuWawa, nimiPiILO_LI_SINA);
 	kipisi::tokiELipuWawa(kulupuNimi, nimiPiLipuWawa);
 }
 
@@ -42,13 +43,13 @@ void tokiEKulupuNimi(const std::string& nimiPiLipuWawa) {
  * 
  * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
  */
-void tokiEKasiSuli(const std::string& nimiPiLipuWawa) {
+void tokiEKasiSuli(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 	std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> lipuWawa;
 
 	{
 		std::vector<kipisi::KulupuNimi> kulupuNimi;
-		kipisi::kipisiELipuWawa(kulupuNimi, nimiPiLipuWawa);
-		pali::paliELipuWawa(lipuWawa, kulupuNimi, nimiPiLipuWawa);
+		kipisi::kipisiELipuWawa(kulupuNimi, nimiPiLipuWawa, nimiPiILO_LI_SINA);
+		pali::paliELipuWawa(lipuWawa, kulupuNimi, nimiPiLipuWawa, nimiPiILO_LI_SINA);
 	}
 
 	pali::tokiEKasiSuli(lipuWawa, nimiPiLipuWawa);
@@ -67,7 +68,7 @@ const std::string sonaPiIloLiSina =
 		"\n\n\b\b\b\bCOPYRIGHT:"
 		"\nCopyright © 2022 Nathaniel Needham"
 		"\nThis is free software; see the source or visit <https://mit-license.org> for the full "
-		"license. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND."
+		"terms of the license. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND."
 		
 		"\n\n\b\b\b\bSEE ALSO:"
 		"\nSource code avalible at <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>";
@@ -81,6 +82,8 @@ const std::string sonaPiIloLiSina =
  * @see <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina> GitHub repository.
  */
 int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
+	std::string nimiPiILO_LI_SINA(nimiPilin[0]);
+
 	try {
 		TCLAP::CmdLine iloPiNimiPilin(sonaPiIloLiSina, '=', "0.0");
 
@@ -91,7 +94,7 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 		iloPiNimiPilin.parse(nanpaPiNimiPilin, nimiPilin);
 
 
-		std::function<void(const std::string&)> paliWile = lawaEIloNanpa;
+		std::function<void(const std::string&, const std::string&)> paliWile = lawaEIloNanpa;
 
 		if (oTokiEKulupuNimi.getValue()) {
 			paliWile = tokiEKulupuNimi;
@@ -100,10 +103,10 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 			paliWile = tokiEKasiSuli;
 		
 		for (const std::string& lipuWawa : nimiPiLipuWawa.getValue())
-			paliWile(lipuWawa);
+			paliWile(lipuWawa, nimiPiILO_LI_SINA);
 
 	} catch (const TCLAP::ArgException& ikePiNimiPilin) {
-		kepeken::tokiEIke(ikePiNimiPilin.what());
+		kepeken::tokiEIke(nimiPiILO_LI_SINA, ikePiNimiPilin.what());
 	}
 
 	return 0;

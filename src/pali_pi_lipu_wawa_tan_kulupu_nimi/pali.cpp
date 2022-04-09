@@ -345,7 +345,6 @@ namespace pali {
 
 
 
-	// TODO o kepeken e \t.
 	/**
 	 * @brief li toki e sitelen pi lukin ala lon open pi toki kasi.
 	 * 
@@ -353,7 +352,7 @@ namespace pali {
 	 */
 	void tokiEOpenPiTokiKasi(const unsigned int lonInsaPiNanpaNi) {
 		for (int nanpa = 0; nanpa < lonInsaPiNanpaNi; nanpa++)
-			std::cout << "  ";
+			std::cout << "    ";
 	}
 
 	/**
@@ -370,7 +369,7 @@ namespace pali {
 			case NimiKasi::PANA_LON_POKI: {
 				const auto kasiPiPanaLonPoki = static_cast<const KasiPiPanaLonPoki*>(kasi);
 				std::cout << "PANA_LON_POKI=\"" << kasiPiPanaLonPoki->kamaJoENimiPoki() << "\":\n";
-				tokiEKasiPiKasiSuli(kasiPiPanaLonPoki->kamaJoEIjoTawaPana().get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
+				tokiEKasiPiKasiSuli(kasiPiPanaLonPoki->kamaJoEIjoTawaPana().get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
 
 				break;
 			}
@@ -415,7 +414,7 @@ namespace pali {
 					std::cout << ":\n";
 
 					for (const std::shared_ptr<KasiPiKasiSuli>& kasiPiIjoTawaNimiWawa : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
-						tokiEKasiPiKasiSuli(kasiPiIjoTawaNimiWawa.get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
+						tokiEKasiPiKasiSuli(kasiPiIjoTawaNimiWawa.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
 				
 				} else
 					std::cout << '\n';
@@ -439,18 +438,18 @@ namespace pali {
 				const auto kasiPiTawaKen = static_cast<const KasiPiTawaKen*>(kasi);
 				std::cout << "TAWA_KEN=" << kasiPiTawaKen->linjaTawaTawa << ":\n";
 
-				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 2);
+				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
 				std::cout << "NIMI_LON:\n";
-				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiLon().get(), lonInsaPiNanpaNi + 4, nanpaPiKasiLonSewi);
-				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 2);
+				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiLon().get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
+				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
 				std::cout << "NIMI_PI_LON_ALA:\n";
-				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiPiLonAla().get(), lonInsaPiNanpaNi + 4, nanpaPiKasiLonSewi);
+				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiPiLonAla().get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
 				
 				if (kasiPiTawaKen->kamaJoEKulupuPiIjoToki().size() > 0) {
-					tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 2);
+					tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
 					std::cout << "IJO_TAWA_TOKI:\n";
 					for (const std::shared_ptr<KasiPiKasiSuli>& ijo : kasiPiTawaKen->kamaJoEKulupuPiIjoToki())
-						tokiEKasiPiKasiSuli(ijo.get(), lonInsaPiNanpaNi + 4, nanpaPiKasiLonSewi);
+						tokiEKasiPiKasiSuli(ijo.get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
 				}
 
 				break;
@@ -468,7 +467,7 @@ namespace pali {
 			const KasiPiKasiSuli *const kasiPiKasiSuli = pokiTawaLipuWawa.at(nanpa).get();
 
 			std::cout << "linja pi nanpa " << kasiPiKasiSuli->kamaJoELonKasi().nanpaLinja << ":\n";
-			tokiEKasiPiKasiSuli(pokiTawaLipuWawa.at(nanpa).get(), 2, nanpa);
+			tokiEKasiPiKasiSuli(pokiTawaLipuWawa.at(nanpa).get(), 1, nanpa);
 		}
 
 		std::cout << "\\-------------------\n";

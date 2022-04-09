@@ -206,7 +206,7 @@ namespace kipisi {
 			std::cout << "linja pi nanpa 1:\n";
 
 			for (auto alasaPiKulupuNimi = pokiPiKulupuNimi.cbegin(); alasaPiKulupuNimi != pokiPiKulupuNimi.cend(); alasaPiKulupuNimi++) {
-				std::cout << '\t' << alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu() << "='";
+				std::cout << '\t' << alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu() << "=\"";
 
 				for (const char sitelen : alasaPiKulupuNimi->kamaJoENimiPoki())
 					try {
@@ -216,7 +216,7 @@ namespace kipisi {
 					} catch (const std::out_of_range& liSuliAla) {
 						std::cout << sitelen;
 					}
-				std::cout << "'\n";
+				std::cout << "\"\n";
 
 
 				if (alasaPiKulupuNimi->nimiPiKulupuNimi == NimiPiKulupuNimi::LINJA_SITELEN_SIN && alasaPiKulupuNimi != pokiPiKulupuNimi.cend() - 1)

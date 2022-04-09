@@ -7,7 +7,7 @@
 // TODO o kepeken e poki List en ForwardList lon ni: ona li kepeken li lili e tenpo tawa lawa.
 // TODO o pana e pali pi poki Vector lon nimi wawa.
 // TODO o pana e nimi noexcept lon nimi wawa ken.
-// TODO o kepeken e "" e '' ala lon toki.
+// TODO o pali e ni: toki ike li kepeken e argv[0] tawa toki e nimi pi lipu wawa ni.
 
 /**
  * @brief li lawa e ilo nanpa kepeken lipu wawa pana.

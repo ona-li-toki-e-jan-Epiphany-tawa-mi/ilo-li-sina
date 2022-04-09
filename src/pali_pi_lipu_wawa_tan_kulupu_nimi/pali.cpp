@@ -367,7 +367,7 @@ namespace pali {
 		switch (kasi->kamaJoENimiKasi()) {
 			case NimiKasi::PANA_LON_POKI: {
 				const auto kasiPiPanaLonPoki = static_cast<const KasiPiPanaLonPoki*>(kasi);
-				std::cout << "PANA_LON_POKI='" << kasiPiPanaLonPoki->kamaJoENimiPoki() << "':\n";
+				std::cout << "PANA_LON_POKI=\"" << kasiPiPanaLonPoki->kamaJoENimiPoki() << "\":\n";
 				tokiEKasiPiKasiSuli(kasiPiPanaLonPoki->kamaJoEIjoTawaPana().get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
 
 				break;
@@ -375,14 +375,14 @@ namespace pali {
 
 			case NimiKasi::KAMA_JO_TAN_POKI: {
 				const auto kasiPiKamaJoTanPoki = static_cast<const KasiPiKamaJoTanPoki*>(kasi);
-				std::cout << "KAMA_JO_TAN_POKI='" << kasiPiKamaJoTanPoki->kamaJoENimiPoki() << "'\n";
+				std::cout << "KAMA_JO_TAN_POKI=\"" << kasiPiKamaJoTanPoki->kamaJoENimiPoki() << "\"\n";
 
 				break;
 			}
 
 			case NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA: {
 				const auto kasiPiKamaJoTanPokiPiAnteAla = static_cast<const KasiPiKamaJoTanPokiPiAnteAla*>(kasi);
-				std::cout << "KAMA_JO_TAN_POKI_PI_ANTE_ALA='";
+				std::cout << "KAMA_JO_TAN_POKI_PI_ANTE_ALA=\"";
 
 				const std::unordered_map<char, char>& nimiTanSitelenNasa = kipisi::kamaJoEPokiPiNimiTanSitelenNasa();
 				
@@ -395,7 +395,7 @@ namespace pali {
 						std::cout << sitelen;
 					}
 
-				std::cout << "'\n";
+				std::cout << "\"\n";
 				break;
 			}
 
@@ -403,7 +403,7 @@ namespace pali {
 				const auto kasiPiNimiWawa = static_cast<const KasiPiNimiWawa*>(kasi);
 				
 				try {
-					std::cout << "NIMI_WAWA='" << kamaJoEPokiPiNimiPiNimiWawa().at(kasiPiNimiWawa->kamaJoENimiWawa()) << '\'';
+					std::cout << "NIMI_WAWA=\"" << kamaJoEPokiPiNimiPiNimiWawa().at(kasiPiNimiWawa->kamaJoENimiWawa()) << '"';
 				
 				} catch (const std::out_of_range& liSuliAla) {
 					throw std::out_of_range("Found either nullptr or pointer to an unknown function");

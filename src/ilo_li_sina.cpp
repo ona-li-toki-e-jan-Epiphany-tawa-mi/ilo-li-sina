@@ -8,7 +8,6 @@
 // TODO o pana e pali pi poki Vector lon nimi wawa.
 // TODO o pana e nimi noexcept lon nimi wawa ken.
 // TODO o pali e ni: nimi wawa pi pali e lipu wawa li kepeken ala e nimi exit() li kepeken e optional<> tawa lipu ike.
-// TODO ilo "ilo li sina" li sona ala e kasi anu kulupu nimi la o toki ala e ike o kepkepen e nimi wawa Throw.
 
 /**
  * @brief li lawa e ilo nanpa kepeken lipu wawa pana.

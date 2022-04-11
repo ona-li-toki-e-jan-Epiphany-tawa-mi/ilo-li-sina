@@ -22,6 +22,18 @@ namespace pali {
 	};
 
 	/**
+	 * @brief li kama jo e nimi pi nimi kasi tawa toki tawa jan.
+	 * 
+	 * @param nimiKasi nimi kasi.
+	 * 
+	 * @return nimi pi nimi kasi.
+	 * @throws std::out_of_range nimi kasi li jo ala e nimi pi nimi kasi.
+	 */
+	std::string kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false);
+
+
+
+	/**
 	 * li mama pi kasi ali.
 	 */
 	class KasiPiKasiSuli {

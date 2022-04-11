@@ -1,6 +1,32 @@
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 
 namespace pali {
+	std::string kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false) {
+		switch (nimiKasi) {
+			case NimiKasi::PANA_LON_POKI:
+				return "PANA_LON_POKI";
+			case NimiKasi::KAMA_JO_TAN_POKI:
+				return "KAMA_JO_TAN_POKI";
+			case NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA:
+				return "KAMA_JO_TAN_POKI_PI_ANTE_ALA";
+			case NimiKasi::NIMI_WAWA:
+				return "NIMI_WAWA";
+			case NimiKasi::NIMI_TAWA:
+				return "NIMI_TAWA";
+			case NimiKasi::TAWA:
+				return "TAWA";
+			case NimiKasi::TAWA_KEN:
+				return "TAWA_KEN";
+			case NimiKasi::ALA:
+				return "ALA";
+
+			default:
+				throw std::out_of_range("li kama jo e nimi kasi pi sona ala pi nanpa " + static_cast<int>(nimiKasi));
+		}
+	}
+
+
+
 	KasiPiKasiSuli::KasiPiKasiSuli(const size_t nanpaLinja, const size_t nanpaSitelenLonLinja) {
 		this->lonKasiLonLipuWawa = {nanpaLinja, nanpaSitelenLonLinja};
 	}

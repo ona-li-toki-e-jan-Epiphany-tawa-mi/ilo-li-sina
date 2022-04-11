@@ -98,8 +98,7 @@ namespace lawa {
 				break;
 
 			default:
-				kepeken::tokiEIke(sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, kasi->kamaJoELonKasi(), "Invalid instruction '" + std::to_string(static_cast<int>(kasi->kamaJoENimiKasi())) + "'");
-				exit(-1);
+				throw std::out_of_range("lawa la li kama jo e kasi pi kasi suli pi sona ala pi nimi " + pali::kamaJoENimiPiNimiKasi(kasi->kamaJoENimiKasi()));
 		}
 
 		return "";

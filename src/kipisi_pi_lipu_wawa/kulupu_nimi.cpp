@@ -16,6 +16,7 @@ namespace kipisi {
 		return this->lon;
 	}
 
+	// TODO o weka e nimi wawa ni tan poki sona KulupuNimi o pana e nimi noexcept(false) e @throws.
 	std::string KulupuNimi::kamaJoENimiPiNimiKulupu() const {
 		switch (this->nimiPiKulupuNimi) {
 			case NimiPiKulupuNimi::POKI_NANPA:

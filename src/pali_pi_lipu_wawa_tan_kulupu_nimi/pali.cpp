@@ -230,7 +230,7 @@ namespace pali {
 							return nullptr;
 
 						default:
-							kepeken::tokiEIke(sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, alasaPiKulupuNimi->kamaJoELon(), "Unexpected token");
+							kepeken::tokiEIke(sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, alasaPiKulupuNimi->kamaJoELon(), "Unexpected token" + alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu());
 							sonaTawaPali.liLipuPiPonaAla = true;
 					}
 				}
@@ -279,6 +279,9 @@ namespace pali {
 					alasaPiKulupuNimi->kamaJoENimiPoki(), 
 					linja, sitelen);
 			}
+
+			default:
+				throw std::out_of_range("pali la li kama jo e kulupu nimi pi sona ala pi nimi '" + alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu());
 		}
 
 		return nullptr;
@@ -292,7 +295,6 @@ namespace pali {
 
 		// li pali e lipu wawa.
 		for (auto alasaPiKulupuNimi = kulupuNimi.cbegin(); alasaPiKulupuNimi != kulupuNimi.cend(); alasaPiKulupuNimi++) {
-			// TODO kasi li lon ala ilo pilin ni la o toki e ike.
 			switch (alasaPiKulupuNimi->nimiPiKulupuNimi) {
 				// nimi wawa pi nanpa 1 en pana pi nanpa 1 lon poki nanpa li kulupu nimi suli suli lon linja sitelen li wile lon open pi kasi suli.
 				case kipisi::NimiPiKulupuNimi::NIMI_WAWA:
@@ -368,7 +370,7 @@ namespace pali {
 		switch (kasi->kamaJoENimiKasi()) {
 			case NimiKasi::PANA_LON_POKI: {
 				const auto kasiPiPanaLonPoki = static_cast<const KasiPiPanaLonPoki*>(kasi);
-				std::cout << "PANA_LON_POKI=\"" << kasiPiPanaLonPoki->kamaJoENimiPoki() << "\":\n";
+				std::cout << kamaJoENimiPiNimiKasi(kasiPiPanaLonPoki->kamaJoENimiKasi()) << "=\"" << kasiPiPanaLonPoki->kamaJoENimiPoki() << "\":\n";
 				tokiEKasiPiKasiSuli(kasiPiPanaLonPoki->kamaJoEIjoTawaPana().get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
 
 				break;
@@ -376,14 +378,14 @@ namespace pali {
 
 			case NimiKasi::KAMA_JO_TAN_POKI: {
 				const auto kasiPiKamaJoTanPoki = static_cast<const KasiPiKamaJoTanPoki*>(kasi);
-				std::cout << "KAMA_JO_TAN_POKI=\"" << kasiPiKamaJoTanPoki->kamaJoENimiPoki() << "\"\n";
+				std::cout << kamaJoENimiPiNimiKasi(kasiPiKamaJoTanPoki->kamaJoENimiKasi()) << "=\"" << kasiPiKamaJoTanPoki->kamaJoENimiPoki() << "\"\n";
 
 				break;
 			}
 
 			case NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA: {
 				const auto kasiPiKamaJoTanPokiPiAnteAla = static_cast<const KasiPiKamaJoTanPokiPiAnteAla*>(kasi);
-				std::cout << "KAMA_JO_TAN_POKI_PI_ANTE_ALA=\"";
+				std::cout << kamaJoENimiPiNimiKasi(kasiPiKamaJoTanPokiPiAnteAla->kamaJoENimiKasi()) << "=\"";
 
 				const std::unordered_map<char, char>& nimiTanSitelenNasa = kipisi::kamaJoEPokiPiNimiTanSitelenNasa();
 				
@@ -404,7 +406,7 @@ namespace pali {
 				const auto kasiPiNimiWawa = static_cast<const KasiPiNimiWawa*>(kasi);
 				
 				try {
-					std::cout << "NIMI_WAWA=\"" << kamaJoEPokiPiNimiPiNimiWawa().at(kasiPiNimiWawa->kamaJoENimiWawa()) << '"';
+					std::cout << kamaJoENimiPiNimiKasi(kasiPiNimiWawa->kamaJoENimiKasi()) << "=\"" << kamaJoEPokiPiNimiPiNimiWawa().at(kasiPiNimiWawa->kamaJoENimiWawa()) << '"';
 				
 				} catch (const std::out_of_range& liSuliAla) {
 					throw std::out_of_range("Found either nullptr or pointer to an unknown function");
@@ -424,19 +426,19 @@ namespace pali {
 			}
 
 			case NimiKasi::NIMI_TAWA:
-				std::cout << "NIMI_TAWA=" << nanpaPiKasiLonSewi << '\n';
+				std::cout << kamaJoENimiPiNimiKasi(kasi->kamaJoENimiKasi()) << "=" << nanpaPiKasiLonSewi << '\n';
 				break;
 
 			case NimiKasi::TAWA: {
 				const auto kasiTawa = static_cast<const KasiTawa*>(kasi);
-				std::cout << "TAWA=" << kasiTawa->linjaTawaTawa << '\n';
+				std::cout << kamaJoENimiPiNimiKasi(kasiTawa->kamaJoENimiKasi()) << "=" << kasiTawa->linjaTawaTawa << '\n';
 
 				break;
 			}
 
 			case NimiKasi::TAWA_KEN: {
 				const auto kasiPiTawaKen = static_cast<const KasiPiTawaKen*>(kasi);
-				std::cout << "TAWA_KEN=" << kasiPiTawaKen->linjaTawaTawa << ":\n";
+				std::cout << kamaJoENimiPiNimiKasi(kasiPiTawaKen->kamaJoENimiKasi()) << "=" << kasiPiTawaKen->linjaTawaTawa << ":\n";
 
 				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
 				std::cout << "NIMI_LON:\n";
@@ -456,7 +458,7 @@ namespace pali {
 			}
 
 			default:
-				std::cout << "ALA\n";
+				std::cout << kamaJoENimiPiNimiKasi(kasi->kamaJoENimiKasi()) << '\n';
 		}
 	}
 

@@ -20,15 +20,14 @@ namespace kipisi {
 	const std::unordered_map<char, char>& kamaJoEPokiPiNimiTanSitelenNasa();
 
 	/**
-	 * @breif li kipisi e lipu wawa li pali e kulupu nimi tan kipisi li pana e ona lon
-	 * 	poki.
+	 * @breif li kipisi e lipu wawa li pali e kulupu nimi tan kipisi.
 	 *
-	 * @param pokiPiKulupuNimi li pana e kulupu nimi lon ni.
 	 * @param nimiPiLipuWawa nimi pi lipu wawa tawa kipisi.
+	 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 	 *
-	 * @return pokiPiKulupuNimi.
+	 * @return poki pi kulupu nimi pi lipu wawa.
 	 */
-	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
+	std::vector<KulupuNimi> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 
 	/**
 	 * @brief li toki e kulupu nimi pi lipu wawa tawa jan lawa e ilo nanpa.

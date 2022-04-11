@@ -12,7 +12,7 @@ namespace kipisi {
 	const std::unordered_map<char, char> sitelenNasaTanNimi = {
 		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
 
-	std::vector<KulupuNimi>& kipisiELipuWawa(std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	std::vector<KulupuNimi> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 		std::ifstream lipuWawa(nimiPiLipuWawa, std::ifstream::in);
 
 		if (!lipuWawa.is_open()) {
@@ -21,6 +21,7 @@ namespace kipisi {
 		}
 
 
+		std::vector<KulupuNimi> pokiPiKulupuNimi;
 		std::string linjaSitelen;
 		size_t nanpaLinja = 1;
 		bool liLipuPiPonaAla = false;

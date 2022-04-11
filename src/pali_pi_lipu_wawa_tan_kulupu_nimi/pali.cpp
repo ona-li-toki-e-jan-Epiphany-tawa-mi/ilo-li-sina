@@ -287,7 +287,8 @@ namespace pali {
 		return nullptr;
 	}
 
-	const std::vector<std::shared_ptr<KasiPiKasiSuli>>& paliELipuWawa(std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa, const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	std::vector<std::shared_ptr<KasiPiKasiSuli>> paliELipuWawa(const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+		std::vector<std::shared_ptr<KasiPiKasiSuli>> pokiTawaLipuWawa;
 		bool liPaliTanLinjaSitelen = false;
 		std::vector<IjoTawaTawa> nimiWawaTawaTawa;
 

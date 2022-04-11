@@ -2,23 +2,8 @@
 #include <stdexcept>
 
 namespace kipisi {
-	KulupuNimi::KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const std::string& nimiPokiPiKulupuNimi, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
-		: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(nimiPokiPiKulupuNimi), lon({nanpaLinja, nanpaSitelenLonLinja}) {}
-
-	KulupuNimi::KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
-		: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(""), lon({nanpaLinja, nanpaSitelenLonLinja}) {}
-
-	const std::string& KulupuNimi::kamaJoENimiPoki() const {
-		return this->nimiPokiPiKulupuNimi;
-	}
-
-	const kepeken::LonIjoLonLipuLawa& KulupuNimi::kamaJoELon() const {
-		return this->lon;
-	}
-
-	// TODO o weka e nimi wawa ni tan poki sona KulupuNimi o pana e nimi noexcept(false) e @throws.
-	std::string KulupuNimi::kamaJoENimiPiNimiKulupu() const {
-		switch (this->nimiPiKulupuNimi) {
+	std::string kamaJoENimiPiNimiKulupu(NimiPiKulupuNimi nimiPiKulupuNimi) noexcept(false) {
+		switch (nimiPiKulupuNimi) {
 			case NimiPiKulupuNimi::POKI_NANPA:
 				return "POKI_NANPA";
 			case NimiPiKulupuNimi::PANA_LON_POKI_NANPA:
@@ -37,8 +22,23 @@ namespace kipisi {
 				return "ALA";
 
 			default:
-				throw std::out_of_range("Encountered unknown token type with a numeric value of " + static_cast<int>(this->nimiPiKulupuNimi));
+				throw std::out_of_range("Encountered unknown token type with a numeric value of " + static_cast<int>(nimiPiKulupuNimi));
 		}
+	}
+
+
+	KulupuNimi::KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const std::string& nimiPokiPiKulupuNimi, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
+		: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(nimiPokiPiKulupuNimi), lon({nanpaLinja, nanpaSitelenLonLinja}) {}
+
+	KulupuNimi::KulupuNimi(const NimiPiKulupuNimi nimiPiKulupuNimi, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
+		: nimiPiKulupuNimi(nimiPiKulupuNimi), nimiPokiPiKulupuNimi(""), lon({nanpaLinja, nanpaSitelenLonLinja}) {}
+
+	const std::string& KulupuNimi::kamaJoENimiPoki() const {
+		return this->nimiPokiPiKulupuNimi;
+	}
+
+	const kepeken::LonIjoLonLipuLawa& KulupuNimi::kamaJoELon() const {
+		return this->lon;
 	}
 }
 

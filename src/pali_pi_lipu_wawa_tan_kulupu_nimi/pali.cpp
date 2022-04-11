@@ -230,7 +230,7 @@ namespace pali {
 							return nullptr;
 
 						default:
-							kepeken::tokiEIke(sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, alasaPiKulupuNimi->kamaJoELon(), "Unexpected token" + alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu());
+							kepeken::tokiEIke(sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, alasaPiKulupuNimi->kamaJoELon(), "Unexpected token" + kipisi::kamaJoENimiPiNimiKulupu(alasaPiKulupuNimi->nimiPiKulupuNimi));
 							sonaTawaPali.liLipuPiPonaAla = true;
 					}
 				}
@@ -281,7 +281,7 @@ namespace pali {
 			}
 
 			default:
-				throw std::out_of_range("pali la li kama jo e kulupu nimi pi sona ala pi nimi '" + alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu());
+				throw std::out_of_range("pali la li kama jo e kulupu nimi pi sona ala pi nimi '" + kipisi::kamaJoENimiPiNimiKulupu(alasaPiKulupuNimi->nimiPiKulupuNimi));
 		}
 
 		return nullptr;

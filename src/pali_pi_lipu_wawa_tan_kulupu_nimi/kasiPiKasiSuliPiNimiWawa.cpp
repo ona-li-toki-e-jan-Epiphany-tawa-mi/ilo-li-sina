@@ -49,7 +49,7 @@ namespace pali {
 		this->ijoTawaPana = ijoTawaPana;
 	}
 
-	KasiPiPanaLonPoki* KasiPiPanaLonPoki::paliSama() const {
+	KasiPiPanaLonPoki* KasiPiPanaLonPoki::paliSama() const noexcept {
 		return new KasiPiPanaLonPoki(
 			this->nimiPoki, 
 			std::shared_ptr<KasiPiKasiSuli>(this->ijoTawaPana->paliSama()), 
@@ -77,7 +77,7 @@ namespace pali {
 		this->nimiPoki = nimiPoki;
 	}
 
-	KasiPiKamaJoTanPoki* KasiPiKamaJoTanPoki::paliSama() const {
+	KasiPiKamaJoTanPoki* KasiPiKamaJoTanPoki::paliSama() const noexcept {
 		return new KasiPiKamaJoTanPoki(
 			this->nimiPoki,
 			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
@@ -100,7 +100,7 @@ namespace pali {
 		this->ijoTawaKama = ijoTawaKama;
 	}
 
-	KasiPiKamaJoTanPokiPiAnteAla* KasiPiKamaJoTanPokiPiAnteAla::paliSama() const {
+	KasiPiKamaJoTanPokiPiAnteAla* KasiPiKamaJoTanPokiPiAnteAla::paliSama() const noexcept {
 		return new KasiPiKamaJoTanPokiPiAnteAla(
 			this->ijoTawaKama,
 			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
@@ -124,7 +124,7 @@ namespace pali {
 		this->kulupuPiIjoTawaNimiWawa = kulupuPiIjoTawaNimiWawa;
 	}
 
-	KasiPiNimiWawa* KasiPiNimiWawa::paliSama() const {
+	KasiPiNimiWawa* KasiPiNimiWawa::paliSama() const noexcept {
 		std::vector<std::shared_ptr<KasiPiKasiSuli>> ijoTawaNimiWawa;
 		ijoTawaNimiWawa.reserve(this->kulupuPiIjoTawaNimiWawa.size());
 
@@ -158,7 +158,7 @@ namespace pali {
 		this->nimiPiNimiTawa = nimiPiNimiTawa;
 	}
 
-	KasiPiNimiTawa* KasiPiNimiTawa::paliSama() const {
+	KasiPiNimiTawa* KasiPiNimiTawa::paliSama() const noexcept {
 		return new KasiPiNimiTawa(
 			this->nimiPiNimiTawa,
 			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
@@ -181,7 +181,7 @@ namespace pali {
 		this->linjaTawaTawa = -1;
 	}
 
-	KasiTawa* KasiTawa::paliSama() const {
+	KasiTawa* KasiTawa::paliSama() const noexcept {
 		KasiTawa* kasiTawaSin = new KasiTawa(
 			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
 		kasiTawaSin->linjaTawaTawa = this->linjaTawaTawa;
@@ -204,7 +204,7 @@ namespace pali {
 		this->kulupuPiIjoTawaToki = kulupuPiIjoTawaToki;
 	}
 
-	KasiPiTawaKen* KasiPiTawaKen::paliSama() const {
+	KasiPiTawaKen* KasiPiTawaKen::paliSama() const noexcept {
 		std::vector<std::shared_ptr<KasiPiKasiSuli>> ijoTawaToki;
 		ijoTawaToki.reserve(this->kulupuPiIjoTawaToki.size());
 

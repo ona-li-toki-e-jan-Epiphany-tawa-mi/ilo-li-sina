@@ -22,6 +22,17 @@ namespace kipisi {
 	};
 
 	/**
+	 * @brief li kama jo e nimi pi nimi pi kulupu nimi tawa pana tawa jan.
+	 * 
+	 * @param nimiPiKulupuNimi nimi pi kulupu nimi. 
+	 *
+	 * @return nimi pi nimi pi kulupu nimi.
+	 * @throws std::out_of_range nimi pi kulupu nimi li jo ala e nimi pi nimi pi kulupu nimi.
+	 */
+	std::string kamaJoENimiPiNimiKulupu(NimiPiKulupuNimi nimiPiKulupuNimi) noexcept(false);
+
+
+	/**
 	 * kulupu nimi li tawa ni: ilo kipisi li ken pali e lipu wawa pi ijo mute ala.
 	 */
 	struct KulupuNimi {
@@ -50,13 +61,6 @@ namespace kipisi {
 			 * @return lon pi kulupu nimi
 			 */
 			const kepeken::LonIjoLonLipuLawa& kamaJoELon() const;
-
-			/**
-			 * @brief li kama jo e nimi pi nimi pi kulupu nimi tawa pana tawa jan.
-			 * 
-			 * @return nimi pi nimi pi kulupu nimi.
-			 */
-			std::string kamaJoENimiPiNimiKulupu() const;
 
 
 			NimiPiKulupuNimi nimiPiKulupuNimi;

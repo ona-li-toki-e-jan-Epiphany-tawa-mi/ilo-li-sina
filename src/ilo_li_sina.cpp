@@ -6,7 +6,6 @@
 // TODO o pona e ike lon toki pona en toki ante.
 // TODO o kepeken e poki List en ForwardList lon ni: ona li kepeken li lili e tenpo tawa lawa.
 // TODO o pana e pali pi poki Vector lon nimi wawa.
-// TODO o pana e nimi noexcept lon nimi wawa ken.
 // TODO o pali e ni: nimi wawa pi pali e lipu wawa li kepeken ala e nimi exit() li kepeken e optional<> tawa lipu ike.
 
 /**

@@ -206,7 +206,7 @@ namespace kipisi {
 			std::cout << "linja pi nanpa 1:\n";
 
 			for (auto alasaPiKulupuNimi = pokiPiKulupuNimi.cbegin(); alasaPiKulupuNimi != pokiPiKulupuNimi.cend(); alasaPiKulupuNimi++) {
-				std::cout << "    " << alasaPiKulupuNimi->kamaJoENimiPiNimiKulupu() << "=\"";
+				std::cout << "    " << kamaJoENimiPiNimiKulupu(alasaPiKulupuNimi->nimiPiKulupuNimi) << "=\"";
 
 				for (const char sitelen : alasaPiKulupuNimi->kamaJoENimiPoki())
 					try {

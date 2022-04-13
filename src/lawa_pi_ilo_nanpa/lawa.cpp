@@ -50,14 +50,13 @@ namespace lawa {
 
 			case pali::NimiKasi::NIMI_WAWA: {
 				const auto kasiPiNimiWawa = static_cast<const pali::KasiPiNimiWawa*>(kasi);
-				std::vector<std::string> ijoTawaNimiWawa;
+				pali::string_lqueue ijoTawaNimiWawa;
 
-				ijoTawaNimiWawa.reserve(kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa().size());
 				for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijo : kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa())
-					ijoTawaNimiWawa.push_back(paliEKasi(
+					ijoTawaNimiWawa.push(paliEKasi(
 						sonaTawaLawa, ijo.get()));
 
-				return kasiPiNimiWawa->kamaJoENimiWawa()(ijoTawaNimiWawa.size(), ijoTawaNimiWawa.data());
+				return kasiPiNimiWawa->kamaJoENimiWawa()(ijoTawaNimiWawa);
 			}
 
 			case pali::NimiKasi::TAWA_KEN: {
@@ -66,7 +65,7 @@ namespace lawa {
 				const std::string nimiPiLonAla = paliEKasi(sonaTawaLawa, kasiPiPaliKen->kamaJoEKasiPiLonAla().get());
 
 				while (true) {
-					const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& kulupuPiIjoTawaToki = kasiPiPaliKen->kamaJoEKulupuPiIjoToki();
+					const std::list<std::shared_ptr<pali::KasiPiKasiSuli>>& kulupuPiIjoTawaToki = kasiPiPaliKen->kamaJoEKulupuPiIjoToki();
 					
 					if (!kulupuPiIjoTawaToki.empty()) {
 						for (const std::shared_ptr<pali::KasiPiKasiSuli>& ijoTawaToki : kulupuPiIjoTawaToki)

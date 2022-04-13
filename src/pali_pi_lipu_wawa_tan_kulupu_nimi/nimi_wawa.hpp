@@ -2,20 +2,24 @@
 
 #include <unordered_map>
 #include <string>
+#include <queue>
+#include <list>
 
 /**
  * ilo tawa pali e nimi wawa pi "ilo li sina".
  */
 namespace pali {
-	/**
-	 * @brief nimi wawa pi toki "ilo li sina"
-	 * 
-	 * nanpa size_t li suli pi poki sitelen string[].
-	 * poki string[] li jo e poki tawa nimi wawa tan ijo kepeken.
-	 */
-	typedef std::string(*nimi_wawa)(const size_t, const std::string[]);
+	typedef std::queue<std::string, std::list<std::string>> string_lqueue;
 
-	// poki pi nimi wawa ali.
+	/**
+	 * @brief nimi wawa pi toki "ilo li sina".
+	 * 
+	 * @param string_lqueue& - li jo e poki tawa nimi wawa tan ijo kepeken. nimi wawa li lawa la poki ni li moku li kama ala.
+	 * 
+	 * @return std::string poki sitelen tan lawa e nimi wawa.
+	 */
+	typedef std::string(*nimi_wawa)(string_lqueue&);
+
 	extern const std::unordered_map<std::string, nimi_wawa> pokiPiNimiWawaAli;
 
 	/**

@@ -1,4 +1,3 @@
-#include <vector>
 #include <memory>
 #include "nimi_wawa.hpp"
 #include "../ijo_kepeken/ike.hpp"
@@ -154,7 +153,7 @@ namespace pali {
 			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiNimiWawa(nimi_wawa nimiWawa, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
+			KasiPiNimiWawa(nimi_wawa nimiWawa, const std::list<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
 
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante) = delete;
 			virtual KasiPiNimiWawa* paliSama() const noexcept override;
@@ -164,11 +163,11 @@ namespace pali {
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
 			nimi_wawa kamaJoENimiWawa() const;
-			const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoTawaNimiWawa() const;
+			const std::list<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoTawaNimiWawa() const;
 
 		protected:
 			nimi_wawa nimiWawa;
-			std::vector<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaNimiWawa;
+			std::list<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaNimiWawa;
 	};
 
 	/**
@@ -240,7 +239,7 @@ namespace pali {
 			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
+			KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::list<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
 
 			KasiPiTawaKen(const KasiPiTawaKen& ante) = delete;
 			virtual KasiPiTawaKen* paliSama() const noexcept override;
@@ -251,11 +250,11 @@ namespace pali {
 
 			std::shared_ptr<const KasiPiKasiSuli> kamaJoEKasiLon() const;
 			std::shared_ptr<const KasiPiKasiSuli> kamaJoEKasiPiLonAla() const;
-			const std::vector<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoToki() const;
+			const std::list<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoToki() const;
 
 		protected:
 			std::shared_ptr<KasiPiKasiSuli> kasiLon;
 			std::shared_ptr<KasiPiKasiSuli> kasiPiLonAla;
-			std::vector<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaToki;
+			std::list<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaToki;
 	};
 }

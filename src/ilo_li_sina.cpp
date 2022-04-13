@@ -5,7 +5,6 @@
 
 // TODO o pona e toki ike lon toki pona en toki ante.
 // TODO o pali e ni: nimi wawa throw() ali li kepeken e toki pona.
-// TODO o kepeken e poki List en ForwardList lon ni: ona li kepeken li lili e tenpo tawa lawa.
 // TODO o pali e ni: nimi wawa pi pali e lipu wawa li kepeken ala e nimi exit() li kepeken e optional<> tawa lipu ike.
 
 /**

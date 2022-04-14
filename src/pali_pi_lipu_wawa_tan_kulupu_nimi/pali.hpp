@@ -1,5 +1,7 @@
 #pragma once
 
+#include <tuple>
+#include <optional>
 #include "../kipisi_pi_lipu_wawa/kulupu_nimi.hpp"
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 
@@ -14,9 +16,10 @@ namespace pali {
 	 * @param nimiPiLipuWawa nimi pi lipu wawa pi tenpo ni. li tawa toki e ike.
 	 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 	 *
-	 * @return poki pi lipu wawa.
+	 * @return std::optional<std::vector<std::shared_ptr<KasiPiKasiSuli>>>, int> poki pi lipu wawa.
+	 * @return int nanpa ike. li ken pali la ni li 0. ante la ni li 1, en, lipu wawa li ike.
 	 */
-	std::vector<std::shared_ptr<KasiPiKasiSuli>> paliELipuWawa(const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
+	std::tuple<std::optional<std::vector<std::shared_ptr<KasiPiKasiSuli>>>, int> paliELipuWawa(const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 
 	/**
 	 * @breif li pana e lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.

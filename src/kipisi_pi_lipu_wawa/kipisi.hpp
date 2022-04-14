@@ -3,6 +3,8 @@
 #include <fstream>
 #include <vector>
 #include <unordered_map>
+#include <tuple>
+#include <optional>
 #include "kulupu_nimi.hpp"
 
 /**
@@ -25,9 +27,10 @@ namespace kipisi {
 	 * @param nimiPiLipuWawa nimi pi lipu wawa tawa kipisi.
 	 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 	 *
-	 * @return poki pi kulupu nimi pi lipu wawa.
+	 * @return std::optional<std::vector<KulupuNimi>> poki pi kulupu nimi pi lipu wawa.
+	 * @return int nanpa ike. li ken kipisi la ni li 0. ante la ni li 1, en, lipu wawa li ike.
 	 */
-	std::vector<KulupuNimi> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
+	std::tuple<std::optional<std::vector<KulupuNimi>>, int> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 
 	/**
 	 * @brief li toki e kulupu nimi pi lipu wawa tawa jan lawa e ilo nanpa.

@@ -289,7 +289,7 @@ namespace pali {
 		return nullptr;
 	}
 
-	std::vector<std::shared_ptr<KasiPiKasiSuli>> paliELipuWawa(const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	std::tuple<std::optional<std::vector<std::shared_ptr<KasiPiKasiSuli>>>, int> paliELipuWawa(const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 		std::vector<std::shared_ptr<KasiPiKasiSuli>> pokiTawaLipuWawa;
 		bool liPaliTanLinjaSitelen = false;
 		std::list<IjoTawaTawa> nimiWawaTawaTawa;
@@ -345,10 +345,15 @@ namespace pali {
 		}
 
 
-		if (sonaTawaKipisi.liLipuPiPonaAla)
-			exit(1);
+		std::tuple<std::optional<std::vector<std::shared_ptr<KasiPiKasiSuli>>>, int> ijoTawaPana;
 
-		return pokiTawaLipuWawa;
+		if (sonaTawaKipisi.liLipuPiPonaAla) {
+			ijoTawaPana = {std::nullopt, 1};
+
+		} else 
+			ijoTawaPana = {std::move(pokiTawaLipuWawa), 0};
+
+		return ijoTawaPana;
 	}
 
 

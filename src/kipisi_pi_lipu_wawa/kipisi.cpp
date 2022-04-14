@@ -12,7 +12,7 @@ namespace kipisi {
 	const std::unordered_map<char, char> sitelenNasaTanNimi = {
 		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
 
-	std::vector<KulupuNimi> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	std::tuple<std::optional<std::vector<KulupuNimi>>, int> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 		std::ifstream lipuWawa(nimiPiLipuWawa, std::ifstream::in);
 
 		if (!lipuWawa.is_open()) {
@@ -182,10 +182,15 @@ namespace kipisi {
 			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, nanpaLinja, linjaSitelen.size() + 1);
 
 
-		if (liLipuPiPonaAla)
-			exit(1);
+		std::tuple<std::optional<std::vector<KulupuNimi>>, int> ijoTawaPana;
 
-		return pokiPiKulupuNimi;
+		if (liLipuPiPonaAla) {
+			ijoTawaPana = {std::nullopt, 1};
+
+		} else
+			ijoTawaPana = {std::move(pokiPiKulupuNimi), 0};
+
+		return ijoTawaPana;
 	}
 
 

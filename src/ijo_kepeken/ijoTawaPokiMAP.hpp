@@ -11,7 +11,6 @@ namespace kepeken {
      * 
      * @return std::unordered_map<ijo, nimiIjo> poki lon nasin ante.
      */
-    // TODO o lukin pali e ni: ni li kama nimi constexpr. ni la o weka e nimi wawa pi poki Map ken.
     template<typename nimiIjo, typename ijo>
     std::unordered_map<ijo, nimiIjo> paliEPokiMAPLonNasinAnte(const std::unordered_map<nimiIjo, ijo>& pokiMAP) {
         std::unordered_map<ijo, nimiIjo> pokiMAPSin;

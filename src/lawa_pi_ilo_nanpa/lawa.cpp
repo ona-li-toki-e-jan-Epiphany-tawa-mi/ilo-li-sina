@@ -11,6 +11,7 @@ namespace lawa {
 
 		std::unordered_map<std::string, std::string>& pokiPiPokiNanpaAli;
 		size_t& nanpaLinja;
+		int nanpaIke = 0;
 	};
 
 	/**
@@ -41,7 +42,9 @@ namespace lawa {
 
 				} catch (const std::out_of_range& liSuliAla) {
 					kepeken::tokiEIke(sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, kasiPiKamaJoTanPoki->kamaJoELonKasi(), "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
-					exit(1);
+					sonaTawaLawa.nanpaIke = 1;
+
+					break;
 				}
 			}
 
@@ -103,13 +106,19 @@ namespace lawa {
 		return "";
 	}
 
-	void lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	int lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 		std::unordered_map<std::string, std::string> pokiPiPokiNanpaAli;
 		size_t nanpaLinja = 0;
 
 		SonaTawaLawa sonaTawaLawa = {nimiPiILO_LI_SINA, nimiPiLipuWawa, pokiPiPokiNanpaAli, nanpaLinja};
 
-		for (; nanpaLinja != lipuWawa.size(); nanpaLinja++)
+		for (; nanpaLinja != lipuWawa.size(); nanpaLinja++) {
 			paliEKasi(sonaTawaLawa, lipuWawa.at(nanpaLinja).get());
+
+			if (sonaTawaLawa.nanpaIke != 0)
+				break;
+		}
+
+		return sonaTawaLawa.nanpaIke;
 	}
 }

@@ -5,7 +5,33 @@
 
 // TODO o pona e toki ike lon toki pona en toki ante.
 // TODO o pali e ni: nimi wawa throw() ali li kepeken e toki pona.
-// TODO o pali e ni: nimi wawa pi pali e lipu wawa li kepeken ala e nimi exit() li kepeken e optional<> tawa lipu ike.
+// TODO o pali e ni: lawa li pana e poki pi poki nanpa li ken kama jo e ona.
+
+/**
+ * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
+ */
+std::vector<kipisi::KulupuNimi> kipisiELipuWawaLKP(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	auto [lipuWawaKipisi, nanpaIke] = kipisi::kipisiELipuWawa(nimiPiLipuWawa, nimiPiILO_LI_SINA);
+
+	if (!lipuWawaKipisi.has_value())
+		exit(nanpaIke);
+
+	return *lipuWawaKipisi;
+}
+
+/**
+ * @brief li sama pali::paliELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
+ */
+std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> paliELipuWawaLKP(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	auto [lipuWawaPali, nanpaIke] = pali::paliELipuWawa(
+		kipisiELipuWawaLKP(nimiPiLipuWawa, nimiPiILO_LI_SINA),
+		nimiPiLipuWawa, nimiPiILO_LI_SINA);
+
+	if (!lipuWawaPali.has_value())
+		exit(nanpaIke);
+
+	return *lipuWawaPali;
+}
 
 /**
  * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
@@ -13,10 +39,11 @@
  * @param nimiPiLipuWawa nimi pi lipu wawa tawa lawa.
  */
 void lawaEIloNanpa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
-	std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> lipuWawa = pali::paliELipuWawa(
-		kipisi::kipisiELipuWawa(nimiPiLipuWawa, nimiPiILO_LI_SINA), 
+	int nanpaIke = lawa::lawaEIloNanpa(
+		paliELipuWawaLKP(nimiPiLipuWawa, nimiPiILO_LI_SINA), 
 		nimiPiLipuWawa, nimiPiILO_LI_SINA);
-	lawa::lawaEIloNanpa(lipuWawa, nimiPiLipuWawa, nimiPiILO_LI_SINA);
+
+	exit(nanpaIke);
 }
 
 /**
@@ -25,9 +52,7 @@ void lawaEIloNanpa(const std::string& nimiPiLipuWawa, const std::string& nimiPiI
  * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
  */
 void tokiEKulupuNimi(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
-	kipisi::tokiELipuWawa(
-		kipisi::kipisiELipuWawa(nimiPiLipuWawa, nimiPiILO_LI_SINA), 
-		nimiPiLipuWawa);
+	kipisi::tokiELipuWawa(kipisiELipuWawaLKP(nimiPiLipuWawa, nimiPiILO_LI_SINA), nimiPiLipuWawa);
 }
 
 /**
@@ -36,10 +61,7 @@ void tokiEKulupuNimi(const std::string& nimiPiLipuWawa, const std::string& nimiP
  * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
  */
 void tokiEKasiSuli(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
-	std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> lipuWawa = pali::paliELipuWawa(
-		kipisi::kipisiELipuWawa(nimiPiLipuWawa, nimiPiILO_LI_SINA), 
-		nimiPiLipuWawa, nimiPiILO_LI_SINA);
-	pali::tokiEKasiSuli(lipuWawa, nimiPiLipuWawa);
+	pali::tokiEKasiSuli(paliELipuWawaLKP(nimiPiLipuWawa, nimiPiILO_LI_SINA), nimiPiLipuWawa);
 }
 
 const std::string sonaPiIloLiSina = 

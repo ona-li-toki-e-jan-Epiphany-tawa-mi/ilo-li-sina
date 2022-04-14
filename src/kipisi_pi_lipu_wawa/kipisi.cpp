@@ -13,8 +13,9 @@ namespace kipisi {
 		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
 
 	std::tuple<std::optional<std::vector<KulupuNimi>>, int> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
-		std::ifstream lipuWawa(nimiPiLipuWawa, std::ifstream::in);
+		std::ifstream lipuWawa(nimiPiLipuWawa);
 
+		// FIXME o weka e nimi exit(-1);
 		if (!lipuWawa.is_open()) {
 			kepeken::tokiEIke(nimiPiILO_LI_SINA, "Unable to open file '" + nimiPiLipuWawa + "'");
 			exit(-1);

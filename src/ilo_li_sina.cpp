@@ -4,7 +4,7 @@
 #include <tclap/CmdLine.h>
 
 // TODO o pona e toki ike lon toki pona en toki ante.
-// TODO o pali e ni: lawa li pana e poki pi poki nanpa li ken kama jo e ona.
+// TODO ken la o pana e poki nanpa lon poki pi poki ali lon open pi lipu wawa pi toki "ilo li sina".
 
 /**
  * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
@@ -74,9 +74,10 @@ const std::string sonaPiIloLiSina =
 		"\nReport bugs to <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>"
 		
 		"\n\n\b\b\b\bCOPYRIGHT:"
-		"\nCopyright © 2022 Nathaniel Needham"
-		"\nThis is free software; see the source or visit <https://mit-license.org> for the full "
-		"terms of the license. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND."
+		"\nCopyright © 2022 Nathaniel Needham. License: MIT"
+		"\nThis is free software; you are free to modify and distribute it. See the source or "
+		"visit <https://mit-license.org> for the full terms of the license. THIS SOFTWARE IS "
+		"PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND."
 		
 		"\n\n\b\b\b\bSEE ALSO:"
 		"\nSource code avalible at <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>";

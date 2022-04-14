@@ -67,6 +67,7 @@ namespace lawa {
 				const std::string nimiLon = paliEKasi(sonaTawaLawa, kasiPiPaliKen->kamaJoEKasiLon().get());
 				const std::string nimiPiLonAla = paliEKasi(sonaTawaLawa, kasiPiPaliKen->kamaJoEKasiPiLonAla().get());
 
+				// FIXME lipu ni li kama jo e nimi tan poki Stdin la ni li pini ala. o pona e ni.
 				while (true) {
 					const std::list<std::shared_ptr<pali::KasiPiKasiSuli>>& kulupuPiIjoTawaToki = kasiPiPaliKen->kamaJoEKulupuPiIjoToki();
 					
@@ -106,8 +107,7 @@ namespace lawa {
 		return "";
 	}
 
-	int lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
-		std::unordered_map<std::string, std::string> pokiPiPokiNanpaAli;
+	int lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, std::unordered_map<std::string, std::string>& pokiPiPokiNanpaAli, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
 		size_t nanpaLinja = 0;
 
 		SonaTawaLawa sonaTawaLawa = {nimiPiILO_LI_SINA, nimiPiLipuWawa, pokiPiPokiNanpaAli, nanpaLinja};
@@ -120,5 +120,10 @@ namespace lawa {
 		}
 
 		return sonaTawaLawa.nanpaIke;
+	}
+
+	int lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+		std::unordered_map<std::string, std::string> pokiPiPokiNanpaAli;
+		return lawaEIloNanpa(lipuWawa, pokiPiPokiNanpaAli, nimiPiLipuWawa, nimiPiILO_LI_SINA);
 	}
 }

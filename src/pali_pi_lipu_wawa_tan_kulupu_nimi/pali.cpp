@@ -420,7 +420,7 @@ namespace pali {
 					std::cout << kamaJoENimiPiNimiKasi(kasiPiNimiWawa->kamaJoENimiKasi()) << "=\"" << kamaJoEPokiPiNimiPiNimiWawa().at(kasiPiNimiWawa->kamaJoENimiWawa()) << '"';
 				
 				} catch (const std::out_of_range& liSuliAla) {
-					throw std::out_of_range("Found either nullptr or pointer to an unknown function");
+					throw std::out_of_range("pali la li kama jo e lon nullptr anu lon tawa nimi wawa pi sona ala");
 				}
 
 				if (kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa().size() > 0) {

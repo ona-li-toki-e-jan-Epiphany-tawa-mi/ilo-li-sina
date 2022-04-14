@@ -4,7 +4,6 @@
 #include <tclap/CmdLine.h>
 
 // TODO o pona e toki ike lon toki pona en toki ante.
-// TODO o pali e ni: nimi wawa throw() ali li kepeken e toki pona.
 // TODO o pali e ni: lawa li pana e poki pi poki nanpa li ken kama jo e ona.
 
 /**
@@ -83,12 +82,15 @@ const std::string sonaPiIloLiSina =
 		"\nSource code avalible at <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>";
 
 /**
- * An interpreter for ilo li sina, an unstructured procedural human-oriented possibly 
- * turing-complete string-based programming language for the aspiring homebody computer. ;)
+ * ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo 
+ * nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa 
+ * e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon 
+ * tomo. ;)
  * 
  * @author ona li toki e jan Epiphany tawa mi.
  *
- * @see <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina> GitHub repository.
+ * @see <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina> poki pi lipu wawa ni lon
+ * 		lipu KiApu.
  */
 int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 	std::string nimiPiILO_LI_SINA(nimiPilin[0]);

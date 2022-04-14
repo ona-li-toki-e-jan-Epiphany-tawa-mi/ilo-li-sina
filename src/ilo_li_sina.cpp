@@ -1,9 +1,10 @@
 #include <functional>
 #include "kipisi_pi_lipu_wawa/kipisi.hpp"
 #include "lawa_pi_ilo_nanpa/lawa.hpp"
+#include "ante_toki/ante_toki.hpp"
 #include <tclap/CmdLine.h>
 
-// TODO o pona e toki ike lon toki pona en toki ante.
+// TODO o ante toki e ali.
 // TODO ken la o pana e poki nanpa lon poki pi poki ali lon open pi lipu wawa pi toki "ilo li sina".
 
 /**
@@ -63,24 +64,6 @@ void tokiEKasiSuli(const std::string& nimiPiLipuWawa, const std::string& nimiPiI
 	pali::tokiEKasiSuli(paliELipuWawaLKP(nimiPiLipuWawa, nimiPiILO_LI_SINA), nimiPiLipuWawa);
 }
 
-const std::string sonaPiIloLiSina = 
-		"An interpreter for ilo li sina, an unstructured procedural human-oriented possibly "
-		"turing-complete string-based programming language for the aspiring homebody computer. ;)"
-		
-		"\n\n\b\b\b\bAUTHORS:"
-		"\nona li toki e jan Epiphany tawa mi"
-
-		"\n\n\b\b\b\bBUGS:"
-		"\nReport bugs to <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>"
-		
-		"\n\n\b\b\b\bCOPYRIGHT:"
-		"\nCopyright © 2022 Nathaniel Needham. License: MIT"
-		"\nThis is free software; you are free to modify and distribute it. See the source or "
-		"visit <https://mit-license.org> for the full terms of the license. THIS SOFTWARE IS "
-		"PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND."
-		
-		"\n\n\b\b\b\bSEE ALSO:"
-		"\nSource code avalible at <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>";
 
 /**
  * ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo 
@@ -97,11 +80,11 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 	std::string nimiPiILO_LI_SINA(nimiPilin[0]);
 
 	try {
-		TCLAP::CmdLine iloPiNimiPilin(sonaPiIloLiSina, '=', "0.0");
+		TCLAP::CmdLine iloPiNimiPilin(ante_toki::kamaJoENimiTawaJan("ilo_CLI.sona_kepeken"), '=', "0.0");
 
-		TCLAP::SwitchArg oTokiEKulupuNimi("t", "toki-e-nimi", "Prints out the tokens generated from the given programs.", iloPiNimiPilin, false);
-		TCLAP::SwitchArg oTokiEKasiSuli("a", "toki-e-kasi", "Prints out the abstract syntax trees generated from the given programs.", iloPiNimiPilin, false);
-		TCLAP::UnlabeledMultiArg<std::string> nimiPiLipuWawa("LIPU_WAWA", "Program files to run.", true, "LIPU_WAWA", iloPiNimiPilin, true, static_cast<TCLAP::Visitor*>(nullptr));
+		TCLAP::SwitchArg oTokiEKulupuNimi("t", "toki-e-nimi", ante_toki::kamaJoENimiTawaJan("ilo_CLI.toki_e_nimi.sona_kepeken"), iloPiNimiPilin, false);
+		TCLAP::SwitchArg oTokiEKasiSuli("a", "toki-e-kasi", ante_toki::kamaJoENimiTawaJan("ilo_CLI.toki_e_kasi.sona_kepeken"), iloPiNimiPilin, false);
+		TCLAP::UnlabeledMultiArg<std::string> nimiPiLipuWawa(ante_toki::kamaJoENimiTawaJan("ilo_CLI.lipu_wawa.nimi"), ante_toki::kamaJoENimiTawaJan("ilo_CLI.lipu_wawa.nimi"), true, ante_toki::kamaJoENimiTawaJan("ilo_CLI.lipu_wawa.nimi"), iloPiNimiPilin, true, static_cast<TCLAP::Visitor*>(nullptr));
 
 		iloPiNimiPilin.parse(nanpaPiNimiPilin, nimiPilin);
 

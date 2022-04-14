@@ -1,3 +1,5 @@
+#pragma once
+
 #include <memory>
 #include "nimi_wawa.hpp"
 #include "../ijo_kepeken/ike.hpp"

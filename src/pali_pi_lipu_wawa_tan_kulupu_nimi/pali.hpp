@@ -17,7 +17,8 @@ namespace pali {
 	 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 	 *
 	 * @return std::optional<std::vector<std::shared_ptr<KasiPiKasiSuli>>>, int> poki pi lipu wawa.
-	 * @return int nanpa ike. li ken pali la ni li 0. ante la ni li 1, en, lipu wawa li ike.
+	 * @retval int 0 li pali pona e lipu wawa.
+	 * @retval int 1 lipu wawa li ike.
 	 */
 	std::tuple<std::optional<std::vector<std::shared_ptr<KasiPiKasiSuli>>>, int> paliELipuWawa(const std::vector<kipisi::KulupuNimi>& kulupuNimi, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 

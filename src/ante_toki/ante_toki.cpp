@@ -14,4 +14,12 @@ namespace ante_toki {
             return nimiNimi;
         }
     }
+
+    std::string anteENimi(std::string nimiTawaAnte, const std::string& nimiWeka, const std::string& nimiKama) {
+        size_t lonNimi = nimiTawaAnte.find(nimiWeka);
+        if (lonNimi == std::string::npos)
+            return nimiTawaAnte;
+
+        return nimiTawaAnte.replace(lonNimi, nimiWeka.size(), nimiKama);
+    }
 }

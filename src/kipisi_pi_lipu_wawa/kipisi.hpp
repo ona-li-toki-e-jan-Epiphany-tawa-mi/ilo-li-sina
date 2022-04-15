@@ -28,7 +28,9 @@ namespace kipisi {
 	 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 	 *
 	 * @return std::optional<std::vector<KulupuNimi>> poki pi kulupu nimi pi lipu wawa.
-	 * @return int nanpa ike. li ken kipisi la ni li 0. ante la ni li 1, en, lipu wawa li ike.
+	 * @retval int 0  li kipisi pona e lipu wawa.
+	 * @retval int 1  lipu wawa li ike.
+	 * @retval int -1 li ken ala lukin e lipu wawa.
 	 */
 	std::tuple<std::optional<std::vector<KulupuNimi>>, int> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 

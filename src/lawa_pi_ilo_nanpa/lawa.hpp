@@ -27,7 +27,8 @@ namespace lawa {
 	 * @param nimiPiLipuWawa nimi pi lipu wawa.
 	 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 	 * 
-	 * @return nanpa ike. li ken pali la ni li 0. ante la ni li 1, en, lipu wawa li ike.
+	 * @retval int 0 li lawa pona e ilo nanpa kepeken lipu wawa.
+	 * @retval int 1 lipu wawa li ike.
 	 */
 	int lawaEIloNanpa(const std::vector<std::shared_ptr<pali::KasiPiKasiSuli>>& lipuWawa, std::unordered_map<std::string, std::string>& pokiPiPokiNanpaAli, const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
 }

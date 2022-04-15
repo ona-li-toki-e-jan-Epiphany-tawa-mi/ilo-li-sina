@@ -22,4 +22,16 @@ namespace ante_toki {
      * @retval nimiNimi li ken ala kama jo e nimi tawa jan la li pana.
      */
     const std::string& kamaJoENimiTawaJan(const std::string& nimiNimi);
+
+    /**
+     * @brief li ante e nimi weka tawa nimi kama lon poki nimi.
+     * 
+     * @param nimiTawaAnte li ante e poki nimi ni.
+     * @param nimiWeka nimi ni li weka tan nimi tawa ante.
+     * @param nimiKama nimi ni li kama lon lon pi nimi weka lon nimi tawa ante.
+     * 
+     * @return nimi sin pi nimi weka ala pi nimi kama kin.
+     * @retval nimiTawaAnte nimi weka li lon ala nimi tawa ante.
+     */
+    std::string anteENimi(std::string nimiTawaAnte, const std::string& nimiWeka, const std::string& nimiKama);
 }

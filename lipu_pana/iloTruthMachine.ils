@@ -1,0 +1,10 @@
+# ilo Truth Machine (ilo nanpa pi sona pona). jan li toki e 0 la li toki e 0 lon tenpo wan.
+# jan li toki e 1 la li toki e 1 lon tenpo ali.
+    niLaTawa(LiAla "0" "1" "0 anu 1?")
+
+LiWan:
+    toki("1")
+    tawa(LiWan)
+
+LiAla:
+    tokiELinja("0")

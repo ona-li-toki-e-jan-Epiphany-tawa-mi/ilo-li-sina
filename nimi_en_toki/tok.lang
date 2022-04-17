@@ -2,21 +2,59 @@ ilo_CLI.toki_e_nimi.sona_kepeken=li toki e kulupu nimi pi lipu wawa pana.
 ilo_CLI.toki_e_kasi.sona_kepeken=li toki e kasi pi kasi suli pi lipu wawa pana.
 ilo_CLI.lipu_wawa.nimi=LIPU_WAWA
 ilo_CLI.lipu_wawa.sona_kepeken=lipu wawa tawa lawa e ilo nanpa.
-ilo_CLI.sona_kepeken=ilo tawa lawa e ilo nanpa kepeken toki \"ilo li sina\". toki \"ilo li sina\" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)\n\n\b\b\b\bjan pali:\nona li toki e jan Epiphany tawa mi\n\n\b\b\b\bike:\nike li kama la o toki ona lon ni <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>.\n\n\b\b\b\bnimi tawa toki e jo pi lipu ni:\nCopyright © 2022 Nathaniel Needham. License: MIT. ni li lipu wawa pi nasin kepeken kiwen ala. sina ken ante e ona li ken pana e ona. o lukin e nimi wawa tawa pali pi lipu ni anu lukin e lipu <https://mit-license.org> tawa ijo ali pi lipu License pi toki e jo. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND.\n\n\b\b\b\bsin la o lukin:\nnimi wawa pi pali e lipu ni li lon lipu <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>.
+ilo_CLI.sona_kepeken=ilo tawa lawa e ilo nanpa kepeken toki \"ilo li sina\". toki \"ilo li sina\" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)\n\n\b\b\b\bjan pali:\nona li toki e jan Epiphany tawa mi\n\n\b\b\b\bike:\nike li kama la o toki ona lon ni <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>.\n\n\b\b\b\bjo pi lipu ni:\nCopyright © 2022 Nathaniel Needham. License: MIT. ni li lipu wawa pi nasin kepeken kiwen ala. sina ken ante e ona li ken pana e ona. o lukin e nimi wawa tawa pali pi lipu ni anu lukin e lipu <https://mit-license.org> tawa ijo ali pi lipu License pi toki e jo. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND.\n\n\b\b\b\bsin la o lukin:\nnimi wawa pi pali e lipu ni li lon lipu <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>.
 
 
-toki.nanpa_linja=linja pi nanpa %d:
+toki.nanpa_linja=linja pi nanpa %d
+
+toki.nimi_kasi.pana_lon_poki=PANA_LON_POKI
+toki.nimi_kasi.kama_jo_tan_poki=KAMA_JO_TAN_POKI
+toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=KAMA_JO_TAN_POKI_PI_ANTE_ALA
+toki.nimi_kasi.nimi_wawa=NIMI_WAWA
+toki.nimi_kasi.nimi_tawa=NIMI_TAWA
+toki.nimi_kasi.tawa=TAWA
+toki.nimi_kasi.tawa_ken.nimi=TAWA_KEN
+toki.nimi_kasi.tawa_ken.nimi_lon=NIMI_LON
+toki.nimi_kasi.tawa_ken.nimi_pi_lon_ala=NIMI_PI_LON_ALA
+toki.nimi_kasi.tawa_ken.ijo_tawa_toki=IJO_TAWA_TOKI
+toki.nimi_kasi.ala=ALA
+
+toki.kulupu_nimi.poki_nanpa=POKI_NANPA
+toki.kulupu_nimi.pana_lon_poki_nanpa=PANA_LON_POKI_NANPA
+toki.kulupu_nimi.poki_sitelen=POKI_SITELEN
+toki.kulupu_nimi.nimi_wawa=NIMI_WAWA
+toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=POKI_PI_IJO_TAWA_NIMI_WAWA
+toki.kulupu_nimi.linja_sitelen_sin=LINJA_SITELEN_SIN
+toki.kulupu_nimi.nimi_tawa_tawa=NIMI_TAWA_TAWA
+toki.kulupu_nimi.ala=ALA
 
 
-ike.nimi_wawa.niLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'niLaTawa' li lon\n\tijo ni li wile: niLaTawa(nimiTawa nimiLon nimiPiLonAla [ijoTawaToki...])
-ike.nimi_wawa.tawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'tawa' li lon\n\tni li wile: tawa(nimi tawa)
-ike.nimi_wawa.tawa.sitelen_ike=nimi tawa ike\n\tnimi tawa sama kulupu RegEx [a-zA-Z0-9_] li wile
-ike.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=tawa tawa nimi tawa '%s' pi sona ala
-ike.nimi_wawa.li_jo_ala_e_pini=kepeken pi nimi wawa li jo ala e pini\n\tsitelen pini ')' li wile
-ike.nimi_wawa.nimi_pi_sona_ala=nimi wawa '%s' pi sona ala
+ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'niLaTawa' li lon\n\tijo ni li wile: niLaTawa(nimiTawa nimiLon nimiPiLonAla [ijoTawaToki...])
+ike.pali.nimi_wawa.tawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'tawa' li lon\n\tni li wile: tawa(nimi tawa)
+ike.pali.nimi_wawa.tawa.sitelen_ike=nimi tawa ike\n\tnimi tawa sama kulupu RegEx [a-zA-Z0-9_] li wile
+ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=tawa tawa nimi tawa '%s' pi sona ala
+ike.pali.nimi_wawa.li_jo_ala_e_pini=kepeken pi nimi wawa li jo ala e pini\n\tsitelen pini ')' li wile
+ike.pali.nimi_wawa.nimi_pi_sona_ala=nimi wawa '%s' pi sona ala
 
-ike.poki_nanpa.nimi_poki_li_wile=nimi pi poki nanpa li wile lon monsi sitelen '='
-ike.poki_nanpa.ijo_tawa_poki_li_wile=ijo tawa poki li wile lon sinpin sitelen '='
-ike.poki_nanpa.ijo_ike_tawa_poki=ijo ike tawa poki lon sinpin sitelen '='\n\tli wile jo e ijo tawa poki lon poki nanpa
+ike.pali.poki_nanpa.nimi_poki_li_wile=nimi pi poki nanpa li wile lon monsi pi sitelen '='
+ike.pali.poki_nanpa.ijo_tawa_poki_li_wile=ijo tawa poki li wile lon sinpin pi sitelen '='
+ike.pali.poki_nanpa.ijo_ike_tawa_poki=ijo ike tawa poki lon sinpin pi sitelen '='\n\tli wile jo e ijo tawa poki lon poki nanpa
+
+
+ike.kipisi.li_ken_ala_open_e_lipu=li ken ala open e nimi wawa '%s'
+
+ike.kipisi.nimi_tawa.nimi_li_wile=nimi pi nimi tawa li wile lon monsi pi sitelen ':'
+ike.kipisi.nimi_tawa.li_ken_lon_open_linja_taso=nimi tawa li ken lon open linja taso
+
+ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=nimi '\\%s' pi sitelen nasa pi sona ala
+ike.kipisi.poki_nimi.li_jo_ala_e_pini=poki nimi li jo ala e pini
+
+ike.kipisi.nimi_tawa.nimi_li_wile=nimi pi nimi wawa li wile lon monsi pi sitelen '('
+
+
+ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=li lukin kama jo e ijo tan poki nanpa '%s' pi sona ala
+
 
 ike.kulupu_nimi_pi_wile_ala=kulupu nimi '%s' pi sona ala
+
+ike.nimi=ike

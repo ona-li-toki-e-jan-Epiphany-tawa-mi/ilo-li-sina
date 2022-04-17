@@ -4,7 +4,7 @@
 #include "ante_toki/ante_toki.hpp"
 #include <tclap/CmdLine.h>
 
-// TODO o ante toki e ali.
+// o pali e ante toki tawa toki Losi.
 // TODO ken la o pana e poki nanpa lon poki pi poki ali lon open pi lipu wawa pi toki "ilo li sina".
 
 /**

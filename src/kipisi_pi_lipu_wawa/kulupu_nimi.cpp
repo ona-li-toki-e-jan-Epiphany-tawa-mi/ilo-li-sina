@@ -1,25 +1,26 @@
 #include "kulupu_nimi.hpp"
 #include <stdexcept>
+#include "../ante_toki/ante_toki.hpp"
 
 namespace kipisi {
 	std::string kamaJoENimiPiNimiKulupu(NimiPiKulupuNimi nimiPiKulupuNimi) noexcept(false) {
 		switch (nimiPiKulupuNimi) {
 			case NimiPiKulupuNimi::POKI_NANPA:
-				return "POKI_NANPA";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.poki_nanpa");
 			case NimiPiKulupuNimi::PANA_LON_POKI_NANPA:
-				return "PANA_LON_POKI_NANPA";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.pana_lon_poki_nanpa");
 			case NimiPiKulupuNimi::POKI_SITELEN:
-				return "POKI_SITELEN";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.poki_sitelen");
 			case NimiPiKulupuNimi::NIMI_WAWA:
-				return "NIMI_WAWA";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.nimi_wawa");
 			case NimiPiKulupuNimi::POKI_PI_IJO_TAWA_NIMI_WAWA:
-				return "POKI_PI_IJO_TAWA_NIMI_WAWA";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa");
 			case NimiPiKulupuNimi::LINJA_SITELEN_SIN:
-				return "LINJA_SITELEN_SIN";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.linja_sitelen_sin");
 			case NimiPiKulupuNimi::NIMI_TAWA_TAWA:
-				return "NIMI_TAWA_TAWA";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.nimi_tawa_tawa");
 			case NimiPiKulupuNimi::ALA:
-				return "ALA";
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.ala");
 
 			default:
 				throw std::out_of_range("li kama jo e nimi pi kulupu nimi pi sona ala pi nanpa " + static_cast<int>(nimiPiKulupuNimi));

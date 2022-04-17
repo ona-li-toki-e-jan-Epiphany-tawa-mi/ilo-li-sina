@@ -1,24 +1,25 @@
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
+#include "../ante_toki/ante_toki.hpp"
 
 namespace pali {
-	std::string kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false) {
+	const std::string& kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false) {
 		switch (nimiKasi) {
 			case NimiKasi::PANA_LON_POKI:
-				return "PANA_LON_POKI";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.pana_lon_poki");
 			case NimiKasi::KAMA_JO_TAN_POKI:
-				return "KAMA_JO_TAN_POKI";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.kama_jo_tan_poki");
 			case NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA:
-				return "KAMA_JO_TAN_POKI_PI_ANTE_ALA";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala");
 			case NimiKasi::NIMI_WAWA:
-				return "NIMI_WAWA";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.nimi_wawa");
 			case NimiKasi::NIMI_TAWA:
-				return "NIMI_TAWA";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.nimi_tawa");
 			case NimiKasi::TAWA:
-				return "TAWA";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa");
 			case NimiKasi::TAWA_KEN:
-				return "TAWA_KEN";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa_ken.nimi");
 			case NimiKasi::ALA:
-				return "ALA";
+				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.ala");
 
 			default:
 				throw std::out_of_range("li kama jo e nimi kasi pi sona ala pi nanpa " + static_cast<int>(nimiKasi));

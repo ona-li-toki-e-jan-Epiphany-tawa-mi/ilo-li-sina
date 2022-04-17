@@ -1,5 +1,6 @@
 #include "lawa.hpp"
 #include <iostream>
+#include "../ante_toki/ante_toki.hpp"
 
 namespace lawa {
 	/**
@@ -41,7 +42,12 @@ namespace lawa {
 					return sonaTawaLawa.pokiPiPokiNanpaAli.at(kasiPiKamaJoTanPoki->kamaJoENimiPoki());
 
 				} catch (const std::out_of_range& liSuliAla) {
-					kepeken::tokiEIke(sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, kasiPiKamaJoTanPoki->kamaJoELonKasi(), "Attempted to get value from undeclared variable '" + kasiPiKamaJoTanPoki->kamaJoENimiPoki() + "'");
+					kepeken::tokiEIke(
+						sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, 
+						kasiPiKamaJoTanPoki->kamaJoELonKasi(), 
+						ante_toki::anteENimi(
+							ante_toki::kamaJoENimiTawaJan("ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala"),
+							"%s", kasiPiKamaJoTanPoki->kamaJoENimiPoki()));
 					sonaTawaLawa.nanpaIke = 1;
 
 					break;

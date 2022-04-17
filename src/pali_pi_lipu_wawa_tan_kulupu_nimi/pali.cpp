@@ -66,7 +66,7 @@ namespace pali {
 			kepeken::tokiEIke(
 				sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 				kulupuNimiPiNimiWawa->kamaJoELon(), 
-				ante_toki::kamaJoENimiTawaJan("ike.nimi_wawa.niLaTawa.nanpa_ijo_lili"));
+				ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili"));
 			
 			sonaTawaPali.liLipuPiPonaAla = true;
 			return nullptr;
@@ -76,7 +76,7 @@ namespace pali {
 			kepeken::tokiEIke(
 				sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 				(kulupuNimiPiNimiWawa+2)->kamaJoELon(), 
-				ante_toki::kamaJoENimiTawaJan("ike.nimi_wawa.tawa.sitelen_ike"));
+				ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.tawa.sitelen_ike"));
 			sonaTawaPali.liLipuPiPonaAla = true;
 		}
 
@@ -111,7 +111,7 @@ namespace pali {
 			kepeken::tokiEIke(
 				sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 				kulupuNimiPiNimiWawa->kamaJoELon(), 
-				ante_toki::kamaJoENimiTawaJan("ike.nimi_wawa.tawa.nanpa_ijo_lili"));
+				ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.tawa.nanpa_ijo_lili"));
 			
 			sonaTawaPali.liLipuPiPonaAla = true;
 			return nullptr;
@@ -121,7 +121,7 @@ namespace pali {
 			kepeken::tokiEIke(
 				sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 				(kulupuNimiPiNimiWawa+2)->kamaJoELon(), 
-				ante_toki::kamaJoENimiTawaJan("ike.nimi_wawa.tawa.sitelen_ike"));
+				ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.tawa.sitelen_ike"));
 			sonaTawaPali.liLipuPiPonaAla = true;
 		}
 
@@ -157,7 +157,7 @@ namespace pali {
 					kepeken::tokiEIke(
 						sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 						alasaPiKulupuNimi->kamaJoELon(), 
-						ante_toki::kamaJoENimiTawaJan("ike.poki_nanpa.nimi_poki_li_wile"));
+						ante_toki::kamaJoENimiTawaJan("ike.pali.poki_nanpa.nimi_poki_li_wile"));
 					sonaTawaPali.liLipuPiPonaAla = true;
 
 					return nullptr;
@@ -166,7 +166,7 @@ namespace pali {
 					kepeken::tokiEIke(
 						sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 						(*pokiNanpa)->kamaJoELon(), 
-						ante_toki::kamaJoENimiTawaJan("ike.poki_nanpa.nimi_poki_li_wile"));
+						ante_toki::kamaJoENimiTawaJan("ike.pali.poki_nanpa.nimi_poki_li_wile"));
 					sonaTawaPali.liLipuPiPonaAla = true;
 				}
 
@@ -175,7 +175,7 @@ namespace pali {
 					kepeken::tokiEIke(
 						sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 						alasaPiKulupuNimi->kamaJoELon(), 
-						ante_toki::kamaJoENimiTawaJan("ike.poki_nanpa.ijo_tawa_poki_li_wile"));
+						ante_toki::kamaJoENimiTawaJan("ike.pali.poki_nanpa.ijo_tawa_poki_li_wile"));
 					sonaTawaPali.liLipuPiPonaAla = true;
 
 					return nullptr;
@@ -190,7 +190,7 @@ namespace pali {
 						kepeken::tokiEIke(
 							sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 							(*ijoTawaPoki)->kamaJoELon(), 
-							ante_toki::kamaJoENimiTawaJan("ike.poki_nanpa.ijo_ike_tawa_poki"));
+							ante_toki::kamaJoENimiTawaJan("ike.pali.poki_nanpa.ijo_ike_tawa_poki"));
 						sonaTawaPali.liLipuPiPonaAla = true;
 				}
 
@@ -254,7 +254,7 @@ namespace pali {
 							kepeken::tokiEIke(
 								sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 								kulupuNimiPiNimiWawa->kamaJoELon(), 
-								ante_toki::kamaJoENimiTawaJan("ike.nimi_wawa.li_jo_ala_e_pini"));
+								ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.li_jo_ala_e_pini"));
 							sonaTawaPali.liLipuPiPonaAla = true;
 
 							return nullptr;
@@ -295,7 +295,7 @@ namespace pali {
 						sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 						kulupuNimiPiNimiWawa->kamaJoELon(), 
 						ante_toki::anteENimi(
-							ante_toki::kamaJoENimiTawaJan("ike.nimi_wawa.nimi_pi_sona_ala"), 
+							ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.nimi_pi_sona_ala"), 
 							"%s", kulupuNimiPiNimiWawa->kamaJoENimiPoki()));
 					sonaTawaPali.liLipuPiPonaAla = true;
 
@@ -381,7 +381,7 @@ namespace pali {
 					nimiPiILO_LI_SINA, nimiPiLipuWawa, 
 					ijo.nimiWawaTawaTawa->kamaJoELonKasi(), 
 					ante_toki::anteENimi(
-						ante_toki::kamaJoENimiTawaJan("ike.nimi_wawa.tawa.nimi_tawa_pi_sona_ala"),
+						ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala"),
 						"%s", ijo.nimiPiNimiTawaTawa));
 				sonaTawaKipisi.liLipuPiPonaAla = true;
 			}
@@ -490,21 +490,20 @@ namespace pali {
 				break;
 			}
 
-			// TODO sina pali e ante pi nimi tawa kasi la o pali e ante ni.
 			case NimiKasi::TAWA_KEN: {
 				const auto kasiPiTawaKen = static_cast<const KasiPiTawaKen*>(kasi);
 				std::cout << kamaJoENimiPiNimiKasi(kasiPiTawaKen->kamaJoENimiKasi()) << "=" << kasiPiTawaKen->linjaTawaTawa << ":\n";
 
 				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
-				std::cout << "NIMI_LON:\n";
+				std::cout << ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa_ken.nimi_lon") << ":\n";
 				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiLon().get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
 				tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
-				std::cout << "NIMI_PI_LON_ALA:\n";
+				std::cout << ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa_ken.nimi_pi_lon_ala") << ":\n";
 				tokiEKasiPiKasiSuli(kasiPiTawaKen->kamaJoEKasiPiLonAla().get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
 				
 				if (kasiPiTawaKen->kamaJoEKulupuPiIjoToki().size() > 0) {
 					tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
-					std::cout << "IJO_TAWA_TOKI:\n";
+					std::cout << ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa_ken.ijo_tawa_toki") << ":\n";
 					for (const std::shared_ptr<KasiPiKasiSuli>& ijo : kasiPiTawaKen->kamaJoEKulupuPiIjoToki())
 						tokiEKasiPiKasiSuli(ijo.get(), lonInsaPiNanpaNi + 2, nanpaPiKasiLonSewi);
 				}
@@ -526,7 +525,7 @@ namespace pali {
 			std::cout << ante_toki::anteENimi(
 				ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"), 
 				"%d", std::to_string(kasiPiKasiSuli->kamaJoELonKasi().nanpaLinja)) 
-				<< "\n";
+				<< ":\n";
 			tokiEKasiPiKasiSuli(pokiTawaLipuWawa.at(nanpa).get(), 1, nanpa);
 		}
 

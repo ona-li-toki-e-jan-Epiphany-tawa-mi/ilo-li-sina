@@ -12,6 +12,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${pokiPiNimiWawaPiILO_LI_SINA
 
 find_package(PythonInterp REQUIRED)
 
+# TODO lipu pi nimi toki li ante ala la o pali ala e ni
 add_custom_target(
  pali ALL
  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/paliELipuToki.py

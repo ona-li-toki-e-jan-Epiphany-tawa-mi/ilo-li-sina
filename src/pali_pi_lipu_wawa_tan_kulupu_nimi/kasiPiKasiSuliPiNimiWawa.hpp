@@ -30,7 +30,7 @@ namespace pali {
 	 * @return nimi pi nimi kasi.
 	 * @throws std::out_of_range nimi kasi li jo ala e nimi pi nimi kasi.
 	 */
-	std::string kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false);
+	const std::string& kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false);
 
 
 

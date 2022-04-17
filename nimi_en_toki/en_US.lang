@@ -5,18 +5,56 @@ ilo_CLI.lipu_wawa.sona_kepeken=Program files to run.
 ilo_CLI.sona_kepeken=An interpreter for ilo li sina, an unstructured procedural human-oriented possibly turing-complete string-based programming language for the aspiring homebody computer. ;)\n\n\b\b\b\bAUTHORS:\nona li toki e jan Epiphany tawa mi\n\n\b\b\b\bBUGS:\nReport bugs to <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>.\n\n\b\b\b\bCOPYRIGHT:\nCopyright © 2022 Nathaniel Needham. License: MIT. This is free software; you are free to modify and distribute it. See the source or visit <https://mit-license.org> for the full terms of the license. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND.\n\n\b\b\b\bSEE ALSO:\nSource code avalible at <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>.
 
 
-toki.nanpa_linja=Line %d:
+toki.nanpa_linja=Line %d
+
+toki.nimi_kasi.pana_lon_poki=VARIABLE_ASSIGNMENT
+toki.nimi_kasi.kama_jo_tan_poki=VARIABLE_ACCESSOR
+toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=CONSTANT_ACCESSOR
+toki.nimi_kasi.nimi_wawa=FUNCTION
+toki.nimi_kasi.nimi_tawa=LABEL
+toki.nimi_kasi.tawa=GOTO
+toki.nimi_kasi.tawa_ken.nimi=CONDITIONAL_GOTO
+toki.nimi_kasi.tawa_ken.nimi_lon=YES_MESSAGE
+toki.nimi_kasi.tawa_ken.nimi_pi_lon_ala=NO_MESSAGE
+toki.nimi_kasi.tawa_ken.ijo_tawa_toki=MESSAGES
+toki.nimi_kasi.ala=NOOP
+
+toki.kulupu_nimi.poki_nanpa=VARIABLE_NAME
+toki.kulupu_nimi.pana_lon_poki_nanpa=ASSIGNMENT
+toki.kulupu_nimi.poki_sitelen=STRING
+toki.kulupu_nimi.nimi_wawa=FUNCTION
+toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=ARGUMENT_CAPTURE
+toki.kulupu_nimi.linja_sitelen_sin=NEW_LINE
+toki.kulupu_nimi.nimi_tawa_tawa=LABEL
+toki.kulupu_nimi.ala=UNDEFINED
 
 
-ike.nimi_wawa.niLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'niLaTawa'\n\tExpected: niLaTawa(label yesMessage noMessage [ messages...])
-ike.nimi_wawa.tawa.nanpa_ijo_lili=Incorrect number of arguments for function 'tawa'\n\tExpected: tawa(label)
-ike.nimi_wawa.tawa.sitelen_ike=Invalid label name\n\tExpected token matching [a-zA-Z0-9_]
-ike.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Jump to undefined label '%s'
-ike.nimi_wawa.li_jo_ala_e_pini=Unterminated function call\n\tExpected ending ')' symbol
-ike.nimi_wawa.nimi_pi_sona_ala=Unknown function '%s'
+ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'niLaTawa'\n\tExpected: niLaTawa(label yesMessage noMessage [ messages...])
+ike.pali.nimi_wawa.tawa.nanpa_ijo_lili=Incorrect number of arguments for function 'tawa'\n\tExpected: tawa(label)
+ike.pali.nimi_wawa.tawa.sitelen_ike=Invalid label name\n\tExpected token matching [a-zA-Z0-9_]
+ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Jump to undefined label '%s'
+ike.pali.nimi_wawa.li_jo_ala_e_pini=Unterminated function call\n\tExpected ending ')' symbol
+ike.pali.nimi_wawa.nimi_pi_sona_ala=Unknown function '%s'
 
-ike.poki_nanpa.nimi_poki_li_wile=Expected variable name before '=' token
-ike.poki_nanpa.ijo_tawa_poki_li_wile=Expected secondary expression after '=' token
-ike.poki_nanpa.ijo_ike_tawa_poki=Invalid secondary expression after '=' token\n\tMust be or return some kind of value
+ike.pali.poki_nanpa.nimi_poki_li_wile=Expected variable name before '=' token
+ike.pali.poki_nanpa.ijo_tawa_poki_li_wile=Expected secondary expression after '=' token
+ike.pali.poki_nanpa.ijo_ike_tawa_poki=Invalid secondary expression after '=' token\n\tMust be or return some kind of value
+
+
+ike.kipisi.li_ken_ala_open_e_lipu=Unable to open file '%s'
+
+ike.kipisi.nimi_tawa.nimi_li_wile=Expected a label name before ':'
+ike.kipisi.nimi_tawa.li_ken_lon_open_linja_taso=A label can only occur at the start of a line
+
+ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=Unknown escape sequence '\\%s'
+ike.kipisi.poki_nimi.li_jo_ala_e_pini=Unterminated string
+
+ike.kipisi.nimi_tawa.nimi_li_wile=Expected a function name before '('
+
+
+ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=Attempted to get value from undeclared variable '%s'
+
 
 ike.kulupu_nimi_pi_wile_ala=Unexpected token '%s'
+
+ike.nimi=Error

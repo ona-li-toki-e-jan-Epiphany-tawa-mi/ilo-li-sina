@@ -240,7 +240,7 @@ namespace kipisi {
 			size_t nanpaLinja = 1;
 			std::cout << ante_toki::anteENimi(
 				ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"),
-				"%s", std::to_string(nanpaLinja))
+				"%d", std::to_string(nanpaLinja))
 				<< "\n";
 
 			for (auto alasaPiKulupuNimi = pokiPiKulupuNimi.cbegin(); alasaPiKulupuNimi != pokiPiKulupuNimi.cend(); alasaPiKulupuNimi++) {
@@ -260,7 +260,7 @@ namespace kipisi {
 				if (alasaPiKulupuNimi->nimiPiKulupuNimi == NimiPiKulupuNimi::LINJA_SITELEN_SIN && alasaPiKulupuNimi != pokiPiKulupuNimi.cend() - 1)
 					std::cout << ante_toki::anteENimi(
 						ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"),
-						"%s", std::to_string(++nanpaLinja))
+						"%d", std::to_string(++nanpaLinja))
 						<< "\n";
 			}
 

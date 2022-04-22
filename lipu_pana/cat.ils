@@ -1,7 +1,4 @@
 # li toki e toki sina.
 open: 
     tokiELinja(kamaJoTanJan())
-    niLaTawa(pini "pini" "pini ala" \ 
-            "ni li pini ala pini?")
     tawa(open)
-pini:

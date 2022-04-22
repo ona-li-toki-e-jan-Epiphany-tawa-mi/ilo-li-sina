@@ -54,6 +54,8 @@ ike.kipisi.nimi_tawa.nimi_li_wile=nimi pi nimi wawa li wile lon monsi pi sitelen
 
 ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=li lukin kama jo e ijo tan poki nanpa '%s' pi sona ala
 
+ike.lawa.pini_lipu=li kama jo e pini lipu tan ijo Stdin
+
 
 ike.kulupu_nimi_pi_wile_ala=kulupu nimi '%s' pi sona ala
 

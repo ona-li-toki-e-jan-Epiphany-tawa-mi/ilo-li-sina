@@ -1,0 +1,60 @@
+ilo_CLI.toki_e_nimi.sona_kepeken=Распечатать токены, созданные из программ.
+ilo_CLI.toki_e_kasi.sona_kepeken=Распечатать абстрактные синтаксические дерева, созданные из программ.
+ilo_CLI.lipu_wawa.nimi=ПРОГРАММЫ
+ilo_CLI.lipu_wawa.sona_kepeken=Программы выполнить.
+ilo_CLI.sona_kepeken=Интерпретатор для ilo li sina. ilo li sina - неструктурированный процедурный ориентированный на людей язык программирования, который работает только со строками, для начинающего домоседливого компьютера.)))\n\n\b\b\b\bАВТОР:\nona li toki e jan Epiphany tawa mi\n\n\b\b\b\bОШИБКИ:\nСообщите об ошибках в <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>.\n\n\b\b\b\bПРАВО:\nCopyright © 2022 Nathaniel Needham. License: MIT. Это свободное программное обеспечиние - вы можете его изменить и распространять так, как угодно. Смотрите полная лицензия в исходный или в <https://mit-license.org>. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND.\n\n\b\b\b\bСМОТРИТЕ ТАКЖЕ:\nИсходный код - <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>.
+
+
+toki.nanpa_linja=Строка %d
+
+toki.nimi_kasi.pana_lon_poki=ПРИСВАИВАНИЕ_ПЕРЕМЕННОЙ
+toki.nimi_kasi.kama_jo_tan_poki=ПОЛУЧЕНИЕ_ИЗ_ПЕРЕМЕННОЙ
+toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=ПОЛУЧЕНИЕ_ИЗ_КОНСТАНТЫ
+toki.nimi_kasi.nimi_wawa=ФУНКЦИЯ
+toki.nimi_kasi.nimi_tawa=МЕТКА
+toki.nimi_kasi.tawa=GOTO
+toki.nimi_kasi.tawa_ken.nimi=УСЛОВНЫЙ_GOTO
+toki.nimi_kasi.tawa_ken.nimi_lon=СООБЩЕНИЕ_ДА
+toki.nimi_kasi.tawa_ken.nimi_pi_lon_ala=СООБЩЕНИЕ_НЕТ
+toki.nimi_kasi.tawa_ken.ijo_tawa_toki=СООБЩЕНИЯ
+toki.nimi_kasi.ala=NOOP
+
+toki.kulupu_nimi.poki_nanpa=ПЕРЕМЕННАЯ
+toki.kulupu_nimi.pana_lon_poki_nanpa=ПРИСВАИВАНИЕ_ПЕРЕМЕННОЙ
+toki.kulupu_nimi.poki_sitelen=СТРОКА
+toki.kulupu_nimi.nimi_wawa=ФУНКЦИЯ
+toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=РАЗДЕЛИТЕЛЬ_АРГУМЕНТОВ
+toki.kulupu_nimi.linja_sitelen_sin=ПЕРЕХОД_СТРОКИ
+toki.kulupu_nimi.nimi_tawa_tawa=МЕТКА
+toki.kulupu_nimi.ala=НЕОПРЕДЕЛЕННОЕ
+
+
+ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'niLaTawa'\n\tОжидалось: niLaTawa(метка сообщениеДа сообщениеНет [сообщения...])
+ike.pali.nimi_wawa.tawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'tawa'\n\tОжидалось: tawa(метка)
+ike.pali.nimi_wawa.tawa.sitelen_ike=Неправильное имя метки\n\tОжидалось имя похоже на [a-zA-Z0-9_]
+ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Переход на неопределенную метку '%s'
+ike.pali.nimi_wawa.li_jo_ala_e_pini=Несовершенный вызов функции\n\tОжидалось ')' 
+ike.pali.nimi_wawa.nimi_pi_sona_ala=Неопределенная функция '%s'
+
+ike.pali.poki_nanpa.nimi_poki_li_wile=Ожидалось имя переменной до '='
+ike.pali.poki_nanpa.ijo_tawa_poki_li_wile=Ожидалось второе выражение после '='
+ike.pali.poki_nanpa.ijo_ike_tawa_poki=Неправильное выражение после '='\n\tНужно быть или возвращает какое-то значение
+
+
+ike.kipisi.li_ken_ala_open_e_lipu=Не удалось открыть файл '%s'
+
+ike.kipisi.nimi_tawa.nimi_li_wile=Ожидалось имя метки до ':'
+ike.kipisi.nimi_tawa.li_ken_lon_open_linja_taso=Метки могут быть только в начале строки
+
+ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=Неопределенный экранирующий символ '\\%s'
+ike.kipisi.poki_nimi.li_jo_ala_e_pini=Несовершенная строка
+
+ike.kipisi.nimi_tawa.nimi_li_wile=Ожидалось имя функции до '('
+
+
+ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=Получение из неопределенной переменной '%s'
+
+
+ike.kulupu_nimi_pi_wile_ala=Неопределенный токен '%s'
+
+ike.nimi=Ошибка

@@ -56,6 +56,8 @@ ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=Получение из
 
 ike.lawa.pini_lipu=Получил EOF при чтении ввода
 
+ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=Сообщения да и нет для функции 'niLaTawa' не могут быть так же самые (сейчас - '%s')
+
 
 ike.kulupu_nimi_pi_wile_ala=Неопределенный токен '%s'
 

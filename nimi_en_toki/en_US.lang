@@ -56,6 +56,8 @@ ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=Attempted to get value 
 
 ike.lawa.pini_lipu=Encountered EOF while reading from input
 
+ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=The yes and no messages of the function 'niLaTawa' cannot be the same (currently '%s')
+
 
 ike.kulupu_nimi_pi_wile_ala=Unexpected token '%s'
 

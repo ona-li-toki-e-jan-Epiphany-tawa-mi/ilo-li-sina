@@ -95,6 +95,21 @@ namespace lawa {
 				if (sonaTawaLawa.liWilePini)
 					break;
 
+				if (nimiLon.size() == 0 && nimiPiLonAla.size() == 0 || nimiLon == nimiPiLonAla) {
+					kepeken::tokiEIke(
+						sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa,
+						kasiPiPaliKen->kamaJoELonKasi(),
+						ante_toki::anteENimi(
+							ante_toki::kamaJoENimiTawaJan("ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama"),
+							"%s", nimiLon));
+
+					sonaTawaLawa.liWilePini = true;
+					sonaTawaLawa.nanpaIke = 1;
+
+					break;
+				}
+
+
 				std::string nimiTanJan;
 				while (true) {
 					if (!kulupuPiIjoTawaToki.empty()) {
@@ -106,7 +121,8 @@ namespace lawa {
 
 					if (!std::getline(std::cin, nimiTanJan)) {
 						kepeken::tokiEIke(
-							sonaTawaLawa.nimiPiILO_LI_SINA, 
+							sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa,
+							kasiPiPaliKen->kamaJoELonKasi(),
 							ante_toki::kamaJoENimiTawaJan("ike.lawa.pini_lipu"));
 						
 						sonaTawaLawa.liWilePini = true;
@@ -115,12 +131,24 @@ namespace lawa {
 						break;
 					}
 
-					if (nimiTanJan == nimiLon) {
+
+					if (nimiLon.size() == 0) {
+						if (nimiTanJan != nimiPiLonAla)
+							sonaTawaLawa.nanpaLinja = kasiPiPaliKen->linjaTawaTawa;
+
+						break;
+
+					} else if (nimiPiLonAla.size() == 0) {
+						if (nimiTanJan == nimiLon) 
+							sonaTawaLawa.nanpaLinja = kasiPiPaliKen->linjaTawaTawa;
+
+						break;
+						
+					} else if (nimiTanJan == nimiLon) {
 						sonaTawaLawa.nanpaLinja = kasiPiPaliKen->linjaTawaTawa;
 						break;
-					}
 
-					if (nimiPiLonAla.size() == 0 || nimiTanJan == nimiPiLonAla)
+					} else if (nimiTanJan == nimiPiLonAla)
 						break;
 				}
 

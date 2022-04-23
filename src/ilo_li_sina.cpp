@@ -6,7 +6,6 @@
 
 // TODO ken la o pana e poki nanpa lon poki pi poki ali lon open pi lipu wawa pi toki "ilo li sina".
 // TODO o pini ante toki e sona kepeken pi lipu ni.
-// TODO nimi lon pi kasi pi tawa ken li lon ala la o toki e ike.
 
 /**
  * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".

@@ -18,11 +18,11 @@ o tawa lon poki lipu "ilo li sina" o toki e nimi wawa ni tawa pali e lipu wawa p
 cmake .
 make
 ```
- ona li kama lon lipu li jo e nimi "ilo li sina".
+ ona li kama lon poki li jo e nimi "ilo_li_sina".
 
 ## **pali e ante toki sin**
 
-sina wile pali e ante toki pi toki sin la o pali e lipu pi pini ".lang" lon poki "nimi_en_toki".<br> nimi pi lipu ni li nimi nanpa toki (sama "en_US" tawa toki Inli pi ma Mewika anu "ru_RU" tawa toki Losi). nimi la o sitelen e nimi toki kepeken sitelen lili (pana la "en") e sitelen '_' e nimi ma pi toki ni kepeken sitelen suli (pana la "US"). toki li jo ala e ma (sama toki pona, "tok") o sitelen e nimi toki taso.
+sina wile pali e ante toki pi toki sin la o pali e lipu pi pini ".lang" lon poki "nimi_en_toki".<br> nimi pi lipu ni li nimi nanpa toki (sama "en_US" tawa toki Inli pi ma Mewika anu "ru_RU" tawa toki Losi). nimi la o sitelen e nimi toki kepeken sitelen lili (pana la "en") e sitelen '\_' e nimi ma pi toki ni kepeken sitelen suli (pana la "US"). toki li jo ala e ma (sama toki pona, "tok") la o sitelen e nimi toki taso.
 
 o pana e nimi tan ante toki ante lon lipu ni. nimi pi ante toki li tu kepeken sitelen '='. o ante ala e nimi pi nanpa 1. ona li tawa nimi wawa. o ante e nimi pi nanpa 2 lon monsi pi sitelen '=' lon toki sina. 
 

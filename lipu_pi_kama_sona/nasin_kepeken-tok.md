@@ -116,7 +116,7 @@ sina ken sitelen e sitelen nasa (sama linja sin) kepeken sitelen '\\'. ni li ona
  - \\v - sama \\t. taso, ona li tawa lon anpa.
  - \\b - li weka e sitelen 1.
  - \\" li ken e ni: sina sitelen e sitelen '"' lon poki nimi.
- - \\\\ li: ken e ni sina sitelen e sitelen '\\' lon poki nimi.
+ - \\\\ li ken e ni: sina sitelen e sitelen '\\' lon poki nimi.
 
 #### *ijo lon linja mute:*
 

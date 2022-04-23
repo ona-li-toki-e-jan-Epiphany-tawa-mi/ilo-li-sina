@@ -82,8 +82,8 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 	try {
 		TCLAP::CmdLine iloPiNimiPilin(ante_toki::kamaJoENimiTawaJan("ilo_CLI.sona_kepeken"), '=', "0.0");
 
-		TCLAP::SwitchArg oTokiEKulupuNimi("t", "toki-e-nimi", ante_toki::kamaJoENimiTawaJan("ilo_CLI.toki_e_nimi.sona_kepeken"), iloPiNimiPilin, false);
-		TCLAP::SwitchArg oTokiEKasiSuli("a", "toki-e-kasi", ante_toki::kamaJoENimiTawaJan("ilo_CLI.toki_e_kasi.sona_kepeken"), iloPiNimiPilin, false);
+		TCLAP::SwitchArg oTokiEKulupuNimi("n", "toki-e-nimi", ante_toki::kamaJoENimiTawaJan("ilo_CLI.toki_e_nimi.sona_kepeken"), iloPiNimiPilin, false);
+		TCLAP::SwitchArg oTokiEKasiSuli("k", "toki-e-kasi", ante_toki::kamaJoENimiTawaJan("ilo_CLI.toki_e_kasi.sona_kepeken"), iloPiNimiPilin, false);
 		TCLAP::UnlabeledMultiArg<std::string> nimiPiLipuWawa(ante_toki::kamaJoENimiTawaJan("ilo_CLI.lipu_wawa.nimi"), ante_toki::kamaJoENimiTawaJan("ilo_CLI.lipu_wawa.sona_kepeken"), true, ante_toki::kamaJoENimiTawaJan("ilo_CLI.lipu_wawa.nimi"), iloPiNimiPilin, true, static_cast<TCLAP::Visitor*>(nullptr));
 
 		iloPiNimiPilin.parse(nanpaPiNimiPilin, nimiPilin);

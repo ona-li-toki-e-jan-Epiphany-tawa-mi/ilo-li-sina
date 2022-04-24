@@ -10,7 +10,7 @@ ali lon toki ni li nimi. sina ken kepeken e nimi taso. sina ken pali e nimi lon 
 
 ### ***nimi wawa***
 
-"ilo li sina" li jo e nimi wawa lili. ona li kama jo e ijo li pali e ijo. tawa pali la sina sitelen e nimi e poki tawa ijo "(" en ")" e ijo lon ona.
+"ilo li sina" li jo e nimi wawa lili. ona li kama jo e ijo li pali e ijo (taso, nimi wawa tawa() en niLaTawa() li ante). tawa pali la sina sitelen e nimi e poki tawa ijo "(" en ")" e ijo lon ona.
 
 ijo tawa nimi wawa li kipisi kepeken sitelen " " pi lukin ala. ni li wile ala tawa ijo ante sama poki nanpa en nimi. taso, ni li lukin pona. pana la:
 
@@ -23,6 +23,15 @@ ijo tawa nimi wawa li kipisi kepeken sitelen " " pi lukin ala. ni li wile ala ta
     b = " nimi"
     tokiELinja(a b) # pona.
     tokiELinja(ab) # ike. poki "ab" li jo e ala li ni ala: "a" en "b".
+```
+
+sina ken pana e nimi wawa tawa nimi ante:
+
+```ilo li sina
+    # li toki e nimi jan.
+    tokiELinja("sina toki e ni: " kamaJoTanJan()) 
+
+    tokiELinja("sina jan " kamaJoTanJan("nimi sina li seme?"))
 ```
 
 ona ale li ni:
@@ -61,7 +70,7 @@ nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e n
 
 toki li kepeken e nimi wawa GOTO (tawa() en niLaTawa()) tawa tawa lon lipu wawa.
 
-nimi wawa ni li wile e nimi tawa tawa ni: ona li ken tawa lon ona. sina ken pali e ona kepeken nimi en sitelen ':' lon monsi. pana la:
+nimi wawa ni li wile e nimi tawa tawa ni: ona li ken tawa lon ona. sina ken pali e ona kepeken nimi en sitelen ':' lon monsi. ona li ken lon open linja taso. pana la:
 
 ```ilo li sina
     tawa(nimiTawa)
@@ -95,8 +104,8 @@ sina ken kepeken e poki nanpa tawa poki e nimi. sina ken pali e ona kepeken nimi
     a = kamaJoTanJan("sina wile e seme?")
     tokiELinja(a " li tawa ala sina") # nimi jan li "mani" la li toki e "mani li tawa ala sina".
 
-mute:
     ijo = "ijo"
+mute:
     niLaTawa(muteAla "mute ala" "mute"       \
              "li wile mute ala mute e ijo?")
     ijo = wan(ijo ijo)
@@ -115,8 +124,8 @@ sina ken sitelen e sitelen nasa (sama linja sin) kepeken sitelen '\\'. ni li ona
  - \\t - sitelen suli pi lukin ala.
  - \\v - sama \\t. taso, ona li tawa lon anpa.
  - \\b - li weka e sitelen 1.
- - \\" li ken e ni: sina sitelen e sitelen '"' lon poki nimi.
- - \\\\ li ken e ni: sina sitelen e sitelen '\\' lon poki nimi.
+ - \\" - li ken e ni: sina sitelen e sitelen '"' lon poki nimi.
+ - \\\\ - li ken e ni: sina sitelen e sitelen '\\' lon poki nimi.
 
 #### *ijo lon linja mute:*
 
@@ -126,8 +135,8 @@ sina ken sitelen e sitelen nasa (sama linja sin) kepeken sitelen '\\'. ni li ona
     abc    \
     =      \
     "sona"
-    niLaTawa(liSona abc "sona ala"                            \
-            "sina sona ala sona e jan pi pali e pan namako?")
+    niLaTawa(liSona abc "sona ala"                     \
+            "sina sona ala sona e jan pi pan namako?")
 
     tokiELinja("toki ni " " li" \
                " lon linja"     \

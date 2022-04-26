@@ -66,6 +66,16 @@ pana la sina pana e "" tawa nimi lon e "test" tawa ante la jan li toki e "test" 
 
 nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e nimi ante la nimi niLaTawa() li toki sin e nimi tawa toki e nimi lon e nimi pi lon ala e linja sin.
 
+#### **pokiPiLawaOS(\[nimiKen...\]) -> nimi lon poki nanpa anu ala**
+
+li kama jo e nimi lon poki nanpa Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
+
+lawa OS (sama Windows en Linux) li jo e poki nanpa Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
+
+nimi ken li nimi ali tawa poki nanpa wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi.
+
+poki nanpa li lon ala la li pana e ala.
+
 ### ***tawa***
 
 toki li kepeken e nimi wawa GOTO (tawa() en niLaTawa()) tawa tawa lon lipu wawa.

@@ -12,7 +12,7 @@ Everything in this language consists of or works with strings. You can create a 
 
 ilo li sina has a couple functions, and all of them accept a list of strings as arguments and return a string (except for tawa() and niLaTawa().) To call a function, write it's name and then a pair of paranthesis with any arguments inside them.
 
-Arguments to a function are delimited by spaces, but that's only neccesary if there are no other ways to separate them (for instance string literals are fine.) Though it does look better if put them anyways.
+Arguments to a function are delimited by spaces, but that's only neccesary if there are no other ways to separate them (for instance, string literals are fine.) Though it does look better if you put them anyways.
 
 ```ilo li sina
     tokiELinja("This is" " a string") # Ok. Says "This is a string."
@@ -22,7 +22,7 @@ Arguments to a function are delimited by spaces, but that's only neccesary if th
     tokiELinja(a" a string") # Ok.
     b = " a string"
     tokiELinja(a b) # Ok.
-    tokiELinja(ab) # Wrong. Not a and b but ab, which isn't declared.
+    tokiELinja(ab) # Wrong. Not a and b, but ab, which isn't declared.
 ```
 
 Function calls can also be nested to pass the result of a function as an argument to another:
@@ -65,6 +65,14 @@ You can supply an empty string as either the yes or no message, but not both, as
 For example, if you put a wildcard for the yes message and "test" for the no message, then if the user types "test", it will not jump, but if they put anything else, it will.
 
 If both the yes and no messages are not wildcards, and the user types anything other than those messages, then it will repeatedly ask until the user does.
+
+#### **pokiPiLawaOS(\[names...\]) -> stored value or nothing**
+
+Gets the value from a given enviroment variable.
+
+The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows. By supplying all 3 variants, you can ensure that it will work on both.
+
+If none of the given variables have a value, then nothing is returned.
 
 ### ***Flow Control***
 
@@ -123,7 +131,7 @@ You can write special characters (such as a newline) within string literals usin
  - \\n - Newline.
  - \\t - Tab.
  - \\v - Vertical tab.
- - \\b - Backspace
+ - \\b - Backspace.
  - \\" - Allows putting quotes into strings.
  - \\\\ - Allows putting backslashes into strings.
 

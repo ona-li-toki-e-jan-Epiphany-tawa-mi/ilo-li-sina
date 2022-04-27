@@ -79,6 +79,9 @@ void tokiEKasiSuli(const std::string& nimiPiLipuWawa, const std::string& nimiPiI
 int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 	std::string nimiPiILO_LI_SINA(nimiPilin[0]);
 
+	// kama jo e toki wile li wile lon monsi pi toki e ijo.
+	ante_toki::alasaETokiWile();
+
 	try {
 		TCLAP::CmdLine iloPiNimiPilin(ante_toki::kamaJoENimiTawaJan("ilo_CLI.sona_kepeken"), '=', "0.0");
 

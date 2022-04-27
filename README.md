@@ -35,6 +35,8 @@ nimi pi lipu ni li nimi nanpa toki (sama "en_US.lang" tawa toki Inli pi ma Mewik
 
 o pana e nimi tan ante toki ante (lipu "tok.lang" li pona pona) lon lipu ni. nimi pi ante toki li tu kepeken sitelen '='. o ante ala e nimi pi nanpa 1. ona li tawa nimi wawa. o ante e nimi pi nanpa 2 lon monsi pi sitelen '=' lon toki sina. o pali e wile PR pi wan e ante.
 
+ilo ni li kepeken e poki nanpa LANG pi lawa OS tawa kama jo e toki wile. sina ken ante e ona tawa ni: ilo li toki ala lon toki sina la ona li kama toki ona.
+
 ## **pona e nimi wawa**
 
 o pali e poki sama pi poki ni o ante e ona o pali e wile PR pi wan e ante o toki pona e tan. o sitelen e nimi wawa sina sama nimi wawa lon. sina pana e ijo sin tawa jan lawa pi toki "ilo li sina" la o sitelen ona lon lipu pi nasin kepeken (nasin_kepeken-*.md lon poki "lipu_pi_kama_sona").

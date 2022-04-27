@@ -1,5 +1,7 @@
-    # Get samrolled.
-    # tan musi MGR:RV
+#!/usr/bin/env ilo_li_sina
+
+# Get samrolled.
+# tan musi MGR:RV
     tokiELinja("Memories broken\n"                                      \
                "The truth goes unspoken\n"                              \
                "I’ve even forgotten my name\n\n"                        \

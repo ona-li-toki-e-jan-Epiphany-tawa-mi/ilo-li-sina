@@ -1,3 +1,5 @@
+#!/usr/bin/env ilo_li_sina
+
 # fizzbuzz.
     i = "0"
 Start:

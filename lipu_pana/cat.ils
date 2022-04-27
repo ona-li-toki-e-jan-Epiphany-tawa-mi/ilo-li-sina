@@ -1,3 +1,5 @@
+#!/usr/bin/env ilo_li_sina
+
 # li toki e toki sina.
 open: 
     tokiELinja(kamaJoTanJan())

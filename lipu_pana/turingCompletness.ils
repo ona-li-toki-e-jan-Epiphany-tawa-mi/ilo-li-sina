@@ -1,3 +1,5 @@
+#!/usr/bin/env ilo_li_sina
+
 # ilo li sina program to figure out whether ilo li sina is turning complete.
     niLaTawa(IsTuringComplete "yes" "no"                                  \
             "Is the programming language 'ilo li sina' turing complete?")

@@ -139,7 +139,7 @@ You can write special characters (such as a newline) within string literals usin
 
 #### *Multiline statements:*
 
-ilo li sina delimits statements usings newlines, meaning that statments start and end in a single line. However, you can place a backslash at the end of a line to carry the statment over to the next.
+ilo li sina delimits statements usings newlines, meaning that statments start and end in a single line. However, you can place a backslash at the end of a line to carry a statement over to the next.
 
 ```ilo li sina
     abc   \

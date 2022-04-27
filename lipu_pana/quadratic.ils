@@ -1,3 +1,5 @@
+#!/usr/bin/env ilo_li_sina
+
 # Quadratic solver.
     tokiELinja("Quadratic solver v5.54765895")
     tokiELinja()

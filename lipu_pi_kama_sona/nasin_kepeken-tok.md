@@ -1,3 +1,5 @@
+lukin kepeken toki ante: [English](nasin_kepeken-en_US.md "View in English")
+
 # **nasin kepeken pi toki "ilo li sina"**
 
 "ilo li sina" li toki pi lawa e ilo nanpa li lili li tawa taso kama jo en toki e nimi. taso, kepeken ni taso la sina ken pali e ijo mute.

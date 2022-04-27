@@ -1,3 +1,5 @@
+View in a different language: [toki pona](nasin_kepeken-tok.md "lukin kepeken toki pona")
+
 # **Documentation for ilo li sina**
 
 ilo li sina is a small, string-only esoteric programming language. But you can still build interesting and useful things with it.

@@ -2,10 +2,24 @@
 #include "kipisi_pi_lipu_wawa/kipisi.hpp"
 #include "lawa_pi_ilo_nanpa/lawa.hpp"
 #include "ante_toki/ante_toki.hpp"
+#include "pali_pi_lipu_wawa_tan_kulupu_nimi/nimi_wawa.hpp"
 #include <tclap/CmdLine.h>
 
 // TODO ken la o pana e poki nanpa lon poki pi poki ali lon open pi lipu wawa pi toki "ilo li sina".
 // TODO o pini ante toki e sona kepeken pi lipu ni.
+
+// TODO o pali e lipu pi pana ike.
+
+// TODO alaLaTawa(nimiTawa nimi [nimi...]) -> ala
+// 	nimi ali pana li jo e ala la li tawa.
+// TODO tokiEIke([nimi...]) -> ala
+// 	li toki e nimi lon lupa Stderr.
+// TODO tokiEIkeELinja([nimi...]) -> ala
+// 	sama tokiEIke(). taso, ona li toki e linja sin.
+// TODO pini(nanpaIke [nimi...]) -> ala
+// 	li pini e lipu wawa li toki e nimi li pana e nanpa ike tawa lawa OS.
+// TODO awen([nanpa...]) -> ala
+// 	li awen lon tenpo pi nanpa pana.
 
 /**
  * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
@@ -39,8 +53,18 @@ std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> paliELipuWawaLKP(const std::s
  * @param nimiPiLipuWawa nimi pi lipu wawa tawa lawa.
  */
 void lawaEIloNanpa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA) {
+	std::unordered_map<std::string, std::string> pokiNanpaOpen;
+
+	// nimi ni li lon open pi lipu wawa ali.
+	pokiNanpaOpen["__nanpa_Ilo_Li_Sina"] = "0.0";
+	pokiNanpaOpen["__nimi_Ilo_Li_Sina"] = nimiPiILO_LI_SINA;
+	pokiNanpaOpen["__nimi_lipu"] = nimiPiLipuWawa;
+	pali::string_lqueue pokiOSPiNimiJan(std::list<std::string>({"USER", "USERNAME", "LOGNAME"})); 
+	pokiNanpaOpen["__nimi_jan"] = *pali::kamaJoEPokiNanpaPiLawaOS(nimiPiILO_LI_SINA, pokiOSPiNimiJan);
+
 	int nanpaIke = lawa::lawaEIloNanpa(
 		paliELipuWawaLKP(nimiPiLipuWawa, nimiPiILO_LI_SINA), 
+		pokiNanpaOpen,
 		nimiPiLipuWawa, nimiPiILO_LI_SINA);
 
 	exit(nanpaIke);

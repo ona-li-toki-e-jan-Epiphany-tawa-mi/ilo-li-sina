@@ -173,3 +173,15 @@ pini:
 nimi wawa kamaJoTanJan() en niLaTawa() li kama jo e sitelen EOF la li pini e lipu wawa. 
 
 ni li tan ni: ali pi toki ni li kama jo e nimi li toki e nimi. nimi li lon ala tawa kama la "ilo li sina" li ken pali e ala. taso, ona li ken e ni: kama jo e nimi tan lipu. pana la sina ken pana e nimi wile lon lipu "temp.txt" li sitelen e "temp.txt | ilo_li_sina \<nimi pi lipu wawa\>". lipu wawa li kama jo e nimi ali tan "temp.txt" la li pini li awen ala lon tenpo ali.
+
+#### *poki nanpa lon open pi lipu wawa ali:*
+
+poki nanpa lili li jo e nimi lon open pi lipu wawa ali "ilo li sina".
+
+**__nanpa_Ilo_Li_Sina** - nanpa pali pi ilo tawa lawa kepeken "ilo li sina".
+
+**__nimi_Ilo_Li_Sina** - nasin tawa ilo tawa lawa tan poki lipu pi tenpo ni.
+
+**__nimi_lipu** - nasin tawa lipu wawa tan poki lipu pi tenpo ni.
+
+**__nimi_jan** - li jo e nimi jan e nimi tan pokiPiLawaOS("USER" "USERNAME" "LOGNAME"). li ken ala alasa e nimi jan la li jo e ala.

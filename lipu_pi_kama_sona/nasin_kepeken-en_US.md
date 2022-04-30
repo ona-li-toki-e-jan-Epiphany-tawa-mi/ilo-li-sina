@@ -171,3 +171,15 @@ End:
 kamaJoTanJan() and niLaTawa() force exit the program when they encounter an EOF character.
 
 This is mainly due to the fact that the language is all IO. If there is nothing to read, there is nothing to do. Though, this does allow reading from files. For example, if you make and fill a file called "temp.txt" and run "temp.txt | ilo_li_sina \<program name\>", that ilo li sina program will pull input from that file until it hits the end, rather then forming an infinite loop.
+
+#### *Preinitialized variables:*
+
+There are a couple variables that come preinitialized and can be used in any ilo li sina program.
+
+**__nanpa_Ilo_Li_Sina** - version number of the interpreter.
+
+**__nimi_Ilo_Li_Sina** - name and path used to call the interpreter.
+
+**__nimi_lipu** - name and path used to call the current program.
+
+**__nimi_jan** - name of the user, acquired using pokiPiLawaOS("USER" "USERNAME" "LOGNAME"). If the user's name is not found then an empty string will be supplied.

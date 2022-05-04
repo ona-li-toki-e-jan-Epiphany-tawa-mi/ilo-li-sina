@@ -74,7 +74,7 @@ li kama jo e nimi lon poki nanpa Enviroment Variables pi lawa OS pi nimi ken pi 
 
 lawa OS (sama Windows en Linux) li jo e poki nanpa Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
 
-nimi ken li nimi ali tawa poki nanpa wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi.
+nimi ken li nimi ali tawa poki nanpa wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
 
 poki nanpa li lon ala la li pana e ala.
 

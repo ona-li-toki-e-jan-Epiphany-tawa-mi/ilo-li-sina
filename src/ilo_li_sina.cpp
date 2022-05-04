@@ -5,7 +5,6 @@
 #include "pali_pi_lipu_wawa_tan_kulupu_nimi/nimi_wawa.hpp"
 #include <tclap/CmdLine.h>
 
-// TODO ken la o pana e poki nanpa lon poki pi poki ali lon open pi lipu wawa pi toki "ilo li sina".
 // TODO o pini ante toki e sona kepeken pi lipu ni.
 
 // TODO o pali e lipu pi pana ike.

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <memory>
+#include <optional>
+#include <tuple>
 #include "nimi_wawa.hpp"
 #include "../ijo_kepeken/ike.hpp"
 
@@ -18,7 +20,6 @@ namespace pali {
 			NIMI_WAWA,
 			NIMI_TAWA,
 			TAWA,
-			TAWA_KEN,
 			ALA
 	};
 
@@ -28,6 +29,7 @@ namespace pali {
 	 * @param nimiKasi nimi kasi.
 	 * 
 	 * @return nimi pi nimi kasi.
+	 * 
 	 * @throws std::out_of_range nimi kasi li jo ala e nimi pi nimi kasi.
 	 */
 	const std::string& kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false);
@@ -40,7 +42,7 @@ namespace pali {
 	class KasiPiKasiSuli {
 		public:
 			/**
-			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaLinja 		   kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
 			KasiPiKasiSuli(const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
@@ -72,9 +74,9 @@ namespace pali {
 	class KasiPiPanaLonPoki : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @param nimiPoki ijo li pana lon poki pi nimi ni.
-			 * @param ijoTawaPana kasi ni li kama jo e ijo tawa poki.
-			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nimiPoki 			   ijo li pana lon poki pi nimi ni.
+			 * @param ijoTawaPana 		   kasi ni li kama jo e ijo tawa poki.
+			 * @param nanpaLinja 		   kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
 			KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
@@ -86,7 +88,13 @@ namespace pali {
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 			
+			/**
+			 * @return nimi pi poki nanpa pi kasi ni.
+			 */
 			const std::string& kamaJoENimiPoki() const;
+			/**
+			 * @return kasi tawa kama jo e ijo tawa poki.
+			 */
 			std::shared_ptr<const KasiPiKasiSuli> kamaJoEIjoTawaPana() const;
 
 		protected:
@@ -100,8 +108,8 @@ namespace pali {
 	class KasiPiKamaJoTanPoki : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @param nimiPoki ijo li kama tan poki pi nimi ni.
-			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nimiPoki 			   ijo li kama tan poki pi nimi ni.
+			 * @param nanpaLinja 		   kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
 			KasiPiKamaJoTanPoki(const std::string& nimiPoki, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
@@ -113,6 +121,9 @@ namespace pali {
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
+			/**
+			 * @return nimi pi poki nanpa pi kasi ni.
+			 */
 			const std::string& kamaJoENimiPoki() const;
 
 		protected:
@@ -125,8 +136,8 @@ namespace pali {
 	class KasiPiKamaJoTanPokiPiAnteAla : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @param ijoTawaKama lipu lawa li kepeken e kasi ni la ijo ni li pana tawa ona.
-			 * @param nanpaLinja kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param ijoTawaKama 		   lipu lawa li kepeken e kasi ni la ijo ni li pana tawa ona.
+			 * @param nanpaLinja 		   kasi li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
 			KasiPiKamaJoTanPokiPiAnteAla(const std::string& ijoTawaKama, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
@@ -138,6 +149,9 @@ namespace pali {
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
+			/** 
+			 * @return nimi lon kasi ni.
+			 */
 			const std::string& kamaJoEIjoPoki() const;
 
 		protected:
@@ -150,10 +164,10 @@ namespace pali {
 	class KasiPiNimiWawa : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @param nimiWawa ijo pana tawa nimi wawa tawa pali.
+			 * @param nimiWawa 				  ijo pana tawa nimi wawa tawa pali.
 			 * @param kulupuPiIjoTawaNimiWawa kasi pi kulupu ni li kama jo e ijo tawa kepeken pi nimi wawa.
-			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
-			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
+			 * @param nanpaLinja 			  kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaSitelenLonLinja 	  kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
 			KasiPiNimiWawa(nimi_wawa nimiWawa, const std::list<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
 
@@ -164,7 +178,13 @@ namespace pali {
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
+			/**
+			 * @return nimi wawa poki lon kasi ni.
+			 */
 			nimi_wawa kamaJoENimiWawa() const;
+			/**
+			 * @return poki pi ijo pi kama jo e nimi tawa nimi wawa.
+			 */
 			const std::list<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoTawaNimiWawa() const;
 
 		protected:
@@ -178,8 +198,8 @@ namespace pali {
 	class KasiPiNimiTawa : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @param nimiPiNimiTawa nimi pi nimi tawa. nimi wawa tawa li kepeken e nimi ni tawa tawa.
-			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nimiPiNimiTawa 	   nimi pi nimi tawa. nimi wawa tawa li kepeken e nimi ni tawa tawa.
+			 * @param nanpaLinja 		   kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
 			KasiPiNimiTawa(const std::string& nimiPiNimiTawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
@@ -191,6 +211,9 @@ namespace pali {
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
+			/**
+			 * @return nimi pi nimi tawa ni lon lipu.
+			 */
 			const std::string& kamaJoENimiPiNimiTawa() const;
 
 		protected:
@@ -203,9 +226,9 @@ namespace pali {
 	class KasiTawa : public KasiPiKasiSuli {
 		public:
 			/**
-			 * @attention sina li wile pana e nanpa lon this->linjaTawaTawa.
+			 * @attention sina wile pana e nanpa lon this->linjaTawaTawa.
 			 * 
-			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
+			 * @param nanpaLinja 		   kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
 			KasiTawa(const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
@@ -218,9 +241,30 @@ namespace pali {
 			virtual NimiKasi kamaJoENimiKasi() const override;
 
 			/**
+			 * @return ijo tawa kama jo e nimi tawa kasi ni.
+			 */
+			const std::list<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEIjoTawaTawa() const;
+			/**
+			 * @brief li pali e ijo kasi tawa li pilin e ni: li wile tawa ala tawa.
+			 * 		tenpo ali la kasi kiwen KasiTawa li pana e nimi True.
+			 * 
+			 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
+			 * @param nimiLipu 			nimi pi lipu wawa pi tenpo ni.
+			 * @param nimiTawaTawa 		nimi tawa kasi tawa tan ijo tawa tawa. li sama ijo tawa nimi wawa.
+			 * 
+			 * @retval true 		li ken tawa.
+			 * @retval false 		li ken ala tawa.
+			 * @retval std::nullopt ike li kama.
+			 */
+			virtual std::optional<bool> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const;
+
+			/**
 			 * kasi li tawa linja ni.
 			 */
 			size_t linjaTawaTawa;
+
+		protected:
+			std::list<std::shared_ptr<KasiPiKasiSuli>> ijoTawaTawa;
 	};
 
 	/**
@@ -235,28 +279,31 @@ namespace pali {
 			/**
 			 * @brief sina li wile pana e nanpa lon linjaTawaTawa. kasi li tawa linja ni.
 			 *
-			 * @param kasiLon kasi tawa kama jo e nimi lon.
-			 * @param kasiPiLonAla kasi tawa kama jo e nimi pi lon ala.
-			 * @param kulupuPiIjoTawaToki kulupu kasi ni li kama jo e ijo tawa toki tawa jan.
+			 * @param ijoTawa kulupu kasi ni li kama jo e nimi lon e nimi pi lon ala e ijo tawa toki tawa jan.
 			 * @param nanpaLinja kasi ni li kama tan nimi lon linja pi nanpa ni. li tawa toki e ike.
 			 * @param nanpaSitelenLonLinja kasi ni li kama tan nimi tan sitelen pi nanpa ni lon linja. li tawa toki e ike.
 			 */
-			KasiPiTawaKen(const std::shared_ptr<KasiPiKasiSuli>& kasiLon, const std::shared_ptr<KasiPiKasiSuli>& kasiPiLonAla, const std::list<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaToki, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
+			KasiPiTawaKen(const std::list<std::shared_ptr<KasiPiKasiSuli>>& ijoTawaTawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja);
 
 			KasiPiTawaKen(const KasiPiTawaKen& ante) = delete;
 			virtual KasiPiTawaKen* paliSama() const noexcept override;
 
 			virtual ~KasiPiTawaKen() override;
 
-			virtual NimiKasi kamaJoENimiKasi() const override;
-
-			std::shared_ptr<const KasiPiKasiSuli> kamaJoEKasiLon() const;
-			std::shared_ptr<const KasiPiKasiSuli> kamaJoEKasiPiLonAla() const;
-			const std::list<std::shared_ptr<KasiPiKasiSuli>>& kamaJoEKulupuPiIjoToki() const;
-
-		protected:
-			std::shared_ptr<KasiPiKasiSuli> kasiLon;
-			std::shared_ptr<KasiPiKasiSuli> kasiPiLonAla;
-			std::list<std::shared_ptr<KasiPiKasiSuli>> kulupuPiIjoTawaToki;
+			/**
+			 * @brief li toki e nimi tawa toki tawa jan. jan li toki e nimi lon li ken tawa. 
+			 * 		jan li toki e nimi ala la li ken ala.
+			 * 
+			 * @param nimiPiILO_LI_SINA  nimi tawa ilo IloLiSina tan jan.
+			 * @param nimiLipu 			 nimi pi lipu wawa pi tenpo ni.
+			 * @param nimiTawaTawa[0] 	 nimi lon		 - nimi tawa tawa. 			li wile.
+			 * @param nimiTawaTawa[1] 	 nimi pi lon ala - nimi tawa tawa ala. 		li wile.
+			 * @param nimiTawaTawa[2...] ijo tawa toki	 - nimi tawa toki tawa jan. li wile ala.
+			 * 
+			 * @retval true 		jan li toki e nimi lon.
+			 * @retval false 		jan li toki e nimi pi lon ala.
+			 * @retval std::nullopt ike li kama.
+			 */
+			virtual std::optional<bool> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
 	};
 }

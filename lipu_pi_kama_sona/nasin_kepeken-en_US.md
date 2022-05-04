@@ -72,7 +72,7 @@ If both the yes and no messages are not wildcards, and the user types anything o
 
 Gets the value from a given enviroment variable.
 
-The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows. By supplying all 3 variants, you can ensure that it will work on both.
+The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows (only for example, you should use the variable __nimi_jan instead.) By supplying all 3 variants, you can ensure that it will work on both.
 
 If none of the given variables have a value, then nothing is returned.
 

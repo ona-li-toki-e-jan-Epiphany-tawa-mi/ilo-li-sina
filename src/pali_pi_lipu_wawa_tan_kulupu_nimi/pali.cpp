@@ -82,15 +82,9 @@ namespace pali {
 
 		const std::string nimiPiKasiTawaTawa = static_cast<KasiPiKamaJoTanPoki*>(pokiPiIjoTawaNimiWawa.front().get())->kamaJoENimiPoki();
 		pokiPiIjoTawaNimiWawa.pop_front();
-		const std::shared_ptr<KasiPiKasiSuli> kasiLon = pokiPiIjoTawaNimiWawa.front();
-		pokiPiIjoTawaNimiWawa.pop_front();
-		const std::shared_ptr<KasiPiKasiSuli> kasiPiLonAla = pokiPiIjoTawaNimiWawa.front();
-		pokiPiIjoTawaNimiWawa.pop_front();
 		const auto [linja, sitelen] = kulupuNimiPiNimiWawa->kamaJoELon();
 
 		std::shared_ptr<KasiPiTawaKen> kasiPiPaliKen = std::make_shared<KasiPiTawaKen>(
-			kasiLon, 
-			kasiPiLonAla, 
 			pokiPiIjoTawaNimiWawa, 
 			linja, sitelen);
 		sonaTawaPali.nimiWawaTawaTawa.emplace_back(nimiPiKasiTawaTawa, kasiPiPaliKen.get());
@@ -490,7 +484,7 @@ namespace pali {
 				break;
 			}
 
-			case NimiKasi::TAWA_KEN: {
+			/*TODO case NimiKasi::TAWA_KEN: {
 				const auto kasiPiTawaKen = static_cast<const KasiPiTawaKen*>(kasi);
 				std::cout << kamaJoENimiPiNimiKasi(kasiPiTawaKen->kamaJoENimiKasi()) << "=" << kasiPiTawaKen->linjaTawaTawa << ":\n";
 
@@ -509,7 +503,7 @@ namespace pali {
 				}
 
 				break;
-			}
+			}*/
 
 			default:
 				std::cout << kamaJoENimiPiNimiKasi(kasi->kamaJoENimiKasi()) << '\n';

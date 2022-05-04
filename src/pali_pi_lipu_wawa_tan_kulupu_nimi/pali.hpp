@@ -1,7 +1,6 @@
 #pragma once
 
 #include <tuple>
-#include <optional>
 #include "../kipisi_pi_lipu_wawa/kulupu_nimi.hpp"
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 

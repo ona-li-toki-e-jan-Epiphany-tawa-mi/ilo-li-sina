@@ -3,38 +3,18 @@
 #include "../ante_toki/ante_toki.hpp"
 
 namespace pali {
-	const std::string& kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false) {
-		switch (nimiKasi) {
-			case NimiKasi::PANA_LON_POKI:
-				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.pana_lon_poki");
-			case NimiKasi::KAMA_JO_TAN_POKI:
-				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.kama_jo_tan_poki");
-			case NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA:
-				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala");
-			case NimiKasi::NIMI_WAWA:
-				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.nimi_wawa");
-			case NimiKasi::NIMI_TAWA:
-				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.nimi_tawa");
-			case NimiKasi::TAWA:
-				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa");
-			//TODO case NimiKasi::TAWA_KEN:
-				//return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa_ken.nimi");
-			case NimiKasi::ALA:
-				return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.ala");
-
-			default:
-				throw std::out_of_range("li kama jo e nimi kasi pi sona ala pi nanpa " + static_cast<int>(nimiKasi));
-		}
-	}
-
-
-
 	KasiPiKasiSuli::KasiPiKasiSuli(const size_t nanpaLinja, const size_t nanpaSitelenLonLinja) {
 		this->lonKasiLonLipuWawa = {nanpaLinja, nanpaSitelenLonLinja};
 	}
 
 	NimiKasi KasiPiKasiSuli::kamaJoENimiKasi() const {
+		// TODO ken la ni li kama la o toki e ike.
 		return NimiKasi::ALA;
+	}
+
+	const std::string& KasiPiKasiSuli::kamaJoENimiPiNimiKasi() const {
+		// TODO ken la ni li kama la o toki e ike.
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.ala");
 	}
 
 	KasiPiKasiSuli::~KasiPiKasiSuli() {}
@@ -64,6 +44,10 @@ namespace pali {
 		return NimiKasi::PANA_LON_POKI;
 	}
 
+	const std::string& KasiPiPanaLonPoki::kamaJoENimiPiNimiKasi() const {
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.pana_lon_poki");
+	}
+
 	const std::string& KasiPiPanaLonPoki::kamaJoENimiPoki() const {
 		return this->nimiPoki;
 	}
@@ -91,6 +75,10 @@ namespace pali {
 		return NimiKasi::KAMA_JO_TAN_POKI;
 	}
 
+	const std::string& KasiPiKamaJoTanPoki::kamaJoENimiPiNimiKasi() const {
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.kama_jo_tan_poki");
+	}
+
 	const std::string& KasiPiKamaJoTanPoki::kamaJoENimiPoki() const {
 		return nimiPoki;
 	}
@@ -112,6 +100,10 @@ namespace pali {
 
 	NimiKasi KasiPiKamaJoTanPokiPiAnteAla::kamaJoENimiKasi() const {
 		return NimiKasi::KAMA_JO_TAN_POKI_PI_ANTE_ALA;
+	}
+
+	const std::string& KasiPiKamaJoTanPokiPiAnteAla::kamaJoENimiPiNimiKasi() const {
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala");
 	}
 
 	const std::string& KasiPiKamaJoTanPokiPiAnteAla::kamaJoEIjoPoki() const {
@@ -144,6 +136,10 @@ namespace pali {
 		return NimiKasi::NIMI_WAWA;
 	}
 
+	const std::string& KasiPiNimiWawa::kamaJoENimiPiNimiKasi() const {
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.nimi_wawa");
+	}
+
 	nimi_wawa KasiPiNimiWawa::kamaJoENimiWawa() const {
 		return this->nimiWawa;
 	}
@@ -171,6 +167,10 @@ namespace pali {
 		return NimiKasi::NIMI_TAWA;
 	}
 
+	const std::string& KasiPiNimiTawa::kamaJoENimiPiNimiKasi() const {
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.nimi_tawa");
+	}
+
 	const std::string& KasiPiNimiTawa::kamaJoENimiPiNimiTawa() const {
 		return this->nimiPiNimiTawa;
 	}
@@ -194,6 +194,10 @@ namespace pali {
 
 	NimiKasi KasiTawa::kamaJoENimiKasi() const {
 		return NimiKasi::TAWA;
+	}
+
+	const std::string& KasiTawa::kamaJoENimiPiNimiKasi() const {
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa");
 	}
 
 	const std::list<std::shared_ptr<KasiPiKasiSuli>>& KasiTawa::kamaJoEIjoTawaTawa() const {
@@ -223,6 +227,10 @@ namespace pali {
 	}
 
 	KasiPiTawaKen::~KasiPiTawaKen() {}
+
+	const std::string& KasiPiTawaKen::kamaJoENimiPiNimiKasi() const {
+		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa_ken");
+	}
 
 	std::optional<bool> KasiPiTawaKen::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
 		// li wile e nimi lon e nimi pi lon ala.

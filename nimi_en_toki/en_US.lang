@@ -13,10 +13,7 @@ toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=CONSTANT_ACCESSOR
 toki.nimi_kasi.nimi_wawa=FUNCTION
 toki.nimi_kasi.nimi_tawa=LABEL
 toki.nimi_kasi.tawa=GOTO
-toki.nimi_kasi.tawa_ken.nimi=CONDITIONAL_GOTO
-toki.nimi_kasi.tawa_ken.nimi_lon=YES_MESSAGE
-toki.nimi_kasi.tawa_ken.nimi_pi_lon_ala=NO_MESSAGE
-toki.nimi_kasi.tawa_ken.ijo_tawa_toki=MESSAGES
+toki.nimi_kasi.tawa_ken=CONDITIONAL_GOTO
 toki.nimi_kasi.ala=NOOP
 
 toki.kulupu_nimi.poki_nanpa=VARIABLE_NAME

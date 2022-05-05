@@ -116,7 +116,7 @@ namespace lawa {
 				break;
 
 			default:
-				throw std::out_of_range("lawa la li kama jo e kasi pi kasi suli pi sona ala pi nimi " + pali::kamaJoENimiPiNimiKasi(kasi->kamaJoENimiKasi()));
+				throw std::out_of_range("lawa la li kama jo e kasi pi kasi suli pi sona ala pi nimi " + kasi->kamaJoENimiPiNimiKasi());
 		}
 
 		return "";

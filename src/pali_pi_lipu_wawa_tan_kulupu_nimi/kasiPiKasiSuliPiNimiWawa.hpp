@@ -23,18 +23,6 @@ namespace pali {
 			ALA
 	};
 
-	/**
-	 * @brief li kama jo e nimi pi nimi kasi tawa toki tawa jan.
-	 * 
-	 * @param nimiKasi nimi kasi.
-	 * 
-	 * @return nimi pi nimi kasi.
-	 * 
-	 * @throws std::out_of_range nimi kasi li jo ala e nimi pi nimi kasi.
-	 */
-	const std::string& kamaJoENimiPiNimiKasi(NimiKasi nimiKasi) noexcept(false);
-
-
 
 	/**
 	 * li mama pi kasi ali.
@@ -58,7 +46,10 @@ namespace pali {
 			 * @return nimi kasi pi kasi ni.
 			 */
 			virtual NimiKasi kamaJoENimiKasi() const;
-
+			/**
+			 * @return nimi pi nimi kasi tawa toki tawa jan.
+			 */
+			virtual const std::string& kamaJoENimiPiNimiKasi() const;
 			/**
 			 * @return lon pi kasi ni lon lipu wawa.
 			 */
@@ -87,6 +78,7 @@ namespace pali {
 			virtual ~KasiPiPanaLonPoki() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
+			virtual const std::string& kamaJoENimiPiNimiKasi() const override;
 			
 			/**
 			 * @return nimi pi poki nanpa pi kasi ni.
@@ -120,6 +112,7 @@ namespace pali {
 			virtual ~KasiPiKamaJoTanPoki() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
+			virtual const std::string& kamaJoENimiPiNimiKasi() const override;
 
 			/**
 			 * @return nimi pi poki nanpa pi kasi ni.
@@ -148,6 +141,7 @@ namespace pali {
 			virtual ~KasiPiKamaJoTanPokiPiAnteAla() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
+			virtual const std::string& kamaJoENimiPiNimiKasi() const override;
 
 			/** 
 			 * @return nimi lon kasi ni.
@@ -177,6 +171,7 @@ namespace pali {
 			virtual ~KasiPiNimiWawa() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
+			virtual const std::string& kamaJoENimiPiNimiKasi() const override;
 
 			/**
 			 * @return nimi wawa poki lon kasi ni.
@@ -210,6 +205,7 @@ namespace pali {
 			virtual ~KasiPiNimiTawa() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
+			virtual const std::string& kamaJoENimiPiNimiKasi() const override;
 
 			/**
 			 * @return nimi pi nimi tawa ni lon lipu.
@@ -239,6 +235,7 @@ namespace pali {
 			virtual ~KasiTawa() override;
 
 			virtual NimiKasi kamaJoENimiKasi() const override;
+			virtual const std::string& kamaJoENimiPiNimiKasi() const override;
 
 			/**
 			 * @return ijo tawa kama jo e nimi tawa kasi ni.
@@ -289,6 +286,8 @@ namespace pali {
 			virtual KasiPiTawaKen* paliSama() const noexcept override;
 
 			virtual ~KasiPiTawaKen() override;
+
+			virtual const std::string& kamaJoENimiPiNimiKasi() const override;
 
 			/**
 			 * @brief li toki e nimi tawa toki tawa jan. jan li toki e nimi lon li ken tawa. 

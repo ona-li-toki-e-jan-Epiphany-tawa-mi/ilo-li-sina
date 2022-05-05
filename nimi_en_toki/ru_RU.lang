@@ -13,10 +13,7 @@ toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=ПОЛУЧЕНИЕ_ИЗ_КОНСТА
 toki.nimi_kasi.nimi_wawa=ФУНКЦИЯ
 toki.nimi_kasi.nimi_tawa=МЕТКА
 toki.nimi_kasi.tawa=GOTO
-toki.nimi_kasi.tawa_ken.nimi=УСЛОВНЫЙ_GOTO
-toki.nimi_kasi.tawa_ken.nimi_lon=СООБЩЕНИЕ_ДА
-toki.nimi_kasi.tawa_ken.nimi_pi_lon_ala=СООБЩЕНИЕ_НЕТ
-toki.nimi_kasi.tawa_ken.ijo_tawa_toki=СООБЩЕНИЯ
+toki.nimi_kasi.tawa_ken=УСЛОВНЫЙ_GOTO
 toki.nimi_kasi.ala=NOOP
 
 toki.kulupu_nimi.poki_nanpa=ПЕРЕМЕННАЯ

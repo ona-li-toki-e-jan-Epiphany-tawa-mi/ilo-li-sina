@@ -3,7 +3,7 @@
 # fizzbuzz.
     i = "0"
 Start:
-    output = ""
+    output = _
     niLaTawa(NotModulo3 "no" "yes" "Is " i " divisible by 3?")
     output = "fizz"
 NotModulo3:

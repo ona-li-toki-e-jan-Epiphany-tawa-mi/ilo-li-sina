@@ -57,10 +57,11 @@ void lawaEIloNanpa(const std::string& nimiPiLipuWawa, const std::string& nimiPiI
 
 	// nimi ni li lon open pi lipu wawa ali.
 	pokiNanpaOpen["__nanpa_Ilo_Li_Sina"] = "0.0";
-	pokiNanpaOpen["__nimi_Ilo_Li_Sina"] = nimiPiILO_LI_SINA;
-	pokiNanpaOpen["__nimi_lipu"] = nimiPiLipuWawa;
+	pokiNanpaOpen["__nimi_Ilo_Li_Sina"]  = nimiPiILO_LI_SINA;
+	pokiNanpaOpen["__nimi_lipu"] 		 = nimiPiLipuWawa;
 	pali::string_lqueue pokiOSPiNimiJan(std::list<std::string>({"USER", "USERNAME", "LOGNAME"})); 
-	pokiNanpaOpen["__nimi_jan"] = *pali::kamaJoEPokiNanpaPiLawaOS(nimiPiILO_LI_SINA, pokiOSPiNimiJan);
+	pokiNanpaOpen["__nimi_jan"] 		 = *pali::kamaJoEPokiNanpaPiLawaOS(nimiPiILO_LI_SINA, pokiOSPiNimiJan);
+	pokiNanpaOpen["_"] 					 = "";
 
 	int nanpaIke = lawa::lawaEIloNanpa(
 		paliELipuWawaLKP(nimiPiLipuWawa, nimiPiILO_LI_SINA), 

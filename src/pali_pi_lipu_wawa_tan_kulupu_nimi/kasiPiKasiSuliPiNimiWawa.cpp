@@ -201,6 +201,10 @@ namespace pali {
 		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa");
 	}
 
+	std::string KasiTawa::kamaJoENimiPiKasiTawa() const {
+		return "tawa";
+	}
+
 	const std::list<std::shared_ptr<KasiPiKasiSuli>>& KasiTawa::kamaJoEIjoTawaTawa() const {
 		return this->ijoTawaTawa;
 	}
@@ -230,18 +234,18 @@ namespace pali {
 
 	KasiPiTawaKen::~KasiPiTawaKen() {}
 
-	const std::string& KasiPiTawaKen::kamaJoENimiPiNimiKasi() const {
-		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.tawa_ken");
+	std::string KasiPiTawaKen::kamaJoENimiPiKasiTawa() const {
+		return "niLaTawa";
 	}
 
 	std::optional<bool> KasiPiTawaKen::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
-		assert(nimiTawaTawa.size() >= 3 && "kasi pi tawa ken li wile e ijo pi 2 anu nanpa suli tawa 2 tawa tawa");
+		assert(nimiTawaTawa.size() >= 3 && "kasi pi tawa ken li wile e nimi pi 2 anu nanpa suli tawa 2 tawa tawa");
 		
 		auto alasaNimi = nimiTawaTawa.cbegin();
 		const std::string& nimiLon 		= *(alasaNimi++);
 		const std::string& nimiPiLonAla = *(alasaNimi++);
 		// nimi lon en nimi pi lon ala li ken ala sama. 1 li ken jo e ala. taso, ona tu li ken ala jo e ala lon tenpo sama.
-		if ((nimiLon.size() == 0 && nimiPiLonAla.size() == 0) || nimiLon == nimiPiLonAla) {
+		if ((nimiLon.empty() && nimiPiLonAla.empty()) || nimiLon == nimiPiLonAla) {
 			kepeken::tokiEIke(
 				nimiPiILO_LI_SINA, nimiLipu,
 				this->lonKasiLonLipuWawa,
@@ -273,10 +277,10 @@ namespace pali {
 				break;
 			}
 
-			if (nimiLon.size() == 0 && nimiTanJan != nimiPiLonAla) {
+			if (nimiLon.empty() && nimiTanJan != nimiPiLonAla) {
 				return true;
 
-			} else if (nimiPiLonAla.size() == 0 && nimiTanJan != nimiLon) {
+			} else if (nimiPiLonAla.empty() && nimiTanJan != nimiLon) {
 				return false;
 
 			} else if (nimiTanJan == nimiLon) {
@@ -287,5 +291,40 @@ namespace pali {
 		}
 
 		return std::nullopt;
+	}
+
+
+
+	KasiPiAlaLaTawa::KasiPiAlaLaTawa(const std::list<std::shared_ptr<KasiPiKasiSuli>>& ijoTawaTawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja) 
+			: KasiTawa(nanpaLinja, nanpaSitelenLonLinja) {
+		assert(!ijoTawaTawa.empty() && "kasi pi 'ala la tawa' li wile e ijo pi 1 anu nanpa suli tawa 1 tawa tawa");
+		this->ijoTawaTawa = ijoTawaTawa;
+	}
+
+	KasiPiAlaLaTawa* KasiPiAlaLaTawa::paliSama() const noexcept {
+		std::list<std::shared_ptr<KasiPiKasiSuli>> ijoSin;
+
+		for (auto alasaIjo = this->ijoTawaTawa.cbegin(); alasaIjo != this->ijoTawaTawa.cend(); alasaIjo++)
+			ijoSin.push_back(std::shared_ptr<KasiPiKasiSuli>((*alasaIjo)->paliSama()));
+
+		return new KasiPiAlaLaTawa(
+			ijoSin,
+			this->lonKasiLonLipuWawa.nanpaLinja, this->lonKasiLonLipuWawa.nanpaSitelenLonLinja);
+	}
+
+	KasiPiAlaLaTawa::~KasiPiAlaLaTawa() {}
+
+	std::string KasiPiAlaLaTawa::kamaJoENimiPiKasiTawa() const {
+		return "alaLaTawa";
+	}
+
+	std::optional<bool> KasiPiAlaLaTawa::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
+		assert(!nimiTawaTawa.empty() && "kasi pi 'ala la tawa' li wile e nimi pi 1 anu nanpa suli tawa 1 tawa tawa");
+		
+		for (const std::string& nimi : nimiTawaTawa)
+			if (!nimi.empty())
+				return false;
+
+		return true;
 	}
 }

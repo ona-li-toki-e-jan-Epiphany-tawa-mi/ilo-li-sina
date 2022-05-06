@@ -13,7 +13,6 @@ toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=ПОЛУЧЕНИЕ_ИЗ_КОНСТА
 toki.nimi_kasi.nimi_wawa=ФУНКЦИЯ
 toki.nimi_kasi.nimi_tawa=МЕТКА
 toki.nimi_kasi.tawa=GOTO
-toki.nimi_kasi.tawa_ken=УСЛОВНЫЙ_GOTO
 toki.nimi_kasi.ala=NOOP
 
 toki.kulupu_nimi.poki_nanpa=ПЕРЕМЕННАЯ
@@ -26,10 +25,11 @@ toki.kulupu_nimi.nimi_tawa_tawa=МЕТКА
 toki.kulupu_nimi.ala=НЕОПРЕДЕЛЕННОЕ
 
 
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'niLaTawa'\n\tОжидалось: niLaTawa(метка сообщениеДа сообщениеНет [сообщения...])
-ike.pali.nimi_wawa.tawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'tawa'\n\tОжидалось: tawa(метка)
 ike.pali.nimi_wawa.tawa.sitelen_ike=Неправильное имя метки\n\tОжидалось имя похоже на [a-zA-Z0-9_]
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Переход на неопределенную метку '%s'
+ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=Неверное число аргументов для функции 'tawa'\n\tОжидалось: tawa(метка)
+ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'niLaTawa'\n\tОжидалось: niLaTawa(метка сообщениеДа сообщениеНет [сообщения...])
+ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'alaLaTawa'\n\tОжидалось: alaLaTawa(метка строка [строки...])
 ike.pali.nimi_wawa.li_jo_ala_e_pini=Несовершенный вызов функции\n\tОжидалось ')' 
 ike.pali.nimi_wawa.nimi_pi_sona_ala=Неопределенная функция '%s'
 

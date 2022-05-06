@@ -13,7 +13,6 @@ toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=CONSTANT_ACCESSOR
 toki.nimi_kasi.nimi_wawa=FUNCTION
 toki.nimi_kasi.nimi_tawa=LABEL
 toki.nimi_kasi.tawa=GOTO
-toki.nimi_kasi.tawa_ken=CONDITIONAL_GOTO
 toki.nimi_kasi.ala=NOOP
 
 toki.kulupu_nimi.poki_nanpa=VARIABLE_NAME
@@ -26,10 +25,11 @@ toki.kulupu_nimi.nimi_tawa_tawa=LABEL
 toki.kulupu_nimi.ala=UNDEFINED
 
 
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'niLaTawa'\n\tExpected: niLaTawa(label yesMessage noMessage [ messages...])
-ike.pali.nimi_wawa.tawa.nanpa_ijo_lili=Incorrect number of arguments for function 'tawa'\n\tExpected: tawa(label)
 ike.pali.nimi_wawa.tawa.sitelen_ike=Invalid label name\n\tExpected token matching [a-zA-Z0-9_]
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Jump to undefined label '%s'
+ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=Incorrect number of arguments for function 'tawa'\n\tExpected: tawa(label)
+ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'niLaTawa'\n\tExpected: niLaTawa(label yesMessage noMessage [messages...])
+ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'alaLaTawa'\n\tExpected: alaLaTawa(label string [strings...])
 ike.pali.nimi_wawa.li_jo_ala_e_pini=Unterminated function call\n\tExpected ending ')' symbol
 ike.pali.nimi_wawa.nimi_pi_sona_ala=Unknown function '%s'
 

@@ -6,13 +6,12 @@
 #include <tclap/CmdLine.h>
 
 // TODO o pini ante toki e sona kepeken pi lipu ni.
+// TODO o pana e lupu tawa lipu pi nasin kepeken lon sona kepeken pi lipu ni.
 
 // TODO o pali e lipu pi pana ike.
 
 // TODO ken la o ante e niLaTawa() tawa ni: ona li pana e nimi tan jan.
 
-// TODO alaLaTawa(nimiTawa nimi [nimi...]) -> ala
-// 	nimi ali pana li jo e ala la li tawa.
 // TODO tokiEIke([nimi...]) -> ala
 // 	li toki e nimi lon lupa Stderr.
 // TODO tokiEIkeELinja([nimi...]) -> ala

@@ -13,7 +13,6 @@ toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=KAMA_JO_TAN_POKI_PI_ANTE_ALA
 toki.nimi_kasi.nimi_wawa=NIMI_WAWA
 toki.nimi_kasi.nimi_tawa=NIMI_TAWA
 toki.nimi_kasi.tawa=TAWA
-toki.nimi_kasi.tawa_ken=TAWA_KEN
 toki.nimi_kasi.ala=ALA
 
 toki.kulupu_nimi.poki_nanpa=POKI_NANPA
@@ -26,10 +25,11 @@ toki.kulupu_nimi.nimi_tawa_tawa=NIMI_TAWA_TAWA
 toki.kulupu_nimi.ala=ALA
 
 
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'niLaTawa' li lon\n\tijo ni li wile: niLaTawa(nimiTawa nimiLon nimiPiLonAla [ijoTawaToki...])
-ike.pali.nimi_wawa.tawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'tawa' li lon\n\tni li wile: tawa(nimiTawa)
 ike.pali.nimi_wawa.tawa.sitelen_ike=nimi tawa ike\n\tnimi tawa sama kulupu RegEx [a-zA-Z0-9_] li wile
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=tawa tawa nimi tawa '%s' pi sona ala
+ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=ijo pi nanpa ike tawa nimi wawa 'tawa' li lon\n\tni li wile: tawa(nimiTawa)
+ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'niLaTawa' li lon\n\tijo ni li wile: niLaTawa(nimiTawa nimiLon nimiPiLonAla [ijoTawaToki...])
+ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'alaLaTawa' li lon\n\tijo ni li wile: alaLaTawa(nimiTawa nimi [nimi...])
 ike.pali.nimi_wawa.li_jo_ala_e_pini=kepeken pi nimi wawa li jo ala e pini\n\tsitelen pini ')' li wile
 ike.pali.nimi_wawa.nimi_pi_sona_ala=nimi wawa '%s' pi sona ala
 

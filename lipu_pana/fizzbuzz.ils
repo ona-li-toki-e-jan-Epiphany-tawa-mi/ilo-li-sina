@@ -11,7 +11,7 @@ NotModulo3:
     output = wan(output "buzz")
     tawa(Print)
 NotModulo5:
-    niLaTawa(NoModulo "yes" "no" "Is '" output "' empty?")
+    alaLaTawa(NoModulo output)
     tawa(Print)
 NoModulo:
     output = i

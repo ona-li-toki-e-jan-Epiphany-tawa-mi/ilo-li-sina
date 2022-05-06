@@ -68,6 +68,10 @@ For example, if you put a wildcard for the yes message and "test" for the no mes
 
 If both the yes and no messages are not wildcards, and the user types anything other than those messages, then it will repeatedly ask until the user does.
 
+#### **alaLaTawa(label string \[strings...\]) -> nothing**
+
+If all of the given strings contain nothing then it will jump to the given label.
+
 #### **pokiPiLawaOS(\[names...\]) -> stored value or nothing**
 
 Gets the value from a given enviroment variable.
@@ -78,7 +82,7 @@ If none of the given variables have a value, then nothing is returned.
 
 ### ***Flow Control***
 
-ilo li sina utilizes GOTOs (tawa() and niLaTawa()) for flow control.
+ilo li sina utilizes GOTOs (tawa(), niLaTawa(), and alaLaTawa()) for flow control.
 
 The GOTOs require a label to jump to. A label can be created by typing the label name and placing a semicolon after it. Labels can only occur at the start of a line.
 
@@ -101,6 +105,22 @@ Continue:
 ```
 
 In this example, if the user says to continue, niLaTawa() will jump to Continue, forming a loop. Once the user says stop, the loop will be closed and the program will end.
+
+You can also use alaLaTawa() for conditional jumping. It will jump if the all of the strings given to it are empty.
+
+```ilo li sina
+    tawa(GetName)
+Nothing:
+    tokiELinja("You said nothing!")
+GetName:
+    name = kamaJoTanJan("What's your name?")
+    alaLaTawa(Nothing name)
+    tokiELinja("Hello, " name "!")
+```
+
+If the user says nothing then alaLaTawa() will jump back and form a loop until the user says something.
+
+The main reason for alaLaTawa() is because some functions and other things return nothing when an error or something similiar happens. You can use alaLaTawa() to handle this without using niLaTawa(), which would require extra user intervention and them to know what that string contains, both of which may not be desirable. 
 
 ### ***Variables***
 
@@ -182,4 +202,4 @@ There are a couple variables that come preinitialized and can be used in any ilo
 
 **__nimi_lipu** - name and path used to call the current program.
 
-**__nimi_jan** - name of the user, acquired using pokiPiLawaOS("USER" "USERNAME" "LOGNAME"). If the user's name is not found then an empty string will be supplied.
+**__nimi_jan** - name of the user, acquired using pokiPiLawaOS("USER" "USERNAME" "LOGNAME"). If the user's name is not found then __nimi_jan will be empty.

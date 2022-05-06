@@ -68,6 +68,10 @@ pana la sina pana e "" tawa nimi lon e "test" tawa ante la jan li toki e "test" 
 
 nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e nimi ante la nimi niLaTawa() li toki sin e nimi tawa toki e nimi lon e nimi pi lon ala e linja sin.
 
+#### **alaLaTawa(nimiTawa nimi \[nimi...\]) -> ala**
+
+nimi pana ale li jo e ala la li tawa.
+
 #### **pokiPiLawaOS(\[nimiKen...\]) -> nimi lon poki nanpa anu ala**
 
 li kama jo e nimi lon poki nanpa Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
@@ -80,7 +84,7 @@ poki nanpa li lon ala la li pana e ala.
 
 ### ***tawa***
 
-toki li kepeken e nimi wawa GOTO (tawa() en niLaTawa()) tawa tawa lon lipu wawa.
+toki li kepeken e nimi wawa GOTO (tawa() en niLaTawa() en alaLaTawa()) tawa tawa lon lipu wawa.
 
 nimi wawa ni li wile e nimi tawa tawa ni: ona li ken tawa lon ona. sina ken pali e ona kepeken nimi en sitelen ':' lon monsi. ona li ken lon open linja taso. pana la:
 
@@ -103,6 +107,22 @@ awen:
 ```
 
 jan li toki e nimi "pini ala" la nimi niLaTawa() li tawa lon nimi tawa "awen". en, li awen toki e nimi. taso, jan li toki e "pini" la nimi niLaTawa() li tawa ala. en, li awen ala toki li pini.
+
+sin la sina ken kepeken e alaLaTawa() tawa tawa ken. nimi ali tawa ona li jo e ala la li tawa.
+
+```ilo li sina
+    tawa(kamaPiJoNimi)
+liTokiEAla:
+    tokiELinja("sina toki e ala!")
+kamaPiJoNimi:
+    nimi = kamaJoTanJan("nimi sina li seme?")
+    alaLaTawa(liTokiEAla nimi)
+    tokiELinja("jan " nimi " o, toki!")
+```
+
+jan li toki e ala la alaLaTawa() li kama jo e ala li tawa lon nimi liTokiEAla li kama jo sina e nimi.
+
+alaLaTawa() li lon tan ni: nimi wawa lili en ijo ante lili li ike la li pana e ala (""). sina ken kepeken e alaLaTawa() tawa kama sona e ni kepeken niLaTawa(). pana la ken la sina wile ala e ni: nimi li ala la jan li sona e nimi. en, ni li ken pona pona e lipu wawa.
 
 ### ***poki nanpa***
 

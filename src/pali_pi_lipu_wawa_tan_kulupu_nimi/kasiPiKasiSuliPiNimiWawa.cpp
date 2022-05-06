@@ -1,5 +1,6 @@
 #include "kasiPiKasiSuliPiNimiWawa.hpp"
 #include <iostream>
+#include <cassert>
 #include "../ante_toki/ante_toki.hpp"
 
 namespace pali {
@@ -26,7 +27,7 @@ namespace pali {
 
 
 	KasiPiPanaLonPoki::KasiPiPanaLonPoki(const std::string& nimiPoki, const std::shared_ptr<KasiPiKasiSuli>& ijoTawaPana, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
-		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
+			: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiPoki = nimiPoki;
 		this->ijoTawaPana = ijoTawaPana;
 	}
@@ -59,7 +60,7 @@ namespace pali {
 
 
 	KasiPiKamaJoTanPoki::KasiPiKamaJoTanPoki(const std::string& nimiPoki, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
-		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
+			: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiPoki = nimiPoki;
 	}
 
@@ -86,7 +87,7 @@ namespace pali {
 
 
 	KasiPiKamaJoTanPokiPiAnteAla::KasiPiKamaJoTanPokiPiAnteAla(const std::string& ijoTawaKama, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja) 
-		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
+			: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->ijoTawaKama = ijoTawaKama;
 	}
 
@@ -113,7 +114,7 @@ namespace pali {
 
 
 	KasiPiNimiWawa::KasiPiNimiWawa(const nimi_wawa nimiWawa, const std::list<std::shared_ptr<KasiPiKasiSuli>>& kulupuPiIjoTawaNimiWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
-		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
+			: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiWawa = nimiWawa;
 		this->kulupuPiIjoTawaNimiWawa = kulupuPiIjoTawaNimiWawa;
 	}
@@ -151,7 +152,7 @@ namespace pali {
 
 
 	KasiPiNimiTawa::KasiPiNimiTawa(const std::string& nimiPiNimiTawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
-		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
+			: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->nimiPiNimiTawa = nimiPiNimiTawa;
 	}
 
@@ -178,7 +179,7 @@ namespace pali {
 
 
 	KasiTawa::KasiTawa(const size_t nanpaLinja, const size_t nanpaSitelenLonLinja) 
-		: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
+			: KasiPiKasiSuli(nanpaLinja, nanpaSitelenLonLinja) {
 		this->linjaTawaTawa = -1;
 	}
 
@@ -211,7 +212,8 @@ namespace pali {
 
 
 	KasiPiTawaKen::KasiPiTawaKen(const std::list<std::shared_ptr<KasiPiKasiSuli>>& ijoTawaTawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
-		: KasiTawa(nanpaLinja, nanpaSitelenLonLinja) {
+			: KasiTawa(nanpaLinja, nanpaSitelenLonLinja) {
+		assert(ijoTawaTawa.size() >= 3 && "kasi pi tawa ken li wile e ijo pi 2 anu nanpa suli tawa 2 tawa tawa");
 		this->ijoTawaTawa = ijoTawaTawa;
 	}
 
@@ -233,16 +235,7 @@ namespace pali {
 	}
 
 	std::optional<bool> KasiPiTawaKen::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
-		// li wile e nimi lon e nimi pi lon ala.
-		// TODO o pana e ni lon tenpo pali.
-		if (nimiTawaTawa.size() < 2) {
-			kepeken::tokiEIke(
-				nimiPiILO_LI_SINA, nimiLipu,
-				this->lonKasiLonLipuWawa,
-				ante_toki::kamaJoENimiTawaJan("ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili"));
-
-			return std::nullopt;
-		}
+		assert(nimiTawaTawa.size() >= 3 && "kasi pi tawa ken li wile e ijo pi 2 anu nanpa suli tawa 2 tawa tawa");
 		
 		auto alasaNimi = nimiTawaTawa.cbegin();
 		const std::string& nimiLon 		= *(alasaNimi++);

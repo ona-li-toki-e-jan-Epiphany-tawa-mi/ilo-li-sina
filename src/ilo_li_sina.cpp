@@ -117,13 +117,13 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 		iloPiNimiPilin.parse(nanpaPiNimiPilin, nimiPilin);
 
 
-		std::function<void(const std::string&, const std::string&)> paliWile = lawaEIloNanpa;
+		std::function<void(const std::string&, const std::string&)> paliWile = &lawaEIloNanpa;
 
 		if (oTokiEKulupuNimi.getValue()) {
-			paliWile = tokiEKulupuNimi;
+			paliWile = &tokiEKulupuNimi;
 
 		} else if (oTokiEKasiSuli.getValue())
-			paliWile = tokiEKasiSuli;
+			paliWile = &tokiEKasiSuli;
 		
 		for (const std::string& lipuWawa : nimiPiLipuWawa.getValue())
 			paliWile(lipuWawa, nimiPiILO_LI_SINA);

@@ -94,11 +94,11 @@ namespace pali {
 	}
 
 	const std::unordered_map<std::string, nimi_wawa> pokiPiNimiWawaAli = {
-			{"toki", toki},
-			{"tokiELinja", tokiKepekenLinjaSin},
-			{"kamaJoTanJan", kamaJoTanJan},
-			{"wan", wan},
-			{"pokiPiLawaOS", kamaJoEPokiNanpaPiLawaOS}
+			{"toki", 		 &toki},
+			{"tokiELinja", 	 &tokiKepekenLinjaSin},
+			{"kamaJoTanJan", &kamaJoTanJan},
+			{"wan", 		 &wan},
+			{"pokiPiLawaOS", &kamaJoEPokiNanpaPiLawaOS}
 	};
 	
 	/**

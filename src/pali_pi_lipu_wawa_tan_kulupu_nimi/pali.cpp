@@ -1,5 +1,6 @@
 #include "pali.hpp"
 #include <iostream>
+#include <functional>
 #include "../kipisi_pi_lipu_wawa/kipisi.hpp"
 #include "../ante_toki/ante_toki.hpp"
 
@@ -10,9 +11,9 @@ namespace pali {
 	 * ni li kama jo e kulupu nimi pi lon ante.
 	 * ona li lon ala la ni li toki e ike li pini e ali.
 	 *
-	 * @param kulupuNimi kulupu nimi pi lipu wawa.
+	 * @param kulupuNimi 		kulupu nimi pi lipu wawa.
 	 * @param alasaPiKulupuNimi ilo alasa pi kulupu nimi.
-	 * @param lonAnte ni li nanpa kulupu nimi lon sinpin pi lon pi ilo alasa pi tenpo ni lon monsi kulupi nimi wile.
+	 * @param lonAnte 			ni li nanpa kulupu nimi lon sinpin pi lon pi ilo alasa pi tenpo ni lon monsi kulupi nimi wile.
 	 *
 	 * @return kulupu nimi pi lon ante.
 	 */
@@ -55,8 +56,8 @@ namespace pali {
 	/**
 	 * @brief li pali e kasi sin pi tawa ken.
 	 * 
-	 * @param sonaTawaPali sona tawa pali e lipu wawa.
-	 * @param kulupuNimiPiNimiWawa lon pi nimi wawa "niLaTawa" lon poki pi kulupu nimi.
+	 * @param sonaTawaPali		    sona tawa pali e lipu wawa.
+	 * @param kulupuNimiPiNimiWawa  lon pi nimi wawa "niLaTawa" lon poki pi kulupu nimi.
 	 * @param pokiPiIjoTawaNimiWawa poki pi ijo tawa nimi wawa.
 	 * 
 	 * @return kasi sin pi tawa ken.
@@ -94,8 +95,8 @@ namespace pali {
 	/**
 	 * @brief li pali e kasi tawa sin.
 	 * 
-	 * @param sonaTawaPali sona tawa pali e lipu wawa.
-	 * @param kulupuNimiPiNimiWawa lon pi nimi wawa "niLaTawa" lon poki pi kulupu nimi.
+	 * @param sonaTawaPali 			sona tawa pali e lipu wawa.
+	 * @param kulupuNimiPiNimiWawa 	lon pi nimi wawa "niLaTawa" lon poki pi kulupu nimi.
 	 * @param pokiPiIjoTawaNimiWawa poki pi ijo tawa nimi wawa.
 	 * 
 	 * @return kasi tawa sin.
@@ -130,17 +131,26 @@ namespace pali {
 	}
 
 	/**
-	 * @breif li pali e kasi pi kasi suli tan kulupu nimi lon linja sitelen.
+	 * @brief li kama jo e nimi pi nimi wawa pi pali e kasi tawa li pana e nimi wawa pali pi nimi pana.
+	 */
+	std::unordered_map<std::string, std::function<std::shared_ptr<KasiTawa>(SonaTawaPali&, const std::vector<kipisi::KulupuNimi>::const_iterator&, std::list<std::shared_ptr<KasiPiKasiSuli>>&)>> 
+		iloPiPaliTawa = {
+			{"tawa", 	 &paliEKasiTawa},
+			{"niLaTawa", &paliEKasiPiTawaKen}
+	};
+
+	/**
+	 * @brief li pali e kasi pi kasi suli tan kulupu nimi lon linja sitelen.
 	 *
 	 * ni li pali e kasi pi kasi suli tan kulupu nimi.
 	 * ni li ken taso kama jo e kulupu pi nimi wawa en pana lon poki nimi.
 	 * 	 sin la ona li wile nanpa 1 lon linja sitelen.
 	 * ali ni li lon ala la o kepeken ala e ni a!
 	 *
-	 * @param sonaTawaPali sona tawa pali e lipu wawa.
+	 * @param sonaTawaPali 		sona tawa pali e lipu wawa.
 	 * @param alasaPiKulupuNimi ilo alasa pi kulupu nimi. ni li lon pi kulupu nimi tawa pali.
 	 * 
-	 * @return kasi sin pi kasi suli.
+	 * @return 		   kasi sin pi kasi suli.
 	 * @retval nullptr ni li ken ala pali e kasi la.
 	 */
 	std::shared_ptr<KasiPiKasiSuli> paliEKasi(SonaTawaPali& sonaTawaPali, std::vector<kipisi::KulupuNimi>::const_iterator alasaPiKulupuNimi) {
@@ -265,18 +275,15 @@ namespace pali {
 				}
 			piniPiAlasaIjo:
 
+
 				// li pali e nimi wawa tawa.
-				if (kulupuNimiPiNimiWawa->kamaJoENimiPoki() == "niLaTawa") {
-					return paliEKasiPiTawaKen(
+				try {
+					return iloPiPaliTawa.at(kulupuNimiPiNimiWawa->kamaJoENimiPoki())(
 						sonaTawaPali,
-						kulupuNimiPiNimiWawa, 
+						kulupuNimiPiNimiWawa,
 						pokiPiIjoTawaNimiWawa);
 
-				} else if (kulupuNimiPiNimiWawa->kamaJoENimiPoki() == "tawa") 
-					return paliEKasiTawa(
-						sonaTawaPali,
-						kulupuNimiPiNimiWawa, 
-						pokiPiIjoTawaNimiWawa);
+				} catch (const std::out_of_range& liSuliAla) {}
 
 
 				nimi_wawa nimiWawa;
@@ -284,7 +291,7 @@ namespace pali {
 				try {					
 					nimiWawa = pokiPiNimiWawaAli.at(kulupuNimiPiNimiWawa->kamaJoENimiPoki());
 
-				} catch (const std::out_of_range& liSuliAla) {
+				} catch (const std::out_of_range& nimiWawaLiLonAla) {
 					kepeken::tokiEIke(
 						sonaTawaPali.nimiPiILO_LI_SINA, sonaTawaPali.nimiPiLipuWawa, 
 						kulupuNimiPiNimiWawa->kamaJoELon(), 
@@ -408,8 +415,8 @@ namespace pali {
 	/**
 	 * @breif li pana e kasi pi kasi suli pi lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
 	 *
-	 * @param kasi kasi pi kasi suli tawa pana.
-	 * @param lonInsaPiNanpaNi kasi li lon insa pi kasi pi nanpa ni.
+	 * @param kasi 				 kasi pi kasi suli tawa pana.
+	 * @param lonInsaPiNanpaNi	 kasi li lon insa pi kasi pi nanpa ni.
 	 * @param nanpaPiKasiLonSewi kasi li kasi pi nanpa ni lon poki pi lipu wawa anu lon kasi ni.
 	 */
 	void tokiEKasiPiKasiSuli(const KasiPiKasiSuli* kasi, const unsigned int lonInsaPiNanpaNi, const size_t nanpaPiKasiLonSewi) {

@@ -12,17 +12,18 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/i
 
 # li pali e ante toki.
 find_package(PythonInterp REQUIRED)
+set(lipuPiPaliPiLipuToki       ${CMAKE_CURRENT_SOURCE_DIR}/paliELipuToki.py)
 file(GLOB pokiPiLipuPiNimiToki ${CMAKE_CURRENT_SOURCE_DIR}/nimi_en_toki/*.lang)
-set(lipuPiAnteToki ${CMAKE_CURRENT_SOURCE_DIR}/src/ante_toki/nimi_toki.hpp)
+set(lipuPiAnteToki             ${CMAKE_CURRENT_SOURCE_DIR}/src/ante_toki/nimi_toki.hpp)
 
 add_custom_command(
-    COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/paliELipuToki.py
-    DEPENDS ${pokiPiLipuPiNimiToki}
+    COMMAND ${PYTHON_EXECUTABLE}    ${lipuPiPaliPiLipuToki}
+    DEPENDS ${pokiPiLipuPiNimiToki} ${lipuPiPaliPiLipuToki}
     OUTPUT  ${lipuPiAnteToki}
     COMMENT "li pali e poki pi nimi nimi en nimi tawa jan"
 )
 add_custom_target(
-    anteToki    ALL
-    DEPENDS ${lipuPiAnteToki}
+    anteToki ALL
+    DEPENDS  ${lipuPiAnteToki}
 )
 add_dependencies(${PROJECT_NAME} anteToki)

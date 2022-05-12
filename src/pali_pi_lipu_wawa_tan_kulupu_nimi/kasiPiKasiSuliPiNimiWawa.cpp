@@ -9,12 +9,12 @@ namespace pali {
 	}
 
 	NimiKasi KasiPiKasiSuli::kamaJoENimiKasi() const {
-		// TODO ken la ni li kama la o toki e ike.
+		assert(false && "li lukin kama jo e nimi kasi tan kasi ala");
 		return NimiKasi::ALA;
 	}
 
 	const std::string& KasiPiKasiSuli::kamaJoENimiPiNimiKasi() const {
-		// TODO ken la ni li kama la o toki e ike.
+		assert(false && "li lukin kama jo e nimi pi nimi kasi tan kasi ala");
 		return ante_toki::kamaJoENimiTawaJan("toki.nimi_kasi.ala");
 	}
 
@@ -217,7 +217,7 @@ namespace pali {
 
 	KasiPiTawaKen::KasiPiTawaKen(const std::list<std::shared_ptr<KasiPiKasiSuli>>& ijoTawaTawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja)
 			: KasiTawa(nanpaLinja, nanpaSitelenLonLinja) {
-		assert(ijoTawaTawa.size() >= 3 && "kasi pi tawa ken li wile e ijo pi 2 anu nanpa suli tawa 2 tawa tawa");
+		assert(ijoTawaTawa.size() >= 2 && "kasi pi tawa ken li wile e ijo pi 2 anu nanpa suli tawa 2 tawa tawa");
 		this->ijoTawaTawa = ijoTawaTawa;
 	}
 
@@ -239,7 +239,7 @@ namespace pali {
 	}
 
 	std::optional<bool> KasiPiTawaKen::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
-		assert(nimiTawaTawa.size() >= 3 && "kasi pi tawa ken li wile e nimi pi 2 anu nanpa suli tawa 2 tawa tawa");
+		assert(nimiTawaTawa.size() >= 2 && "kasi pi tawa ken li wile e nimi pi 2 anu nanpa suli tawa 2 tawa tawa");
 		
 		auto alasaNimi = nimiTawaTawa.cbegin();
 		const std::string& nimiLon 		= *(alasaNimi++);

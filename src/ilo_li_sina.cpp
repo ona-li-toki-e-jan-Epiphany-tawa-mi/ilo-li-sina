@@ -12,14 +12,9 @@
 
 // TODO ken la o ante e niLaTawa() tawa ni: ona li pana e nimi tan jan.
 
-// TODO tokiEIke([nimi...]) -> ala
-// 	li toki e nimi lon lupa Stderr.
-// TODO tokiEIkeELinja([nimi...]) -> ala
-// 	sama tokiEIke(). taso, ona li toki e linja sin.
-// TODO pini(nanpaIke [nimi...]) -> ala
-// 	li pini e lipu wawa li toki e nimi li pana e nanpa ike tawa lawa OS.
-// TODO awen([nanpa...]) -> ala
-// 	li awen lon tenpo pi nanpa pana.
+// TODO o pona e nimi ike lon tomo Try/catch ali.
+
+// TODO o ante e ike throw() ken tawa assert().
 
 /**
  * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".

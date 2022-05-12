@@ -55,6 +55,9 @@ ike.lawa.pini_lipu=Получил EOF при чтении ввода
 
 ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=Сообщения да и нет для функции 'niLaTawa' не могут быть так же самые (сейчас - '%s')
 
+ike.lawa.awen.nanpa_ala=Ожидалось целое число, но получилось '%s'
+ike.lawa.awen.nanpa_ike=Получилось целое число '%s' вне возможных значений
+
 
 ike.kulupu_nimi_pi_wile_ala=Неопределенный токен '%s'
 

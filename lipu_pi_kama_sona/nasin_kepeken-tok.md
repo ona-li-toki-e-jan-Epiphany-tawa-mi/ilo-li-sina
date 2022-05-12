@@ -46,6 +46,14 @@ li toki e nimi tawa jan.
 
 sama toki() la li toki e nimi. taso, pini la ona li toki e linja sin.
 
+#### **tokiEIke(\[nimi...\]) -> ala**
+
+sama toki() la li toki e nimi. taso, li toki e ona lon lupa Stderr lon ala lupa Stdout.
+
+#### **tokiEIkeELinja(\[nimi...\]) -> ala**
+
+sama tokiELinja() la li toki e nimi e linja sin. taso, li toki e ona lon lupa Stderr lon ala lupa Stdout.
+
 #### **kamaJoTanJan(\[nimi...\]) -> nimi tan jan**
 
 li pana e nimi tawa tokiELinja() li kama jo e nimi tan jan. li awen e lipu wawa. jan li toki e nimi la li open e lipu wawa.
@@ -53,6 +61,10 @@ li pana e nimi tawa tokiELinja() li kama jo e nimi tan jan. li awen e lipu wawa.
 #### **wan(\[nimi...\]) -> nimi wan tan nimi pana**
 
 li wan e nimi lon nimi wan. 
+
+#### **awen(\[tenpo...\]) -> ala**
+
+li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi nanpa lili ala (sama "400" anu "1369" sama ala "3.5" anu "0.1111") li sama tenpo Milisekon (Miliseconds).
 
 #### **tawa(nimiTawa) -> ala**
 

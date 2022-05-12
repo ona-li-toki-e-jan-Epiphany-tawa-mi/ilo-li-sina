@@ -1,0 +1,25 @@
+#!/usr/bin/env ilo_li_sina
+    # li toki e nimi jan. taso, li sona ala e nimi la li kama jo e ona tan jan.
+tokiNimi:
+    toki("nimi sina li")
+    awen("400")
+    toki(".")
+    awen("400")
+    toki(".")
+    awen("400")
+    toki(".")
+    awen("600")
+
+    alaLaTawa(nimiAla __nimi_jan)
+
+    # '\b' li weka e '.'.
+    tokiELinja("\b\b\b " __nimi_jan)
+    tawa(piniLipu)
+
+nimiAla:
+    tokiELinja()
+    __nimi_jan = kamaJoTanJan("mi sona ala e nimi sina. nimi sina li seme?")
+    tawa(tokiNimi)
+
+piniLipu:
+    

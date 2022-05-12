@@ -1,35 +1,77 @@
 #include "nimi_wawa.hpp"
 #include <iostream>
 #include <algorithm>
+#include <chrono>
+#include <thread>
+#include <cstring>
 #include "../ijo_kepeken/ijoTawaPokiMAP.hpp"
 #include "../ijo_kepeken/ike.hpp"
 #include "../ante_toki/ante_toki.hpp"
 
+// TODO o pona e ike pi nimi wawa lon tenpo lawa kepeken lon pi kasi lon lipu wawa.
+// TODO o pana e nimi pi nimi wawa lon toki ike.
 namespace pali {
 	/**
-	 * @brief li toki e ijo lon ilo pi pana nimi.
+	 * @brief li toki e ijo lon lupa pana. li wile la li weka e ijo tan lupa ni.
+	 * 
+	 * @param lupaTawaToki  li toki e ijo lon lupa ni (lupa sama Stdout).
+	 * @param oWekaEIjoLupa ni la li weka e ijo tan lupa.
+	 * @param ijoTawaToki 	ijo ni li toki.
+	 */
+	void tokiEIjo(std::ostream& lupaTawaToki, const bool oWekaEIjoLupa, pali::string_lqueue& ijoTawaToki) {
+		while (!ijoTawaToki.empty()) {
+			lupaTawaToki << ijoTawaToki.front();
+			ijoTawaToki.pop();
+		}
+
+		if (oWekaEIjoLupa)
+			lupaTawaToki.flush();
+	}
+
+	/**
+	 * @brief li toki e ijo lon ilo pi pana nimi lon lupa Stdin.
 	 *
 	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
 	std::optional<std::string> toki(const std::string& nimiPiILO_LI_SINA, pali::string_lqueue& ijoTawaNi) {
-		while (!ijoTawaNi.empty()) {
-			std::cout << ijoTawaNi.front();
-			ijoTawaNi.pop();
-		}
-
+		tokiEIjo(std::cout, true, ijoTawaNi);
 		return "";
 	}
 
 	/**
-	 * @brief li toki e ijo e linja sin lon ilo pi pana nimi.
+	 * @brief li toki e ijo e linja sin lon ilo pi pana nimi lon lupa Stdin.
 	 *
 	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
 	std::optional<std::string> tokiKepekenLinjaSin(const std::string& nimiPiILO_LI_SINA, pali::string_lqueue& ijoTawaNi) {
-		toki(nimiPiILO_LI_SINA, ijoTawaNi);
+		tokiEIjo(std::cout, false, ijoTawaNi);
 		std::cout << '\n';
+
+		return "";
+	}
+
+	/**
+	 * @brief li toki e ijo lon ilo pi pana nimi lon lupa Stderr.
+	 *
+	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
+	 * @param ijoTawaNi 		ijo tawa toki.
+	 */
+	std::optional<std::string> tokiEIke(const std::string& nimiPiILO_LI_SINA, pali::string_lqueue& ijoTawaNi) {
+		tokiEIjo(std::cerr, true, ijoTawaNi);
+		return "";
+	}
+
+	/**
+	 * @brief li toki e ijo e linja sin lon ilo pi pana nimi lon lupa Stderr.
+	 *
+	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
+	 * @param ijoTawaNi 		ijo tawa toki.
+	 */
+	std::optional<std::string> tokiEIkeKepekenLinjaSin(const std::string& nimiPiILO_LI_SINA, pali::string_lqueue& ijoTawaNi) {
+		tokiEIjo(std::cerr, false, ijoTawaNi);
+		std::cerr << '\n';
 
 		return "";
 	}
@@ -78,13 +120,54 @@ namespace pali {
 		return pokiSitelenSin;
 	}
 
+	/**
+	 * @brief lon tenpo pana la li awen li pali e ala.
+	 * 
+	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
+	 * @param ijoTawaNi 		tenpo tawa awen. nimi ni li wile sama nanpa. nanpa ni li wan.
+	 *
+	 * @retval std::nullopt nimi pi 1 anu mute li sama ala nanpa.
+	 */
+	std::optional<std::string> awen(const std::string& nimiPiILO_LI_SINA, pali::string_lqueue& ijoTawaNi) {
+		while (!ijoTawaNi.empty()) {
+			const std::string& ijo = ijoTawaNi.front();
+
+			try {
+				std::this_thread::sleep_for(std::chrono::milliseconds(
+					std::stoi(ijo)));
+
+			} catch (const std::invalid_argument& nanpaAla) {
+				kepeken::tokiEIke(
+					nimiPiILO_LI_SINA, 
+					ante_toki::anteENimi(
+						ante_toki::kamaJoENimiTawaJan("ike.lawa.awen.nanpa_ala"),
+						"%s", ijo));
+
+				return std::nullopt;
+
+			} catch (const std::out_of_range& nanpaIke) {
+				kepeken::tokiEIke(
+					nimiPiILO_LI_SINA, 
+					ante_toki::anteENimi(
+						ante_toki::kamaJoENimiTawaJan("ike.lawa.awen.nanpa_ike"),
+						"%s", ijo));
+				
+				return std::nullopt;
+			}
+
+			ijoTawaNi.pop();
+		}
+
+		return "";
+	}
+
 	std::optional<std::string> kamaJoEPokiNanpaPiLawaOS(const std::string& nimiPiILO_LI_SINA, pali::string_lqueue& ijoTawaNi) {
 		const char* pokiNanpaPiLawaOS = nullptr;
 
 		while (!ijoTawaNi.empty()) {
 			pokiNanpaPiLawaOS = getenv(ijoTawaNi.front().c_str());
 
-			if (pokiNanpaPiLawaOS != nullptr)
+			if (pokiNanpaPiLawaOS != nullptr && strcmp(pokiNanpaPiLawaOS, "") != 0)
 				break;
 
 			ijoTawaNi.pop();
@@ -94,11 +177,19 @@ namespace pali {
 	}
 
 	const std::unordered_map<std::string, nimi_wawa> pokiPiNimiWawaAli = {
-			{"toki", 		 &toki},
-			{"tokiELinja", 	 &tokiKepekenLinjaSin},
-			{"kamaJoTanJan", &kamaJoTanJan},
-			{"wan", 		 &wan},
-			{"pokiPiLawaOS", &kamaJoEPokiNanpaPiLawaOS}
+			{"toki", 		   &toki},
+			{"tokiELinja", 	   &tokiKepekenLinjaSin},
+			{"tokiEIke",	   &tokiEIke},
+			{"tokiEIkeELinja", &tokiEIkeKepekenLinjaSin},
+
+			{"kamaJoTanJan",   &kamaJoTanJan},
+
+
+			{"wan", 		   &wan},
+
+
+			{"awen",		   &awen},
+			{"pokiPiLawaOS",  &kamaJoEPokiNanpaPiLawaOS}
 	};
 	
 	/**

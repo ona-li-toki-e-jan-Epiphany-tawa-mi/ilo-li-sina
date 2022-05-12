@@ -55,6 +55,9 @@ ike.lawa.pini_lipu=li kama jo e sitelen EOF (pini lipu) tan ijo Stdin
 
 ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=nimi lon pi nimi wawa 'niLaTawa' li ken ala sama sama nimi pi lon ala (ona li '%s')
 
+ike.lawa.awen.nanpa_ala=nanpa pi nanpa lili ala li wile la li kama jo e ijo '%s' sama ala nanpa
+ike.lawa.awen.nanpa_ike=li kama jo e nanpa ike '%s' pi nanpa lili ala. li suli suli kin anu lili lili kin
+
 
 ike.kulupu_nimi_pi_wile_ala=kulupu nimi '%s' pi sona ala
 

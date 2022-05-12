@@ -323,7 +323,7 @@ namespace pali {
 
 				// li pali e nimi wawa tawa.
 				try {
-					const auto iloPali = iloPiPaliTawa.at(kulupuNimiPiNimiWawa->kamaJoENimiPoki())(
+					auto iloPali = iloPiPaliTawa.at(kulupuNimiPiNimiWawa->kamaJoENimiPoki())(
 						sonaTawaPali,
 						kulupuNimiPiNimiWawa,
 						pokiPiIjoTawaNimiWawa);

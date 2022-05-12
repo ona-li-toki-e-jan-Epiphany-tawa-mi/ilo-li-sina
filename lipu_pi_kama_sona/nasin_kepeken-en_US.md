@@ -44,15 +44,27 @@ Prints the messages to the user.
 
 #### **tokiELinja(\[messages...\]) -> nothing**
 
-Like toki() but prints a newline afterward.
+Like toki(), but prints a newline afterward.
+
+#### **tokiEIke(\[messages...\]) -> nothing**
+
+Like toki(), but prints the messages to stderr instead of stdout.
+
+#### **tokiEIkeELinja(\[messages...\]) -> nothing**
+
+Like tokiELinja(), but prints the messages to stderr instead of stdout.
 
 #### **kamaJoTanJan(\[messages...\]) -> user input**
 
 Passes the messages to tokiELinja() and then gets input from the user and returns it. Blocks until input is received.
 
-#### **wan(\[messages...\]) -> concatenated messages**
+#### **wan(\[strings...\]) -> concatenated string**
 
-Concatenates the messages into a single string and returns it.
+Concatenates the given strings into a single string and returns it.
+
+#### **awen(\[durations...\]) -> nothing**
+
+Waits for the duration made by summing up the given durations. Durations must be valid integers and represent the time to wait in miliseconds.
 
 #### **tawa(label) -> nothing**
 
@@ -76,7 +88,7 @@ If all of the given strings contain nothing then it will jump to the given label
 
 Gets the value from a given enviroment variable.
 
-The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows (only for example, you should use the variable __nimi_jan instead.) By supplying all 3 variants, you can ensure that it will work on both.
+The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one and isn't empty. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows (only for example, you should use the preinitialized variable __nimi_jan instead.) By supplying all 3 variants, you can ensure that it will work on both.
 
 If none of the given variables have a value, then nothing is returned.
 

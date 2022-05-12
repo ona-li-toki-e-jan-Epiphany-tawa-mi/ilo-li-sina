@@ -55,6 +55,9 @@ ike.lawa.pini_lipu=Encountered EOF while reading from input
 
 ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=The yes and no messages of the function 'niLaTawa' cannot be the same (currently '%s')
 
+ike.lawa.awen.nanpa_ala=Expected a integer but got '%s' instead
+ike.lawa.awen.nanpa_ike=Received an integer '%s' outside of the representable range
+
 
 ike.kulupu_nimi_pi_wile_ala=Unexpected token '%s'
 

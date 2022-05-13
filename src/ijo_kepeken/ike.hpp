@@ -48,8 +48,8 @@ namespace kepeken {
 	 * 
 	 * @param nimiPiILO_LI_SINA nimi pi lipu wawa ni pi "ilo li sina".
 	 * @param nimiPiLipuWawa nimi pi lipu wawa pi tenpo ni.
-	 * @param lonIjo lon ike lon lipu wawa.
+	 * @param lonIjo lon ike lon lipu wawa. li ijo Nullptr la li toki ala e lon.
 	 * @param nimiIke sona pi kama ike.
 	 */
-	void tokiEIke(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa& lonIjo, const std::string& nimiIke);
+	void tokiEIke(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa *const lonIjo, const std::string& nimiIke);
 }

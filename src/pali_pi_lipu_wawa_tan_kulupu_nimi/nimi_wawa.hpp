@@ -5,6 +5,7 @@
 #include <queue>
 #include <list>
 #include <optional>
+#include "../ijo_kepeken/ike.hpp"
 
 /**
  * ilo tawa pali e nimi wawa pi "ilo li sina".
@@ -15,12 +16,14 @@ namespace pali {
 	/**
 	 * @brief nimi wawa pi toki "ilo li sina".
 	 * 
-	 * @param const std::string& - nimi pi lipu "ilo li sina".
-	 * @param string_lqueue& 	 - li jo e poki tawa nimi wawa tan ijo kepeken. nimi wawa li lawa la poki ni li moku li kama ala.
+	 * @param const std::string& 					  - nimi pi lipu "ilo li sina".
+	 * @param const std::string& nimiPiLipuWawa		  - nimi pi lipu wawa.
+	 * @param const kepeken::LonIjoLonLipuLawa *const - lon kasi pi nimi wawa lon lipu wawa.
+	 * @param string_lqueue& 	 					  - li jo e poki tawa nimi wawa tan ijo kepeken. nimi wawa li lawa la poki ni li moku li kama ala.
 	 * 
 	 * @return std::string poki sitelen tan lawa e nimi wawa.
 	 */
-	typedef std::optional<std::string>(*nimi_wawa)(const std::string&, string_lqueue&);
+	typedef std::optional<std::string>(*nimi_wawa)(const std::string&, const std::string&, const kepeken::LonIjoLonLipuLawa *const, string_lqueue&);
 
 
 	/**
@@ -32,12 +35,14 @@ namespace pali {
 	 * 		"USERNAME" li jo e nimi la nimi lon "USERNAME" li pana tawa sina.
 	 * 
 	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
+	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
+	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi         nimi ken pi poki nanpa pi lawa OS.
 	 * 
 	 * @return    nimi lon poki nanpa pi nanpa 1 pi jo e nimi.
 	 * @retval "" poki nanpa pana li jo e ala.
 	 */
-	std::optional<std::string> kamaJoEPokiNanpaPiLawaOS(const std::string& nimiPiILO_LI_SINA, pali::string_lqueue& ijoTawaNi);
+	std::optional<std::string> kamaJoEPokiNanpaPiLawaOS(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi);
 
 	extern const std::unordered_map<std::string, nimi_wawa> pokiPiNimiWawaAli;
 

@@ -48,7 +48,7 @@ namespace lawa {
 				} catch (const std::out_of_range& liSuliAla) {
 					kepeken::tokiEIke(
 						sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, 
-						kasiPiKamaJoTanPoki->kamaJoELonKasi(), 
+						&kasiPiKamaJoTanPoki->kamaJoELonKasi(), 
 						ante_toki::anteENimi(
 							ante_toki::kamaJoENimiTawaJan("ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala"),
 							"%s", kasiPiKamaJoTanPoki->kamaJoENimiPoki()));
@@ -74,7 +74,8 @@ namespace lawa {
 					break;
 
 
-				std::optional<std::string> ijoTanNimi = kasiPiNimiWawa->kamaJoENimiWawa()(sonaTawaLawa.nimiPiILO_LI_SINA, ijoTawaNimiWawa);
+				std::optional<std::string> ijoTanNimi = kasiPiNimiWawa->kamaJoENimiWawa()(
+					sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, &kasiPiNimiWawa->kamaJoELonKasi(), ijoTawaNimiWawa);
 
 				if (!ijoTanNimi.has_value()) {
 					sonaTawaLawa.liWilePini = true;

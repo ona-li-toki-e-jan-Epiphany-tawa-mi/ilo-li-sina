@@ -248,8 +248,8 @@ namespace pali {
 		if ((nimiLon.empty() && nimiPiLonAla.empty()) || nimiLon == nimiPiLonAla) {
 			kepeken::tokiEIke(
 				nimiPiILO_LI_SINA, nimiLipu,
-				this->lonKasiLonLipuWawa,
-				ante_toki::anteENimi(
+				&this->lonKasiLonLipuWawa,
+				"niLaTawa(): " + ante_toki::anteENimi(
 					ante_toki::kamaJoENimiTawaJan("ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama"),
 					"%s", nimiLon));
 
@@ -270,9 +270,9 @@ namespace pali {
 
 			if (!std::getline(std::cin, nimiTanJan)) {
 				kepeken::tokiEIke(
-					nimiPiILO_LI_SINA, nimiPiILO_LI_SINA,
-					this->lonKasiLonLipuWawa,
-					ante_toki::kamaJoENimiTawaJan("ike.lawa.pini_lipu"));
+					nimiPiILO_LI_SINA, nimiLipu,
+					&this->lonKasiLonLipuWawa,
+					"niLaTawa(): " + ante_toki::kamaJoENimiTawaJan("ike.lawa.pini_lipu"));
 
 				break;
 			}

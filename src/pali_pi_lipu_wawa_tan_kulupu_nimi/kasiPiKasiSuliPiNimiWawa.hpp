@@ -4,7 +4,6 @@
 #include <optional>
 #include <tuple>
 #include "nimi_wawa.hpp"
-#include "../ijo_kepeken/ike.hpp"
 
 /**
  * kasi pi kasi suli tawa pali e lipu wawa tan kulupu nimi.

@@ -19,8 +19,12 @@ namespace kepeken {
 			<< nimiIke << '\n';
 	}
 
-	void tokiEIke(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa& lonIjo, const std::string& nimiIke) {
-		const auto [linja, sitelen] = lonIjo;
-		tokiEIke(nimiPiILO_LI_SINA, nimiPiLipuWawa, linja, sitelen, nimiIke);
+	void tokiEIke(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa *const lonIjo, const std::string& nimiIke) {
+		if (lonIjo != nullptr) {
+			const auto [linja, sitelen] = *lonIjo;
+			tokiEIke(nimiPiILO_LI_SINA, nimiPiLipuWawa, linja, sitelen, nimiIke);
+
+		} else
+			tokiEIke(nimiPiILO_LI_SINA, nimiPiLipuWawa, nimiIke);
 	}
 }

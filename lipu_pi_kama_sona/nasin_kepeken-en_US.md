@@ -12,7 +12,7 @@ Everything in this language consists of or works with strings. You can create a 
 
 ### ***Functions***
 
-ilo li sina has a couple functions, and all of them accept a list of strings as arguments and return a string (except for tawa() and niLaTawa().) To call a function, write it's name and then a pair of paranthesis with any arguments inside them.
+ilo li sina has a couple functions, and all of them accept a list of strings as arguments and return a string. To call a function, write it's name and then a pair of paranthesis with any arguments inside them.
 
 Arguments to a function are delimited by spaces, but that's only neccesary if there are no other ways to separate them (for instance, string literals are fine.) Though it does look better if you put them anyways.
 

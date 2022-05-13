@@ -12,7 +12,7 @@ ali lon toki ni li nimi. sina ken kepeken e nimi taso. sina ken pali e nimi lon 
 
 ### ***nimi wawa***
 
-"ilo li sina" li jo e nimi wawa lili. ona li kama jo e ijo li pali e ijo (taso, nimi wawa tawa() en niLaTawa() li ante). tawa pali la sina sitelen e nimi e poki tawa ijo "(" en ")" e ijo lon ona.
+"ilo li sina" li jo e nimi wawa lili. ona li kama jo e ijo li pali e ijo. tawa pali la sina sitelen e nimi e poki tawa ijo "(" en ")" e ijo lon ona.
 
 ijo tawa nimi wawa li kipisi kepeken sitelen " " pi lukin ala. ni li wile ala tawa ijo ante sama poki nanpa en nimi. taso, ni li lukin pona. pana la:
 

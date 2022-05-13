@@ -1,9 +1,9 @@
 #include "kulupu_nimi.hpp"
-#include <stdexcept>
+#include <cassert>
 #include "../ante_toki/ante_toki.hpp"
 
 namespace kipisi {
-	std::string kamaJoENimiPiNimiKulupu(NimiPiKulupuNimi nimiPiKulupuNimi) noexcept(false) {
+	std::string kamaJoENimiPiNimiKulupu(NimiPiKulupuNimi nimiPiKulupuNimi) {
 		switch (nimiPiKulupuNimi) {
 			case NimiPiKulupuNimi::POKI_NANPA:
 				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.poki_nanpa");
@@ -23,7 +23,8 @@ namespace kipisi {
 				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.ala");
 
 			default:
-				throw std::out_of_range("li kama jo e nimi pi kulupu nimi pi sona ala pi nanpa " + static_cast<int>(nimiPiKulupuNimi));
+				assert(false && "li kama jo e nimi pi kulupu nimi pi sona ala");
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.ala");
 		}
 	}
 

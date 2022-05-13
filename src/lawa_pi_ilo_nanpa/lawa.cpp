@@ -1,5 +1,6 @@
 #include "lawa.hpp"
 #include <iostream>
+#include <cassert>
 #include "../ante_toki/ante_toki.hpp"
 
 namespace lawa {
@@ -45,13 +46,14 @@ namespace lawa {
 				try {
 					return sonaTawaLawa.pokiPiPokiNanpaAli.at(kasiPiKamaJoTanPoki->kamaJoENimiPoki());
 
-				} catch (const std::out_of_range& liSuliAla) {
+				} catch (const std::out_of_range& pokiNanpaLiLonAla) {
 					kepeken::tokiEIke(
 						sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, 
 						&kasiPiKamaJoTanPoki->kamaJoELonKasi(), 
 						ante_toki::anteENimi(
 							ante_toki::kamaJoENimiTawaJan("ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala"),
 							"%s", kasiPiKamaJoTanPoki->kamaJoENimiPoki()));
+
 					sonaTawaLawa.liWilePini = true;
 					sonaTawaLawa.nanpaIke = 1;
 
@@ -117,7 +119,7 @@ namespace lawa {
 				break;
 
 			default:
-				throw std::out_of_range("lawa la li kama jo e kasi pi kasi suli pi sona ala pi nimi " + kasi->kamaJoENimiPiNimiKasi());
+				assert(false && "lawa la li kama jo e kasi pi kasi suli pi sona ala");
 		}
 
 		return "";

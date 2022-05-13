@@ -100,7 +100,7 @@ namespace kipisi {
 										try {
 											pokiSitelen.push_back(sitelenNasaTanNimi.at(*alasaSitelen));
 										
-										} catch (const std::out_of_range& liSuliAla) {	
+										} catch (const std::out_of_range& liSitelenAlaTawaSitelenNasa) {	
 											kepeken::tokiEIke(
 												nimiPiILO_LI_SINA, nimiPiLipuWawa, 
 												nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen - 1), 
@@ -251,7 +251,7 @@ namespace kipisi {
 						const char sitelenNasa = kamaJoEPokiPiNimiTanSitelenNasa().at(sitelen);
 						std::cout << '\\' << sitelenNasa;
 
-					} catch (const std::out_of_range& liSuliAla) {
+					} catch (const std::out_of_range& liSitelenNasaAla) {
 						std::cout << sitelen;
 					}
 				std::cout << "\"\n";

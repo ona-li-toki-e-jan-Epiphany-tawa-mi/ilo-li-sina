@@ -26,9 +26,8 @@ namespace kipisi {
 	 * @param nimiPiKulupuNimi nimi pi kulupu nimi. 
 	 *
 	 * @return nimi pi nimi pi kulupu nimi.
-	 * @throws std::out_of_range nimi pi kulupu nimi li jo ala e nimi pi nimi pi kulupu nimi.
 	 */
-	std::string kamaJoENimiPiNimiKulupu(NimiPiKulupuNimi nimiPiKulupuNimi) noexcept(false);
+	std::string kamaJoENimiPiNimiKulupu(NimiPiKulupuNimi nimiPiKulupuNimi);
 
 
 	/**

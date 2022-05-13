@@ -22,7 +22,7 @@ namespace ante_toki {
             try {
                 tokiWile = &nimiTokiAli.at(nimiTokiPona);
                 return true;
-            } catch (const std::out_of_range& liSuliAla) {}
+            } catch (const std::out_of_range& tokiWileLiLonAla) {}
         }
 
 
@@ -45,7 +45,7 @@ namespace ante_toki {
             if (tokiWile != nullptr)
                 return tokiWile->at(nimiNimi);
 
-        } catch (const std::out_of_range& liSuliAla) {}
+        } catch (const std::out_of_range& nimiWileLiLonAla) {}
 
         return nimiNimi;
     }

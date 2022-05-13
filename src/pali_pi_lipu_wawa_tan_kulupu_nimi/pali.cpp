@@ -330,7 +330,7 @@ namespace pali {
 
 					return iloPali;
 
-				} catch (const std::out_of_range& liSuliAla) {}
+				} catch (const std::out_of_range& liNimiWawaTawaAla) {}
 
 
 				nimi_wawa nimiWawa;
@@ -369,7 +369,7 @@ namespace pali {
 			}
 
 			default:
-				throw std::out_of_range("pali la li kama jo e kulupu nimi pi sona ala pi nimi '" + kipisi::kamaJoENimiPiNimiKulupu(alasaPiKulupuNimi->nimiPiKulupuNimi));
+				assert(false && "pali la li kama jo e kulupu nimi pi sona ala");
 		}
 
 		return nullptr;
@@ -497,7 +497,7 @@ namespace pali {
 						const char sitelenPiNasaAla = nimiTanSitelenNasa.at(sitelen);
 						std::cout << '\\' << sitelenPiNasaAla;
 
-					} catch (const std::out_of_range& liSuliAla) {
+					} catch (const std::out_of_range& liSitelenNasaAla) {
 						std::cout << sitelen;
 					}
 
@@ -511,8 +511,8 @@ namespace pali {
 				try {
 					std::cout << kasiPiNimiWawa->kamaJoENimiPiNimiKasi() << "=\"" << kamaJoEPokiPiNimiPiNimiWawa().at(kasiPiNimiWawa->kamaJoENimiWawa()) << '"';
 				
-				} catch (const std::out_of_range& liSuliAla) {
-					throw std::out_of_range("pali la li kama jo e lon nullptr anu lon tawa nimi wawa pi sona ala");
+				} catch (const std::out_of_range& nimiWawaLiLonAla) {
+					assert(false && "pali la li kama jo e lon nullptr anu lon tawa nimi wawa pi sona ala");
 				}
 
 				if (kasiPiNimiWawa->kamaJoEKulupuPiIjoTawaNimiWawa().size() > 0) {

@@ -196,6 +196,8 @@ namespace pali {
 
 
 
+	std::shared_ptr<KasiPiKasiSuli> paliEKasi(SonaTawaPali& sonaTawaPali, std::vector<kipisi::KulupuNimi>::const_iterator alasaPiKulupuNimi);
+
 	/**
 	 * @brief li pali e kasi sin pi pana lon poki nanpa.
 	 * 

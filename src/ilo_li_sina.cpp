@@ -5,16 +5,6 @@
 #include "pali_pi_lipu_wawa_tan_kulupu_nimi/nimi_wawa.hpp"
 #include <tclap/CmdLine.h>
 
-// TODO o pini ante toki e sona kepeken pi lipu ni.
-// TODO o pana e lupu tawa lipu pi nasin kepeken lon sona kepeken pi lipu ni.
-// TODO o pali e ante toki lon toki Losi.
-
-// TODO o pali e lipu wawa tawa ni: pana e lipu wawa "ilo li sina" lon ma lipu pi ilo nanpa jan.
-
-// TODO o pali e lipu pi pana ike.
-
-// TODO ken la o ante e niLaTawa() tawa ni: ona li pana e nimi tan jan.
-
 /**
  * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
  */

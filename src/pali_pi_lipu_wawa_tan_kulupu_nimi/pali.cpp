@@ -5,8 +5,6 @@
 #include "../kipisi_pi_lipu_wawa/kipisi.hpp"
 #include "../ante_toki/ante_toki.hpp"
 
-// TODO ken la o ante e ijo shared_ptr ken tawa unique_ptr.
-
 namespace pali {
 	/**
 	 * @breif li kama jo e kulupu nimi pi lon ante.

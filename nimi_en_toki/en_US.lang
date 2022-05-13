@@ -46,7 +46,7 @@ ike.kipisi.nimi_tawa.li_ken_lon_open_linja_taso=A label can only occur at the st
 ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=Unknown escape sequence '\\%s'
 ike.kipisi.poki_nimi.li_jo_ala_e_pini=Unterminated string
 
-ike.kipisi.nimi_tawa.nimi_li_wile=Expected a function name before '('
+ike.kipisi.nimi_wawa.nimi_li_wile=Expected a function name before '('
 
 
 ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=Attempted to get value from undeclared variable '%s'

@@ -161,7 +161,7 @@ namespace kipisi {
 									kepeken::tokiEIke(
 										nimiPiILO_LI_SINA, nimiPiLipuWawa, 
 										nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), 
-										ante_toki::kamaJoENimiTawaJan("ike.kipisi.nimi_tawa.nimi_li_wile"));
+										ante_toki::kamaJoENimiTawaJan("ike.kipisi.nimi_wawa.nimi_li_wile"));
 									liLipuPiPonaAla = true;
 								}
 							}

@@ -18,9 +18,9 @@ You will need CMake and Python installed on your system.
 
 Move into the project directory and run the following commands:
 
-```bash
-cmake .
-make
+```console
+$ cmake .
+$ make
 ```
 
 The final executable will be named "ilo li sina."

@@ -20,9 +20,9 @@ sina wile e ilo CMake en Python lon ilo nanpa sina.
 
 o tawa lon poki lipu "ilo li sina" o toki e nimi wawa ni tawa pali e lipu wawa pini:
 
-```bash
-cmake .
-make
+```console
+$ cmake .
+$ make
 ```
 
 ona li kama lon poki li jo e nimi "ilo_li_sina".

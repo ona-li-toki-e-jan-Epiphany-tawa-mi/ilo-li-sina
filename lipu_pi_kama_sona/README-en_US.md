@@ -25,6 +25,10 @@ make
 
 The final executable will be named "ilo li sina."
 
+## **Example programs**
+
+Example programs can be found in the lipu_pana folder.
+
 ## **Adding translations**
 
 You can add translations to the interpreter by adding a .lang file to the folder nimi_en_toki.
@@ -34,9 +38,3 @@ The name of the file needs to be the language (lowercase) and region code (upper
 Copy over one of the prexisting translation files' (preferably tok.lang) data and change the values, the messages on the right, into your langauge. After that, just submit a pull request with your changes.
 
 The interpreter respects the value stored in LANG (enviroment variable.) You can change it to force it to use the language you want.
-
-## **Contributing**
-
-Simply clone this repository, commit your changes to it, and make a pull request stating why your changes should be accepted. Try to keep your code style in line with the current one. If you add a new feature make sure to write about it in the documentation (nasin_kepeken-*.md in the folder lipu_pi_kama_sona.)
-
-The code is documented in Toki Pona, but writing it in English or Russian is also fine. Doesn't matter that much.

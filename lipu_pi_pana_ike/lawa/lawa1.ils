@@ -1,0 +1,4 @@
+#!/usr/bin/env ilo_li_sina
+# ike ni li ken lon tenpo lawa.
+    # poki nanpa "test" li lon ala.
+    tokiELinja(test)

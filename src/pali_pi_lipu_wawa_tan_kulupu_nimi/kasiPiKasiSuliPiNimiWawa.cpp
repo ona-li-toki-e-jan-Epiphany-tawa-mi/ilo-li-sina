@@ -209,8 +209,8 @@ namespace pali {
 		return this->ijoTawaTawa;
 	}
 
-	std::optional<bool> KasiTawa::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
-		return true;
+	std::optional<std::tuple<bool, std::string>> KasiTawa::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
+		return {{true, ""}};
 	}
 
 
@@ -238,7 +238,7 @@ namespace pali {
 		return "niLaTawa";
 	}
 
-	std::optional<bool> KasiPiTawaKen::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
+	std::optional<std::tuple<bool, std::string>> KasiPiTawaKen::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
 		assert(nimiTawaTawa.size() >= 2 && "kasi pi tawa ken li wile e nimi pi 2 anu nanpa suli tawa 2 tawa tawa");
 		
 		auto alasaNimi = nimiTawaTawa.cbegin();
@@ -278,16 +278,16 @@ namespace pali {
 			}
 
 			if (nimiLon.empty() && nimiTanJan != nimiPiLonAla) {
-				return true;
+				return {{true, nimiTanJan}};
 
 			} else if (nimiPiLonAla.empty() && nimiTanJan != nimiLon) {
-				return false;
+				return {{false, nimiTanJan}};
 
 			} else if (nimiTanJan == nimiLon) {
-				return true;
+				return {{true, nimiTanJan}};
 			
 			} else if (nimiTanJan == nimiPiLonAla)
-				return false;
+				return {{false, nimiTanJan}};
 		}
 
 		return std::nullopt;
@@ -318,13 +318,13 @@ namespace pali {
 		return "alaLaTawa";
 	}
 
-	std::optional<bool> KasiPiAlaLaTawa::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
+	std::optional<std::tuple<bool, std::string>> KasiPiAlaLaTawa::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
 		assert(!nimiTawaTawa.empty() && "kasi pi 'ala la tawa' li wile e nimi pi 1 anu nanpa suli tawa 1 tawa tawa");
 		
 		for (const std::string& nimi : nimiTawaTawa)
 			if (!nimi.empty())
-				return false;
+				return {{false, ""}};
 
-		return true;
+		return {{true, ""}};
 	}
 }

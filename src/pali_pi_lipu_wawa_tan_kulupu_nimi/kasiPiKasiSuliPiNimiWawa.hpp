@@ -250,9 +250,11 @@ namespace pali {
 			 * 
 			 * @retval true 		li ken tawa.
 			 * @retval false 		li ken ala tawa.
+			 * @return std::string	ala.
+			 * 
 			 * @retval std::nullopt ike li kama.
 			 */
-			virtual std::optional<bool> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const;
+			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const;
 			/**
 			 * @return nimi tawa kepeken e kasi tawa lon lipu pi toki Ilo Li Sina (sama "tawa" anu "niLaTawa").
 			 */
@@ -302,9 +304,11 @@ namespace pali {
 			 * 
 			 * @retval true 		jan li toki e nimi lon.
 			 * @retval false 		jan li toki e nimi pi lon ala.
+			 * @return std::string	nimi tan jan
+			 * 
 			 * @retval std::nullopt ike li kama.
 			 */
-			virtual std::optional<bool> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
+			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
 			virtual std::string kamaJoENimiPiKasiTawa() const override;
 	};
 
@@ -336,8 +340,9 @@ namespace pali {
 			 * 
 			 * @retval true 		nimi pana ale li jo e ala.
 			 * @retval false 		nimi pana pi ale ala li jo e ala.
+			 * @return std::string  ala.
 			 */
-			virtual std::optional<bool> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
+			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
 			virtual std::string kamaJoENimiPiKasiTawa() const override;
 	};
 }

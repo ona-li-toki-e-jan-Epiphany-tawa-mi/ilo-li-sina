@@ -100,12 +100,16 @@ namespace lawa {
 					break;
 					
 
-				std::optional<bool> liKen = kasiTawa->liKenTawa(
+				std::optional<std::tuple<bool, std::string>> ijoTanKasiTawa = kasiTawa->liKenTawa(
 					sonaTawaLawa.nimiPiILO_LI_SINA, sonaTawaLawa.nimiPiLipuWawa, ijoTawaTawa);
 
-				if (liKen.has_value()) {
-					if (*liKen)
+				if (ijoTanKasiTawa.has_value()) {
+					const auto [liKen, nimi] = *ijoTanKasiTawa;
+
+					if (liKen)
 						sonaTawaLawa.nanpaLinja = kasiTawa->linjaTawaTawa;
+
+					return nimi;
 
 				} else {
 					sonaTawaLawa.liWilePini = true;

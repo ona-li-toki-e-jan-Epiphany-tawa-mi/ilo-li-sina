@@ -70,9 +70,9 @@ li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi na
 
 li tawa lon nimi tawa.
 
-#### **niLaTawa(nimiTawa nimiLon nimiPiLonAla \[nimiTawaToki...\]) -> ala**
+#### **niLaTawa(nimiTawa nimiLon nimiPiLonAla \[nimiTawaToki...\]) -> nimi tan jan**
 
-li toki e nimi tawa toki e nimi lon e nimi pi lon ala e linja sin. jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala.
+li toki e nimi tawa toki e nimi lon e nimi pi lon ala e linja sin. jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala. li tawa anu tawa ala la li pana e nimi tan jan.
 
 sina ken pana e nimi lon ala "" anu nimi ala pi lon ala. ni la nimi ali pi nimi ante ala li ken tawa ona. taso, ona tu li ken ala jo e ala lon tenpo sama.
 

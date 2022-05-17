@@ -70,9 +70,9 @@ Waits for the duration made by summing up the given durations. Durations must be
 
 Jumps to the given label.
 
-#### **niLaTawa(label yesMessage noMessage \[messages...\]) -> nothing**
+#### **niLaTawa(label yesMessage noMessage \[messages...\]) -> user input**
 
-Passes the messages to tokiELinja() along with the yes and no messages, and blocks until input is received from the user. If the user responds with the yes message, then it will jump to the given label. If the user responds with the no message then it will not jump and continue to the next line.
+Passes the messages to tokiELinja() along with the yes and no messages, and blocks until input is received from the user. If the user responds with the yes message, then it will jump to the given label. If the user responds with the no message then it will not jump and continue to the next line. Returns user input regardless of whether it jumped.
 
 You can supply an empty string as either the yes or no message, but not both, as a wild card.
 

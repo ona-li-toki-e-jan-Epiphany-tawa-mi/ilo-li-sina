@@ -1,4 +1,4 @@
-lukin kepeken toki ante: [English](lipu_pi_kama_sona/README-en_US.md "View in English")
+lukin kepeken toki ante: [English](lipu_pi_kama_sona/README-en_US.md "View in English"), [Русский](lipu_pi_kama_sona/README-ru_RU.md "Смотреть на русском")
 
 ![sitelen suli "ilo li sina"](sitelen-suli.png)
 

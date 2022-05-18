@@ -1,4 +1,4 @@
-View in a different language: [toki pona](../README.md "lukin kepeken toki pona")
+View in a different language: [toki pona](../README.md "lukin kepeken toki pona"), [Русский](README-ru_RU.md "Смотреть на русском")
 
 ![ilo li sina logo](../sitelen-suli.png)
 
@@ -33,7 +33,7 @@ Example programs can be found in the lipu_pana folder.
 
 You can add translations to the interpreter by adding a .lang file to the folder nimi_en_toki.
 
-The name of the file needs to be the language (lowercase) and region code (uppercase) separated by an underscore (i.e. en_US.lang or ru_RU.lang.) If a language dosen't have a region code then just putting the language code is fine (i.e. tok.lang.)
+The name of the file needs to be the language (lowercase) and region code (uppercase) separated by an underscore (i.e. en_US.lang for English or ru_RU.lang for Russian.) If a language dosen't have a region code then just putting the language code is fine (i.e. tok.lang for Toki Pona.)
 
 Copy over one of the prexisting translation files' (preferably tok.lang) data and change the values, the messages on the right, into your langauge. After that, just submit a pull request with your changes.
 

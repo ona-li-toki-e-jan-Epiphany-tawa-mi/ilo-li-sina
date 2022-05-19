@@ -1,8 +1,8 @@
-View in a different language: [toki pona](nasin_kepeken-tok.md "lukin kepeken toki pona")
+View in a different language: [toki pona](nasin_kepeken-tok.md "lukin kepeken toki pona"), [Русский](nasin_kepeken-ru_RU.md "Смотреть на русском")
 
 # **Documentation for ilo li sina**
 
-ilo li sina is a small, string-only esoteric programming language. But you can still build interesting and useful things with it.
+ilo li sina is a small, string-only esoteric programming language, but you can still build interesting and useful things with it despite that fact.
 
 Everything in this language consists of or works with strings. You can create a string literal by encasing some text within quotes (i.e. "test" "this is a string literal".)
 
@@ -18,7 +18,7 @@ Arguments to a function are delimited by spaces, but that's only neccesary if th
 
 ```ilo li sina
     tokiELinja("This is" " a string") # Ok. Says "This is a string."
-    tokiElinja("This is"" a string") # Ok.
+    tokiELinja("This is"" a string") # Ok.
     a = "This is"
     tokiELinja(a " a string") # Ok.
     tokiELinja(a" a string") # Ok.

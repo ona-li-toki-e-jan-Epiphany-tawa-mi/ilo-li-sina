@@ -43,7 +43,7 @@ ike.kipisi.li_ken_ala_open_e_lipu=Не удалось открыть файл '%
 ike.kipisi.nimi_tawa.nimi_li_wile=Ожидалось имя метки до ':'
 ike.kipisi.nimi_tawa.li_ken_lon_open_linja_taso=Метки могут быть только в начале строки
 
-ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=Неопределенный экранирующий символ '\\%s'
+ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=Неопределенный управляющий символ '\\%s'
 ike.kipisi.poki_nimi.li_jo_ala_e_pini=Несовершенная строка
 
 ike.kipisi.nimi_wawa.nimi_li_wile=Ожидалось имя функции до '('

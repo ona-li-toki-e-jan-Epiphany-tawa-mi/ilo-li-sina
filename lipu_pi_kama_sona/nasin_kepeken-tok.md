@@ -1,4 +1,4 @@
-lukin kepeken toki ante: [English](nasin_kepeken-en_US.md "View in English")
+lukin kepeken toki ante: [English](nasin_kepeken-en_US.md "View in English"), [Русский](nasin_kepeken-ru_RU.md "Смотреть на русском")
 
 # **nasin kepeken pi toki "ilo li sina"**
 
@@ -18,7 +18,7 @@ ijo tawa nimi wawa li kipisi kepeken sitelen " " pi lukin ala. ni li wile ala ta
 
 ```ilo li sina
     tokiELinja("ni li" " nimi") # pona. li toki e "ni li nimi".
-    tokiElinja("ni li"" nimi") # pona.
+    tokiELinja("ni li"" nimi") # pona.
     a = "ni li"
     tokiELinja(a " nimi") # pona.
     tokiELinja(a" nimi") # pona.

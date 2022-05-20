@@ -64,7 +64,7 @@ Concatenates the given strings into a single string and returns it.
 
 #### **awen(\[durations...\]) -> nothing**
 
-Waits for the duration made by summing up the given durations. Durations must be valid integers and represent the time to wait in miliseconds.
+Waits for the duration made by summing up the given durations. Durations must be valid integers and represent the time to wait in miliseconds. awen() will ignore any empty strings (for instance, "awen("200" _)" is valid and will wait for 200 miliseconds.)
 
 #### **tawa(label) -> nothing**
 
@@ -132,7 +132,35 @@ GetName:
 
 If the user says nothing then alaLaTawa() will jump back and form a loop until the user says something.
 
-The main reason for alaLaTawa() is because some functions and other things return nothing when an error or something similiar happens. You can use alaLaTawa() to handle this without using niLaTawa(), which would require extra user intervention and them to know what that string contains, both of which may not be desirable. 
+The main reason for alaLaTawa() is because some functions and other things return nothing when an error or something similiar happens. You can use alaLaTawa() to handle this without using niLaTawa(), which would require extra user intervention and them to know what that string contains, both of which may not be desirable.
+
+GOTOs jump only when the entire line that they are in has finished executing. Because of this, you can use them just like a normal fuction.
+
+```ilo li sina
+    # If the user says anything other than "yes" that is then stored in "knows".
+KnowNothing: knows = niLaTawa(SpittingFacts "yes" _   \
+        "Is kijetesantakalu the best word in Toki Pona?"))
+
+    tokiELinja("The only answer is \"yes\"! \"" knows "\"er?, I don't even know her!")
+    awen("1500")
+    tawa(KnowNothing)
+
+SpittingFacts:
+    tokiELinja("Yes indeed!")
+    awen("1500")
+
+
+    # tokiELinja() will print out the user's choice of whether to continue or stop.
+    #
+    # awen() will delay the program regardless of whether niLaTawa() jumps.
+    #   Normally awen() throws an error when it receives non-numbers, but tokiELinja()
+    #   always returns an empty string, which will simply be ignored.
+    awen("1500" tokiELinja(                    \
+        "You chose to "                        \
+        niLaTawa(KnowNothing "continue" "stop" \
+            "Do you want to continue?")        \
+        " the program"))
+```
 
 ### ***Variables***
 

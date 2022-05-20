@@ -146,8 +146,10 @@ namespace pali {
 			const std::string& ijo = ijoTawaNi.front();
 
 			try {
-				std::this_thread::sleep_for(std::chrono::milliseconds(
-					std::stoi(ijo)));
+				// nimi li jo e ala la li pona. ni la mi wile ala toki e ike.
+				if (!ijo.empty())
+					std::this_thread::sleep_for(std::chrono::milliseconds(
+						std::stoi(ijo)));
 
 			} catch (const std::invalid_argument& nanpaAla) {
 				kepeken::tokiEIke(

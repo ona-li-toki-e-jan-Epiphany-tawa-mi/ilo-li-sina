@@ -64,7 +64,7 @@ li wan e nimi lon nimi wan.
 
 #### **awen(\[tenpo...\]) -> ala**
 
-li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi nanpa lili ala (sama "400" anu "1369" sama ala "3.5" anu "0.1111") li sama tenpo Milisekon (Miliseconds).
+li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi nanpa lili ala (sama "400" anu "1369" sama ala "3.5" anu "0.1111") li sama tenpo Milisekon (Miliseconds). nimi tenpo li ala la li pali e ala kepeken ona (pana la sina ken pana e "awen("200" _)". ni li awen lon tenpo Milisekon 200 li toki ala e ike).
 
 #### **tawa(nimiTawa) -> ala**
 
@@ -135,6 +135,33 @@ kamaPiJoNimi:
 jan li toki e ala la alaLaTawa() li kama jo e ala li tawa lon nimi liTokiEAla li kama jo sina e nimi.
 
 alaLaTawa() li lon tan ni: nimi wawa lili en ijo ante lili li ike la li pana e ala (""). sina ken kepeken e alaLaTawa() tawa kama sona e ni kepeken niLaTawa(). pana la ken la sina wile ala e ni: nimi li ala la jan li sona e nimi. en, ni li ken pona pona e lipu wawa.
+
+nimi wawa tawa li tawa lon tenpo ni taso: nimi wawa ali en ijo ante ali lon linja li pini. tan ni la sina ken kepeken e ona sama nimi wawa pi tawa ala. pana la:
+
+```ilo li sina
+    # jan li toki ala e sona pona la li poki e nimi ona lon poki liSonaPona.
+ala: liSonaPona = niLaTawa(sonaPona "sona pona" _                     \
+        "kijetesantakalu li nimi pona pona pi toki pona, anu seme?"))
+
+    tokiELinja("sina sona e ala! o toki e \"sona pona\" e \"" liSonaPona "\" ala!")
+    awen("1500")
+    tawa(ala)
+
+sonaPona:
+    tokiELinja("sona pona kin!")
+    awen("1500")
+
+
+    # tokiELinja() li toki e wile jan kepeken nimi tan niLaTawa().
+    #
+    # sin la niLaTawa() li tawa ala tawa la awen() li awen() li toki e ike ala tan ni: 
+    #   tokiELinja li pana e ala. awen() li pali e ala kepeken nimi ala.
+    awen("1500" tokiELinja(                         \
+        "sina pilin "                               \
+        niLaTawa(ala "pini ala" "pini"              \
+            "sina wile pini ala pini e lipu wawa?") \
+        " e lipu wawa ni"))
+```
 
 ### ***poki nanpa***
 

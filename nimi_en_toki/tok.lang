@@ -1,8 +1,23 @@
-ilo_CLI.toki_e_nimi.sona_kepeken=li toki e kulupu nimi pi lipu wawa pana.
-ilo_CLI.toki_e_kasi.sona_kepeken=li toki e kasi pi kasi suli pi lipu wawa pana.
-ilo_CLI.lipu_wawa.nimi=LIPU_WAWA
-ilo_CLI.lipu_wawa.sona_kepeken=lipu wawa tawa lawa e ilo nanpa.
-ilo_CLI.sona_kepeken=ilo tawa lawa e ilo nanpa kepeken toki \"ilo li sina\". toki \"ilo li sina\" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)\n\n\b\b\b\bjan pali:\nona li toki e jan Epiphany tawa mi\n\n\b\b\b\bike:\nike li kama la o toki ona lon ni <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>.\n\n\b\b\b\bjo pi lipu ni:\nCopyright © 2022 Nathaniel Needham. License: MIT. ni li lipu wawa pi nasin kepeken kiwen ala. sina ken ante e ona li ken pana e ona. o lukin e nimi wawa tawa pali pi lipu ni anu lukin e lipu <https://mit-license.org> tawa ijo ali pi lipu License pi toki e jo. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND.\n\n\b\b\b\bsin la o lukin:\nnimi wawa pi pali e lipu ni li lon lipu <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>.\nlipu pi kama sona pi nasin kepeken li lon lipu <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/blob/master/lipu_pi_kama_sona/nasin_kepeken-tok.md>.
+ilo_CLI.nimi_lipu=nimi lipu
+ilo_CLI.nimi_lipu.nimi=toki pi lawa e ilo nanpa. ona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)
+ilo_CLI.nasin_kepeken=nasin kepeken
+ilo_CLI.sona=sona
+ilo_CLI.sona.nimi=ilo tawa lawa e ilo nanpa kepeken toki \"ilo li sina\". toki \"ilo li sina\" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi.
+ilo_CLI.ilo_pilin=ilo pilin
+ilo_CLI.ilo_pilin.toki_e_nimi=li toki e kulupu nimi pi lipu wawa pana.
+ilo_CLI.ilo_pilin.toki_e_kasi=li toki e kasi pi kasi suli pi lipu wawa pana.
+ilo_CLI.ilo_pilin.help=li toki e nimi ni e sona kepeken li pini.
+ilo_CLI.ilo_pilin.version=li toki e nanpa pi lipu wawa ni li pini.
+ilo_CLI.ilo_pilin.lipu_wawa=LIPU_WAWA
+ilo_CLI.ilo_pilin.lipu_wawa.sona=lipu wawa tawa lawa e ilo nanpa.
+ilo_CLI.jan_pali=jan pali
+ilo_CLI.ike=ike
+ilo_CLI.ike.ma_pi_toki_ike=ike li kama la o toki ona lon lupa <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/issues>.
+ilo_CLI.jo_lipu=jo pi lipu ni
+ilo_CLI.jo_lipu.nimi=Copyright © 2022 Nathaniel Needham. License: MIT. ni li lipu wawa pi nasin kepeken kiwen ala. sina ken ante e ona li ken pana e ona. o lukin e nimi wawa tawa pali pi lipu ni anu lukin e lipu <https://mit-license.org> tawa ijo ali pi lipu License pi toki e jo. THIS SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND.
+ilo_CLI.ijo_sin=sin la o lukin
+ilo_CLI.ijo_sin.nimi_wawa=nimi wawa pi pali e lipu ni li lon lipu <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina>.
+ilo_CLI.ijo_sin.nasin_kepeken=lipu pi kama sona pi nasin kepeken li lon lipu <https://github.com/ona-li-toki-e-jan-Epiphany-tawa-mi/ilo-li-sina/blob/master/lipu_pi_kama_sona/nasin_kepeken-tok.md>.
 
 
 toki.nanpa_linja=linja pi nanpa %d
@@ -23,6 +38,13 @@ toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=POKI_PI_IJO_TAWA_NIMI_WAWA
 toki.kulupu_nimi.linja_sitelen_sin=LINJA_SITELEN_SIN
 toki.kulupu_nimi.nimi_tawa_tawa=NIMI_TAWA_TAWA
 toki.kulupu_nimi.ala=ALA
+
+
+
+ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala=ilo pilin '%s' pi sona ala
+ike.ilo_CLI.ilo_pilin.lipu_lawa_li_wile=li wile e nimi pi lipu wawa
+
+ike.ilo_CLI.o_lukin_e_sona_kepeken=sina ken kepeken e 'ilo_li_sina --help' tawa sona kepeken
 
 
 ike.pali.nimi_wawa.tawa.sitelen_ike=nimi tawa ike\n\tnimi tawa sama kulupu RegEx [a-zA-Z0-9_] li wile

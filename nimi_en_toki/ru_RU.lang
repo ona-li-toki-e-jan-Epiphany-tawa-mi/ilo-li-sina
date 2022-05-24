@@ -41,46 +41,46 @@ toki.kulupu_nimi.ala=НЕОПРЕДЕЛЕННОЕ
 
 
 
-ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala=Нераспознанный параметр '%s'
+ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala=Нераспознанный параметр «%s»
 ike.ilo_CLI.ilo_pilin.lipu_lawa_li_wile=Ожидались операнды, задающие файлы
 
-ike.ilo_CLI.o_lukin_e_sona_kepeken=По команде 'ilo_li_sina --help' можно получить дополнительную информацию
+ike.ilo_CLI.o_lukin_e_sona_kepeken=По команде «ilo_li_sina --help» можно получить дополнительную информацию
 
 
 ike.pali.nimi_wawa.tawa.sitelen_ike=Неправильное имя метки\n\tОжидалось имя похоже на [a-zA-Z0-9_]
-ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Переход на неопределенную метку '%s'
-ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=Неверное число аргументов для функции 'tawa'\n\tОжидалось: tawa(метка)
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'niLaTawa'\n\tОжидалось: niLaTawa(метка сообщениеДа сообщениеНет [сообщения...])
-ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции 'alaLaTawa'\n\tОжидалось: alaLaTawa(метка строка [строки...])
-ike.pali.nimi_wawa.li_jo_ala_e_pini=Несовершенный вызов функции\n\tОжидалось ')' 
-ike.pali.nimi_wawa.nimi_pi_sona_ala=Неопределенная функция '%s'
+ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Переход на неопределенную метку «%s»
+ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=Неверное число аргументов для функции «tawa»\n\tОжидалось: tawa(метка)
+ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции «niLaTawa»\n\tОжидалось: niLaTawa(метка сообщениеДа сообщениеНет [сообщения...])
+ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции «alaLaTawa»\n\tОжидалось: alaLaTawa(метка строка [строки...])
+ike.pali.nimi_wawa.li_jo_ala_e_pini=Несовершенный вызов функции\n\tОжидалось «)»
+ike.pali.nimi_wawa.nimi_pi_sona_ala=Неопределенная функция «%s»
 
-ike.pali.poki_nanpa.nimi_poki_li_wile=Ожидалось имя переменной до '='
-ike.pali.poki_nanpa.ijo_tawa_poki_li_wile=Ожидалось второе выражение после '='
-ike.pali.poki_nanpa.ijo_ike_tawa_poki=Неправильное выражение после '='\n\tНужно быть или возвращает какое-то значение
+ike.pali.poki_nanpa.nimi_poki_li_wile=Ожидалось имя переменной до «=»
+ike.pali.poki_nanpa.ijo_tawa_poki_li_wile=Ожидалось второе выражение после «=»
+ike.pali.poki_nanpa.ijo_ike_tawa_poki=Неправильное выражение после «=»\n\tНужно быть или возвращает какое-то значение
 
 
-ike.kipisi.li_ken_ala_open_e_lipu=Не удалось открыть файл '%s'
+ike.kipisi.li_ken_ala_open_e_lipu=Не удалось открыть файл «%s»
 
-ike.kipisi.nimi_tawa.nimi_li_wile=Ожидалось имя метки до ':'
+ike.kipisi.nimi_tawa.nimi_li_wile=Ожидалось имя метки до «:»
 ike.kipisi.nimi_tawa.li_ken_lon_open_linja_taso=Метки могут быть только в начале строки
 
-ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=Неопределенный управляющий символ '\\%s'
+ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala=Неопределенный управляющий символ «\\%s»
 ike.kipisi.poki_nimi.li_jo_ala_e_pini=Несовершенная строка
 
-ike.kipisi.nimi_wawa.nimi_li_wile=Ожидалось имя функции до '('
+ike.kipisi.nimi_wawa.nimi_li_wile=Ожидалось имя функции до «(»
 
 
-ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=Получение из неопределенной переменной '%s'
+ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=Получение из неопределенной переменной «%s»
 
 ike.lawa.pini_lipu=Получил EOF при чтении ввода
 
-ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=Сообщения да и нет для функции 'niLaTawa' не могут быть так же самые (сейчас - '%s')
+ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=Сообщения да и нет для функции «niLaTawa» не могут быть так же самые (сейчас - «%s»)
 
-ike.lawa.awen.nanpa_ala=Ожидалось целое число, но получилось '%s'
-ike.lawa.awen.nanpa_ike=Получилось целое число '%s' вне возможных значений
+ike.lawa.awen.nanpa_ala=Ожидалось целое число, но получилось «%s»
+ike.lawa.awen.nanpa_ike=Получилось целое число «%s» вне возможных значений
 
 
-ike.kulupu_nimi_pi_wile_ala=Неопределенный токен '%s'
+ike.kulupu_nimi_pi_wile_ala=Неопределенный токен «%s»
 
 ike.nimi=Ошибка

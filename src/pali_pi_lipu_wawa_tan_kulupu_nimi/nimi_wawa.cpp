@@ -138,20 +138,18 @@ namespace pali {
 	 * @retval std::nullopt nimi pi 1 anu mute li sama ala nanpa.
 	 */
 	std::optional<std::string> awen(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+		// li weka e ijo tan lupa tawa ni: sitelen ali lon ona li kama lon ilo CLI pi pana sitelen.
+		std::cout.flush();
+		std::cerr.flush();
+		
 		while (!ijoTawaNi.empty()) {
 			const std::string& ijo = ijoTawaNi.front();
 
 			try {
 				// nimi li jo e ala la li pona. ni la mi wile ala toki e ike.
-				if (!ijo.empty()) {
-					const auto tenpo = std::chrono::milliseconds(std::stoi(ijo));
-
-					// li weka e ijo tan lupa tawa ni: sitelen ali lon ona li kama lon ilo CLI pi pana sitelen.
-					std::cout.flush();
-					std::cerr.flush();
-
-					std::this_thread::sleep_for(tenpo);
-				}
+				if (!ijo.empty())
+					std::this_thread::sleep_for(std::chrono::milliseconds(
+						std::stoi(ijo)));
 
 			} catch (const std::invalid_argument& nanpaAla) {
 				kepeken::tokiEIke(

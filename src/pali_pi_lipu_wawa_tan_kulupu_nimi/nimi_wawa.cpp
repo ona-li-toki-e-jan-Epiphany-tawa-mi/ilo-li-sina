@@ -10,20 +10,16 @@
 
 namespace pali {
 	/**
-	 * @brief li toki e ijo lon lupa pana. li wile la li weka e ijo tan lupa ni.
+	 * @brief li toki e ijo lon lupa pana.
 	 * 
 	 * @param lupaTawaToki  li toki e ijo lon lupa ni (lupa sama Stdout).
-	 * @param oWekaEIjoLupa ni la li weka e ijo tan lupa.
 	 * @param ijoTawaToki 	ijo ni li toki.
 	 */
-	void tokiEIjo(std::ostream& lupaTawaToki, const bool oWekaEIjoLupa, pali::string_lqueue& ijoTawaToki) {
+	void tokiEIjo(std::ostream& lupaTawaToki, pali::string_lqueue& ijoTawaToki) {
 		while (!ijoTawaToki.empty()) {
 			lupaTawaToki << ijoTawaToki.front();
 			ijoTawaToki.pop();
 		}
-
-		if (oWekaEIjoLupa)
-			lupaTawaToki.flush();
 	}
 
 	/**
@@ -35,7 +31,7 @@ namespace pali {
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
 	std::optional<std::string> toki(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
-		tokiEIjo(std::cout, true, ijoTawaNi);
+		tokiEIjo(std::cout, ijoTawaNi);
 		return "";
 	}
 
@@ -48,7 +44,7 @@ namespace pali {
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
 	std::optional<std::string> tokiKepekenLinjaSin(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
-		tokiEIjo(std::cout, false, ijoTawaNi);
+		tokiEIjo(std::cout, ijoTawaNi);
 		std::cout << '\n';
 
 		return "";
@@ -63,7 +59,7 @@ namespace pali {
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
 	std::optional<std::string> tokiEIke(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
-		tokiEIjo(std::cerr, true, ijoTawaNi);
+		tokiEIjo(std::cerr, ijoTawaNi);
 		return "";
 	}
 
@@ -76,7 +72,7 @@ namespace pali {
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
 	std::optional<std::string> tokiEIkeKepekenLinjaSin(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
-		tokiEIjo(std::cerr, false, ijoTawaNi);
+		tokiEIjo(std::cerr, ijoTawaNi);
 		std::cerr << '\n';
 
 		return "";
@@ -147,9 +143,15 @@ namespace pali {
 
 			try {
 				// nimi li jo e ala la li pona. ni la mi wile ala toki e ike.
-				if (!ijo.empty())
-					std::this_thread::sleep_for(std::chrono::milliseconds(
-						std::stoi(ijo)));
+				if (!ijo.empty()) {
+					const auto tenpo = std::chrono::milliseconds(std::stoi(ijo));
+
+					// li weka e ijo tan lupa tawa ni: sitelen ali lon ona li kama lon ilo CLI pi pana sitelen.
+					std::cout.flush();
+					std::cerr.flush();
+
+					std::this_thread::sleep_for(tenpo);
+				}
 
 			} catch (const std::invalid_argument& nanpaAla) {
 				kepeken::tokiEIke(

@@ -25,12 +25,11 @@ namespace pali {
 	/**
 	 * @brief li toki e ijo lon ilo pi pana nimi lon lupa Stdin.
 	 *
-	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
 	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
-	std::optional<std::string> toki(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> toki(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		tokiEIjo(std::cout, ijoTawaNi);
 		return "";
 	}
@@ -38,12 +37,11 @@ namespace pali {
 	/**
 	 * @brief li toki e ijo e linja sin lon ilo pi pana nimi lon lupa Stdin.
 	 *
-	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
 	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
-	std::optional<std::string> tokiKepekenLinjaSin(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> tokiKepekenLinjaSin(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		tokiEIjo(std::cout, ijoTawaNi);
 		std::cout << '\n';
 
@@ -53,12 +51,11 @@ namespace pali {
 	/**
 	 * @brief li toki e ijo lon ilo pi pana nimi lon lupa Stderr.
 	 *
-	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
 	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
-	std::optional<std::string> tokiEIke(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> tokiEIke(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		tokiEIjo(std::cerr, ijoTawaNi);
 		return "";
 	}
@@ -66,12 +63,11 @@ namespace pali {
 	/**
 	 * @brief li toki e ijo e linja sin lon ilo pi pana nimi lon lupa Stderr.
 	 *
-	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
 	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi 		ijo tawa toki.
 	 */
-	std::optional<std::string> tokiEIkeKepekenLinjaSin(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> tokiEIkeKepekenLinjaSin(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		tokiEIjo(std::cerr, ijoTawaNi);
 		std::cerr << '\n';
 
@@ -81,7 +77,6 @@ namespace pali {
 	/**
 	 * @brief li kama jo e nimi tan jan.
 	 *
-	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
 	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi 		ijo tawa toki.
@@ -89,16 +84,16 @@ namespace pali {
 	 * @return 				nimi tan jan.
 	 * @retval std::nullopt li ken ala kama jo e nimi.
 	 */
-	std::optional<std::string> kamaJoTanJan(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> kamaJoTanJan(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		if (!ijoTawaNi.empty())
-			tokiKepekenLinjaSin(nimiPiILO_LI_SINA, nimiPiLipuWawa, lonKasi, ijoTawaNi);
+			tokiKepekenLinjaSin(nimiPiLipuWawa, lonKasi, ijoTawaNi);
 
 		std::string nimiTanJan;
 		if (!std::getline(std::cin, nimiTanJan)) {
-			kepeken::tokiEIke(
-				nimiPiILO_LI_SINA, nimiPiLipuWawa,
+			kepeken::tokiEIke({
+				nimiPiLipuWawa,
 				lonKasi,
-				"kamaJoTanJan(): " + ante_toki::kamaJoENimiTawaJan("ike.lawa.pini_lipu"));
+				"kamaJoTanJan(): " + ante_toki::kamaJoENimiTawaJan("ike.lawa.pini_lipu")});
 
 			return std::nullopt;
 		}
@@ -109,14 +104,13 @@ namespace pali {
 	/**
 	 * @brief li wan e ijo.
 	 * 
-	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
 	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
 	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi 		ijo ni li kama wan.
 	 * 
 	 * @return ijo wan tan ijo mute.
 	 */
-	std::optional<std::string> wan(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> wan(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		std::string pokiSitelenSin;
 
 		while (!ijoTawaNi.empty()) {
@@ -129,15 +123,14 @@ namespace pali {
 
 	/**
 	 * @brief lon tenpo pana la li awen li pali e ala.
-	 * 
-	 * @param nimiPiILO_LI_SINA nimi pi lipu "ilo li sina".
+	 *
 	 * @param nimiPiLipuWawa 	nimi pi lipu wawa.
 	 * @param lonKasi			lon kasi pi nimi wawa lon lipu wawa.
 	 * @param ijoTawaNi 		tenpo tawa awen. nimi ni li wile sama nanpa. nanpa ni li wan.
 	 *
 	 * @retval std::nullopt nimi pi 1 anu mute li sama ala nanpa.
 	 */
-	std::optional<std::string> awen(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> awen(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		// li weka e ijo tan lupa tawa ni: sitelen ali lon ona li kama lon ilo CLI pi pana sitelen.
 		std::cout.flush();
 		std::cerr.flush();
@@ -152,22 +145,22 @@ namespace pali {
 						std::stoi(ijo)));
 
 			} catch (const std::invalid_argument& nanpaAla) {
-				kepeken::tokiEIke(
-					nimiPiILO_LI_SINA, nimiPiLipuWawa,
+				kepeken::tokiEIke({
+					nimiPiLipuWawa,
 					lonKasi,
 					"awen(): " + ante_toki::anteENimi(
 						ante_toki::kamaJoENimiTawaJan("ike.lawa.awen.nanpa_ala"),
-						"%s", ijo));
+						"%s", ijo)});
 
 				return std::nullopt;
 
 			} catch (const std::out_of_range& nanpaIke) {
-				kepeken::tokiEIke(
-					nimiPiILO_LI_SINA, nimiPiLipuWawa,
+				kepeken::tokiEIke({
+					nimiPiLipuWawa,
 					lonKasi,
 					"awen(): " + ante_toki::anteENimi(
 						ante_toki::kamaJoENimiTawaJan("ike.lawa.awen.nanpa_ike"),
-						"%s", ijo));
+						"%s", ijo)});
 				
 				return std::nullopt;
 			}
@@ -178,7 +171,7 @@ namespace pali {
 		return "";
 	}
 
-	std::optional<std::string> kamaJoEPokiNanpaPiLawaOS(const std::string& nimiPiILO_LI_SINA, const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
+	std::optional<std::string> kamaJoEPokiNanpaPiLawaOS(const std::string& nimiPiLipuWawa, const kepeken::LonIjoLonLipuLawa *const lonKasi, pali::string_lqueue& ijoTawaNi) {
 		const char* pokiNanpaPiLawaOS = nullptr;
 
 		while (!ijoTawaNi.empty()) {

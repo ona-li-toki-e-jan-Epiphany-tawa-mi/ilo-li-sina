@@ -25,14 +25,13 @@ namespace kipisi {
 	 * @breif li kipisi e lipu wawa li pali e kulupu nimi tan kipisi.
 	 *
 	 * @param nimiPiLipuWawa nimi pi lipu wawa tawa kipisi.
-	 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 	 *
 	 * @return std::optional<std::vector<KulupuNimi>> poki pi kulupu nimi pi lipu wawa.
 	 * @retval int 0  li kipisi pona e lipu wawa.
 	 * @retval int 1  lipu wawa li ike.
 	 * @retval int -1 li ken ala lukin e lipu wawa.
 	 */
-	std::tuple<std::optional<std::vector<KulupuNimi>>, int> kipisiELipuWawa(const std::string& nimiPiLipuWawa, const std::string& nimiPiILO_LI_SINA);
+	std::tuple<std::optional<std::vector<KulupuNimi>>, int> kipisiELipuWawa(const std::string& nimiPiLipuWawa);
 
 	/**
 	 * @brief li toki e kulupu nimi pi lipu wawa tawa jan lawa e ilo nanpa.

@@ -244,7 +244,6 @@ namespace pali {
 			 * @brief li pali e ijo kasi tawa li pilin e ni: li wile tawa ala tawa.
 			 * 		tenpo ali la kasi kiwen KasiTawa li pana e nimi True.
 			 * 
-			 * @param nimiPiILO_LI_SINA nimi tawa ilo IloLiSina tan jan.
 			 * @param nimiLipu 			nimi pi lipu wawa pi tenpo ni.
 			 * @param nimiTawaTawa 		nimi tawa kasi tawa tan ijo tawa tawa. li sama ijo tawa nimi wawa.
 			 * 
@@ -254,7 +253,7 @@ namespace pali {
 			 * 
 			 * @retval std::nullopt ike li kama.
 			 */
-			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const;
+			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const;
 			/**
 			 * @return nimi tawa kepeken e kasi tawa lon lipu pi toki Ilo Li Sina (sama "tawa" anu "niLaTawa").
 			 */
@@ -296,7 +295,6 @@ namespace pali {
 			 * @brief li toki e nimi tawa toki tawa jan. jan li toki e nimi lon li ken tawa. 
 			 * 		jan li toki e nimi ala la li ken ala.
 			 * 
-			 * @param nimiPiILO_LI_SINA  nimi tawa ilo IloLiSina tan jan.
 			 * @param nimiLipu 			 nimi pi lipu wawa pi tenpo ni.
 			 * @param nimiTawaTawa[0] 	 nimi lon		 - nimi tawa tawa. 			li wile.
 			 * @param nimiTawaTawa[1] 	 nimi pi lon ala - nimi tawa tawa ala. 		li wile.
@@ -308,7 +306,7 @@ namespace pali {
 			 * 
 			 * @retval std::nullopt ike li kama.
 			 */
-			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
+			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
 			virtual std::string kamaJoENimiPiKasiTawa() const override;
 	};
 
@@ -334,7 +332,6 @@ namespace pali {
 			/**
 			 * @brief nimi pana ale li jo e ala la li tawa.
 			 * 
-			 * @param nimiPiILO_LI_SINA  nimi tawa ilo IloLiSina tan jan.
 			 * @param nimiLipu 			 nimi pi lipu wawa pi tenpo ni.
 			 * @param nimiTawaTawa		 nimi tawa kama sona e ni: ona li jo ala jo e ala. 
 			 * 
@@ -342,7 +339,7 @@ namespace pali {
 			 * @retval false 		nimi pana pi ale ala li jo e ala.
 			 * @return std::string  ala.
 			 */
-			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
+			virtual std::optional<std::tuple<bool, std::string>> liKenTawa(const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const override;
 			virtual std::string kamaJoENimiPiKasiTawa() const override;
 	};
 }

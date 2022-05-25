@@ -209,7 +209,7 @@ namespace pali {
 		return this->ijoTawaTawa;
 	}
 
-	std::optional<std::tuple<bool, std::string>> KasiTawa::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
+	std::optional<std::tuple<bool, std::string>> KasiTawa::liKenTawa(const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
 		return {{true, ""}};
 	}
 
@@ -238,7 +238,7 @@ namespace pali {
 		return "niLaTawa";
 	}
 
-	std::optional<std::tuple<bool, std::string>> KasiPiTawaKen::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
+	std::optional<std::tuple<bool, std::string>> KasiPiTawaKen::liKenTawa(const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
 		assert(nimiTawaTawa.size() >= 2 && "kasi pi tawa ken li wile e nimi pi 2 anu nanpa suli tawa 2 tawa tawa");
 		
 		auto alasaNimi = nimiTawaTawa.cbegin();
@@ -246,12 +246,12 @@ namespace pali {
 		const std::string& nimiPiLonAla = *(alasaNimi++);
 		// nimi lon en nimi pi lon ala li ken ala sama. 1 li ken jo e ala. taso, ona tu li ken ala jo e ala lon tenpo sama.
 		if ((nimiLon.empty() && nimiPiLonAla.empty()) || nimiLon == nimiPiLonAla) {
-			kepeken::tokiEIke(
-				nimiPiILO_LI_SINA, nimiLipu,
-				&this->lonKasiLonLipuWawa,
+			kepeken::tokiEIke({
+				nimiLipu,
+				this->lonKasiLonLipuWawa,
 				"niLaTawa(): " + ante_toki::anteENimi(
 					ante_toki::kamaJoENimiTawaJan("ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama"),
-					"%s", nimiLon));
+					"%s", nimiLon)});
 
 			return std::nullopt;
 		}
@@ -269,10 +269,10 @@ namespace pali {
 			std::cout << "(" << nimiLon << '/' << nimiPiLonAla << ")\n";
 
 			if (!std::getline(std::cin, nimiTanJan)) {
-				kepeken::tokiEIke(
-					nimiPiILO_LI_SINA, nimiLipu,
-					&this->lonKasiLonLipuWawa,
-					"niLaTawa(): " + ante_toki::kamaJoENimiTawaJan("ike.lawa.pini_lipu"));
+				kepeken::tokiEIke({
+					nimiLipu,
+					this->lonKasiLonLipuWawa,
+					"niLaTawa(): " + ante_toki::kamaJoENimiTawaJan("ike.lawa.pini_lipu")});
 
 				break;
 			}
@@ -318,7 +318,7 @@ namespace pali {
 		return "alaLaTawa";
 	}
 
-	std::optional<std::tuple<bool, std::string>> KasiPiAlaLaTawa::liKenTawa(const std::string& nimiPiILO_LI_SINA, const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
+	std::optional<std::tuple<bool, std::string>> KasiPiAlaLaTawa::liKenTawa(const std::string& nimiLipu, const std::list<std::string>& nimiTawaTawa) const {
 		assert(!nimiTawaTawa.empty() && "kasi pi 'ala la tawa' li wile e nimi pi 1 anu nanpa suli tawa 1 tawa tawa");
 		
 		for (const std::string& nimi : nimiTawaTawa)

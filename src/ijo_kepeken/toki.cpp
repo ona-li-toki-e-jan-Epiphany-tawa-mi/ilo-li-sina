@@ -1,59 +1,51 @@
 #include "toki.hpp"
-
+#include "../ante_toki/ante_toki.hpp"
 
 namespace kepeken {
-    /**
-     * @brief nanpa sitelen ken lon sitelen 1 tan fmtPrintLine().
-     */
-    constexpr int suliLinja = 75;
+    void tokiELinjaPiLukinPona(std::ostream& lupaTawaToki, const std::string& nimi, const int nanpaPiSitelenAla, int nanpaPiSitelenAlaSin) {
+        const std::string sitelenPiKipisiNimi(" \n");
+        /**
+         * @brief nanpa sitelen ken lon sitelen 1 tan tokiELinjaPiLukinPona().
+         */
+        constexpr size_t suliWilePiLinjaAli = 75;
 
-    void fmtPrintLine(std::ostream &os, const std::string &s, const int indentTabs, int secondLineOffset) {
-        const std::string splitChars(" ,|");
-        int maxChars = suliLinja - indentTabs;
-        std::string indentString(indentTabs, '\t');
-        int from = 0;
-        int to = 0;
-        int end = s.length();
-        for (;;) {
-            if (end - from <= maxChars) {
-                // Rest of string fits on line, just print the remainder
-                os << indentString << s.substr(from) << std::endl;
+        size_t suliWileLinja = suliWilePiLinjaAli - nanpaPiSitelenAla;
+        std::string sitelenAlaLonMonsi(nanpaPiSitelenAla, ' ');
+        size_t tan = 0, tawa = 0;
+
+        while (true) {
+            // linja awen li lili tawa suli wile la li ken pona toki e ona li ken pini.
+            if (ante_toki::UTF8LaKamaJoENanpaSitelen(nimi, tan, nimi.size()) <= suliWileLinja) {
+                lupaTawaToki << sitelenAlaLonMonsi << nimi.substr(tan) << '\n';
                 return;
             }
 
-            // Find the next place where it is good to break the string
-            // (to) by finding the place where it is too late (tooFar) and
-            // taking the previous one.
-            int tooFar = to;
-            while (tooFar - from <= maxChars &&
-                static_cast<std::size_t>(tooFar) != std::string::npos) {
-                to = tooFar;
-                tooFar = s.find_first_of(splitChars, to + 1);
+            size_t suliPiLinjaLonLinja = 0;
+            size_t maPiKenAla = tawa;
+            // li kipisi e nimi kepeken sitelen kipisi tawa ni: ona li alasa e nanpa nimi ken lon linja 1.
+            while (suliPiLinjaLonLinja <= suliWileLinja && maPiKenAla != std::string::npos) {
+                tawa = maPiKenAla;
+                maPiKenAla = nimi.find_first_of(sitelenPiKipisiNimi, tawa + 1);
+
+                if (maPiKenAla != std::string::npos) 
+                    suliPiLinjaLonLinja += ante_toki::UTF8LaKamaJoENanpaSitelen(nimi, tawa, maPiKenAla);
             }
 
-            if (to == from) {
-                // In case there was no good place to break the string,
-                // just break it in the middle of a word at line length.
-                to = from + maxChars - 1;
-            }
+            // li ken ala pana e nimi lon linja 1 la li ken kipisi e ona.
+            if (tawa == tan) 
+                tawa = tan + ante_toki::UTF8LaKamaJoENanpaBYTE(nimi, tan, suliWileLinja) - 1;
 
-            if (s[to] != ' ') {
-                // Include delimiter before line break, unless it's a space
-                to++;
-            }
+            lupaTawaToki << sitelenAlaLonMonsi << nimi.substr(tan, tawa - tan) << '\n';
 
-            os << indentString << s.substr(from, to - from) << '\n';
+            // li weka e nimi kipisi tan open linja.
+            for (; sitelenPiKipisiNimi.find(nimi.at(tawa)) != std::string::npos; tawa++) {}
+            tan = tawa;
 
-            // Avoid printing extra white space at start of a line
-            for (; s[to] == ' '; to++) {
-            }
-            from = to;
-
-            if (secondLineOffset != 0) {
-                // Adjust offset for following lines
-                indentString.insert(indentString.end(), secondLineOffset, '\t');
-                maxChars -= secondLineOffset;
-                secondLineOffset = 0;
+            // li linja pi nanpa 1 ala la li en e sitelen sin pi lukin ala.
+            if (nanpaPiSitelenAlaSin != 0) {
+                sitelenAlaLonMonsi.append(nanpaPiSitelenAlaSin, ' ');
+                suliWileLinja -= nanpaPiSitelenAlaSin;
+                nanpaPiSitelenAlaSin = 0;
             }
         }
     }

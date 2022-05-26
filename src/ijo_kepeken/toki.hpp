@@ -6,7 +6,7 @@
  * @brief ilo tawa toki e ijo pi lukin pona.
  */
 namespace kepeken {
-    /******************************************************************************
+    /**
      * Copyright (c) 2003-2012 Michael E. Smoot 
      * Copyright (c) 2004-2016 Daniel Aarno
      * Copyright (c) 2017-2021 Google LLC
@@ -37,14 +37,13 @@ namespace kepeken {
      *      std::ostream&, const std::string&, int, int, int), pulled from TCLAP 
      *      (http://tclap.sourceforge.net/index.html) - MIT licensed. This message is not apart of 
      *      the notice itself.
-     *****************************************************************************/
-    /**
+     *
      * @brief li toki e nimi kepeken linja pi lukin pona.
      * 
-     * @param os li toki e ijo lon lupa ni.
-     * @param s ijo tawa toki.
-     * @param indentTabs nanpa pi sitelen \t lon monsi pi linja ali.
-     * @param nanpa pi sitelen \t sin lon monsi pi linja pi nanpa 1 ala.
+     * @param lupaTawaToki         li toki e ijo lon lupa ni.
+     * @param nimi                 li toki e nimi ni.
+     * @param nanpaPiSitelenAla    nanpa pi sitelen ' ' pi lukin ala lon monsi pi linja ali.
+     * @param nanpaPiSitelenAlaSin nanpa pi sitelen ' ' sin pi lukin ala lon monsi pi linja pi nanpa 1 ala.
      */
-    void fmtPrintLine(std::ostream &os, const std::string &s, const int indentTabs, int secondLineOffset);
+    void tokiELinjaPiLukinPona(std::ostream& lupaTawaToki, const std::string& nimi, const int nanpaPiSitelenAla, int nanpaPiSitelenAlaSin);
 }

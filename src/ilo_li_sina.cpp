@@ -118,9 +118,9 @@ std::unordered_map<NimiPiIloPilin, IloPilin> iloPilinAli = {
 void tokiESonaKepeken() {
 	// nimi lipu.
 	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.nimi_lipu") << ":\n"; 
-	kepeken::fmtPrintLine(std::cout, 
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		"ilo_li_sina - " + ante_toki::kamaJoENimiTawaJan("ilo_CLI.nimi_lipu.nimi"),
-		1, 0);
+		8, 0);
 	
 
 	std::cout << '\n';
@@ -138,9 +138,9 @@ void tokiESonaKepeken() {
 		nimiPiNasinKepeken.append("] ");
 	}
 
-	kepeken::fmtPrintLine(std::cout, 
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		nimiPiNasinKepeken + ante_toki::kamaJoENimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa") + "...",
-		1, 1);
+		8, 8);
 
 
 	std::cout << '\n';
@@ -148,9 +148,9 @@ void tokiESonaKepeken() {
 
 	// sona.
 	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.sona") << ":\n";
-	kepeken::fmtPrintLine(std::cout,
+	kepeken::tokiELinjaPiLukinPona(std::cout,
 		ante_toki::kamaJoENimiTawaJan("ilo_CLI.sona.nimi"),
-		1, 0);
+		8, 0);
 
 
 	std::cout << '\n';
@@ -168,23 +168,23 @@ void tokiESonaKepeken() {
 				nimi.append(", ");
 			if (!iloPilin.nimiSuli.empty())
 				nimi.append("--").append(iloPilin.nimiSuli);
-			kepeken::fmtPrintLine(std::cout,
+			kepeken::tokiELinjaPiLukinPona(std::cout,
 				nimi,
-				1, 1);
+				8, 8);
 
-			kepeken::fmtPrintLine(std::cout,
+			kepeken::tokiELinjaPiLukinPona(std::cout,
 				ante_toki::kamaJoENimiTawaJan(iloPilin.sonaKepeken),
-				2, 0);
+				16, 0);
 			std::cout << '\n';
 		}
 	}
 
-	kepeken::fmtPrintLine(std::cout,
+	kepeken::tokiELinjaPiLukinPona(std::cout,
 		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa"),
-		1, 1);
-	kepeken::fmtPrintLine(std::cout, 
+		8, 8);
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa.sona"),
-		2, 0);
+		16, 0);
 
 	
 	std::cout << '\n';
@@ -192,9 +192,9 @@ void tokiESonaKepeken() {
 
 	// jan pali.
 	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.jan_pali") << ":\n";
-	kepeken::fmtPrintLine(std::cout, 
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		"ona li toki e jan Epiphany tawa mi.",
-		1, 0);
+		8, 0);
 
 
 	std::cout << '\n';
@@ -202,9 +202,9 @@ void tokiESonaKepeken() {
 
 	// ike.
 	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.ike") << ":\n";
-	kepeken::fmtPrintLine(std::cout, 
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ike.ma_pi_toki_ike"),
-		1, 0);
+		8, 0);
 
 
 	std::cout << '\n';
@@ -212,9 +212,9 @@ void tokiESonaKepeken() {
 
 	// jo lipu.
 	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.jo_lipu") << ":\n";
-	kepeken::fmtPrintLine(std::cout, 
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		ante_toki::kamaJoENimiTawaJan("ilo_CLI.jo_lipu.nimi"),
-		1, 0);
+		8, 0);
 
 
 	std::cout << '\n';
@@ -222,12 +222,12 @@ void tokiESonaKepeken() {
 
 	// ijo sin.
 	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.ijo_sin") << ":\n";
-	kepeken::fmtPrintLine(std::cout, 
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ijo_sin.nimi_wawa"),
-		1, 0);
-	kepeken::fmtPrintLine(std::cout, 
+		8, 8);
+	kepeken::tokiELinjaPiLukinPona(std::cout, 
 		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ijo_sin.nasin_kepeken"),
-		1, 0);
+		8, 8);
 }
 
 /**

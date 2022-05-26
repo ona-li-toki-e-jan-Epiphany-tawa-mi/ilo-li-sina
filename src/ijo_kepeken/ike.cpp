@@ -74,6 +74,6 @@ namespace kepeken {
 			.append(ike.kamaJoENimiIke());
 
 
-		fmtPrintLine(std::cerr, ikePini, 0, 1);
+		tokiELinjaPiLukinPona(std::cerr, ikePini, 0, 8);
 	}
 }

@@ -21,6 +21,7 @@ ilo_CLI.ijo_sin.nasin_kepeken=lipu pi kama sona pi nasin kepeken li lon lipu <ht
 
 
 toki.nanpa_linja=linja pi nanpa %d
+toki.li_jo_e_ala=li jo e ala...
 
 toki.nimi_kasi.pana_lon_poki=PANA_LON_POKI
 toki.nimi_kasi.kama_jo_tan_poki=KAMA_JO_TAN_POKI
@@ -38,7 +39,6 @@ toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=POKI_PI_IJO_TAWA_NIMI_WAWA
 toki.kulupu_nimi.linja_sitelen_sin=LINJA_SITELEN_SIN
 toki.kulupu_nimi.nimi_tawa_tawa=NIMI_TAWA_TAWA
 toki.kulupu_nimi.ala=ALA
-
 
 
 ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala=ilo pilin '%s' pi sona ala

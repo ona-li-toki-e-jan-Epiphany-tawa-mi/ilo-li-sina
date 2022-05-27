@@ -233,17 +233,22 @@ namespace kipisi {
 	}
 
 	void tokiELipuWawa(const std::vector<KulupuNimi>& pokiPiKulupuNimi, const std::string& nimiPiLipuWawa) {
-		std::cout << "/-------------------\n| " << nimiPiLipuWawa << "\n\\-------------------\n";
+		static const std::string sitelenAlaLonMonsi(8, ' ');
+		const std::string sinpin(nimiPiLipuWawa.size() + 2, '-');
+
+		std::cout << '/' << sinpin << "\\\n"
+			<< "| " << nimiPiLipuWawa << " |\n" 
+			<< '\\' << sinpin << "/\n";
 		
-		if (pokiPiKulupuNimi.size() != 0) {
+		if (!pokiPiKulupuNimi.empty()) {
 			size_t nanpaLinja = 1;
 			std::cout << ante_toki::anteENimi(
 				ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"),
 				"%d", std::to_string(nanpaLinja))
-				<< "\n";
+				<< ":\n";
 
 			for (auto alasaPiKulupuNimi = pokiPiKulupuNimi.cbegin(); alasaPiKulupuNimi != pokiPiKulupuNimi.cend(); alasaPiKulupuNimi++) {
-				std::cout << "    " << kamaJoENimiPiNimiKulupu(alasaPiKulupuNimi->nimiPiKulupuNimi) << "=\"";
+				std::cout << sitelenAlaLonMonsi << kamaJoENimiPiNimiKulupu(alasaPiKulupuNimi->nimiPiKulupuNimi) << "=\"";
 
 				for (const char sitelen : alasaPiKulupuNimi->kamaJoENimiPoki())
 					try {
@@ -253,6 +258,7 @@ namespace kipisi {
 					} catch (const std::out_of_range& liSitelenNasaAla) {
 						std::cout << sitelen;
 					}
+
 				std::cout << "\"\n";
 
 
@@ -260,12 +266,12 @@ namespace kipisi {
 					std::cout << ante_toki::anteENimi(
 						ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"),
 						"%d", std::to_string(++nanpaLinja))
-						<< "\n";
+						<< ":\n";
 			}
 
 		} else
-			std::cout << '\n';
+			std::cout << '\n' << ante_toki::kamaJoENimiTawaJan("toki.li_jo_e_ala") << "\n\n";
 
-		std::cout << "\\-------------------\n";
+		std::cout << "\\" << sinpin << "/\n";
 	}
 }

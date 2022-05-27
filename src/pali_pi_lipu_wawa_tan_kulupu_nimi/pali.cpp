@@ -502,8 +502,16 @@ namespace pali {
 	 * @param lonInsaPiNanpaNi nanpa ni li nanpa sitelen tawa toki. kasi li lon insa pi kasi pi nanpa ni.
 	 */
 	void tokiEOpenPiTokiKasi(const unsigned int lonInsaPiNanpaNi) {
-		for (int nanpa = 0; nanpa < lonInsaPiNanpaNi; nanpa++)
-			std::cout << "    ";
+		static std::unordered_map<unsigned int, std::string> pokiPiTokiOpen;
+
+		try {
+			std::cout << pokiPiTokiOpen.at(lonInsaPiNanpaNi);
+		
+		} catch (const std::out_of_range liPokiAlaEOpenNi) {
+			std::string openSin(lonInsaPiNanpaNi * 8, ' ');
+			pokiPiTokiOpen[lonInsaPiNanpaNi] = openSin;
+			std::cout << openSin;
+		}
 	}
 
 	/**
@@ -612,18 +620,26 @@ namespace pali {
 	}
 
 	void tokiEKasiSuli(const std::vector<std::shared_ptr<KasiPiKasiSuli>>& pokiTawaLipuWawa, const std::string& nimiPiLipuWawa) {
-		std::cout << "/-------------------\n| " << nimiPiLipuWawa << "\n\\-------------------\n";
+		const std::string sinpin(nimiPiLipuWawa.size() + 2, '-');
 
-		for (size_t nanpa = 0; nanpa < pokiTawaLipuWawa.size(); nanpa++) {
-			const KasiPiKasiSuli *const kasiPiKasiSuli = pokiTawaLipuWawa.at(nanpa).get();
+		std::cout << '/' << sinpin << "\\\n"
+			<< "| " << nimiPiLipuWawa << " |\n"
+			<< '\\' << sinpin << "/\n";
 
-			std::cout << ante_toki::anteENimi(
-				ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"), 
-				"%d", std::to_string(kasiPiKasiSuli->kamaJoELonKasi().nanpaLinja)) 
-				<< ":\n";
-			tokiEKasiPiKasiSuli(pokiTawaLipuWawa, pokiTawaLipuWawa.at(nanpa).get(), 1, nanpa);
-		}
+		if (!pokiTawaLipuWawa.empty()) {
+			for (size_t nanpa = 0; nanpa < pokiTawaLipuWawa.size(); nanpa++) {
+				const KasiPiKasiSuli *const kasiPiKasiSuli = pokiTawaLipuWawa.at(nanpa).get();
 
-		std::cout << "\\-------------------\n";
+				std::cout << ante_toki::anteENimi(
+					ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"), 
+					"%d", std::to_string(kasiPiKasiSuli->kamaJoELonKasi().nanpaLinja)) 
+					<< ":\n";
+				tokiEKasiPiKasiSuli(pokiTawaLipuWawa, pokiTawaLipuWawa.at(nanpa).get(), 1, nanpa);
+			}
+
+		} else
+			std::cout << '\n' << ante_toki::kamaJoENimiTawaJan("toki.li_jo_e_ala") << "\n\n";
+
+		std::cout << '\\' << sinpin << "/\n";
 	}
 }

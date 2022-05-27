@@ -21,6 +21,7 @@ ilo_CLI.ijo_sin.nasin_kepeken=Documentation avalible at <https://github.com/ona-
 
 
 toki.nanpa_linja=Line %d
+toki.li_jo_e_ala=Empty...
 
 toki.nimi_kasi.pana_lon_poki=VARIABLE_ASSIGNMENT
 toki.nimi_kasi.kama_jo_tan_poki=VARIABLE_ACCESSOR

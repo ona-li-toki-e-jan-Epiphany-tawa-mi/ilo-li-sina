@@ -4,7 +4,7 @@
 #include <clocale>
 #include <cwchar>
 #include <cassert>
-#include "nimi_toki.hpp"
+#include "nimi_toki.hxx"
 
 namespace ante_toki {
     const std::unordered_map<std::string, std::string>* tokiWile = nullptr;

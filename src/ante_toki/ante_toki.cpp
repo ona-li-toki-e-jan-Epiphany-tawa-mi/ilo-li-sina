@@ -8,14 +8,20 @@
 
 namespace ante_toki {
     const std::unordered_map<std::string, std::string>* tokiWile = nullptr;
-    const char* ijoPiTokiWile = nullptr;
+    std::locale ijoPiTokiWile;
+    const char* ijoCPiTokiWile = nullptr;
 
     bool alasaETokiWile() {
         if (nimiTokiAli.size() == 0)
             return false;
 
         // li wile tawa kama jo e suli pi poki nimi UTF-8 tawa ijo toki ante.
-        ijoPiTokiWile = setlocale(LC_ALL, "");
+        ijoCPiTokiWile = setlocale(LC_ALL, "");
+
+        // li ante e nasin pi toki ijo tawa toki wile.
+        ijoPiTokiWile = std::locale("");
+        std::cout.imbue(ijoPiTokiWile);
+        std::cerr.imbue(ijoPiTokiWile);
 
         // lawa OS mute li pana e toki wile lon "LANG". sin la ni li ken ni: jan li pilin e toki pi ilo ni.
         const char *const tokiJan = getenv("LANG");
@@ -73,7 +79,7 @@ namespace ante_toki {
         assert(open <= pini && "open alasa li ken ala suli tawa pini alasa");
 
         // li sona ala e ijo pi toki wile la li ken taso pana e suli tan open tawa pini.
-        if (ijoPiTokiWile == nullptr)
+        if (ijoCPiTokiWile == nullptr)
             return pini - open;
 
         size_t suli = 0;
@@ -94,7 +100,7 @@ namespace ante_toki {
         assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
         
         // li sona ala e ijo pi toki wile la li ken taso pana e suli lili lili tan nanpa sitelen anu suli tan open.
-        if (ijoPiTokiWile == nullptr)
+        if (ijoCPiTokiWile == nullptr)
             return std::min(pokiNimi.size() - open, nanpaSitelen);
         
         size_t nanpa = 0;

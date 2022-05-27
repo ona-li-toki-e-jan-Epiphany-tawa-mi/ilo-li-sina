@@ -2,7 +2,7 @@
 #include <regex>
 #include <iostream>
 #include "../ijo_kepeken/ike.hpp"
-#include "../ijo_kepeken/ijoTawaPokiMAP.hpp"
+#include "../ijo_kepeken/ijoTawaPokiMAP.hxx"
 #include "../ante_toki/ante_toki.hpp"
 
 #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) static_cast<size_t>(std::distance(linjaSitelen.begin(), alasaSitelen)) + 1

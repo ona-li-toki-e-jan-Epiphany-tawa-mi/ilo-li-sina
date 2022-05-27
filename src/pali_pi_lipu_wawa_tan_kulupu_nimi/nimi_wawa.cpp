@@ -4,7 +4,7 @@
 #include <chrono>
 #include <thread>
 #include <cstring>
-#include "../ijo_kepeken/ijoTawaPokiMAP.hpp"
+#include "../ijo_kepeken/ijoTawaPokiMAP.hxx"
 #include "../ijo_kepeken/ike.hpp"
 #include "../ante_toki/ante_toki.hpp"
 

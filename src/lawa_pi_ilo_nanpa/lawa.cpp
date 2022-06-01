@@ -133,7 +133,7 @@ namespace lawa {
 
 		SonaTawaLawa sonaTawaLawa = {nimiPiLipuWawa, pokiPiPokiNanpaAli, nanpaLinja};
 
-		for (; nanpaLinja != lipuWawa.size(); nanpaLinja++) {
+		for (; nanpaLinja < lipuWawa.size(); nanpaLinja++) {
 			paliEKasi(sonaTawaLawa, lipuWawa.at(nanpaLinja).get());
 
 			if (sonaTawaLawa.liWilePini)

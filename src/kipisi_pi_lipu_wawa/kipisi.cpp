@@ -41,7 +41,7 @@ namespace kipisi {
 
 		do {
 			if (linjaSitelen.size() != 0)
-				for (auto alasaSitelen = linjaSitelen.begin(); alasaSitelen != linjaSitelen.end(); alasaSitelen++) {
+				for (auto alasaSitelen = linjaSitelen.begin(); alasaSitelen < linjaSitelen.end(); alasaSitelen++) {
 					switch (*alasaSitelen) {
 						// li kama jo e nimi pi pana lon poki nanpa.
 						case '=': {
@@ -87,7 +87,7 @@ namespace kipisi {
 							const auto openPoki = alasaSitelen;
 
 							alasaSitelen++;
-							for (; alasaSitelen != linjaSitelen.end(); alasaSitelen++) {
+							for (; alasaSitelen < linjaSitelen.end(); alasaSitelen++) {
 								switch (*alasaSitelen) {
 									// pini pi poki sitelen.
 									case '"':
@@ -264,7 +264,7 @@ namespace kipisi {
 				"%d", std::to_string(nanpaLinja))
 				<< ":\n";
 
-			for (auto alasaPiKulupuNimi = pokiPiKulupuNimi.cbegin(); alasaPiKulupuNimi != pokiPiKulupuNimi.cend(); alasaPiKulupuNimi++) {
+			for (auto alasaPiKulupuNimi = pokiPiKulupuNimi.cbegin(); alasaPiKulupuNimi < pokiPiKulupuNimi.cend(); alasaPiKulupuNimi++) {
 				std::cout << sitelenAlaLonMonsi << kamaJoENimiPiNimiKulupu(alasaPiKulupuNimi->nimiPiKulupuNimi) << "=\"";
 
 				for (const char sitelen : alasaPiKulupuNimi->kamaJoENimiPoki())

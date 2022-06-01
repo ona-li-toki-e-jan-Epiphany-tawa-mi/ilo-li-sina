@@ -280,7 +280,7 @@ namespace pali {
 		bool ijoIkeLiLon = false;
 
 		// li kama jo e ijo tawa nimi wawa.
-		for (alasaPiKulupuNimi += 2; alasaPiKulupuNimi != sonaTawaPali.kulupuNimi.cend(); alasaPiKulupuNimi++)  {
+		for (alasaPiKulupuNimi += 2; alasaPiKulupuNimi < sonaTawaPali.kulupuNimi.cend(); alasaPiKulupuNimi++)  {
 			switch (alasaPiKulupuNimi->nimiPiKulupuNimi) {
 				case kipisi::NimiPiKulupuNimi::NIMI_WAWA:
 				case kipisi::NimiPiKulupuNimi::POKI_NANPA:
@@ -430,7 +430,7 @@ namespace pali {
 		SonaTawaPali sonaTawaKipisi = {kulupuNimi, nimiPiLipuWawa, nimiWawaTawaTawa, false};
 
 		// li pali e lipu wawa.
-		for (auto alasaPiKulupuNimi = kulupuNimi.cbegin(); alasaPiKulupuNimi != kulupuNimi.cend(); alasaPiKulupuNimi++) {
+		for (auto alasaPiKulupuNimi = kulupuNimi.cbegin(); alasaPiKulupuNimi < kulupuNimi.cend(); alasaPiKulupuNimi++) {
 			switch (alasaPiKulupuNimi->nimiPiKulupuNimi) {
 				// nimi wawa pi nanpa 1 en pana pi nanpa 1 lon poki nanpa li kulupu nimi suli suli lon linja sitelen li wile lon open pi kasi suli.
 				case kipisi::NimiPiKulupuNimi::NIMI_WAWA:

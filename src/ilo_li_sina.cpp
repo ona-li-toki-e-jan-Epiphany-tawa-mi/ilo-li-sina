@@ -268,7 +268,7 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 
 	std::list<const std::string*> lipuWawaPana;
 
-	for (auto alasaIloPilin = iloPilinPana.cbegin(); alasaIloPilin != iloPilinPana.cend(); alasaIloPilin++)
+	for (auto alasaIloPilin = iloPilinPana.cbegin(); alasaIloPilin < iloPilinPana.cend(); alasaIloPilin++)
 		if (alasaIloPilin->size() > 2 && alasaIloPilin->compare(0, 2, "--") == 0) {
 			bool liLon = false;
 

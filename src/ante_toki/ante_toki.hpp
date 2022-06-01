@@ -46,6 +46,19 @@ namespace ante_toki {
     std::string anteENimi(std::string nimiTawaAnte, const std::string& nimiWeka, const std::string& nimiKama);
 
 
+
+    /**
+     * @brief li kama jo e suli e nanpa Byte tawa sitelen UTF-8 1.
+     * @attention sina wile kepeken e alasaETokiWile() lon monsi kepeken. ni ala la li sama std::string::size().
+     * 
+     * @param pokiNimi li lukin lon poki ni.
+     * @param open     open sitelen li lon ni.
+     * @param pini     li pini lukin lon ni. li pana ala la li pini lon pini poki.
+     * 
+     * @return suli pi sitelen UTF-8 1.
+     */
+    size_t UTF8LaKamaJoESuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini = std::string::npos);
+
     /**
      * @brief li kama jo e nanpa sitelen pana lon insa pi open en pini tan poki nimi UTF-8.
      * @attention sina wile kepeken e alasaETokiWile() lon monsi kepeken. ni ala la li sama std::string::size().

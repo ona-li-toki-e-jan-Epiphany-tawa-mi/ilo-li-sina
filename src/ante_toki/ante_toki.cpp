@@ -74,6 +74,27 @@ namespace ante_toki {
 
 
 
+    size_t UTF8LaKamaJoESuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini) {
+        assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
+
+        size_t suliSitelen;
+        if (pini != std::string::npos) {
+            suliSitelen = mbrlen(
+                &pokiNimi.at(open), 
+                std::min(pini - open, MB_CUR_MAX), 
+                nullptr);
+
+        } else
+            suliSitelen = mbrlen(
+                &pokiNimi.at(open), 
+                std::min(pokiNimi.size() - open, MB_CUR_MAX), 
+                nullptr);
+
+        // sitelen li jo e nanpa Byte mute li ike la li en taso e 1 tan ni: li ken ala pali ante tan sitelen ike.
+        return suliSitelen > 0 && suliSitelen != static_cast<size_t>(-1) && suliSitelen != static_cast<size_t>(-2) ?
+            suliSitelen : 1;
+    }
+
     size_t UTF8LaKamaJoENanpaSitelen(const std::string& pokiNimi, size_t open, const size_t pini) {
         assert(open <= pokiNimi.size() && pini <= pokiNimi.size() && "open alasa en pini alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
         assert(open <= pini && "open alasa li ken ala suli tawa pini alasa");
@@ -85,11 +106,7 @@ namespace ante_toki {
         size_t suli = 0;
 
         while (open < pini) {
-            open += mbrlen(
-                &pokiNimi.at(open), 
-                std::min(pini - open, MB_CUR_MAX), 
-                nullptr);
-
+            open += UTF8LaKamaJoESuliSitelen(pokiNimi, open, pini);
             suli++;
         }
 
@@ -99,7 +116,6 @@ namespace ante_toki {
     size_t UTF8LaKamaJoENanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen) {
         assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
         
-        // li sona ala e ijo pi toki wile la li ken taso pana e suli lili lili tan nanpa sitelen anu suli tan open.
         if (ijoCPiTokiWile == nullptr)
             return std::min(pokiNimi.size() - open, nanpaSitelen);
         
@@ -110,6 +126,8 @@ namespace ante_toki {
                 &pokiNimi.at(open), 
                 std::min(pokiNimi.size() - open, MB_CUR_MAX), 
                 nullptr);
+            
+            suliSitelen = UTF8LaKamaJoESuliSitelen(pokiNimi, open);
 
             open += suliSitelen;
             nanpa += suliSitelen;

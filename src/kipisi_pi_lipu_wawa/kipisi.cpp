@@ -9,7 +9,7 @@
 
 namespace kipisi {
 	const std::regex SITELEN_PI_LUKIN_ALA("\\s", std::regex_constants::optimize);
-	const std::regex SITELEN_PI_POKI_NANPA("[a-zA-Z_0-9]", std::regex_constants::optimize);
+	const std::regex SITELEN_PI_POKI_NANPA("[a-zA-Z0-9_]", std::regex_constants::optimize);
 	const std::unordered_map<char, char> sitelenNasaTanNimi = {
 		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
 
@@ -34,7 +34,12 @@ namespace kipisi {
 		size_t nanpaLinja = 1;
 		bool liLipuPiPonaAla = false;
 
-		while (lipuWawa.good() && std::getline(lipuWawa, linjaSitelen)) {
+		// ona li lon la li weka e sitelen BOM.
+		std::getline(lipuWawa, linjaSitelen);
+		if (linjaSitelen.compare(0, 3, "\xEF\xBB\xBF") == 0)
+			linjaSitelen.erase(0, 3);
+
+		do {
 			if (linjaSitelen.size() != 0)
 				for (auto alasaSitelen = linjaSitelen.begin(); alasaSitelen != linjaSitelen.end(); alasaSitelen++) {
 					switch (*alasaSitelen) {
@@ -170,13 +175,16 @@ namespace kipisi {
 
 						default:
 							// li kama jo e poki nanpa.
-							if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_POKI_NANPA)) {
+							// sitelen li lon ala kulupu ASCII la ona li ken lon nimi pi poki nanpa. '& 0b1000_0000' li alasa e ona.
+							if ((*alasaSitelen & 0b10000000) != 0
+									|| std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_POKI_NANPA)) {
 								std::string nimiPiPokiNanpa(1, *alasaSitelen);
 								const auto openPiPokiNanpa = alasaSitelen;
 
 								alasaSitelen++;
-								for (; alasaSitelen != linjaSitelen.end(); alasaSitelen++) {
-									if (!std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_POKI_NANPA))
+								for (; alasaSitelen < linjaSitelen.end(); alasaSitelen++) {
+									if ((*alasaSitelen & 0b10000000) == 0
+											&& !std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_POKI_NANPA))
 										break;
 
 									nimiPiPokiNanpa.push_back(*alasaSitelen);
@@ -192,12 +200,20 @@ namespace kipisi {
 							if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_LUKIN_ALA))
 								break;
 
+
+
+							// li toki e sitelen ike.
+							size_t lonSitelen = KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen);
+							size_t suliSitelen = ante_toki::UTF8LaKamaJoESuliSitelen(linjaSitelen, lonSitelen - 1);
+
+							alasaSitelen += suliSitelen;
+
 							kepeken::tokiEIke({
 								nimiPiLipuWawa, 
-								nanpaLinja, KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen), 
+								nanpaLinja, lonSitelen, 
 								ante_toki::anteENimi(
 									ante_toki::kamaJoENimiTawaJan("ike.kulupu_nimi_pi_wile_ala"),
-									"%s", std::string(1, *alasaSitelen))});
+									"%s", linjaSitelen.substr(lonSitelen - 1, suliSitelen))});
 							liLipuPiPonaAla = true;
 					}
 				}
@@ -206,7 +222,8 @@ namespace kipisi {
 			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, nanpaLinja, linjaSitelen.size() + 1);
 		linjaSinLiWileAla:
 			nanpaLinja++;
-		}
+
+		} while (lipuWawa.good() && std::getline(lipuWawa, linjaSitelen));
 
 		if (!pokiPiKulupuNimi.empty() && pokiPiKulupuNimi.back().nimiPiKulupuNimi != NimiPiKulupuNimi::LINJA_SITELEN_SIN)
 			pokiPiKulupuNimi.emplace_back(NimiPiKulupuNimi::LINJA_SITELEN_SIN, nanpaLinja, linjaSitelen.size() + 1);

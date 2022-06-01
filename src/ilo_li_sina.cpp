@@ -291,12 +291,12 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 			}
 
 		} else if (alasaIloPilin->size() > 1 && alasaIloPilin->at(0) == '-') {
-			for (auto alasaNimiLili = alasaIloPilin->cbegin() + 1; alasaNimiLili != alasaIloPilin->cend(); alasaNimiLili++) {
+			for (size_t alasaNimiLili = 1; alasaNimiLili < alasaIloPilin->size(); alasaNimiLili++) {
 				bool liLon = false;
 
 				for (auto& [nimi, iloPilin] : iloPilinAli)
 					// nimi lili li \0 la ona li lon ala.
-					if (iloPilin.nimiLili != '\0' && *alasaNimiLili == iloPilin.nimiLili) { 
+					if (iloPilin.nimiLili != '\0' && alasaIloPilin->at(alasaNimiLili) == iloPilin.nimiLili) { 
 						iloPilin.liLon = true;
 						liLon = true;
 
@@ -304,10 +304,13 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 					}
 
 				if (!liLon) {
+					// li kama jo e suli pi sitelen e ilo pilin tan ni: ni la li ken toki pona e sitelen UTF-8 (sama п anu 草.)
+					size_t suliPiIloPilin = ante_toki::UTF8LaKamaJoESuliSitelen(*alasaIloPilin, alasaNimiLili);
+
 					kepeken::tokiEIke({
 						ante_toki::anteENimi(ante_toki::kamaJoENimiTawaJan(
 							"ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala"),
-							"%s", std::string("-") + *alasaNimiLili)});
+							"%s", std::string("-") + alasaIloPilin->substr(alasaNimiLili, suliPiIloPilin))});
 					std::cout << ante_toki::kamaJoENimiTawaJan("ike.ilo_CLI.o_lukin_e_sona_kepeken") << '\n';
 
 					return 1;

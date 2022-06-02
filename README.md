@@ -2,7 +2,7 @@ lukin kepeken toki ante: [English](lipu_pi_kama_sona/README-en_US.md "View in En
 
 ![sitelen suli "ilo li sina"](sitelen-suli.png)
 
-!!o lukin!! mi awen ala pali e pali ni. mi pona e ona li pona e ike. taso, mi pana ala e ijo sin.
+**!!o lukin!! mi awen ala pali e pali ni. mi pona e ona li pona e ike. taso, mi pana ala e ijo sin.**
 
 # **ilo li sina**
 

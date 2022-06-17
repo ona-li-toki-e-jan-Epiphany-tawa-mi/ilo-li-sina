@@ -40,3 +40,7 @@ The name of the file needs to be the language (lowercase) and region code (upper
 Copy over one of the prexisting translation files' (preferably tok.lang) data and change the values, the messages on the right, into your langauge. After that, just submit a pull request with your changes.
 
 The interpreter respects the value stored in LANG (enviroment variable.) You can change it to force it to use the language you want.
+
+## **Links**
+
+[Video demonstration](https://youtu.be/OQuuAVNZ0P8 "ilo li sina video demonstration")

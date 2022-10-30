@@ -2,8 +2,6 @@ View in a different language: [toki pona](../README.md "lukin kepeken toki pona"
 
 ![ilo li sina logo](../sitelen-suli.png)
 
-**!!ATTENTION!! I am no longer working on this project. I will maintain it and do bug fixes, but I will not be adding any new features.**
-
 # **ilo li sina**
 
 An interpreter for ilo li sina (meaning "the tool is you"). ilo li sina is an unstructured procedural human-oriented possibly turing-complete string-manipulating programming language for the aspiring homebody computer. ;)

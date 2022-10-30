@@ -1,80 +1,9 @@
 #include <functional>
 #include <cassert>
-#include "kipisi_pi_lipu_wawa/kipisi.hpp"
-#include "lawa_pi_ilo_nanpa/lawa.hpp"
+#include <list>
 #include "ante_toki/ante_toki.hpp"
-#include "pali_pi_lipu_wawa_tan_kulupu_nimi/nimi_wawa.hpp"
-
-/**
- * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
- */
-std::vector<kipisi::KulupuNimi> kipisiELipuWawaLKP(const std::string& nimiPiLipuWawa) {
-	auto [lipuWawaKipisi, nanpaIke] = kipisi::kipisiELipuWawa(nimiPiLipuWawa);
-
-	if (!lipuWawaKipisi.has_value())
-		exit(nanpaIke);
-
-	return *lipuWawaKipisi;
-}
-
-/**
- * @brief li sama pali::paliELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
- */
-std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> paliELipuWawaLKP(const std::string& nimiPiLipuWawa) {
-	auto [lipuWawaPali, nanpaIke] = pali::paliELipuWawa(
-		kipisiELipuWawaLKP(nimiPiLipuWawa), nimiPiLipuWawa);
-
-	if (!lipuWawaPali.has_value())
-		exit(nanpaIke);
-
-	return *lipuWawaPali;
-}
-
-/**
- * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
- * 
- * @param nimiPiLipuWawa nimi pi lipu wawa tawa lawa.
- */
-void lawaEIloNanpa(const std::string& nimiPiLipuWawa) {
-	std::unordered_map<std::string, std::string> pokiNanpaOpen;
-
-	// nimi ni li lon open pi lipu wawa ali.
-	pokiNanpaOpen["__nanpa_Ilo_Li_Sina"] = "0.0";
-	pokiNanpaOpen["__nimi_Ilo_Li_Sina"]  = kepeken::kamaJoENimiPiILO_LI_SINA();
-	pokiNanpaOpen["__nimi_lipu"] 		 = nimiPiLipuWawa;
-	pali::string_lqueue pokiOSPiNimiJan(std::list<std::string>({"USER", "USERNAME", "LOGNAME"})); 
-	const std::optional<std::string> nimiJan = *pali::kamaJoEPokiNanpaPiLawaOS(
-		"", nullptr, pokiOSPiNimiJan);
-	pokiNanpaOpen["__nimi_jan"] 		 = nimiJan.has_value() ? *nimiJan : "";
-	pokiNanpaOpen["_"] 					 = "";
-
-	int nanpaIke = lawa::lawaEIloNanpa(
-		paliELipuWawaLKP(nimiPiLipuWawa), 
-		pokiNanpaOpen,
-		nimiPiLipuWawa);
-
-	exit(nanpaIke);
-}
-
-/**
- * @brief li toki e kulupu nimi tan lipu wawa pana.
- * 
- * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
- */
-void tokiEKulupuNimi(const std::string& nimiPiLipuWawa) {
-	kipisi::tokiELipuWawa(kipisiELipuWawaLKP(nimiPiLipuWawa), nimiPiLipuWawa);
-}
-
-/**
- * @brief li toki e kasi pi kasi suli tan lipu wawa pana.
- * 
- * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
- */
-void tokiEKasiSuli(const std::string& nimiPiLipuWawa) {
-	pali::tokiEKasiSuli(paliELipuWawaLKP(nimiPiLipuWawa), nimiPiLipuWawa);
-}
-
-
+#include "ijo_kepeken/toki.hpp"
+#include "ijo_kepeken/ike.hpp"
 
 /**
  * @brief nimi pi ilo pilin ali. li tawa poki en kama jo.
@@ -339,7 +268,8 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 		return 1;
 	}
 
-	std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
+	// TODO o pali sin e ilo "ilo li sina". ni li pini la o pona e ni.
+	/*std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
 
 	if (iloPilinAli[NimiPiIloPilin::TOKI_E_NIMI].liLon) {
 		paliWile = &tokiEKulupuNimi;
@@ -348,7 +278,7 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 		paliWile = &tokiEKasiSuli;
 	
 	for (const std::string *const lipuWawa : lipuWawaPana)
-		paliWile(*lipuWawa);
+		paliWile(*lipuWawa);*/
 
 	return 0;
 }

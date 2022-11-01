@@ -2,6 +2,7 @@
 
 #include <list>
 #include <string>
+#include "../ijo_kepeken/ike.hpp"
 
 /**
  * ilo kipisi tawa kipisi pi lipu wawa pi toki "ilo li sina".
@@ -27,12 +28,13 @@ namespace ilo {
         NimiIjo nimiIjo;
         // ijo li ken poki e nimi sama NimiIjo::POKI en NimiIjo::POKI_NIMI la nimi ni li lon ni.
         std::string ijo;
+        kepeken::LonIjo lonIjo;
 
-        Ijo(NimiIjo nimiIjo);
+        Ijo(NimiIjo nimiIjo, size_t linja, size_t sitelenLonLinja);
 
-        Ijo(NimiIjo&& nimiIjo, std::string&& ijo);
+        Ijo(NimiIjo&& nimiIjo, std::string&& ijo, size_t&& linja, size_t&& sitelenLonLinja);
 
-        Ijo(NimiIjo nimiIjo, const std::string& ijo);
+        Ijo(NimiIjo nimiIjo, const std::string& ijo, size_t linja, size_t sitelenLonLinja);
     };
 
 

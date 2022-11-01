@@ -10,17 +10,19 @@
 #include "../ante_toki/ante_toki.hpp"
 
 namespace ilo {
-    Ijo::Ijo(NimiIjo nimiIjo)
-        : Ijo::Ijo(nimiIjo, "") {}
+    Ijo::Ijo(NimiIjo nimiIjo, size_t linja, size_t sitelenLonLinja)
+        : Ijo::Ijo(nimiIjo, "", linja, sitelenLonLinja) {}
 
-    Ijo::Ijo(NimiIjo&& nimiIjo, std::string&& ijo) {
+    Ijo::Ijo(NimiIjo&& nimiIjo, std::string&& ijo, size_t&& linja, size_t&& sitelenLonLinja) {
         this->nimiIjo = nimiIjo;
         this->ijo.swap(ijo);
+        this->lonIjo = {linja, sitelenLonLinja};
     }
 
-    Ijo::Ijo(NimiIjo nimiIjo, const std::string& ijo) {
+    Ijo::Ijo(NimiIjo nimiIjo, const std::string& ijo, size_t linja, size_t sitelenLonLinja) {
         this->nimiIjo = nimiIjo;
         this->ijo = ijo;
+        this->lonIjo = {linja, sitelenLonLinja};
     }
 
 
@@ -155,7 +157,10 @@ namespace ilo {
             liPona = false;
         }
 
-        sonaKipisi.pokiIjo.emplace_back(NimiIjo::POKI_NIMI, std::move(pokiNimi));
+        sonaKipisi.pokiIjo.emplace_back( NimiIjo::POKI_NIMI
+                                       , std::move(pokiNimi)
+                                       , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
+                                                                                 , sonaKipisi.alasaSitelen));
         return liPona;
     }
 
@@ -165,7 +170,9 @@ namespace ilo {
      */
     bool paliEPokiPiIjoPiNimiWawa(SonaKipisi& sonaKipisi) {
         sonaKipisi.pokiIjo.emplace_back( NimiIjo::POKI_PI_IJO_PI_NIMI_WAWA
-                                       , std::string(1, *sonaKipisi.alasaSitelen));
+                                       , std::string(1, *sonaKipisi.alasaSitelen)
+                                       , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
+                                                                                 , sonaKipisi.alasaSitelen));
 
         if (*sonaKipisi.alasaSitelen == '(') {
             bool liPaliENimiWawa = false;
@@ -211,7 +218,10 @@ namespace ilo {
         }
         sonaKipisi.alasaSitelen--;
 
-        sonaKipisi.pokiIjo.emplace_back(NimiIjo::POKI, std::move(nimiPiPokiNanpa));
+        sonaKipisi.pokiIjo.emplace_back( NimiIjo::POKI
+                                       , std::move(nimiPiPokiNanpa)
+                                       , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
+                                                                                 , openPiPokiNanpa));
     }
 
 	std::list<Ijo> kipisi(const std::string& lonLipu) {
@@ -248,7 +258,10 @@ namespace ilo {
 
 					switch (*alasaSitelen) {
 						case '=': {
-							pokiIjo.emplace_back(NimiIjo::PANA_LON_POKI);
+							pokiIjo.emplace_back( NimiIjo::PANA_LON_POKI
+                                                , sonaKipisi.nanpaLinja
+                                                , kamaJoELonSitelen( sonaKipisi.linja
+                                                                   , sonaKipisi.alasaSitelen));
 							break;
 						}
 
@@ -307,7 +320,8 @@ namespace ilo {
 
             // linja sin mute lon poka ona li wile ala. 1 taso li wile.
             if (pokiIjo.back().nimiIjo != NimiIjo::LINJA_SIN)
-			    pokiIjo.emplace_back(NimiIjo::LINJA_SIN);
+			    pokiIjo.emplace_back( NimiIjo::LINJA_SIN
+                                    , nanpaLinja, linja.size() + 1);
 		linjaSinLiWileAla:
 			nanpaLinja++;
 
@@ -319,7 +333,8 @@ namespace ilo {
         // tenpo ali la linja li wile jo e LINJA_SIN lon pini. ken la linja pini lon pokiIjo li jo ala 
         //      e ni. ni li pona e ni.
 		if (!pokiIjo.empty() && pokiIjo.back().nimiIjo != NimiIjo::LINJA_SIN)
-			pokiIjo.emplace_back(NimiIjo::LINJA_SIN);
+			pokiIjo.emplace_back( NimiIjo::LINJA_SIN
+                                , nanpaLinja, linja.size() + 1);
 
 
 		return pokiIjo;

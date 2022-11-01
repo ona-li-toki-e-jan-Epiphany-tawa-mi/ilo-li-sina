@@ -54,7 +54,7 @@ namespace ante_toki {
         return false;
     }
 
-    const std::string& kamaJoENimiTawaJan(const std::string& nimiNimi) {
+    const std::string& nimiTawaJan(const std::string& nimiNimi) {
         try {
             if (tokiWile != nullptr)
                 return tokiWile->at(nimiNimi);
@@ -74,7 +74,7 @@ namespace ante_toki {
 
 
 
-    size_t UTF8LaKamaJoESuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini) {
+    size_t UTF8LaSuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini) {
         assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
 
         size_t suliSitelen;
@@ -95,7 +95,7 @@ namespace ante_toki {
             suliSitelen : 1;
     }
 
-    size_t UTF8LaKamaJoENanpaSitelen(const std::string& pokiNimi, size_t open, const size_t pini) {
+    size_t UTF8LaNanpaSitelen(const std::string& pokiNimi, size_t open, const size_t pini) {
         assert(open <= pokiNimi.size() && pini <= pokiNimi.size() && "open alasa en pini alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
         assert(open <= pini && "open alasa li ken ala suli tawa pini alasa");
 
@@ -106,14 +106,14 @@ namespace ante_toki {
         size_t suli = 0;
 
         while (open < pini) {
-            open += UTF8LaKamaJoESuliSitelen(pokiNimi, open, pini);
+            open += UTF8LaSuliSitelen(pokiNimi, open, pini);
             suli++;
         }
 
         return suli;
     }
 
-    size_t UTF8LaKamaJoENanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen) {
+    size_t UTF8LaNanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen) {
         assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
         
         if (ijoCPiTokiWile == nullptr)
@@ -127,7 +127,7 @@ namespace ante_toki {
                 std::min(pokiNimi.size() - open, MB_CUR_MAX), 
                 nullptr);
             
-            suliSitelen = UTF8LaKamaJoESuliSitelen(pokiNimi, open);
+            suliSitelen = UTF8LaSuliSitelen(pokiNimi, open);
 
             open += suliSitelen;
             nanpa += suliSitelen;

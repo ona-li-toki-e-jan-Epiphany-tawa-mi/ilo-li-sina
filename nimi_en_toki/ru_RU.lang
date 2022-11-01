@@ -35,14 +35,13 @@ toki.nimi_kasi.tawa=GOTO
 toki.nimi_kasi.ala=NOOP
 
 ## Сообщения для отображения токенов.
-toki.kulupu_nimi.poki_nanpa=ПЕРЕМЕННАЯ
-toki.kulupu_nimi.pana_lon_poki_nanpa=ПРИСВАИВАНИЕ_ПЕРЕМЕННОЙ
-toki.kulupu_nimi.poki_sitelen=СТРОКА
-toki.kulupu_nimi.nimi_wawa=ФУНКЦИЯ
-toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=РАЗДЕЛИТЕЛЬ_АРГУМЕНТОВ
-toki.kulupu_nimi.linja_sitelen_sin=ПЕРЕХОД_СТРОКИ
-toki.kulupu_nimi.nimi_tawa_tawa=МЕТКА
-toki.kulupu_nimi.ala=НЕОПРЕДЕЛЕННОЕ
+toki.ijo_kipisi.poki=ПЕРЕМЕННАЯ
+toki.ijo_kipisi.pana_lon_poki=ПРИСВАИВАНИЕ_ПЕРЕМЕННОЙ
+toki.ijo_kipisi.poki_nimi=СТРОКА
+toki.ijo_kipisi.nimi_wawa=ФУНКЦИЯ
+toki.ijo_kipisi.poki_pi_ijo_pi_nimi_wawa=РАЗДЕЛИТЕЛЬ_АРГУМЕНТОВ
+toki.ijo_kipisi.linja_sin=ПЕРЕХОД_СТРОКИ
+toki.ijo_kipisi.nimi_tawa_tawa=МЕТКА
 
 
 
@@ -93,6 +92,6 @@ ike.lawa.awen.nanpa_ike=Получилось целое число «%s» вне
 
 
 # Общие ошибки.
-ike.kulupu_nimi_pi_wile_ala=Неопределенный токен «%s»
+ike.sitelen_pi_wile_ala=Неопределенный токен «%s»
 
 ike.nimi=Ошибка

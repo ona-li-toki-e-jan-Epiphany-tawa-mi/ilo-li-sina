@@ -31,7 +31,7 @@ namespace ante_toki {
      * @return          nimi tawa jan.
      * @retval nimiNimi li ken ala kama jo e nimi tawa jan la li pana.
      */
-    const std::string& kamaJoENimiTawaJan(const std::string& nimiNimi);
+    const std::string& nimiTawaJan(const std::string& nimiNimi);
 
     /**
      * @brief li ante e nimi weka tawa nimi kama lon poki nimi.
@@ -57,7 +57,7 @@ namespace ante_toki {
      * 
      * @return suli pi sitelen UTF-8 1.
      */
-    size_t UTF8LaKamaJoESuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini = std::string::npos);
+    size_t UTF8LaSuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini = std::string::npos);
 
     /**
      * @brief li kama jo e nanpa sitelen pana lon insa pi open en pini tan poki nimi UTF-8.
@@ -69,7 +69,7 @@ namespace ante_toki {
      * 
      * @return nanpa sitelen pana tan poki nimi UTF-8.
      */
-    size_t UTF8LaKamaJoENanpaSitelen(const std::string& pokiNimi, size_t open, const size_t pini);
+    size_t UTF8LaNanpaSitelen(const std::string& pokiNimi, size_t open, const size_t pini);
 
     /**
      * @brief li kama jo e nanpa pi nanpa Byte tawa nanpa sitelen pana. li open nanpa e ona tan open.
@@ -81,5 +81,5 @@ namespace ante_toki {
      * 
      * @return nanpa pi nanpa Byte tawa nanpa sitelen pana.
      */
-    size_t UTF8LaKamaJoENanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen);
+    size_t UTF8LaNanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen);
 }

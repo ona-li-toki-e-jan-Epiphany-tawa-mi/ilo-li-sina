@@ -15,7 +15,7 @@ namespace kepeken {
 
         while (true) {
             // linja awen li lili tawa suli wile la li ken pona toki e ona li ken pini.
-            if (ante_toki::UTF8LaKamaJoENanpaSitelen(nimi, tan, nimi.size()) <= suliWileLinja) {
+            if (ante_toki::UTF8LaNanpaSitelen(nimi, tan, nimi.size()) <= suliWileLinja) {
                 lupaTawaToki << sitelenAlaLonMonsi << nimi.substr(tan) << '\n';
                 return;
             }
@@ -28,12 +28,12 @@ namespace kepeken {
                 maPiKenAla = nimi.find_first_of(sitelenPiKipisiNimi, tawa + 1);
 
                 if (maPiKenAla != std::string::npos) 
-                    suliPiLinjaLonLinja += ante_toki::UTF8LaKamaJoENanpaSitelen(nimi, tawa, maPiKenAla);
+                    suliPiLinjaLonLinja += ante_toki::UTF8LaNanpaSitelen(nimi, tawa, maPiKenAla);
             }
 
             // li ken ala pana e nimi lon linja 1 la li ken kipisi e ona.
             if (tawa == tan) 
-                tawa = tan + ante_toki::UTF8LaKamaJoENanpaBYTE(nimi, tan, suliWileLinja) - 1;
+                tawa = tan + ante_toki::UTF8LaNanpaBYTE(nimi, tan, suliWileLinja) - 1;
 
             lupaTawaToki << sitelenAlaLonMonsi << nimi.substr(tan, tawa - tan) << '\n';
 

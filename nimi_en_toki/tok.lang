@@ -34,15 +34,14 @@ toki.nimi_kasi.nimi_tawa=NIMI_TAWA
 toki.nimi_kasi.tawa=TAWA
 toki.nimi_kasi.ala=ALA
 
-## ijo tawa toki e kulupu nimi.
-toki.kulupu_nimi.poki_nanpa=POKI_NANPA
-toki.kulupu_nimi.pana_lon_poki_nanpa=PANA_LON_POKI_NANPA
-toki.kulupu_nimi.poki_sitelen=POKI_SITELEN
-toki.kulupu_nimi.nimi_wawa=NIMI_WAWA
-toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=POKI_PI_IJO_TAWA_NIMI_WAWA
-toki.kulupu_nimi.linja_sitelen_sin=LINJA_SITELEN_SIN
-toki.kulupu_nimi.nimi_tawa_tawa=NIMI_TAWA_TAWA
-toki.kulupu_nimi.ala=ALA
+## ijo tawa toki e ijo pi lipu kipisi.
+toki.ijo_kipisi.poki=POKI
+toki.ijo_kipisi.pana_lon_poki=PANA_LON_POKI
+toki.ijo_kipisi.poki_nimi=POKI_NIMI
+toki.ijo_kipisi.nimi_wawa=NIMI_WAWA
+toki.ijo_kipisi.poki_pi_ijo_pi_nimi_wawa=POKI_PI_IJO_PI_NIMI_WAWA
+toki.ijo_kipisi.linja_sin=LINJA_SIN
+toki.ijo_kipisi.nimi_tawa_tawa=NIMI_TAWA_TAWA
 
 
 
@@ -64,7 +63,7 @@ ike.pali.nimi_wawa.li_jo_ala_e_pini=kepeken pi nimi wawa li jo ala e pini\nsitel
 ike.pali.nimi_wawa.nimi_pi_sona_ala=nimi wawa '%s' pi sona ala
 
 ## ike pi poki nanpa.
-ike.pali.poki_nanpa.nimi_poki_li_wile=nimi pi poki nanpa li wile lon monsi pi sitelen '='
+ike.pali.poki_nanpa.nimi_poki_li_wile=nimi poki li wile lon monsi pi sitelen '='
 ike.pali.poki_nanpa.ijo_tawa_poki_li_wile=ijo tawa poki li wile lon sinpin pi sitelen '='
 ike.pali.poki_nanpa.ijo_ike_tawa_poki=ijo ike tawa poki lon sinpin pi sitelen '='\nli wile jo e ijo tawa poki lon poki nanpa
 
@@ -82,7 +81,7 @@ ike.kipisi.nimi_wawa.nimi_li_wile=nimi pi nimi wawa li wile lon monsi pi sitelen
 
 
 # ike lon tenpo lawa.
-ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=li lukin kama jo e ijo tan poki nanpa '%s' pi sona ala
+ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=li lukin kama jo e ijo tan poki '%s' pi sona ala
 
 ike.lawa.pini_lipu=li kama jo e sitelen EOF (pini lipu) tan ijo Stdin
 
@@ -93,6 +92,6 @@ ike.lawa.awen.nanpa_ike=li kama jo e nanpa ike '%s' pi nanpa lili ala. li suli s
 
 
 # ike ni li ken lon tenpo ali.
-ike.kulupu_nimi_pi_wile_ala=kulupu nimi '%s' pi sona ala
+ike.sitelen_pi_wile_ala=sitelen '%s' pi sona ala
 
 ike.nimi=ike

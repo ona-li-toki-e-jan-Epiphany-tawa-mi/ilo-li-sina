@@ -27,24 +27,24 @@ namespace kepeken {
 
 	IjoPiTokiIke::IjoPiTokiIke(const std::string& nimiPiLipuWawa, const size_t nanpaLinja, const size_t nanpaSitelenLonLinja, const std::string& nimiIke)
 			: nimiPiLipuWawa(std::make_unique<std::string>(nimiPiLipuWawa)), 
-			lonIjo(std::make_unique<LonIjoLonLipuLawa>(LonIjoLonLipuLawa{nanpaLinja, nanpaSitelenLonLinja})), 
+			lonIjo(std::make_unique<LonIjo>(LonIjo{nanpaLinja, nanpaSitelenLonLinja})), 
 			nimiIke(nimiIke) {}
 
-	IjoPiTokiIke::IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa& lonIjo, const std::string& nimiIke)
+	IjoPiTokiIke::IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjo& lonIjo, const std::string& nimiIke)
 			: nimiPiLipuWawa(std::make_unique<std::string>(nimiPiLipuWawa)), 
-			lonIjo(std::make_unique<LonIjoLonLipuLawa>(lonIjo)),
+			lonIjo(std::make_unique<LonIjo>(lonIjo)),
 			nimiIke(nimiIke) {}
 
-	IjoPiTokiIke::IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa *const lonIjo, const std::string& nimiIke)
+	IjoPiTokiIke::IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjo *const lonIjo, const std::string& nimiIke)
 			: nimiPiLipuWawa(std::make_unique<std::string>(nimiPiLipuWawa)), 
-			lonIjo(lonIjo != nullptr ? std::make_unique<LonIjoLonLipuLawa>(*lonIjo) : nullptr),
+			lonIjo(lonIjo != nullptr ? std::make_unique<LonIjo>(*lonIjo) : nullptr),
 			nimiIke(nimiIke) {}
 	
 	const std::string* IjoPiTokiIke::kamaJoENimiPiLipuWawa() const {
 		return this->nimiPiLipuWawa.get();
 	}
 	
-	const LonIjoLonLipuLawa* IjoPiTokiIke::kamaJoELonIjo() const {
+	const LonIjo* IjoPiTokiIke::kamaJoELonIjo() const {
 		return this->lonIjo.get();
 	}
 	
@@ -70,7 +70,7 @@ namespace kepeken {
 			ikePini.append(": ");
 		}
 
-		ikePini.append(ante_toki::kamaJoENimiTawaJan("ike.nimi")).append(": ")
+		ikePini.append(ante_toki::nimiTawaJan("ike.nimi")).append(": ")
 			.append(ike.kamaJoENimiIke());
 
 

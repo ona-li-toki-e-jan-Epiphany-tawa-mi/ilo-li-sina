@@ -28,7 +28,7 @@ namespace kepeken {
 	/**
 	 * @brief li poki e nanpa linja pi ijo poki e nanpa sitelen ona lon linja lipu wawa.
 	 */
-	struct LonIjoLonLipuLawa {
+	struct LonIjo {
 		public:
 			size_t nanpaLinja, nanpaSitelenLonLinja;
 	};
@@ -59,13 +59,13 @@ namespace kepeken {
 			 * @param lonIjo lon ike lon lipu wawa.
 			 * @param nimiIke sona pi kama ike.
 			 */
-			IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa& lonIjo, const std::string& nimiIke);
+			IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjo& lonIjo, const std::string& nimiIke);
 			/**
 			 * @param nimiPiLipuWawa nimi pi lipu wawa pi tenpo ni.
 			 * @param lonIjo lon ike lon lipu wawa. li ijo Nullptr la li toki ala e lon.
 			 * @param nimiIke sona pi kama ike.
 			 */
-			IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjoLonLipuLawa *const lonIjo, const std::string& nimiIke);
+			IjoPiTokiIke(const std::string& nimiPiLipuWawa, const LonIjo *const lonIjo, const std::string& nimiIke);
 
 			/**
 			 * @return nimi pi lipu wawa. ike li lon ona.
@@ -74,7 +74,7 @@ namespace kepeken {
 			/**
 			 * @return lon ike lon lipu wawa.
 			 */
-			const LonIjoLonLipuLawa* kamaJoELonIjo() const;
+			const LonIjo* kamaJoELonIjo() const;
 			/**
 			 * @return nimi sona pi kama ike.
 			 */
@@ -82,7 +82,7 @@ namespace kepeken {
 
 		private:
 			const std::unique_ptr<const std::string> nimiPiLipuWawa;
-			const std::unique_ptr<const LonIjoLonLipuLawa> lonIjo;
+			const std::unique_ptr<const LonIjo> lonIjo;
 			const std::string nimiIke;
 	};
 

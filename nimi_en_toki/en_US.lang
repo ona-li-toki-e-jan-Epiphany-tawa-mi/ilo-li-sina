@@ -35,14 +35,13 @@ toki.nimi_kasi.tawa=GOTO
 toki.nimi_kasi.ala=NOOP
 
 ## Messages for printing out tokens.
-toki.kulupu_nimi.poki_nanpa=VARIABLE_NAME
-toki.kulupu_nimi.pana_lon_poki_nanpa=ASSIGNMENT
-toki.kulupu_nimi.poki_sitelen=STRING
-toki.kulupu_nimi.nimi_wawa=FUNCTION
-toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=ARGUMENT_CAPTURE
-toki.kulupu_nimi.linja_sitelen_sin=NEW_LINE
-toki.kulupu_nimi.nimi_tawa_tawa=LABEL
-toki.kulupu_nimi.ala=UNDEFINED
+toki.ijo_kipisi.poki=VARIABLE_NAME
+toki.ijo_kipisi.pana_lon_poki=ASSIGNMENT
+toki.ijo_kipisi.poki_nimi=STRING
+toki.ijo_kipisi.nimi_wawa=FUNCTION
+toki.ijo_kipisi.poki_pi_ijo_pi_nimi_wawa=ARGUMENT_CAPTURE
+toki.ijo_kipisi.linja_sin=NEW_LINE
+toki.ijo_kipisi.nimi_tawa_tawa=LABEL
 
 
 
@@ -93,6 +92,6 @@ ike.lawa.awen.nanpa_ike=Received an integer '%s' outside of the representable ra
 
 
 # General error messages.
-ike.kulupu_nimi_pi_wile_ala=Unexpected token '%s'
+ike.sitelen_pi_wile_ala=Unexpected token '%s'
 
 ike.nimi=Error

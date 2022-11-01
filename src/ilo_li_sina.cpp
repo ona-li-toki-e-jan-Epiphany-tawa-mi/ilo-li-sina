@@ -279,12 +279,14 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 	} else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)
 		paliWile = &tokiEKasiSuli;*/
 	
-	for (const std::string *const lipuWawa : lipuWawaPana) {
-		std::list<ilo::Ijo> ijoLipu = ilo::kipisi(*lipuWawa);
+	for (const std::string *const lipuWawa : lipuWawaPana) 
+		try {
+			std::list<ilo::Ijo> ijoLipu = ilo::kipisi(*lipuWawa);
 
-		for (const ilo::Ijo& ijo : ijoLipu) 
-			std::cout << std::to_string((int) ijo.nimiIjo) << ", " << ijo.ijo << '\n';
-	}
+			for (const ilo::Ijo& ijo : ijoLipu) 
+				std::cout << std::to_string((int) ijo.nimiIjo) << ", " << ijo.ijo << '\n';
+
+		} catch (const std::runtime_error& liSuliAla) {}
 
 	return 0;
 }

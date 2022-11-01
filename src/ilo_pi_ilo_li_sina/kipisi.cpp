@@ -30,15 +30,40 @@ namespace ilo {
 	const std::unordered_map<char, char> sitelenNasaTanNimi = {
 		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
 
+    /**
+     * @brief li pona e pana ijo tawa nimi wawa kipisi.
+     */
     struct SonaKipisi {
         const std::string& lonLipu;
 
-        std::list<Ijo>& pokiIjo;
-        std::string& linja;
+        std::list<Ijo>&              pokiIjo;
+        std::string&                 linja;
+        size_t&                      nanpaLinja;
         std::string::const_iterator& alasaSitelen;
     };
 
+    /**
+     * @brief li kama jo e suli tan open linja tawa sitelen lon alasaSitelen.
+     * 
+     * @param  linja li kama jo tan open pi linja ni.
+     * @param  alasaSitelen li kama jo e lon pi sitelen lon ni.
+     * @return lon sitelen.
+     */
+    size_t kamaJoELonSitelen(const std::string& linja, std::string::const_iterator alasaSitelen) {
+        // nanpa ni li tawa jan. ni li open tan 0, taso, ni li pona ala tawa jan. tan ni la mi li en 
+        //      e 1.
+        return static_cast<size_t>(std::distance(linja.cbegin(), alasaSitelen)) + 1;
+    }
+
+
+
+
+    /**
+     * @brief li pali e nimi tawa tawa. (ijo sama ni: Test:)
+     * @return li pali pona la true. ike li lon la false.
+     */
     bool paliENimiTawaTawa(SonaKipisi& sonaKipisi) {
+        bool liPona = true; 
         bool liPaliELonTawaTawa = false;
 
         if (sonaKipisi.pokiIjo.size() >= 1) {
@@ -51,11 +76,12 @@ namespace ilo {
             }
         }
 
-
         if (!liPaliELonTawaTawa) {
             kepeken::tokiEIke({ sonaKipisi.lonLipu
+                              , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
+                                                                        , sonaKipisi.alasaSitelen)
                               , ante_toki::kamaJoENimiTawaJan("ike.kipisi.nimi_tawa.nimi_li_wile")});
-            return false;
+            liPona = false;
         }
 
         if (sonaKipisi.pokiIjo.size() >= 2) { 
@@ -64,16 +90,23 @@ namespace ilo {
 
             if (ijoLonMonsi->nimiIjo != NimiIjo::LINJA_SIN) {
                 kepeken::tokiEIke({ sonaKipisi.lonLipu
+                                  , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
+                                                                            , sonaKipisi.alasaSitelen)
                                   , ante_toki::kamaJoENimiTawaJan("ike.kipisi.nimi_tawa.li_ken_lon_open_linja_taso")});
-                return false;
+                liPona = false;
             }
         }
 
-
-        return true;
+        return liPona;
     }
 
+    /**
+     * @brief li pali e poki nimi. (ijo sama ni: "test")
+     * @return li pali pona la true. ike li lon la false.
+     */
     bool paliEPokiNimi(SonaKipisi& sonaKipisi) {
+        bool liPona = true;
+
         std::string pokiNimi;
         bool liJoEPini = false;
         const auto openPoki = sonaKipisi.alasaSitelen;
@@ -91,16 +124,18 @@ namespace ilo {
                 case '\\':
                     sonaKipisi.alasaSitelen++;
                     if (sonaKipisi.alasaSitelen == sonaKipisi.linja.cend())
-                        goto liPiniPiPokiSitelen;
+                        goto liPiniPiPokiSitelen;// TODO ni la o ike.
 
                     try {
                         pokiNimi.push_back(sitelenNasaTanNimi.at(*sonaKipisi.alasaSitelen));
                     
                     } catch (const std::out_of_range& liSitelenAlaTawaSitelenNasa) {	
                         kepeken::tokiEIke({ sonaKipisi.lonLipu
+                                          , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
+                                                                                    , sonaKipisi.alasaSitelen)
                                           , ante_toki::anteENimi( ante_toki::kamaJoENimiTawaJan("ike.kipisi.poki_nimi.nimi_pi_sitelen_nasa_pi_sona_ala")
-                                                                  , "%s", std::string(1, *sonaKipisi.alasaSitelen))});
-                        return false;
+                                                                , "%s", std::string(1, *sonaKipisi.alasaSitelen))});
+                        liPona = false;
                     }
 
                     continue;
@@ -114,14 +149,19 @@ namespace ilo {
 
         if (!liJoEPini) {
             kepeken::tokiEIke({ sonaKipisi.lonLipu
-                                , ante_toki::kamaJoENimiTawaJan("ike.kipisi.poki_nimi.li_jo_ala_e_pini")});
-            return false;
+                              , sonaKipisi.nanpaLinja, sonaKipisi.linja.size() + 1
+                              , ante_toki::kamaJoENimiTawaJan("ike.kipisi.poki_nimi.li_jo_ala_e_pini")});
+            liPona = false;
         }
 
         sonaKipisi.pokiIjo.emplace_back(NimiIjo::POKI_NIMI, std::move(pokiNimi));
-        return true;
+        return liPona;
     }
 
+    /**
+     * @brief li pali e ijo pi nimi wawa. (ijo sama ni: () )
+     * @return li pali pona la true. ike li lon la false.
+     */
     bool paliEPokiPiIjoPiNimiWawa(SonaKipisi& sonaKipisi) {
         sonaKipisi.pokiIjo.emplace_back( NimiIjo::POKI_PI_IJO_PI_NIMI_WAWA
                                        , std::string(1, *sonaKipisi.alasaSitelen));
@@ -141,6 +181,8 @@ namespace ilo {
 
             if (!liPaliENimiWawa) {
                 kepeken::tokiEIke({ sonaKipisi.lonLipu
+                                  , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
+                                                                            , sonaKipisi.alasaSitelen)
                                   , ante_toki::kamaJoENimiTawaJan("ike.kipisi.nimi_wawa.nimi_li_wile")});
                 return false;
             }
@@ -149,6 +191,9 @@ namespace ilo {
         return true;
     }
 
+    /**
+     * @brief li pali e poki. (ijo sama ni: test)
+     */
     void paliEPoki(SonaKipisi& sonaKipisi) {
         std::string nimiPiPokiNanpa(1, *sonaKipisi.alasaSitelen);
         const auto openPiPokiNanpa = sonaKipisi.alasaSitelen;
@@ -179,14 +224,15 @@ namespace ilo {
 				ante_toki::anteENimi(
 					ante_toki::kamaJoENimiTawaJan("ike.kipisi.li_ken_ala_open_e_lipu"),
 					"%s", lonLipu)});
-            return {}; // TODO o "throw" e ike.
+            throw std::runtime_error("li ken ala open e poki '" + lonLipu + "'");
 		}
 
 
 		std::string linja;
-		size_t nanpaLinja = 1;
-        auto alasaSitelen = linja.cbegin();
-        SonaKipisi sonaKipisi = {lonLipu, pokiIjo, linja, alasaSitelen};
+		size_t      nanpaLinja   = 1;
+        auto        alasaSitelen = linja.cbegin();
+        SonaKipisi  sonaKipisi   = {lonLipu, pokiIjo, linja, nanpaLinja, alasaSitelen};
+
         bool liLipuPona = true;
 
 		// ona li lon la li weka e sitelen BOM.
@@ -206,12 +252,12 @@ namespace ilo {
 						}
 
 						case ':': {
-                            liLipuPona = liLipuPona && paliENimiTawaTawa(sonaKipisi);
+                            liLipuPona = paliENimiTawaTawa(sonaKipisi) && liLipuPona;
 							break;
 						}
 
 						case '"': {
-                            liLipuPona = liLipuPona && paliEPokiNimi(sonaKipisi);
+                            liLipuPona = paliEPokiNimi(sonaKipisi) && liLipuPona;
 							break;
 						}
 
@@ -225,7 +271,7 @@ namespace ilo {
 
 						case '(':
 						case ')': {
-							liLipuPona = liLipuPona && paliEPokiPiIjoPiNimiWawa(sonaKipisi);
+							liLipuPona = paliEPokiPiIjoPiNimiWawa(sonaKipisi) && liLipuPona;
 							break;
 						}
 
@@ -243,20 +289,17 @@ namespace ilo {
 
 
 
-							// TODO li toki e sitelen ike. TODO
-                            /*
-							size_t lonSitelen = KAMA_JO_E_NANPA_SITELEN(linja, alasaSitelen);
+                            // sitelen li wile ala la li ike.
+							size_t lonSitelen = kamaJoELonSitelen(linja, alasaSitelen);
 							size_t suliSitelen = ante_toki::UTF8LaKamaJoESuliSitelen(linja, lonSitelen - 1);
+                            // sitelen li suli tawa 1 la mi wile tawa pini ona.
+							alasaSitelen += suliSitelen - 1;
 
-							alasaSitelen += suliSitelen;
-
-							kepeken::tokiEIke({
-								nimiPiLipuWawa, 
-								nanpaLinja, lonSitelen, 
-								ante_toki::anteENimi(
-									ante_toki::kamaJoENimiTawaJan("ike.kulupu_nimi_pi_wile_ala"),
-									"%s", linja.substr(lonSitelen - 1, suliSitelen))});
-							liLipuPiPonaAla = true;*/
+							kepeken::tokiEIke({ lonLipu 
+								              , nanpaLinja, lonSitelen
+								              , ante_toki::anteENimi( ante_toki::kamaJoENimiTawaJan("ike.kulupu_nimi_pi_wile_ala")
+									                                , "%s", linja.substr(lonSitelen - 1, suliSitelen))});
+							liLipuPona = false;
 					}
 				}
 		liNimiSona:

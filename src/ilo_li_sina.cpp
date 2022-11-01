@@ -1,9 +1,10 @@
 #include <functional>
 #include <cassert>
-#include <list>
+
 #include "ante_toki/ante_toki.hpp"
 #include "ijo_kepeken/toki.hpp"
 #include "ijo_kepeken/ike.hpp"
+#include "ilo_pi_ilo_li_sina/kipisi.hpp"
 
 /**
  * @brief nimi pi ilo pilin ali. li tawa poki en kama jo.
@@ -268,6 +269,7 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 		return 1;
 	}
 
+
 	// TODO o pali sin e ilo "ilo li sina". ni li pini la o pona e ni.
 	/*std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
 
@@ -275,10 +277,14 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 		paliWile = &tokiEKulupuNimi;
 
 	} else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)
-		paliWile = &tokiEKasiSuli;
+		paliWile = &tokiEKasiSuli;*/
 	
-	for (const std::string *const lipuWawa : lipuWawaPana)
-		paliWile(*lipuWawa);*/
+	for (const std::string *const lipuWawa : lipuWawaPana) {
+		std::list<ilo::Ijo> ijoLipu = ilo::kipisi(*lipuWawa);
+
+		for (const ilo::Ijo& ijo : ijoLipu) 
+			std::cout << std::to_string((int) ijo.nimiIjo) << ", " << ijo.ijo << '\n';
+	}
 
 	return 0;
 }

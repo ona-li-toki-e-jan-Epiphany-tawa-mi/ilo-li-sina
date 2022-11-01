@@ -3,11 +3,11 @@
 #include <regex>
 #include <iostream>
 #include <fstream>
+#include <cassert>
 
 #include "../ijo_kepeken/ike.hpp"
+#include "../ijo_kepeken/ijoTawaPokiMAP.hxx"
 #include "../ante_toki/ante_toki.hpp"
-
-//TODO #define KAMA_JO_E_NANPA_SITELEN(linjaSitelen, alasaSitelen) static_cast<size_t>(std::distance(linjaSitelen.begin(), alasaSitelen)) + 1
 
 namespace ilo {
     Ijo::Ijo(NimiIjo nimiIjo)
@@ -27,7 +27,8 @@ namespace ilo {
 
     const std::regex SITELEN_PI_POKI_NANPA("[a-zA-Z0-9_]", std::regex_constants::optimize);
 	const std::regex SITELEN_PI_LUKIN_ALA ("\\s",          std::regex_constants::optimize);
-	const std::unordered_map<char, char> sitelenNasaTanNimi = {
+    // jan li sitelen e sitelen lon poka pilin la ni li pali e sitelen lon poka pi pilin ala.
+	const std::unordered_map<char, char> nimiTawaSitelenNasa = {
 		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
 
     /**
@@ -127,7 +128,7 @@ namespace ilo {
                         goto liPiniPiPokiSitelen;// TODO ni la o ike.
 
                     try {
-                        pokiNimi.push_back(sitelenNasaTanNimi.at(*sonaKipisi.alasaSitelen));
+                        pokiNimi.push_back(nimiTawaSitelenNasa.at(*sonaKipisi.alasaSitelen));
                     
                     } catch (const std::out_of_range& liSitelenAlaTawaSitelenNasa) {	
                         kepeken::tokiEIke({ sonaKipisi.lonLipu
@@ -322,5 +323,94 @@ namespace ilo {
 
 
 		return pokiIjo;
+	}
+
+
+
+    /**
+     * @brief li kama jo e nimi pi nimi ijo tawa toki tawa jan.
+     * 
+     * @param nimiIjo nimi ijo tawa kama e nimi pi nimi ijo.
+     * @return        nimi pi nimi ijo.
+     */
+    std::string nimiIjoTawaNimiPiNimiIjo(NimiIjo nimiIjo) {
+		switch (nimiIjo) {
+			case NimiIjo::POKI:
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.poki_nanpa");
+			case NimiIjo::PANA_LON_POKI:
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.pana_lon_poki_nanpa");
+			case NimiIjo::POKI_NIMI:
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.poki_sitelen");
+			case NimiIjo::NIMI_WAWA:
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.nimi_wawa");
+			case NimiIjo::POKI_PI_IJO_PI_NIMI_WAWA:
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa");
+			case NimiIjo::LINJA_SIN:
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.linja_sitelen_sin");
+			case NimiIjo::NIMI_TAWA_TAWA:
+				return ante_toki::kamaJoENimiTawaJan("toki.kulupu_nimi.nimi_tawa_tawa");
+
+			default:
+				assert(false && "li kama jo e nimi pi kulupu nimi pi sona ala");
+                return "ERROR";
+		}
+	}
+
+    /**
+     * @return nimi pi sitelen nasa (jan li sitelen e ni) tan sitelen nasa ni.
+     */
+    const std::unordered_map<char, char>& sitelenNasaTawaNimi() {
+		static std::optional<std::unordered_map<char, char>> sitelenNasaTawaNimi = std::nullopt;
+
+		if (!sitelenNasaTawaNimi.has_value())
+			sitelenNasaTawaNimi = std::optional(kepeken::paliEPokiMAPLonNasinAnte(nimiTawaSitelenNasa));
+
+		return *sitelenNasaTawaNimi;
+	}
+
+	void tokiELipuKipisi(const std::list<Ijo>& ijoLipu, const std::string& lonLipu) {
+		static const std::string sitelenAlaLonMonsi(8, ' ');
+		const std::string sinpin(lonLipu.size() + 2, '-');
+
+		std::cout << '/' << sinpin << "\\\n"
+			<< "| " << lonLipu << " |\n" 
+			<< '\\' << sinpin << "/\n";
+		
+		if (!ijoLipu.empty()) {
+			size_t nanpaLinja = 1;
+			std::cout << ante_toki::anteENimi(
+				ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"),
+				"%d", std::to_string(nanpaLinja))
+				<< ":\n";
+
+			for (auto alasaIjo = ijoLipu.cbegin(); alasaIjo != ijoLipu.cend(); alasaIjo++) {
+				std::cout << sitelenAlaLonMonsi << nimiIjoTawaNimiPiNimiIjo(alasaIjo->nimiIjo) << "=\"";
+
+				for (const char sitelen : alasaIjo->ijo)
+					try {
+						const char sitelenNasa = sitelenNasaTawaNimi().at(sitelen);
+						std::cout << '\\' << sitelenNasa;
+
+					} catch (const std::out_of_range& liSitelenNasaAla) {
+						std::cout << sitelen;
+					}
+
+				std::cout << "\"\n";
+
+
+                auto ijoLonMonsi = ijoLipu.cend();
+                ijoLonMonsi--;
+
+				if (alasaIjo->nimiIjo == NimiIjo::LINJA_SIN && alasaIjo != ijoLonMonsi)
+					std::cout << ante_toki::anteENimi(
+						ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"),
+						"%d", std::to_string(++nanpaLinja))
+						<< ":\n";
+			}
+
+		} else
+			std::cout << '\n' << ante_toki::kamaJoENimiTawaJan("toki.li_jo_e_ala") << "\n\n";
+
+		std::cout << "\\" << sinpin << "/\n";
 	}
 }

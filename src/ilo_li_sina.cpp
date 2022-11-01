@@ -42,6 +42,8 @@ std::unordered_map<NimiPiIloPilin, IloPilin> iloPilinAli = {
 	{NimiPiIloPilin::VERSION,     {'\0', "version", 	"ilo_CLI.ilo_pilin.version", 	 false}}
 };
 
+
+
 /**
  * @brief li toki e sona kepeken pi ilo ni tawa jan.
  */
@@ -168,6 +170,16 @@ void tokiENanpaPiIloNi() {
 }
 
 /**
+ * @brief li toki e ijo tan kipisi pi lipu wawa.
+ * @param lonLipu lon pi lipu wawa.
+ */
+void tokiELipuKipisi(const std::string& lonLipu) {
+	ilo::tokiELipuKipisi(ilo::kipisi(lonLipu), lonLipu);
+}
+
+
+
+/**
  * ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo 
  * nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa 
  * e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon 
@@ -271,22 +283,17 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 
 
 	// TODO o pali sin e ilo "ilo li sina". ni li pini la o pona e ni.
-	/*std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
+	//std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
+	std::function<void(const std::string&)> paliWile = &tokiELipuKipisi;
 
 	if (iloPilinAli[NimiPiIloPilin::TOKI_E_NIMI].liLon) {
-		paliWile = &tokiEKulupuNimi;
+		paliWile = &tokiELipuKipisi;
 
-	} else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)
+	} /*else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)
 		paliWile = &tokiEKasiSuli;*/
 	
 	for (const std::string *const lipuWawa : lipuWawaPana) 
-		try {
-			std::list<ilo::Ijo> ijoLipu = ilo::kipisi(*lipuWawa);
-
-			for (const ilo::Ijo& ijo : ijoLipu) 
-				std::cout << std::to_string((int) ijo.nimiIjo) << ", " << ijo.ijo << '\n';
-
-		} catch (const std::runtime_error& liSuliAla) {}
+		paliWile(*lipuWawa);
 
 	return 0;
 }

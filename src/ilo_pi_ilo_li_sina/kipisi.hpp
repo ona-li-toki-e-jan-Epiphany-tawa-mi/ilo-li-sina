@@ -45,7 +45,7 @@ namespace ilo {
 	 * @param lonLipu lon pi lipu wawa.
 	 * @return poki pi ijo pi lipu wawa.
 	 */
-	std::list<Ijo> kipisi(const std::string& lonLipu);
+	std::list<Ijo> kipisi(const std::string& lonLipu) noexcept(false);
 
     /**
 	 * @brief li toki e ijo pi lipu wawa tawa jan pi lawa e ilo nanpa.

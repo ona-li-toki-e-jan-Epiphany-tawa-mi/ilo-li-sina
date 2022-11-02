@@ -224,7 +224,7 @@ namespace ilo {
                                                                                  , openPiPokiNanpa));
     }
 
-	std::list<Ijo> kipisi(const std::string& lonLipu) {
+	std::list<Ijo> kipisi(const std::string& lonLipu) noexcept(false) {
 		std::list<Ijo> pokiIjo;
 
 

@@ -56,9 +56,8 @@ ike.ilo_CLI.o_lukin_e_sona_kepeken=По команде «ilo_li_sina --help» м
 ## Ошибки функций.
 ike.pali.nimi_wawa.tawa.sitelen_ike=Неправильное имя метки\nОжидалось имя похоже на [a-zA-Z0-9_]
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Переход на неопределенную метку «%s»
-ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=Неверное число аргументов для функции «tawa»\nОжидалось: tawa(метка)
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции «niLaTawa»\nОжидалось: niLaTawa(метка сообщениеДа сообщениеНет [сообщения...])
-ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=Слишком мало аргументов для функции «alaLaTawa»\nОжидалось: alaLaTawa(метка строка [строки...])
+ike.pali.nimi_wawa.nanpa_ijo_lili=Слишком мало аргументов для функции «%s»\nОжидалось(ись) %d
+ike.pali.nimi_wawa.nanpa_ijo_suli=Слишком много аргументов для функции «%s»\nОжидалось(ись) %d
 ike.pali.nimi_wawa.li_jo_ala_e_pini=Несовершенный вызов функции\nОжидалось «)»
 ike.pali.nimi_wawa.nimi_pi_sona_ala=Неопределенная функция «%s»
 

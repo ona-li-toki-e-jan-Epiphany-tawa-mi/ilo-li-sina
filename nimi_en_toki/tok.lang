@@ -56,9 +56,8 @@ ike.ilo_CLI.o_lukin_e_sona_kepeken=sina ken kepeken e 'ilo_li_sina --help' tawa 
 ## ike pi nimi wawa.
 ike.pali.nimi_wawa.tawa.sitelen_ike=nimi tawa ike\nnimi tawa sama kulupu RegEx [a-zA-Z0-9_] li wile
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=tawa tawa nimi tawa '%s' pi sona ala
-ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=ijo pi nanpa ike tawa nimi wawa 'tawa' li lon\nni li wile: tawa(nimiTawa)
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'niLaTawa' li lon\nijo ni li wile: niLaTawa(nimiTawa nimiLon nimiPiLonAla [ijoTawaToki...])
-ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'alaLaTawa' li lon\nijo ni li wile: alaLaTawa(nimiTawa nimi [nimi...])
+ike.pali.nimi_wawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa '%s' li lon\nona %d li wile
+ike.pali.nimi_wawa.nanpa_ijo_suli=ijo suli suli tawa nimi wawa '%s' li lon\nona %d li wile
 ike.pali.nimi_wawa.li_jo_ala_e_pini=kepeken pi nimi wawa li jo ala e pini\nsitelen pini ')' li wile
 ike.pali.nimi_wawa.nimi_pi_sona_ala=nimi wawa '%s' pi sona ala
 

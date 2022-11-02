@@ -56,9 +56,8 @@ ike.ilo_CLI.o_lukin_e_sona_kepeken=You can use 'ilo_li_sina --help' for more inf
 ## Function parsing errors.
 ike.pali.nimi_wawa.tawa.sitelen_ike=Invalid label name\nExpected token matching [a-zA-Z0-9_]
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Jump to undefined label '%s'
-ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=Incorrect number of arguments for function 'tawa'\nExpected: tawa(label)
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'niLaTawa'\nExpected: niLaTawa(label yesMessage noMessage [messages...])
-ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'alaLaTawa'\nExpected: alaLaTawa(label string [strings...])
+ike.pali.nimi_wawa.nanpa_ijo_lili=Insufficient arguments for function '%s'\nExpected %d
+ike.pali.nimi_wawa.nanpa_ijo_suli=Too many arguments for function '%s'\nExpected %d
 ike.pali.nimi_wawa.li_jo_ala_e_pini=Unterminated function call\nExpected ending ')' symbol
 ike.pali.nimi_wawa.nimi_pi_sona_ala=Unknown function '%s'
 

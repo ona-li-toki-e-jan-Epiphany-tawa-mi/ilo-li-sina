@@ -5,6 +5,7 @@
 #include "ijo_kepeken/toki.hpp"
 #include "ijo_kepeken/ike.hpp"
 #include "ilo_pi_ilo_li_sina/kipisi.hpp"
+#include "ilo_pi_ilo_li_sina/pali.hpp"
 
 /**
  * @brief nimi pi ilo pilin ali. li tawa poki en kama jo.
@@ -177,6 +178,15 @@ void tokiELipuKipisi(const std::string& lonLipu) {
 	ilo::tokiELipuKipisi(ilo::kipisi(lonLipu), lonLipu);
 }
 
+/**
+ * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
+ * @param lonLipu lon pi lipu wawa.
+ */
+void lawaEIloNanpa(const std::string& lonLipu) {
+	std::list<ilo::Ijo> lipuKipisi = ilo::kipisi(lonLipu);
+	ilo::pali(lipuKipisi, lonLipu);
+}
+
 
 
 /**
@@ -283,7 +293,7 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 
 	// TODO o pali sin e ilo "ilo li sina". ni li pini la o pona e ni.
 	//std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
-	std::function<void(const std::string&)> paliWile = &tokiELipuKipisi;
+	std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
 
 	if (iloPilinAli[NimiPiIloPilin::TOKI_E_NIMI].liLon) {
 		paliWile = &tokiELipuKipisi;

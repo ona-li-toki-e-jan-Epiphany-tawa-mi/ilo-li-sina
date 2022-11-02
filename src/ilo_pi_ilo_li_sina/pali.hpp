@@ -19,16 +19,26 @@ namespace ilo {
 			std::list<std::shared_ptr<KasiLipu>> kasiLonAnpa;
 	};
 
-	class KasiPiNimiWawa : KasiLipu {
+	class KasiPiPokiNimi : public KasiLipu {
 		public:
-			NimiWawa& nimiWawa;
+			std::string nimi;
+	};
+
+	class KasiPoki : public KasiLipu {
+		public:
+			std::string nimiPoki;
+	};
+
+	class KasiPiNimiWawa : public KasiLipu {
+		public:
+			const NimiWawa* nimiWawa = nullptr;
 			std::list<std::shared_ptr<KasiLipu>> ijoPiNimiWawa;
 	};
 
-	class KasiPiPanaLonPoki : KasiLipu {
+	class KasiPiPanaLonPoki : public KasiLipu {
 		public:
-			std::string nimiPoki;
-			KasiLipu    ijoPana;
+			std::string               nimiPoki;
+			std::shared_ptr<KasiLipu> ijoPana;
 	};
 
 	/**

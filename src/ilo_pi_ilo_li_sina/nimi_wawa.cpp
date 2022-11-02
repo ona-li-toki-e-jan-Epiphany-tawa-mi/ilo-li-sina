@@ -71,7 +71,7 @@ void kamaJoTanJan(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
     pokiPali.push("");
     if (!std::getline(std::cin, pokiPali.top())) {
         kepeken::tokiEIke({ "nimiPiLipuWawa" //TODO
-                          , -1, -1   // TODO "lonKasi"
+                          , (unsigned int)-1, (unsigned int)-1   // TODO "lonKasi"
                           , "kamaJoTanJan(): " + ante_toki::nimiTawaJan("ike.lawa.pini_lipu")});
         //TODO o "throw" e ike.
     }

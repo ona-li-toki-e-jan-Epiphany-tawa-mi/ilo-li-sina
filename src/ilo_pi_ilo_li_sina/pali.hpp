@@ -10,9 +10,7 @@
  * ilo pali tawa pali e lipu wawa tan ijo lipu tan kipisi.
  */
 namespace ilo {
-    class KasiLipu {
-
-    };
+    class KasiLipu {};
 
 	class KasiOpen : public KasiLipu {
 		public:
@@ -46,7 +44,7 @@ namespace ilo {
 	 *
 	 * @param ijoKipisi ijo tan kipisi lipu. o sona e ni: ni li kama ante tan nimi wawa ni!
 	 * @param lonLipu   lon pi lipu wawa.
-	 * @return //TODO
+	 * @return lipu wawa (lon tomo AST) tan ijo kipisi.
 	 */
-	KasiLipu pali(std::list<Ijo>& ijoKipisi, const std::string& lonLipu);
+	KasiOpen pali(std::list<Ijo>& ijoKipisi, const std::string& lonLipu);
 }

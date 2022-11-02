@@ -33,7 +33,8 @@ namespace ilo {
 
         /**
          * @brief li lawa e ilo nanpa kepeken nimi wawa kiwen lon ni. li moku e ijo pi nanpa nanpaIjo
-         *      tan poki pokiPali. nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
+         *      tan poki pokiPali. 
+         * @attention nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
          * 
          * @param pokiPali poki ijo lon tenpo lawa.
          * @param nanpaIjo li moku e ijo pi nanpa ni tan pokiPali.

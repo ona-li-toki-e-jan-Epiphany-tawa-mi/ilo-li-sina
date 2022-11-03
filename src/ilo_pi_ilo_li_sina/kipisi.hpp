@@ -2,6 +2,8 @@
 
 #include <list>
 #include <string>
+#include <unordered_map>
+
 #include "../ijo_kepeken/ike.hpp"
 
 /**
@@ -46,6 +48,11 @@ namespace ilo {
 	 * @return poki pi ijo pi lipu wawa.
 	 */
 	std::list<Ijo> kipisi(const std::string& lonLipu) noexcept(false);
+
+    /**
+     * @return nimi pi sitelen nasa (jan li sitelen e ni) tan sitelen nasa ni.
+     */
+    const std::unordered_map<char, char>& sitelenNasaTawaNimi();
 
     /**
 	 * @brief li toki e ijo pi lipu wawa tawa jan pi lawa e ilo nanpa.

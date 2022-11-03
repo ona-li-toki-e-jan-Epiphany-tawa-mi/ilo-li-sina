@@ -371,9 +371,6 @@ namespace ilo {
 		}
 	}
 
-    /**
-     * @return nimi pi sitelen nasa (jan li sitelen e ni) tan sitelen nasa ni.
-     */
     const std::unordered_map<char, char>& sitelenNasaTawaNimi() {
 		static std::optional<std::unordered_map<char, char>> sitelenNasaTawaNimi = std::nullopt;
 
@@ -387,9 +384,9 @@ namespace ilo {
 		static const std::string sitelenAlaLonMonsi(8, ' ');
 		const std::string sinpin(lonLipu.size() + 2, '-');
 
-		std::cout << '/' << sinpin << "\\\n"
-			<< "| " << lonLipu << " |\n" 
-			<< '\\' << sinpin << "/\n";
+		std::cout << '/'  << sinpin  << "\\\n"
+			      << "| " << lonLipu << " |\n" 
+			      << '\\' << sinpin  << "/\n";
 		
 		if (!ijoLipu.empty()) {
 			size_t nanpaLinja = 1;

@@ -2,7 +2,6 @@
 
 #include <unordered_map>
 #include <string>
-#include <functional>
 #include <stack>
 
 /**
@@ -12,7 +11,7 @@ namespace ilo {
     /**
      * @brief nimi wawa kiwen lon C++ tawa kepeken lon lipu pi toki "ilo li sina".
      */
-    typedef std::function<void(std::stack<std::string>&, unsigned int)> NimiWawaKiwen;
+    typedef void(*NimiWawaKiwen)(std::stack<std::string>&, unsigned int);
     /**
      * @brief nanpa pi ijo wile li ken nanpa ali la nanpa ni li kepeken.
      */
@@ -42,8 +41,15 @@ namespace ilo {
         void lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo);
     };
 
+
+
     /**
      * @brief li kama jo e nimi wawa tawa pana lon kasi pi kasi lipu kepeken nimi pi nimi wawa tan lipu jan.
      */
-    extern const std::unordered_map<std::string, NimiWawa> nimiPiNimiWawaTawaNimiWawa;
+    extern const std::unordered_map<std::string, NimiWawa> nimiTawaNimiWawa;
+
+    /**
+     * @return poki li kama jo e nimi pi nimi wawa kepeken nimi wawa kiwen.
+     */
+    const std::unordered_map<NimiWawaKiwen, std::string>& nimiWawaKiwenTawaNimi();
 }

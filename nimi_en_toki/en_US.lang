@@ -28,11 +28,10 @@ toki.li_jo_e_ala=Empty...
 ## Messages for printing out abstract syntax trees.
 toki.nimi_kasi.pana_lon_poki=VARIABLE_ASSIGNMENT
 toki.nimi_kasi.kama_jo_tan_poki=VARIABLE_ACCESSOR
-toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=CONSTANT_ACCESSOR
+toki.nimi_kasi.poki_nimi=CONSTANT_ACCESSOR
 toki.nimi_kasi.nimi_wawa=FUNCTION
 toki.nimi_kasi.nimi_tawa=LABEL
 toki.nimi_kasi.tawa=GOTO
-toki.nimi_kasi.ala=NOOP
 
 ## Messages for printing out tokens.
 toki.ijo_kipisi.poki=VARIABLE_NAME

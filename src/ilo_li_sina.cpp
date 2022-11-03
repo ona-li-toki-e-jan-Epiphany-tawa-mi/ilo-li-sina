@@ -179,6 +179,21 @@ void tokiELipuKipisi(const std::string& lonLipu) {
 }
 
 /**
+ * @brief li toki e kasi tan pali pi lipu wawa.
+ * @param lonLipu lon pi lipu wawa.
+ */
+void tokiEKasiLipu(const std::string& lonLipu) {
+	ilo::KasiOpen kasiOpen;
+	
+	{
+		std::list<ilo::Ijo> lipuKipisi = ilo::kipisi(lonLipu);
+		kasiOpen                       = ilo::pali(lipuKipisi, lonLipu);
+	}
+
+	ilo::tokiELipuPali(kasiOpen, lonLipu);
+}
+
+/**
  * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
  * @param lonLipu lon pi lipu wawa.
  */
@@ -291,15 +306,14 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 	}
 
 
-	// TODO o pali sin e ilo "ilo li sina". ni li pini la o pona e ni.
-	//std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
+	
 	std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
 
 	if (iloPilinAli[NimiPiIloPilin::TOKI_E_NIMI].liLon) {
 		paliWile = &tokiELipuKipisi;
 
-	} /*else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)
-		paliWile = &tokiEKasiSuli;*/
+	} else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)
+		paliWile = &tokiEKasiLipu;
 	
 	for (const std::string *const lipuWawa : lipuWawaPana) 
 		paliWile(*lipuWawa);

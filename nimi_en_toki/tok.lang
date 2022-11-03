@@ -25,14 +25,13 @@ ilo_CLI.ijo_sin.nasin_kepeken=lipu pi kama sona pi nasin kepeken li lon lipu <ht
 toki.nanpa_linja=linja pi nanpa %d
 toki.li_jo_e_ala=li jo e ala...
 
-## ijo tawa toki e kasi pi kasi suli.
+## ijo tawa toki e kasi pi lipu wawa.
 toki.nimi_kasi.pana_lon_poki=PANA_LON_POKI
 toki.nimi_kasi.kama_jo_tan_poki=KAMA_JO_TAN_POKI
-toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=KAMA_JO_TAN_POKI_PI_ANTE_ALA
+toki.nimi_kasi.poki_nimi=KAMA_JO_TAN_POKI_NIMI
 toki.nimi_kasi.nimi_wawa=NIMI_WAWA
 toki.nimi_kasi.nimi_tawa=NIMI_TAWA
 toki.nimi_kasi.tawa=TAWA
-toki.nimi_kasi.ala=ALA
 
 ## ijo tawa toki e ijo pi lipu kipisi.
 toki.ijo_kipisi.poki=POKI

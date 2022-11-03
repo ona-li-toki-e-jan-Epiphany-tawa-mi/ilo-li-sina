@@ -28,11 +28,10 @@ toki.li_jo_e_ala=Пусто...
 ## Сообщения для отображения абстрактных синтаксических деревьев.
 toki.nimi_kasi.pana_lon_poki=ПРИСВАИВАНИЕ_ПЕРЕМЕННОЙ
 toki.nimi_kasi.kama_jo_tan_poki=ПОЛУЧЕНИЕ_ИЗ_ПЕРЕМЕННОЙ
-toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=ПОЛУЧЕНИЕ_ИЗ_КОНСТАНТЫ
+toki.nimi_kasi.poki_nimi=ПОЛУЧЕНИЕ_ИЗ_КОНСТАНТЫ
 toki.nimi_kasi.nimi_wawa=ФУНКЦИЯ
 toki.nimi_kasi.nimi_tawa=МЕТКА
 toki.nimi_kasi.tawa=GOTO
-toki.nimi_kasi.ala=NOOP
 
 ## Сообщения для отображения токенов.
 toki.ijo_kipisi.poki=ПЕРЕМЕННАЯ

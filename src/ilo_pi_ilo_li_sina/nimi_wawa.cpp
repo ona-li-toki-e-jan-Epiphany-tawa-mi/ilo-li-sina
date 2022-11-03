@@ -193,17 +193,31 @@ namespace ilo {
 
 
 
-    const std::unordered_map<std::string, NimiWawa> nimiPiNimiWawaTawaNimiWawa = {
-        {"toki",           NimiWawa(&toki)},
-        {"tokiELinja",     NimiWawa(&tokiELinja)},
-        {"tokiEIke",       NimiWawa(&tokiEIke)},
-        {"tokiEIkeELinja", NimiWawa(&tokiEIkeELinja)},
+    const std::unordered_map<std::string, NimiWawa> nimiTawaNimiWawa = {
+        {"toki",                     NimiWawa(&toki)},
+        {"tokiELinja",               NimiWawa(&tokiELinja)},
+        {"tokiEIke",                 NimiWawa(&tokiEIke)},
+        {"tokiEIkeELinja",           NimiWawa(&tokiEIkeELinja)},
 
-        {"kamaJoTanJan", NimiWawa(&kamaJoTanJan)},
-        {"wan", NimiWawa(&wan)},
+        {"kamaJoTanJan",             NimiWawa(&kamaJoTanJan)},
+        {"wan",                      NimiWawa(&wan)},
 
-        {"awen", NimiWawa(&awen)},
+        {"awen",                     NimiWawa(&awen)},
 
         {"kamaJoEPokiNanpaPiLawaOS", NimiWawa(&kamaJoEPokiNanpaPiLawaOS)}
     };
+
+    const std::unordered_map<NimiWawaKiwen, std::string>& nimiWawaKiwenTawaNimi() {
+        static std::optional<std::unordered_map<NimiWawaKiwen, std::string>> nimiWawaKiwenTawaNimi 
+                = std::nullopt;
+
+        if (!nimiWawaKiwenTawaNimi.has_value()) {
+            nimiWawaKiwenTawaNimi = std::unordered_map<NimiWawaKiwen, std::string>();
+
+            for (const auto& [nimi, nimiWawa] : nimiTawaNimiWawa)
+                nimiWawaKiwenTawaNimi->operator[](nimiWawa.nimiWawaKiwen) = nimi;
+        }
+
+        return *nimiWawaKiwenTawaNimi;
+    }
 }

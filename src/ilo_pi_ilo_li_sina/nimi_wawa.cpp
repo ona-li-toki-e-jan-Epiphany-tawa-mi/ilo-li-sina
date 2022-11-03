@@ -36,6 +36,8 @@ void pakalaEAwen(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
  */
 void toki(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
     tokiEAli(std::cout, pokiPali, nanpaIjo);
+
+    pokiPali.push("");
 }
 
 /**
@@ -44,6 +46,8 @@ void toki(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
 void tokiELinja(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
     toki(pokiPali, nanpaIjo);
     std::cout << '\n';
+
+    pokiPali.push("");
 }
 
 /**
@@ -51,6 +55,8 @@ void tokiELinja(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
  */
 void tokiEIke(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
     tokiEAli(std::cerr, pokiPali, nanpaIjo);
+
+    pokiPali.push("");
 }
 
 /**
@@ -59,6 +65,8 @@ void tokiEIke(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
 void tokiEIkeELinja(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
     tokiEIke(pokiPali, nanpaIjo);
     std::cerr << '\n';
+
+    pokiPali.push("");
 }
 
 /**
@@ -88,8 +96,7 @@ void wan(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
         pokiPali.pop();
     }
 
-    pokiPali.push("");
-    pokiPali.top().swap(nimiSin);
+    pokiPali.push(std::move(nimiSin));
 }
 
 /**
@@ -136,11 +143,13 @@ void awen(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
         pokiPali.pop();
     }
 
-
     pakalaEAwen(pokiPali, nanpaIjo);
+    
 
     if (!nanpaIke)
         std::this_thread::sleep_for(std::chrono::milliseconds(tenpoLape));
+
+    pokiPali.push("");
 }
 
 /**

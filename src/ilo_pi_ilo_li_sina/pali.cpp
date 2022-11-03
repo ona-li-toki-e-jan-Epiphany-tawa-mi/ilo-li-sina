@@ -10,28 +10,128 @@ namespace ilo {
         this->lonKasi = {0, 0};
     }
 
+    KasiOpen* KasiOpen::paliSama() const {
+        return new KasiOpen(*this);
+    }
+
     std::string KasiOpen::nimiPiNimiKasi() const {
         return "";
     }
 
+    KasiOpen::KasiOpen(KasiOpen&& ante) noexcept {
+        *this = std::move(ante);
+    }
 
+	KasiOpen& KasiOpen::operator=(KasiOpen&& ante) noexcept {
+        if (this != &ante)
+            this->kasiLonAnpa = std::move(ante.kasiLonAnpa);
+
+        return *this;
+    }
+
+    KasiOpen::KasiOpen(const KasiOpen& ante) {
+        for (const auto& kasi : ante.kasiLonAnpa)
+            this->kasiLonAnpa.push_back(
+                    std::shared_ptr<KasiLipu>(kasi->paliSama()));
+    }
+
+
+    KasiPiPokiNimi* KasiPiPokiNimi::paliSama() const {
+        return new KasiPiPokiNimi(*this);
+    }
+
+    KasiPiPokiNimi::KasiPiPokiNimi(KasiPiPokiNimi&& ante) noexcept {
+        *this = std::move(ante);
+    }
+
+	KasiPiPokiNimi& KasiPiPokiNimi::operator=(KasiPiPokiNimi&& ante) noexcept {
+        if (this != &ante)
+            this->nimi = std::move(ante.nimi);
+
+        return *this;
+    }
+    
     std::string KasiPiPokiNimi::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.poki_nimi";
     }
 
+
+    KasiPoki* KasiPoki::paliSama() const {
+        return new KasiPoki(*this);
+    }
+
+    KasiPoki::KasiPoki(KasiPoki&& ante) noexcept {
+        *this = std::move(ante);
+    }
+
+	KasiPoki& KasiPoki::operator=(KasiPoki&& ante) noexcept {
+        if (this != &ante)
+            this->nimiPoki = std::move(ante.nimiPoki);
+
+        return *this;
+    }
 
     std::string KasiPoki::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.kama_jo_tan_poki";
     }
 
 
+    KasiPiNimiWawa* KasiPiNimiWawa::paliSama() const {
+        return new KasiPiNimiWawa(*this);
+    }
+
+    KasiPiNimiWawa::KasiPiNimiWawa(KasiPiNimiWawa&& ante) noexcept {
+        *this = std::move(ante);
+    }
+
+	KasiPiNimiWawa& KasiPiNimiWawa::operator=(KasiPiNimiWawa&& ante) noexcept {
+        if (this != &ante) {
+            this->nimiWawa = ante.nimiWawa;
+            ante.nimiWawa = nullptr;
+
+            this->ijoPiNimiWawa = std::move(ante.ijoPiNimiWawa);
+        }
+
+        return *this;
+    }
+
     std::string KasiPiNimiWawa::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.nimi_wawa";
     }
 
+    KasiPiNimiWawa::KasiPiNimiWawa(const KasiPiNimiWawa& ante) {
+        this->nimiWawa = ante.nimiWawa;
+
+        for (const auto& kasi : ante.ijoPiNimiWawa)
+            this->ijoPiNimiWawa.push_back(
+                    std::shared_ptr<KasiLipu>(kasi->paliSama()));
+    }
+
+
+    KasiPiPanaLonPoki* KasiPiPanaLonPoki::paliSama() const {
+        return new KasiPiPanaLonPoki(*this);
+    }
+
+    KasiPiPanaLonPoki::KasiPiPanaLonPoki(KasiPiPanaLonPoki&& ante) noexcept {
+        *this = std::move(ante);
+    }
+
+	KasiPiPanaLonPoki& KasiPiPanaLonPoki::operator=(KasiPiPanaLonPoki&& ante) noexcept {
+        if (this != &ante) {
+            this->nimiPoki = std::move(ante.nimiPoki);
+            this->ijoPana  = std::move(ante.ijoPana);
+        }
+
+        return *this;
+    }
 
     std::string KasiPiPanaLonPoki::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.pana_lon_poki";
+    }
+
+    KasiPiPanaLonPoki::KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante) {
+        this->nimiPoki = ante.nimiPoki;
+        this->ijoPana  = std::shared_ptr<KasiLipu>(ante.ijoPana->paliSama());
     }
 
 
@@ -65,7 +165,7 @@ namespace ilo {
     std::shared_ptr<KasiPiPokiNimi> paliEPokiNimi(SonaPali& sonaPali) {
         auto kasiPiPokiNimi = std::make_shared<KasiPiPokiNimi>();
 
-        kasiPiPokiNimi->nimi.swap(sonaPali.alasaIjo->ijo);
+        kasiPiPokiNimi->nimi = std::move(sonaPali.alasaIjo->ijo);
         kasiPiPokiNimi->lonKasi = sonaPali.alasaIjo->lonIjo;
         sonaPali.alasaIjo++;
 
@@ -79,7 +179,7 @@ namespace ilo {
     std::shared_ptr<KasiPoki> paliEPoki(SonaPali& sonaPali) {
         auto kasiPiPoki = std::make_shared<KasiPoki>();
 
-        kasiPiPoki->nimiPoki.swap(sonaPali.alasaIjo->ijo);
+        kasiPiPoki->nimiPoki = std::move(sonaPali.alasaIjo->ijo);
         kasiPiPoki->lonKasi = sonaPali.alasaIjo->lonIjo;
         sonaPali.alasaIjo++;
 
@@ -213,7 +313,7 @@ namespace ilo {
             return nullptr;
         }
 
-        kasiPiPanaLonPoki->nimiPoki.swap(sonaPali.alasaIjo->ijo);
+        kasiPiPanaLonPoki->nimiPoki = std::move(sonaPali.alasaIjo->ijo);
         kasiPiPanaLonPoki->lonKasi = sonaPali.alasaIjo->lonIjo;
 
         // ijo tu sin li wile: sitelen '=' en ijo ante.

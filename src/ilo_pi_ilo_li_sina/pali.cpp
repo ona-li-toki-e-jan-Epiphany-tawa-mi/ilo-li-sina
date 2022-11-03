@@ -49,6 +49,16 @@ namespace ilo {
     };
 
     /**
+     * @brief li tawa e alasa ijo lon linja sin.
+     * @attention ike la o kepeken e ni tawa ni: ilo pali li ken awen toki e ike ante lon lipu.
+     */
+    void tawaLinjaSinLonSinpin(SonaPali& sonaPali) {
+            for (; sonaPali.alasaIjo != sonaPali.ijoKipisi.cend(); sonaPali.alasaIjo++)
+                if (sonaPali.alasaIjo->nimiIjo == NimiIjo::LINJA_SIN) 
+                    break;
+    }
+
+    /**
      * @return poki nimi sin tan lon pi tenpo ni lon poki pi lipu kipisi.
      * @attention o pali e ni lon monsi pi kepeken ni: nimi pi ijo pi tenpo ni li POKI_NIMI. 
      */
@@ -207,7 +217,7 @@ namespace ilo {
         kasiPiPanaLonPoki->lonKasi = sonaPali.alasaIjo->lonIjo;
 
         // ijo tu sin li wile: sitelen '=' en ijo ante.
-        for (; sonaPali.alasaIjo != sonaPali.ijoKipisi.end(); sonaPali.alasaIjo++);
+        for (int i = 0; i < 2; i++) sonaPali.alasaIjo++;
         if ( sonaPali.alasaIjo == sonaPali.ijoKipisi.end() 
           || sonaPali.alasaIjo->nimiIjo == NimiIjo::LINJA_SIN) {
             // li ken ala toki e lon pi ijo ala.
@@ -263,13 +273,17 @@ namespace ilo {
         while (alasaIjo != ijoKipisi.end()) {
             while (alasaIjo != ijoKipisi.end() && alasaIjo->nimiIjo == NimiIjo::LINJA_SIN)
                 alasaIjo++;
-            if (alasaIjo != ijoKipisi.end())
+            if (alasaIjo == ijoKipisi.end())
                 break;
 
 
             if (alasaIjo->nimiIjo == NimiIjo::NIMI_WAWA) {
                 openKasi.kasiLonAnpa.push_back(
                         std::static_pointer_cast<KasiLipu>(paliENimiWawa(sonaPali)));
+
+                // ike la li wile tawa linja sin tawa awen toki e ike lon linja ante.
+                if (openKasi.kasiLonAnpa.back() == nullptr)
+                    tawaLinjaSinLonSinpin(sonaPali);
                 continue;
             }
 
@@ -279,14 +293,17 @@ namespace ilo {
             if (ijoLonSinpin->nimiIjo == NimiIjo::PANA_LON_POKI) {
                 openKasi.kasiLonAnpa.push_back(
                         std::static_pointer_cast<KasiLipu>(paliEPanaLonPoki(sonaPali)));
+
+                // ike la li wile tawa linja sin tawa awen toki e ike lon linja ante.
+                if (openKasi.kasiLonAnpa.back() == nullptr)
+                    tawaLinjaSinLonSinpin(sonaPali);
                 continue;
             }
 
 
-            // linja li jo ala e nimi wawa anu pana lon poki la mi ken pali ala e ona.
-            for (; alasaIjo != ijoKipisi.end(); alasaIjo++)
-                if (sonaPali.alasaIjo->nimiIjo == NimiIjo::LINJA_SIN) 
-                    break;
+            // linja li jo ala e nimi wawa anu pana lon poki la li suli ala. mi ken pali e ala li lukin
+            //      e linja ante.
+            tawaLinjaSinLonSinpin(sonaPali);
         }
 
         if (!sonaPali.liLipuPona)

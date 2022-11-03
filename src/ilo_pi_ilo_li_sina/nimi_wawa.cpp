@@ -175,15 +175,15 @@ namespace ilo {
         this->nimiWawaKiwen = nimiWawaKiwen;
 
         assert(nanpaSuliPiIjoWile >= nanpaLiliPiIjoWile && "nanpa lon nanpaLiliPiIjoWile li ken ala "
-                                                            "suli tawa nanpa lon nanpaSuliPiIjoWile!");
+                                                           "suli tawa nanpa lon nanpaSuliPiIjoWile!");
 
         this->nanpaLiliPiIjoWile = nanpaLiliPiIjoWile;
         this->nanpaSuliPiIjoWile = nanpaSuliPiIjoWile;
     }
 
     void NimiWawa::lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-        assert( (this->nanpaLiliPiIjoWile != nanpaPiIjoWileAli || this->nanpaSuliPiIjoWile != nanpaPiIjoWileAli) 
-             && nanpaIjo >= this->nanpaLiliPiIjoWile && nanpaIjo <= this->nanpaSuliPiIjoWile
+        assert( (this->nanpaLiliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo < this->nanpaLiliPiIjoWile)
+             || (this->nanpaSuliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo >= this->nanpaSuliPiIjoWile)
              && "nanpa ijo tawa nimi wawa li ken ala lon ante tannanpaLiliPiIjoWile en nanpaSuliPiIjoWile!");
 
         assert(pokiPali.size() >= nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");

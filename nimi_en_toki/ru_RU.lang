@@ -54,6 +54,7 @@ ike.ilo_CLI.o_lukin_e_sona_kepeken=По команде «ilo_li_sina --help» м
 # Ошбки разбора.
 ## Ошибки функций.
 ike.pali.nimi_wawa.tawa.sitelen_ike=Неправильное имя метки\nОжидалось имя похоже на [a-zA-Z0-9_]
+ike.pali.nimi_wawa.tawa.nimi_tawa_mute_mute=Duplicate label definition of '%s'\nOrignally defined at (%d, %d)
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Переход на неопределенную метку «%s»
 ike.pali.nimi_wawa.nanpa_ijo_lili=Слишком мало аргументов для функции «%s»\nОжидалось(ись) %d
 ike.pali.nimi_wawa.nanpa_ijo_suli=Слишком много аргументов для функции «%s»\nОжидалось(ись) %d

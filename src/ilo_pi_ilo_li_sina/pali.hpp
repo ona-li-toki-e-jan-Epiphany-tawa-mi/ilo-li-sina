@@ -81,7 +81,7 @@ namespace ilo {
 			const NimiWawa* nimiWawa = nullptr;
 			std::list<std::shared_ptr<KasiLipu>> ijoPiNimiWawa;
 
-			KasiPiNimiWawa() = default;
+			KasiPiNimiWawa(const NimiWawa* nimiWawa);
 			KasiPiNimiWawa& operator=(const KasiPiNimiWawa&) = delete;
 			virtual KasiPiNimiWawa* paliSama() const override;
 			KasiPiNimiWawa(KasiPiNimiWawa&& ante) noexcept;
@@ -91,6 +91,22 @@ namespace ilo {
 
 		private:
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante);
+	};
+
+	class KasiPiNimiWawaTawa : public KasiPiNimiWawa {
+		public:
+			std::shared_ptr<KasiLipu> kasiTawaTawa = nullptr;
+
+			KasiPiNimiWawaTawa(const NimiWawa* nimiWawa);
+			KasiPiNimiWawaTawa& operator=(const KasiPiNimiWawaTawa&) = delete;
+			virtual KasiPiNimiWawaTawa* paliSama() const override;
+			KasiPiNimiWawaTawa(KasiPiNimiWawaTawa&& ante) noexcept;
+			KasiPiNimiWawaTawa& operator=(KasiPiNimiWawaTawa&& ante) noexcept;
+
+			virtual std::string nimiPiNimiKasi() const override;
+
+		private:
+			KasiPiNimiWawaTawa(const KasiPiNimiWawaTawa& ante);
 	};
 
 	class KasiPiPanaLonPoki : public KasiLipu {

@@ -5,10 +5,10 @@ ilo_CLI.nasin_kepeken=СИНТАКСИС
 ilo_CLI.sona=ОПИСАНИЕ
 ilo_CLI.sona.nimi=Интерпретатор для ilo li sina. ilo li sina - неструктурированный процедурный ориентированный на людей язык программирования, который работает только со строками.
 ilo_CLI.ilo_pilin=ПАРАМЕТРЫ
-ilo_CLI.ilo_pilin.toki_e_nimi=Отображать токены, созданные из программ.
+ilo_CLI.ilo_pilin.toki_e_ijo=Отображать токены, созданные из программ.
 ilo_CLI.ilo_pilin.toki_e_kasi=Отображать абстрактные синтаксические деревья, созданные из программ.
-ilo_CLI.ilo_pilin.help=Показать справочное сообщение и закончить работу.
-ilo_CLI.ilo_pilin.version=Показать информацию о версии и закончить работу.
+ilo_CLI.ilo_pilin.help=Показать справочное сообщение и завершить работу.
+ilo_CLI.ilo_pilin.version=Показать информацию о версии и завершить работу.
 ilo_CLI.ilo_pilin.lipu_wawa=ПРОГРАММЫ
 ilo_CLI.ilo_pilin.lipu_wawa.sona=Программы выполнить.
 ilo_CLI.jan_pali=АВТОРЫ
@@ -54,7 +54,7 @@ ike.ilo_CLI.o_lukin_e_sona_kepeken=По команде «ilo_li_sina --help» м
 # Ошбки разбора.
 ## Ошибки функций.
 ike.pali.nimi_wawa.tawa.nimi_tawa_tawa_li_wile=Неправильное имя метки\nОжидалось имя похоже на [a-zA-Z0-9_]
-ike.pali.nimi_wawa.tawa.nimi_tawa_mute_mute=Duplicate label definition of '%s'\nOrignally defined at (%d, %d) #TODO
+ike.pali.nimi_wawa.tawa.nimi_tawa_mute_mute=Дубликат определения метки «%s»\nОригинальное определение в (%d, %d)
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Переход на неопределенную метку «%s»
 ike.pali.nimi_wawa.nanpa_ijo_lili=Слишком мало аргументов для функции «%s»\nОжидалось(ись) %d
 ike.pali.nimi_wawa.nanpa_ijo_suli=Слишком много аргументов для функции «%s»\nОжидалось(ись) %d

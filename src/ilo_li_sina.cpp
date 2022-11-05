@@ -11,7 +11,7 @@
  * @brief nimi pi ilo pilin ali. li tawa poki en kama jo.
  */
 enum class NimiPiIloPilin {
-	TOKI_E_NIMI,
+	TOKI_E_IJO,
 	TOKI_E_KASI,
 	HELP,
 	VERSION
@@ -37,7 +37,7 @@ struct IloPilin {
  * ni li lon tan ni: pana e ilo pilin sin li ken lon tenpo lili.
  */
 std::unordered_map<NimiPiIloPilin, IloPilin> iloPilinAli = {
-	{NimiPiIloPilin::TOKI_E_NIMI, {'n',  "toki-e-nimi", "ilo_CLI.ilo_pilin.toki_e_nimi", false}},
+	{NimiPiIloPilin::TOKI_E_IJO,  {'i',  "toki-e-ijo",  "ilo_CLI.ilo_pilin.toki_e_ijo",  false}},
 	{NimiPiIloPilin::TOKI_E_KASI, {'k',  "toki-e-kasi", "ilo_CLI.ilo_pilin.toki_e_kasi", false}},
 	{NimiPiIloPilin::HELP,		  {'h',  "help", 		"ilo_CLI.ilo_pilin.help",		 false}},
 	{NimiPiIloPilin::VERSION,     {'\0', "version", 	"ilo_CLI.ilo_pilin.version", 	 false}}
@@ -309,7 +309,7 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 	
 	std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
 
-	if (iloPilinAli[NimiPiIloPilin::TOKI_E_NIMI].liLon) {
+	if (iloPilinAli[NimiPiIloPilin::TOKI_E_IJO].liLon) {
 		paliWile = &tokiELipuKipisi;
 
 	} else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)

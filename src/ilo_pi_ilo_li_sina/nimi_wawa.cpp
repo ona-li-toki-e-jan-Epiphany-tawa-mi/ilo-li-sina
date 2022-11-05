@@ -206,6 +206,8 @@ namespace ilo {
                                                            "suli tawa nanpa lon nanpaSuliPiIjoWile!");
     }
 
+    TomoPiNimiWawa::~TomoPiNimiWawa() {}
+
 
     NimiWawa::NimiWawa(NimiWawaKiwen nimiWawaKiwen)
             : TomoPiNimiWawa(nanpaPiIjoWileAli, nanpaPiIjoWileAli) {
@@ -266,30 +268,32 @@ namespace ilo {
         {"kamaJoEPokiNanpaPiLawaOS", NimiWawa(&kamaJoEPokiNanpaPiLawaOS)}
     };
 
-    const std::unordered_map<NimiWawaKiwen, std::string>& nimiWawaKiwenTawaNimi() {
-        static std::optional<std::unordered_map<NimiWawaKiwen, std::string>> nimiWawaKiwenTawaNimi 
-                = std::nullopt;
-
-        if (!nimiWawaKiwenTawaNimi.has_value()) {
-            nimiWawaKiwenTawaNimi = std::unordered_map<NimiWawaKiwen, std::string>();
-
-            for (const auto& [nimi, nimiWawa] : nimiTawaNimiWawa)
-                nimiWawaKiwenTawaNimi->operator[](nimiWawa.nimiWawaKiwen) = nimi;
-        }
-
-        return *nimiWawaKiwenTawaNimi;
-    }
-
-
     const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa = {
         {"tawa",      NimiWawaTawa(&tawa,     0, 0)},
         {"niLaTawa",  NimiWawaTawa(&niLaTawa, 3)},
         {"alaLaTawa", NimiWawaTawa(&alaLaTawa)}
     };
 
-    const std::unordered_map<NimiWawaTawaKiwen, std::string>& nimiWawaTawaKiwenTawaNimi() {
+    const std::string& tomoPiNimiWawaTawaNimi(const TomoPiNimiWawa* tomoPiNimiWawa) noexcept(false) {
+        static std::optional<std::unordered_map<NimiWawaKiwen, std::string>> nimiWawaKiwenTawaNimi 
+                = std::nullopt;
         static std::optional<std::unordered_map<NimiWawaTawaKiwen, std::string>> nimiWawaTawaKiwenTawaNimi 
                 = std::nullopt;
+
+
+        auto nimiWawa = dynamic_cast<const NimiWawa*>(tomoPiNimiWawa);
+
+        if (nimiWawa != nullptr) {
+            if (!nimiWawaKiwenTawaNimi.has_value()) {
+                nimiWawaKiwenTawaNimi = std::unordered_map<NimiWawaKiwen, std::string>();
+
+                for (const auto& [nimi, nimiWawa] : nimiTawaNimiWawa)
+                    nimiWawaKiwenTawaNimi->operator[](nimiWawa.nimiWawaKiwen) = nimi;
+            }
+
+            return nimiWawaKiwenTawaNimi->at(nimiWawa->nimiWawaKiwen);
+        }
+
 
         if (!nimiWawaTawaKiwenTawaNimi.has_value()) {
             nimiWawaTawaKiwenTawaNimi = std::unordered_map<NimiWawaTawaKiwen, std::string>();
@@ -298,6 +302,7 @@ namespace ilo {
                 nimiWawaTawaKiwenTawaNimi->operator[](nimiWawa.nimiWawaTawaKiwen) = nimi;
         }
 
-        return *nimiWawaTawaKiwenTawaNimi;
+        return nimiWawaTawaKiwenTawaNimi->at(static_cast<const NimiWawaTawa*>(tomoPiNimiWawa)
+                ->nimiWawaTawaKiwen);
     }
 }

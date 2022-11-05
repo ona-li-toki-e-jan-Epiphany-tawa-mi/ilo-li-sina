@@ -31,6 +31,7 @@ namespace ilo {
              * @param nanpaSuliPiIjoWile lawa() la nanpa nanpaIjo li wile sama anu lili tawa nanpa ni. 
              */
             TomoPiNimiWawa(unsigned int nanpaLiliPiIjoWile, unsigned int nanpaSuliPiIjoWile);
+            virtual ~TomoPiNimiWawa() = 0;
     };
 
     /**
@@ -83,19 +84,15 @@ namespace ilo {
     extern const std::unordered_map<std::string, NimiWawa> nimiTawaNimiWawa;
 
     /**
-     * @return poki li kama jo e nimi pi nimi wawa kepeken nimi wawa kiwen.
-     */
-    const std::unordered_map<NimiWawaKiwen, std::string>& nimiWawaKiwenTawaNimi();
-
-
-    /**
      * @brief li kama jo e nimi wawa tawa tawa pana lon kasi pi kasi lipu kepeken nimi pi nimi wawa tawa 
      *      tan lipu jan.
      */
     extern const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa;
 
     /**
-     * @return poki li kama jo e nimi pi nimi wawa tawa kepeken nimi wawa tawa kiwen.
+     * @brief li kama jo e nimi pi nimi wawa tawa jan.
+     * @throws std::out_of_range nimi wawa kiwen anu nimi wawa tawa kiwen lon tomo li lon ala poki 
+     *      nimiTawaNimiWawa anu nimiTawaNimiWawaTawa.
      */
-    const std::unordered_map<NimiWawaTawaKiwen, std::string>& nimiWawaTawaKiwenTawaNimi();
+    const std::string& tomoPiNimiWawaTawaNimi(const TomoPiNimiWawa* tomoPiNimiWawa) noexcept(false);
 }

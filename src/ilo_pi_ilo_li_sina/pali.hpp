@@ -15,8 +15,16 @@ namespace ilo {
 	 */
     class KasiLipu {
 		public:
+			/**
+			 * @brief lon kasi lon lipu wawa.
+			 */
 			kepeken::LonIjo lonKasi = {static_cast<size_t>(-1), static_cast<size_t>(-1)};
 
+			/**
+			 * @return KasiLipu* kasi sin sama kasi ni.
+			 * @attention o kepeken e ni e ilo Copy Constructor ala (taso, sina ken en wile kepeken e
+			 * 		ona tawa pali e nimi wawa ni.)
+			 */
 			virtual KasiLipu* paliSama() const = 0;
 
 			/**
@@ -30,6 +38,9 @@ namespace ilo {
 	 */
 	class KasiOpen : public KasiLipu {
 		public:
+			/**
+			 * @brief kasi lon ni li open pi linja ali lon lipu wawa.
+			 */
 			std::list<std::shared_ptr<KasiLipu>> kasiLonAnpa;
 
 			KasiOpen();
@@ -44,6 +55,9 @@ namespace ilo {
 			KasiOpen(const KasiOpen& ante);
 	};
 
+	/**
+	 * @brief tenpo ali la li lon pini 
+	 */
 	class KasiPini : public KasiLipu {
 		public:
 			KasiPini() = default;
@@ -58,8 +72,14 @@ namespace ilo {
 			KasiPini(const KasiPini& ante) = default;
 	};
 
+	/**
+	 * @brief li kama jo e nimi tan poki nimi.
+	 */
 	class KasiPiPokiNimi : public KasiLipu {
 		public:
+			/**
+			 * @brief nimi lon poki nimi.
+			 */
 			std::string nimi;
 
 			KasiPiPokiNimi() = default;
@@ -74,8 +94,14 @@ namespace ilo {
 			KasiPiPokiNimi(const KasiPiPokiNimi& ante) = default;
 	};
 
+	/**
+	 * @brief li kama jo e nimi tan poki.
+	 */
 	class KasiPoki : public KasiLipu {
 		public:
+			/**
+			 * @brief nimi pi poki ni.
+			 */
 			std::string nimiPoki;
 
 			KasiPoki() = default;
@@ -90,8 +116,15 @@ namespace ilo {
 			KasiPoki(const KasiPoki& kasiPoki) = default;
 	};
 
+	/**
+	 * @brief li tomo pi kasi pi nimi wawa en nimi wawa tawa.
+	 */
 	class KasiTomoPiNimiWawa : public KasiLipu {
 		public:
+			/**
+			 * @brief ni li ijo tawa nimi wawa. tenpo 1 la ona li lawa. tenpo 2 la ijo tan lawa ona li
+			 * 		pana tawa nimi wawa.
+			 */
 			std::list<std::shared_ptr<KasiLipu>> ijoPiNimiWawa;
 
 			KasiTomoPiNimiWawa() = default;
@@ -105,6 +138,9 @@ namespace ilo {
 			KasiTomoPiNimiWawa(const KasiTomoPiNimiWawa& ante);
 	};
 
+	/**
+	 * @brief li kepeken pi nimi wawa.
+	 */
 	class KasiPiNimiWawa : public KasiTomoPiNimiWawa {
 		public:
 			const NimiWawa* nimiWawa = nullptr;
@@ -123,9 +159,15 @@ namespace ilo {
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante);
 	};
 
+	/**
+	 * @brief li kepeken pi nimi wawa tawa.
+	 */
 	class KasiPiNimiWawaTawa : public KasiTomoPiNimiWawa {
 		public:
 			const NimiWawaTawa* nimiWawaTawa = nullptr;
+			/**
+			 * @brief nimi wawa tawa li wile tawa la li tawa lon kasi pi nanpa ni lon kasi open.
+			 */
 			size_t lonTawaTawa               = static_cast<size_t>(-1);
 
 			KasiPiNimiWawaTawa() = default;
@@ -142,9 +184,18 @@ namespace ilo {
 			KasiPiNimiWawaTawa(const KasiPiNimiWawaTawa& ante);
 	};
 
+	/**
+	 * @brief li pana e ijo lon poki pi nimi pana.
+	 */
 	class KasiPiPanaLonPoki : public KasiLipu {
 		public:
+			/**
+			 * @brief nimi poki tawa poki e ijo.
+			 */
 			std::string               nimiPoki;
+			/**
+			 * @brief tenpo 1 la ni li lawa. tenpo 2 la li pana e ijo kama lon poki.
+			 */
 			std::shared_ptr<KasiLipu> ijoPana;
 
 			KasiPiPanaLonPoki() = default;

@@ -127,7 +127,7 @@ namespace ilo {
                 case '\\':
                     sonaKipisi.alasaSitelen++;
                     if (sonaKipisi.alasaSitelen == sonaKipisi.linja.cend())
-                        goto liPiniPiPokiSitelen;// TODO ni la o ike.
+                        goto liPiniPiPokiSitelen;
 
                     try {
                         pokiNimi.push_back(nimiTawaSitelenNasa.at(*sonaKipisi.alasaSitelen));

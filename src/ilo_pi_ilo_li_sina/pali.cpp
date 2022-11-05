@@ -576,7 +576,7 @@ namespace ilo {
             wanEKasiENimiTawa(sonaPali);
 
         // li wan e nimi tawa tawa e nimi wawa tawa.
-        for (auto [nimiTawaTawa, nimiWawaTawa] : nimiTawaTawaTawaNimiWawaTawa) {
+        for (auto [nimiTawaTawa, nimiWawaTawa] : nimiTawaTawaTawaNimiWawaTawa)
             try {
                 nimiWawaTawa.lonTawaTawa = lonPiNimiTawaTawa.at(nimiTawaTawa);
             
@@ -586,7 +586,7 @@ namespace ilo {
                                   , ante_toki::nimiTawaJan("ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala")});
             
                 sonaPali.liLipuPona = false;
-            }}
+            }
 
         if (!sonaPali.liLipuPona)
             throw std::runtime_error("lipu wawa ike!");
@@ -663,21 +663,11 @@ namespace ilo {
 		auto kasiTomoPiNimiWawa = dynamic_cast<const KasiTomoPiNimiWawa*>(kasi);
 
         if (kasiTomoPiNimiWawa != nullptr) {
-            auto kasiPiNimiWawaTawa = dynamic_cast<const KasiPiNimiWawaTawa*>(kasi);
-
             try {
-                if (kasiPiNimiWawaTawa == nullptr) {
-                    std::cout << ante_toki::nimiTawaJan(kasiTomoPiNimiWawa->nimiPiNimiKasi()) << "=\"" 
-                              << nimiWawaKiwenTawaNimi().at(static_cast<const NimiWawa*>(
-                                    kasiTomoPiNimiWawa->tomoPiNimiWawa())->nimiWawaKiwen) 
-                             << '"';
+                std::cout << ante_toki::nimiTawaJan(kasiTomoPiNimiWawa->nimiPiNimiKasi()) << "=\"" 
+                            << tomoPiNimiWawaTawaNimi(kasiTomoPiNimiWawa->tomoPiNimiWawa())
+                            << '"';
                 
-                } else
-                    std::cout << ante_toki::nimiTawaJan(kasiTomoPiNimiWawa->nimiPiNimiKasi()) << "=\"" 
-                              << nimiWawaTawaKiwenTawaNimi().at(
-                                    kasiPiNimiWawaTawa->nimiWawaTawa->nimiWawaTawaKiwen)
-                              << '"';
-            
             } catch (const std::out_of_range& nimiWawaLiLonAla) {
                 assert(false && "pali la li kama jo e lon nullptr anu lon tawa nimi wawa pi sona ala");
             }
@@ -692,7 +682,8 @@ namespace ilo {
                 std::cout << '\n';
 
 
-
+            auto kasiPiNimiWawaTawa = dynamic_cast<const KasiPiNimiWawaTawa*>(kasi);
+            
             if (kasiPiNimiWawaTawa != nullptr) {
                 tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
 
@@ -711,8 +702,9 @@ namespace ilo {
             std::cout << ante_toki::nimiTawaJan(kasiPini->nimiPiNimiKasi()) << '\n';
             return;
         }
-		
-		std::cout << ante_toki::nimiTawaJan(kasi->nimiPiNimiKasi()) << '\n'; // TODO
+
+		// kasi li lon ala ijo lon sewi ni la mi ken pona toki e nimi ona.
+		std::cout << ante_toki::nimiTawaJan(kasi->nimiPiNimiKasi()) << '\n';
 	}
 
 	void tokiELipuPali(const KasiOpen& kasiOpen, const std::string& lonLipu) {

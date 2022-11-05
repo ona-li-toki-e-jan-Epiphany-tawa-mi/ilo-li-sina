@@ -210,6 +210,8 @@ namespace ilo {
 			KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante);
 	};
 
+
+
 	/**
 	 * @brief li pali e lipu wawa tan kulupu nimi tan kipisi pi lipu wawa jan.
 	 *
@@ -218,14 +220,4 @@ namespace ilo {
 	 * @return lipu wawa (lon tomo AST) tan ijo kipisi.
 	 */
 	KasiOpen pali(std::list<Ijo>& ijoKipisi, const std::string& lonLipu);
-
-
-
-	/**
-	 * @brief li pana e lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
-	 *
-	 * @param kasiOpen lipu wawa pali.
-	 * @param lonLipu  lon pi lipu wawa.
-	 */
-	void tokiELipuPali(const KasiOpen& kasiOpen, const std::string& lonLipu);
 }

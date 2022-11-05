@@ -4,8 +4,7 @@
 #include "ante_toki/ante_toki.hpp"
 #include "ijo_kepeken/toki.hpp"
 #include "ijo_kepeken/ike.hpp"
-#include "ilo_pi_ilo_li_sina/kipisi.hpp"
-#include "ilo_pi_ilo_li_sina/pali.hpp"
+#include "ilo_pi_ilo_li_sina/toki.hpp"
 
 /**
  * @brief nimi pi ilo pilin ali. li tawa poki en kama jo.
@@ -198,8 +197,12 @@ void tokiEKasiLipu(const std::string& lonLipu) {
  * @param lonLipu lon pi lipu wawa.
  */
 void lawaEIloNanpa(const std::string& lonLipu) {
-	std::list<ilo::Ijo> lipuKipisi = ilo::kipisi(lonLipu);
-	ilo::pali(lipuKipisi, lonLipu);
+	ilo::KasiOpen kasiOpen;
+	
+	{
+		std::list<ilo::Ijo> lipuKipisi = ilo::kipisi(lonLipu);
+		kasiOpen                       = ilo::pali(lipuKipisi, lonLipu);
+	}
 }
 
 

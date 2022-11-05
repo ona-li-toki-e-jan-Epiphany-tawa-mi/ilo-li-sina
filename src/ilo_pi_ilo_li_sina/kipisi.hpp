@@ -49,16 +49,18 @@ namespace ilo {
 	 */
 	std::list<Ijo> kipisi(const std::string& lonLipu) noexcept(false);
 
+
+
+    /**
+     * @brief li kama jo e nimi pi nimi ijo tawa toki tawa jan.
+     * 
+     * @param nimiIjo nimi ijo tawa kama e nimi pi nimi ijo.
+     * @return        nimi pi nimi ijo.
+     */
+    std::string nimiIjoTawaNimiPiNimiIjo(NimiIjo nimiIjo);
+
     /**
      * @return nimi pi sitelen nasa (jan li sitelen e ni) tan sitelen nasa ni.
      */
     const std::unordered_map<char, char>& sitelenNasaTawaNimi();
-
-    /**
-	 * @brief li toki e ijo pi lipu wawa tawa jan pi lawa e ilo nanpa.
-	 * 
-	 * @param ijoLipu ijoLipu tan kipisi().
-	 * @param lonLipu lon pi lipu wawa.
-	 */
-	void tokiELipuKipisi(const std::list<Ijo>& ijoLipu, const std::string& lonLipu);
 }

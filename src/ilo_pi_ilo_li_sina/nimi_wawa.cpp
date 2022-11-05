@@ -152,6 +152,29 @@ void awen(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
     pokiPali.push("");
 }
 
+
+
+bool tawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+    pokiPali.push("");
+    return true;
+}
+
+bool niLaTawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+    assert(false && "o pona e ni!"); //TODO
+}
+
+bool alaLaTawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+    for (; nanpaIjo > 0; nanpaIjo--) 
+        if (!pokiPali.top().empty()) {
+            pakalaEAwen(pokiPali, nanpaIjo);
+            return false;
+        }
+
+    return true;
+}
+
+
+
 /**
  * @brief li kama jo e poki nanpa pi lawa OS tan lawa OS sama "LANG" anu "USER" anu "LOGNAME".
  */
@@ -177,27 +200,54 @@ namespace ilo {
 
 
 
-    NimiWawa::NimiWawa(NimiWawaKiwen nimiWawaKiwen)
-        : NimiWawa::NimiWawa(nimiWawaKiwen, nanpaPiIjoWileAli, nanpaPiIjoWileAli) {}
-
-    NimiWawa::NimiWawa(NimiWawaKiwen nimiWawaKiwen, unsigned int nanpaLiliPiIjoWile, unsigned int nanpaSuliPiIjoWile) {
-        this->nimiWawaKiwen = nimiWawaKiwen;
-
+    TomoPiNimiWawa::TomoPiNimiWawa(unsigned int nanpaLiliPiIjoWile, unsigned int nanpaSuliPiIjoWile)
+            : nanpaLiliPiIjoWile(nanpaLiliPiIjoWile), nanpaSuliPiIjoWile(nanpaSuliPiIjoWile) {
         assert(nanpaSuliPiIjoWile >= nanpaLiliPiIjoWile && "nanpa lon nanpaLiliPiIjoWile li ken ala "
                                                            "suli tawa nanpa lon nanpaSuliPiIjoWile!");
+    }
 
-        this->nanpaLiliPiIjoWile = nanpaLiliPiIjoWile;
-        this->nanpaSuliPiIjoWile = nanpaSuliPiIjoWile;
+
+    NimiWawa::NimiWawa(NimiWawaKiwen nimiWawaKiwen)
+            : TomoPiNimiWawa(nanpaPiIjoWileAli, nanpaPiIjoWileAli) {
+        this->nimiWawaKiwen = nimiWawaKiwen;
     }
 
     void NimiWawa::lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
         assert( (this->nanpaLiliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo < this->nanpaLiliPiIjoWile)
-             || (this->nanpaSuliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo >= this->nanpaSuliPiIjoWile)
+             || (this->nanpaSuliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo > this->nanpaSuliPiIjoWile)
              && "nanpa ijo tawa nimi wawa li ken ala lon ante tannanpaLiliPiIjoWile en nanpaSuliPiIjoWile!");
 
-        assert(pokiPali.size() >= nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");
+        assert(pokiPali.size() > nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");
 
         this->nimiWawaKiwen(pokiPali, nanpaIjo);
+    }
+
+
+    NimiWawaTawa::NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen)
+            : TomoPiNimiWawa(nanpaPiIjoWileAli, nanpaPiIjoWileAli) {
+        this->nimiWawaTawaKiwen = nimiWawaTawaKiwen;
+    }
+
+    NimiWawaTawa::NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen, unsigned int nanpaLiliPiIjoWile)
+        : TomoPiNimiWawa(nanpaLiliPiIjoWile, nanpaPiIjoWileAli) {
+        this->nimiWawaTawaKiwen = nimiWawaTawaKiwen;
+    }
+
+    NimiWawaTawa::NimiWawaTawa( NimiWawaTawaKiwen nimiWawaTawaKiwen
+                              , unsigned int nanpaLiliPiIjoWile
+                              , unsigned int nanpaSuliPiIjoWile)
+            : TomoPiNimiWawa(nanpaLiliPiIjoWile, nanpaSuliPiIjoWile) {
+        this->nimiWawaTawaKiwen = nimiWawaTawaKiwen;
+    }
+
+    bool NimiWawaTawa::lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+        assert( (this->nanpaLiliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo < this->nanpaLiliPiIjoWile)
+             || (this->nanpaSuliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo > this->nanpaSuliPiIjoWile)
+             && "nanpa ijo tawa nimi wawa li ken ala lon ante tannanpaLiliPiIjoWile en nanpaSuliPiIjoWile!");
+
+        assert(pokiPali.size() > nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");
+
+        return this->nimiWawaTawaKiwen(pokiPali, nanpaIjo);
     }
 
 
@@ -228,5 +278,26 @@ namespace ilo {
         }
 
         return *nimiWawaKiwenTawaNimi;
+    }
+
+
+    const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa = {
+        {"tawa",      NimiWawaTawa(&tawa,     0, 0)},
+        {"niLaTawa",  NimiWawaTawa(&niLaTawa, 3)},
+        {"alaLaTawa", NimiWawaTawa(&alaLaTawa)}
+    };
+
+    const std::unordered_map<NimiWawaTawaKiwen, std::string>& nimiWawaTawaKiwenTawaNimi() {
+        static std::optional<std::unordered_map<NimiWawaTawaKiwen, std::string>> nimiWawaTawaKiwenTawaNimi 
+                = std::nullopt;
+
+        if (!nimiWawaTawaKiwenTawaNimi.has_value()) {
+            nimiWawaTawaKiwenTawaNimi = std::unordered_map<NimiWawaTawaKiwen, std::string>();
+
+            for (const auto& [nimi, nimiWawa] : nimiTawaNimiWawaTawa)
+                nimiWawaTawaKiwenTawaNimi->operator[](nimiWawa.nimiWawaTawaKiwen) = nimi;
+        }
+
+        return *nimiWawaTawaKiwenTawaNimi;
     }
 }

@@ -15,7 +15,7 @@ namespace ilo {
 	 */
     class KasiLipu {
 		public:
-			kepeken::LonIjo lonKasi;
+			kepeken::LonIjo lonKasi = {static_cast<size_t>(-1), static_cast<size_t>(-1)};
 
 			virtual KasiLipu* paliSama() const = 0;
 
@@ -42,6 +42,20 @@ namespace ilo {
 
 		private:
 			KasiOpen(const KasiOpen& ante);
+	};
+
+	class KasiPini : public KasiLipu {
+		public:
+			KasiPini() = default;
+			KasiPini& operator=(const KasiPini&)          = delete;
+			virtual KasiPini* paliSama() const override;
+			KasiPini(KasiPini&& ante) noexcept            = default;
+			KasiPini& operator=(KasiPini&& ante) noexcept = default;
+
+			virtual std::string nimiPiNimiKasi() const override;
+
+		private:
+			KasiPini(const KasiPini& ante) = default;
 	};
 
 	class KasiPiPokiNimi : public KasiLipu {
@@ -76,11 +90,26 @@ namespace ilo {
 			KasiPoki(const KasiPoki& kasiPoki) = default;
 	};
 
-	class KasiPiNimiWawa : public KasiLipu {
+	class KasiTomoPiNimiWawa : public KasiLipu {
 		public:
-			const NimiWawa* nimiWawa = nullptr;
 			std::list<std::shared_ptr<KasiLipu>> ijoPiNimiWawa;
 
+			KasiTomoPiNimiWawa() = default;
+			KasiTomoPiNimiWawa& operator=(const KasiTomoPiNimiWawa&) = delete;
+			KasiTomoPiNimiWawa(KasiTomoPiNimiWawa&& ante) noexcept;
+			KasiTomoPiNimiWawa& operator=(KasiTomoPiNimiWawa&& ante) noexcept;
+
+			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const = 0;
+
+		private:
+			KasiTomoPiNimiWawa(const KasiTomoPiNimiWawa& ante);
+	};
+
+	class KasiPiNimiWawa : public KasiTomoPiNimiWawa {
+		public:
+			const NimiWawa* nimiWawa = nullptr;
+
+			KasiPiNimiWawa() = default;
 			KasiPiNimiWawa(const NimiWawa* nimiWawa);
 			KasiPiNimiWawa& operator=(const KasiPiNimiWawa&) = delete;
 			virtual KasiPiNimiWawa* paliSama() const override;
@@ -88,22 +117,26 @@ namespace ilo {
 			KasiPiNimiWawa& operator=(KasiPiNimiWawa&& ante) noexcept;
 
 			virtual std::string nimiPiNimiKasi() const override;
+			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const override;
 
 		private:
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante);
 	};
 
-	class KasiPiNimiWawaTawa : public KasiPiNimiWawa {
+	class KasiPiNimiWawaTawa : public KasiTomoPiNimiWawa {
 		public:
-			std::shared_ptr<KasiLipu> kasiTawaTawa = nullptr;
+			const NimiWawaTawa* nimiWawaTawa = nullptr;
+			size_t lonTawaTawa               = static_cast<size_t>(-1);
 
-			KasiPiNimiWawaTawa(const NimiWawa* nimiWawa);
+			KasiPiNimiWawaTawa() = default;
+			KasiPiNimiWawaTawa(const NimiWawaTawa* nimiWawaTawa);
 			KasiPiNimiWawaTawa& operator=(const KasiPiNimiWawaTawa&) = delete;
 			virtual KasiPiNimiWawaTawa* paliSama() const override;
 			KasiPiNimiWawaTawa(KasiPiNimiWawaTawa&& ante) noexcept;
 			KasiPiNimiWawaTawa& operator=(KasiPiNimiWawaTawa&& ante) noexcept;
 
 			virtual std::string nimiPiNimiKasi() const override;
+			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const override;
 
 		private:
 			KasiPiNimiWawaTawa(const KasiPiNimiWawaTawa& ante);

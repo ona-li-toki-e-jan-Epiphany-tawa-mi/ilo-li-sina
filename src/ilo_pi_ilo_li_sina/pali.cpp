@@ -36,6 +36,15 @@ namespace ilo {
     }
 
 
+    KasiPini* KasiPini::paliSama() const {
+        return new KasiPini(*this);
+    }
+
+    std::string KasiPini::nimiPiNimiKasi() const {
+        return "toki.nimi_kasi.pini"; 
+    }
+
+
     KasiPiPokiNimi* KasiPiPokiNimi::paliSama() const {
         return new KasiPiPokiNimi(*this);
     }
@@ -76,6 +85,24 @@ namespace ilo {
     }
 
 
+    KasiTomoPiNimiWawa::KasiTomoPiNimiWawa(KasiTomoPiNimiWawa&& ante) noexcept {
+        *this = std::move(ante);
+    }
+
+	KasiTomoPiNimiWawa& KasiTomoPiNimiWawa::operator=(KasiTomoPiNimiWawa&& ante) noexcept {
+        if (this != &ante)
+            this->ijoPiNimiWawa = std::move(ante.ijoPiNimiWawa);
+
+        return *this;
+    }
+
+    KasiTomoPiNimiWawa::KasiTomoPiNimiWawa(const KasiTomoPiNimiWawa& ante) {
+        for (const auto& kasi : ante.ijoPiNimiWawa)
+            this->ijoPiNimiWawa.push_back(
+                    std::shared_ptr<KasiLipu>(kasi->paliSama()));
+    }
+
+
     KasiPiNimiWawa::KasiPiNimiWawa(const NimiWawa* nimiWawa) 
         : nimiWawa(nimiWawa) {}
 
@@ -91,8 +118,6 @@ namespace ilo {
         if (this != &ante) {
             this->nimiWawa = ante.nimiWawa;
             ante.nimiWawa = nullptr;
-
-            this->ijoPiNimiWawa = std::move(ante.ijoPiNimiWawa);
         }
 
         return *this;
@@ -102,12 +127,50 @@ namespace ilo {
         return "toki.nimi_kasi.nimi_wawa";
     }
 
+    const TomoPiNimiWawa* KasiPiNimiWawa::tomoPiNimiWawa() const {
+        return this->nimiWawa;
+    }
+
     KasiPiNimiWawa::KasiPiNimiWawa(const KasiPiNimiWawa& ante) {
         this->nimiWawa = ante.nimiWawa;
+    }
 
-        for (const auto& kasi : ante.ijoPiNimiWawa)
-            this->ijoPiNimiWawa.push_back(
-                    std::shared_ptr<KasiLipu>(kasi->paliSama()));
+
+    KasiPiNimiWawaTawa::KasiPiNimiWawaTawa(const NimiWawaTawa* nimiWawaTawa) {
+        this->nimiWawaTawa = nimiWawaTawa;
+    }
+
+    KasiPiNimiWawaTawa* KasiPiNimiWawaTawa::paliSama() const {
+        return new KasiPiNimiWawaTawa(*this);
+    }
+
+    KasiPiNimiWawaTawa::KasiPiNimiWawaTawa(KasiPiNimiWawaTawa&& ante) noexcept {
+        *this = std::move(ante);
+    }
+
+    KasiPiNimiWawaTawa& KasiPiNimiWawaTawa::operator=(KasiPiNimiWawaTawa&& ante) noexcept {
+        if (this != &ante) {
+            this->nimiWawaTawa = ante.nimiWawaTawa;
+            ante.nimiWawaTawa  = nullptr;
+
+            this->lonTawaTawa = ante.lonTawaTawa;
+            ante.lonTawaTawa  = static_cast<size_t>(-1);
+        }
+
+        return *this;
+    }
+
+    std::string KasiPiNimiWawaTawa::nimiPiNimiKasi() const {
+        return "toki.nimi_kasi.nimi_wawa_tawa"; 
+    }
+
+    const TomoPiNimiWawa* KasiPiNimiWawaTawa::tomoPiNimiWawa() const {
+        return this->nimiWawaTawa;
+    }
+
+    KasiPiNimiWawaTawa::KasiPiNimiWawaTawa(const KasiPiNimiWawaTawa& ante) {
+        this->nimiWawaTawa = ante.nimiWawaTawa; 
+        this->lonTawaTawa  = ante.lonTawaTawa;
     }
 
 
@@ -149,9 +212,9 @@ namespace ilo {
         std::list<Ijo>&           ijoKipisi;
         std::list<Ijo>::iterator& alasaIjo;
 
-        std::unordered_map<std::string, std::shared_ptr<KasiLipu>>&                   lonPiNimiTawaTawa;
-        std::list<const Ijo&>&                                                        nimiTawaTawaPiTenpoNi;
-        std::list<std::pair<const std::string&, std::shared_ptr<KasiPiNimiWawaTawa>>> nimiTawaTawaTawaNimiWawaTawa;
+        std::unordered_map<std::string, size_t>&                      lonPiNimiTawaTawa;
+        std::list<const Ijo*>&                                        nimiTawaTawaPiTenpoNi;
+        std::list<std::pair<const std::string&, KasiPiNimiWawaTawa*>> nimiTawaTawaTawaNimiWawaTawa;
 
         bool liLipuPona = true;
     };
@@ -195,29 +258,29 @@ namespace ilo {
     }
 
     /**
-     * @return nimi wawa sin tan lon pi tenpo ni lon poki pi lipu kipisi.
+     * @return nimi wawa (anu nimi wawa tawa) sin tan lon pi tenpo ni lon poki pi lipu kipisi.
      * @attention o pali e ni lon monsi pi kepeken ni: nimi pi ijo pi tenpo ni li NIMI_WAWA.
      */
-    std::shared_ptr<KasiPiNimiWawa> paliENimiWawa(SonaPali& sonaPali) {
-        std::shared_ptr<KasiPiNimiWawa> kasiPiNimiWawa = nullptr;
+    std::shared_ptr<KasiTomoPiNimiWawa> paliENimiWawa(SonaPali& sonaPali) {
+        std::shared_ptr<KasiTomoPiNimiWawa> kasiTomoPiNimiWawa = nullptr;
         bool nimiWawaLiLon = false;
         bool liNimiWawaTawa = false;
 
         try {
-            kasiPiNimiWawa = std::make_shared<KasiPiNimiWawa>(
+            kasiTomoPiNimiWawa = std::make_shared<KasiPiNimiWawa>(
                     &nimiTawaNimiWawa.at(sonaPali.alasaIjo->ijo));
             nimiWawaLiLon  = true;
         
-        } catch (const std::out_of_range& liLonAla) {}
+        } catch (const std::out_of_range& liLonAla) {
+            try {
+                kasiTomoPiNimiWawa = std::make_shared<KasiPiNimiWawaTawa>(
+                        &nimiTawaNimiWawaTawa.at(sonaPali.alasaIjo->ijo)); 
+                
+                nimiWawaLiLon  = true;
+                liNimiWawaTawa = true;
 
-        try {
-            kasiPiNimiWawa = std::make_shared<KasiPiNimiWawaTawa>(
-                    &nimiTawaNimiWawa.at(sonaPali.alasaIjo->ijo));
-            
-            nimiWawaLiLon  = true;
-            liNimiWawaTawa = true;
-
-        } catch (const std::out_of_range& liLonAla) {}
+            } catch (const std::out_of_range& liLonAla) {}   
+        }
 
         if (!nimiWawaLiLon) {
             kepeken::tokiEIke({ sonaPali.lonLipu
@@ -229,7 +292,7 @@ namespace ilo {
             return nullptr;
         }
 
-        kasiPiNimiWawa->lonKasi  = sonaPali.alasaIjo->lonIjo;
+        kasiTomoPiNimiWawa->lonKasi  = sonaPali.alasaIjo->lonIjo;
 
 
         // ijo lon sinpin pi nimi wawa li wile open pi poki pi ijo pi nimi wawa. ilo kipisi li pona 
@@ -243,12 +306,14 @@ namespace ilo {
         // nimi wawa li tawa la ni li kama jo e nimi ona tawa tawa.
         if (liNimiWawaTawa) {
             sonaPali.alasaIjo++;
-            if ( sonaPali.alasaIjo == sonaPali.ijoKipisi.end() 
+            if (sonaPali.alasaIjo == sonaPali.ijoKipisi.end() 
                     || sonaPali.alasaIjo->nimiIjo != NimiIjo::POKI) {
-                kepeken::tokiEIke({ sonaPali.lonLipu //TODO
-                                , sonaPali.alasaIjo->lonIjo
-                                , ante_toki::anteENimi( ante_toki::nimiTawaJan("ike.pali.nimi_wawa.nimi_pi_sona_ala")
-                                                        , "%s", sonaPali.alasaIjo->ijo)});
+                if (sonaPali.alasaIjo == sonaPali.ijoKipisi.end())
+                    sonaPali.alasaIjo--;
+
+                kepeken::tokiEIke({ sonaPali.lonLipu 
+                                  , sonaPali.alasaIjo->lonIjo
+                                  , ante_toki::nimiTawaJan("ike.pali.nimi_wawa.tawa.nimi_tawa_tawa_li_wile")});
 
                 sonaPali.liLipuPona = false;
                 return nullptr;
@@ -256,28 +321,28 @@ namespace ilo {
 
             sonaPali.nimiTawaTawaTawaNimiWawaTawa.push_back({
                     sonaPali.alasaIjo->ijo
-                  , std::static_pointer_cast<KasiPiNimiWawaTawa>(kasiPiNimiWawa)});
+                  , static_cast<KasiPiNimiWawaTawa*>(kasiTomoPiNimiWawa.get())});
         }
 
         for (sonaPali.alasaIjo++; sonaPali.alasaIjo != sonaPali.ijoKipisi.end();)
             switch (sonaPali.alasaIjo->nimiIjo) {
                 case NimiIjo::NIMI_WAWA:
-                    kasiPiNimiWawa->ijoPiNimiWawa.push_back(
+                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(
                             std::static_pointer_cast<KasiLipu>(paliENimiWawa(sonaPali)));
 
                     // li pini pali e linja ni tan ni: ni li ike la ike sona sin li ken ala kama tan linja.
-                    if (kasiPiNimiWawa->ijoPiNimiWawa.back() == nullptr)
+                    if (kasiTomoPiNimiWawa->ijoPiNimiWawa.back() == nullptr)
                         return nullptr;
 
                     break;
 
                 case NimiIjo::POKI:
-                    kasiPiNimiWawa->ijoPiNimiWawa.push_back(
+                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(
                             std::static_pointer_cast<KasiLipu>(paliEPoki(sonaPali)));
                     break; 
 
                 case NimiIjo::POKI_NIMI:
-                    kasiPiNimiWawa->ijoPiNimiWawa.push_back(
+                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(
                             std::static_pointer_cast<KasiLipu>(paliEPokiNimi(sonaPali)));
                     break;
 
@@ -309,14 +374,14 @@ namespace ilo {
     liPini:
         // li kin e ni: nimi wawa li jo e nanpa ijo sama anu suli tawa nanpa lili lili pi ijo wile pi nimi 
         //      wawa.
-        if ( kasiPiNimiWawa->nimiWawa->nanpaLiliPiIjoWile != -1 
-          && kasiPiNimiWawa->ijoPiNimiWawa.size() < kasiPiNimiWawa->nimiWawa->nanpaLiliPiIjoWile) {
+        if ( kasiTomoPiNimiWawa->tomoPiNimiWawa()->nanpaLiliPiIjoWile != -1 
+          && kasiTomoPiNimiWawa->ijoPiNimiWawa.size() < kasiTomoPiNimiWawa->tomoPiNimiWawa()->nanpaLiliPiIjoWile) {
             kepeken::tokiEIke({ sonaPali.lonLipu
-                              , sonaPali.alasaIjo->lonIjo
+                              , kasiTomoPiNimiWawa->lonKasi
                               , ante_toki::anteENimi(ante_toki::anteENimi( 
                                         ante_toki::nimiTawaJan("ike.pali.nimi_wawa.nanpa_ijo_lili")
                                         , "%s", sonaPali.alasaIjo->ijo)
-                                        , "%d", std::to_string(kasiPiNimiWawa->nimiWawa->nanpaLiliPiIjoWile))});
+                                        , "%d", std::to_string(kasiTomoPiNimiWawa->tomoPiNimiWawa()->nanpaLiliPiIjoWile))});
             
             sonaPali.liLipuPona = false;
             return nullptr;
@@ -324,21 +389,21 @@ namespace ilo {
 
         // li kin e ni: nimi wawa li jo e nanpa ijo sama anu lili tawa nanpa suli suli pi ijo wile pi nimi 
         //      wawa.
-        if ( kasiPiNimiWawa->nimiWawa->nanpaSuliPiIjoWile != -1 
-          && kasiPiNimiWawa->ijoPiNimiWawa.size() > kasiPiNimiWawa->nimiWawa->nanpaSuliPiIjoWile) {
+        if ( kasiTomoPiNimiWawa->tomoPiNimiWawa()->nanpaSuliPiIjoWile != -1 
+          && kasiTomoPiNimiWawa->ijoPiNimiWawa.size() > kasiTomoPiNimiWawa->tomoPiNimiWawa()->nanpaSuliPiIjoWile) {
             kepeken::tokiEIke({ sonaPali.lonLipu
-                              , sonaPali.alasaIjo->lonIjo
+                              , kasiTomoPiNimiWawa->lonKasi
                               , ante_toki::anteENimi(ante_toki::anteENimi( 
                                         ante_toki::nimiTawaJan("ike.pali.nimi_wawa.nanpa_ijo_suli")
                                         , "%s", sonaPali.alasaIjo->ijo)
-                                        , "%d", std::to_string(kasiPiNimiWawa->nimiWawa->nanpaSuliPiIjoWile))});
+                                        , "%d", std::to_string(kasiTomoPiNimiWawa->tomoPiNimiWawa()->nanpaSuliPiIjoWile))});
             
             sonaPali.liLipuPona = false;
             return nullptr;
         }
 
 
-        return kasiPiNimiWawa;
+        return kasiTomoPiNimiWawa;
     }
 
     /**
@@ -418,21 +483,21 @@ namespace ilo {
         if (sonaPali.nimiTawaTawaPiTenpoNi.empty())
             return;
 
-        for (const auto& nimiTawaTawa : sonaPali.nimiTawaTawaPiTenpoNi)
+        for (const auto nimiTawaTawa : sonaPali.nimiTawaTawaPiTenpoNi)
             try {
-                sonaPali.lonPiNimiTawaTawa.at(nimiTawaTawa.ijo);
+                sonaPali.lonPiNimiTawaTawa.at(nimiTawaTawa->ijo);
 
                 kepeken::tokiEIke({ sonaPali.lonLipu
-                                  , nimiTawaTawa.lonIjo
+                                  , nimiTawaTawa->lonIjo
                                   , ante_toki::anteENimi(ante_toki::anteENimi(ante_toki::anteENimi(
                                         ante_toki::nimiTawaJan("ike.pali.nimi_wawa.tawa.nimi_tawa_mute_mute")
-                                      , "%s", nimiTawaTawa.ijo)
-                                      , "%d", std::to_string(nimiTawaTawa.lonIjo.nanpaLinja))
-                                      , "%d", std::to_string(nimiTawaTawa.lonIjo.nanpaSitelenLonLinja))});
+                                      , "%s", nimiTawaTawa->ijo)
+                                      , "%d", std::to_string(nimiTawaTawa->lonIjo.nanpaLinja))
+                                      , "%d", std::to_string(nimiTawaTawa->lonIjo.nanpaSitelenLonLinja))});
                 sonaPali.liLipuPona = false;
 
             } catch (const std::out_of_range& liLonAla) {
-                sonaPali.lonPiNimiTawaTawa[nimiTawaTawa.ijo] = sonaPali.kasiOpen.kasiLonAnpa.back();
+                sonaPali.lonPiNimiTawaTawa[nimiTawaTawa->ijo] = sonaPali.kasiOpen.kasiLonAnpa.size() - 1;
             }
 
         sonaPali.nimiTawaTawaPiTenpoNi.clear();
@@ -442,13 +507,13 @@ namespace ilo {
         KasiOpen openKasi;
         
         auto alasaIjo = ijoKipisi.begin();
-        // li poki e kasi lon nimi tawa tawa tawa wan e ona e nimi wawa tawa.
-        std::unordered_map<std::string, std::shared_ptr<KasiLipu>> lonPiNimiTawaTawa;
+        // li poki e kasi lon nimi tawa tawa tawa wan e ona e nimi wawa tawa lon linja pi nanpa ni.
+        std::unordered_map<std::string, size_t> lonPiNimiTawaTawa;
         // li poki e nimi tawa tawa tawa ni: kasi li ken kama jo e nimi tawa tawa ali lon sewi ona.
-        std::list<const Ijo&> nimiTawaTawaPiTenpoNi;
-        // li poki e nimi wawa tawa en nimi tawa tawa ona tawa wan e nimi wawa tawa e kasi lon nimi tawa 
-        //      tawa ona. nimi pi poki ni li suli kin, a a a.
-        std::list<std::pair<const std::string&, std::shared_ptr<KasiPiNimiWawaTawa>>> nimiTawaTawaTawaNimiWawaTawa;
+        std::list<const Ijo*> nimiTawaTawaPiTenpoNi;
+        // li poki e nimi wawa tawa en nimi tawa tawa ona tawa wan e nimi wawa tawa e kasi lon nimi 
+        //      tawa tawa ona. nimi pi poki ni li suli kin, a a a.
+        std::list<std::pair<const std::string&, KasiPiNimiWawaTawa*>> nimiTawaTawaTawaNimiWawaTawa;
         SonaPali sonaPali = {lonLipu, openKasi, ijoKipisi, alasaIjo, lonPiNimiTawaTawa, nimiTawaTawaPiTenpoNi, nimiTawaTawaTawaNimiWawaTawa};
 
         while (alasaIjo != ijoKipisi.end()) {
@@ -459,7 +524,7 @@ namespace ilo {
 
 
             if (alasaIjo->nimiIjo == NimiIjo::NIMI_TAWA_TAWA) {
-                nimiTawaTawaPiTenpoNi.push_back(*alasaIjo);
+                nimiTawaTawaPiTenpoNi.push_back(&*alasaIjo);
                 alasaIjo++;
 
                 if (alasaIjo == ijoKipisi.end())
@@ -504,10 +569,16 @@ namespace ilo {
             tawaLinjaSinLonSinpin(sonaPali);
         }
 
+        openKasi.kasiLonAnpa.push_back(std::make_shared<KasiPini>());
+        openKasi.kasiLonAnpa.back()->lonKasi = {ijoKipisi.back().lonIjo.nanpaLinja + 1, 0};
+        // tenpo ni la nimi tawa tawa li lon la ona li lon pini pi lipu wawa li wile e kasi tawa tawa.
+        if (!nimiTawaTawaPiTenpoNi.empty())
+            wanEKasiENimiTawa(sonaPali);
+
         // li wan e nimi tawa tawa e nimi wawa tawa.
-        for (auto [nimiTawaTawa, nimiWawaTawa] : nimiTawaTawaTawaNimiWawaTawa) {
+        for (auto [nimiTawaTawa, nimiWawaTawa] : nimiTawaTawaTawaNimiWawaTawa) 
             try {
-                nimiWawaTawa->kasiTawaTawa = lonPiNimiTawaTawa.at(nimiTawaTawa);
+                nimiWawaTawa->lonTawaTawa = lonPiNimiTawaTawa.at(nimiTawaTawa);
             
             } catch (const std::out_of_range& liLonAla) {
                 kepeken::tokiEIke({ sonaPali.lonLipu
@@ -516,7 +587,6 @@ namespace ilo {
             
                 sonaPali.liLipuPona = false;
             }
-        }
 
         if (!sonaPali.liLipuPona)
             throw std::runtime_error("lipu wawa ike!");
@@ -590,59 +660,57 @@ namespace ilo {
 			return;
 		}
 
-		auto kasiPiNimiWawa = dynamic_cast<const KasiPiNimiWawa*>(kasi);
-        if (kasiPiNimiWawa != nullptr) {
+		auto kasiTomoPiNimiWawa = dynamic_cast<const KasiTomoPiNimiWawa*>(kasi);
+
+        if (kasiTomoPiNimiWawa != nullptr) {
+            auto kasiPiNimiWawaTawa = dynamic_cast<const KasiPiNimiWawaTawa*>(kasi);
+
             try {
-                std::cout << ante_toki::nimiTawaJan(kasiPiNimiWawa->nimiPiNimiKasi()) << "=\"" 
-                          << nimiWawaKiwenTawaNimi().at(kasiPiNimiWawa->nimiWawa->nimiWawaKiwen) << '"';
+                if (kasiPiNimiWawaTawa == nullptr) {
+                    std::cout << ante_toki::nimiTawaJan(kasiTomoPiNimiWawa->nimiPiNimiKasi()) << "=\"" 
+                              << nimiWawaKiwenTawaNimi().at(static_cast<const NimiWawa*>(
+                                    kasiTomoPiNimiWawa->tomoPiNimiWawa())->nimiWawaKiwen) 
+                             << '"';
+                
+                } else
+                    std::cout << ante_toki::nimiTawaJan(kasiTomoPiNimiWawa->nimiPiNimiKasi()) << "=\"" 
+                              << nimiWawaTawaKiwenTawaNimi().at(
+                                    kasiPiNimiWawaTawa->nimiWawaTawa->nimiWawaTawaKiwen)
+                              << '"';
             
             } catch (const std::out_of_range& nimiWawaLiLonAla) {
                 assert(false && "pali la li kama jo e lon nullptr anu lon tawa nimi wawa pi sona ala");
             }
 
-            if (kasiPiNimiWawa->ijoPiNimiWawa.size() > 0) {
+            if (kasiTomoPiNimiWawa->ijoPiNimiWawa.size() > 0) {
                 std::cout << ":\n";
 
-                for (const std::shared_ptr<KasiLipu>& ijo : kasiPiNimiWawa->ijoPiNimiWawa)
+                for (const std::shared_ptr<KasiLipu>& ijo : kasiTomoPiNimiWawa->ijoPiNimiWawa)
                     tokiEKasiPiKasiSuli(ijo.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
             
             } else
                 std::cout << '\n';
 
+
+
+            if (kasiPiNimiWawaTawa != nullptr) {
+                tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
+
+                std::cout << ante_toki::anteENimi( ante_toki::nimiTawaJan("toki.nanpa_linja")
+                                                 , "%d"
+                                                 , std::to_string(kasiPiNimiWawaTawa->lonTawaTawa))
+                          << '\n';
+            }
+
+
             return;
         }
 
-			
-		/*const auto kasiPiNimiTawa = static_cast<const KasiPiNimiTawa*>(kasi);
-				std::cout << kasi->kamaJoENimiPiNimiKasi() << "=\"" << kasiPiNimiTawa->kamaJoENimiPiNimiTawa() << "\"\n";
-			
-				break;
-			}
-
-			case NimiKasi::TAWA: {
-				const auto kasiTawa = static_cast<const KasiTawa*>(kasi);
-				assert(dynamic_cast<const KasiPiNimiTawa*>(pokiTawaLipuWawa.at(kasiTawa->linjaTawaTawa).get()) != nullptr && "kasi li wile nimi tawa. taso, ona li ala ni");
-				const auto kasiPiNimiTawa = static_cast<const KasiPiNimiTawa*>(pokiTawaLipuWawa.at(kasiTawa->linjaTawaTawa).get());
-
-				std::cout << kasiTawa->kamaJoENimiPiNimiKasi() << "=\"" << kasiTawa->kamaJoENimiPiKasiTawa() 
-					<< "\", \"" << kasiPiNimiTawa->kamaJoENimiPiNimiTawa() << "\" - "
-					<< ante_toki::anteENimi(ante_toki::kamaJoENimiTawaJan("toki.nanpa_linja"),
-						"%d",
-						std::to_string(kasiPiNimiTawa->kamaJoELonKasi().nanpaLinja));
-					
-
-				if (kasiTawa->kamaJoEIjoTawaTawa().size() > 0) {//TODO
-					std::cout << ":\n";
-
-					for (const auto& ijo : kasiTawa->kamaJoEIjoTawaTawa())
-						tokiEKasiPiKasiSuli(pokiTawaLipuWawa, ijo.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
-				
-				} else
-					std::cout << "\n";
-
-				break;
-			}*/
-
+        auto kasiPini = dynamic_cast<const KasiPini*>(kasi);
+        if (kasiPini != nullptr) {
+            std::cout << ante_toki::nimiTawaJan(kasiPini->nimiPiNimiKasi()) << '\n';
+            return;
+        }
 		
 		std::cout << ante_toki::nimiTawaJan(kasi->nimiPiNimiKasi()) << '\n'; // TODO
 	}

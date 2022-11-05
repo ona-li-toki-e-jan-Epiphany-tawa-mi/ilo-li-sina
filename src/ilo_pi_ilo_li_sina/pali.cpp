@@ -212,9 +212,9 @@ namespace ilo {
         std::list<Ijo>&           ijoKipisi;
         std::list<Ijo>::iterator& alasaIjo;
 
-        std::unordered_map<std::string, size_t>&                      lonPiNimiTawaTawa;
-        std::list<const Ijo*>&                                        nimiTawaTawaPiTenpoNi;
-        std::list<std::pair<const std::string&, KasiPiNimiWawaTawa*>> nimiTawaTawaTawaNimiWawaTawa;
+        std::unordered_map<std::string, size_t>&                       lonPiNimiTawaTawa;
+        std::list<const Ijo*>&                                         nimiTawaTawaPiTenpoNi;
+        std::list<std::pair<const std::string&, KasiPiNimiWawaTawa&>>& nimiTawaTawaTawaNimiWawaTawa;
 
         bool liLipuPona = true;
     };
@@ -321,7 +321,7 @@ namespace ilo {
 
             sonaPali.nimiTawaTawaTawaNimiWawaTawa.push_back({
                     sonaPali.alasaIjo->ijo
-                  , static_cast<KasiPiNimiWawaTawa*>(kasiTomoPiNimiWawa.get())});
+                  , *static_cast<KasiPiNimiWawaTawa*>(kasiTomoPiNimiWawa.get())});
         }
 
         for (sonaPali.alasaIjo++; sonaPali.alasaIjo != sonaPali.ijoKipisi.end();)
@@ -513,7 +513,7 @@ namespace ilo {
         std::list<const Ijo*> nimiTawaTawaPiTenpoNi;
         // li poki e nimi wawa tawa en nimi tawa tawa ona tawa wan e nimi wawa tawa e kasi lon nimi 
         //      tawa tawa ona. nimi pi poki ni li suli kin, a a a.
-        std::list<std::pair<const std::string&, KasiPiNimiWawaTawa*>> nimiTawaTawaTawaNimiWawaTawa;
+        std::list<std::pair<const std::string&, KasiPiNimiWawaTawa&>> nimiTawaTawaTawaNimiWawaTawa;
         SonaPali sonaPali = {lonLipu, openKasi, ijoKipisi, alasaIjo, lonPiNimiTawaTawa, nimiTawaTawaPiTenpoNi, nimiTawaTawaTawaNimiWawaTawa};
 
         while (alasaIjo != ijoKipisi.end()) {
@@ -576,9 +576,9 @@ namespace ilo {
             wanEKasiENimiTawa(sonaPali);
 
         // li wan e nimi tawa tawa e nimi wawa tawa.
-        for (auto [nimiTawaTawa, nimiWawaTawa] : nimiTawaTawaTawaNimiWawaTawa) 
+        for (auto [nimiTawaTawa, nimiWawaTawa] : nimiTawaTawaTawaNimiWawaTawa) {
             try {
-                nimiWawaTawa->lonTawaTawa = lonPiNimiTawaTawa.at(nimiTawaTawa);
+                nimiWawaTawa.lonTawaTawa = lonPiNimiTawaTawa.at(nimiTawaTawa);
             
             } catch (const std::out_of_range& liLonAla) {
                 kepeken::tokiEIke({ sonaPali.lonLipu
@@ -586,7 +586,7 @@ namespace ilo {
                                   , ante_toki::nimiTawaJan("ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala")});
             
                 sonaPali.liLipuPona = false;
-            }
+            }}
 
         if (!sonaPali.liLipuPona)
             throw std::runtime_error("lipu wawa ike!");
@@ -698,7 +698,7 @@ namespace ilo {
 
                 std::cout << ante_toki::anteENimi( ante_toki::nimiTawaJan("toki.nanpa_linja")
                                                  , "%d"
-                                                 , std::to_string(kasiPiNimiWawaTawa->lonTawaTawa))
+                                                 , std::to_string(kasiPiNimiWawaTawa->lonTawaTawa)) // TODO o toki e lina pi sona pona.
                           << '\n';
             }
 

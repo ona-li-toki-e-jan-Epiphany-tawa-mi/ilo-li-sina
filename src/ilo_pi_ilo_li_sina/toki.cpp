@@ -76,18 +76,19 @@ namespace ilo {
 	/**
 	 * @brief li pana e kasi pi lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
 	 *
+	 * @param kasiOpen           kasi open pi lipu wawa pi kasi pana.
 	 * @param kasi 				 kasi pi kasi suli tawa pana.
 	 * @param lonInsaPiNanpaNi	 kasi li lon insa pi kasi pi nanpa ni.
 	 * @param nanpaPiKasiLonSewi kasi li kasi pi nanpa ni lon poki pi lipu wawa anu lon kasi ni.
 	 */
-	void tokiEKasiPiKasiSuli(const KasiLipu* kasi, const unsigned int lonInsaPiNanpaNi, const size_t nanpaPiKasiLonSewi) {
+	void tokiEKasiPiKasiSuli(const KasiOpen& kasiOpen, const KasiLipu* kasi, const unsigned int lonInsaPiNanpaNi, const size_t nanpaPiKasiLonSewi) {
 		tokiEOpenPiTokiKasi(lonInsaPiNanpaNi);
 
 		auto kasiPiPanaLonPoki = dynamic_cast<const KasiPiPanaLonPoki*>(kasi);
         if (kasiPiPanaLonPoki != nullptr) {
             std::cout << ante_toki::nimiTawaJan(kasiPiPanaLonPoki->nimiPiNimiKasi()) << "=\"" 
                       << kasiPiPanaLonPoki->nimiPoki << "\":\n";
-            tokiEKasiPiKasiSuli(kasiPiPanaLonPoki->ijoPana.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
+            tokiEKasiPiKasiSuli(kasiOpen, kasiPiPanaLonPoki->ijoPana.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
 
             return;
         }
@@ -135,7 +136,7 @@ namespace ilo {
                 std::cout << ":\n";
 
                 for (const std::shared_ptr<KasiLipu>& ijo : kasiTomoPiNimiWawa->ijoPiNimiWawa)
-                    tokiEKasiPiKasiSuli(ijo.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
+                    tokiEKasiPiKasiSuli(kasiOpen, ijo.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
             
             } else
                 std::cout << '\n';
@@ -143,12 +144,28 @@ namespace ilo {
 
             auto kasiPiNimiWawaTawa = dynamic_cast<const KasiPiNimiWawaTawa*>(kasi);
             
+			// li kasi pi nimi wawa tawa la li toki e lon tawa tawa.
             if (kasiPiNimiWawaTawa != nullptr) {
                 tokiEOpenPiTokiKasi(lonInsaPiNanpaNi + 1);
 
+
+				const KasiLipu* kasiTawaTawa = nullptr;
+				auto alasaKasi = kasiOpen.kasiLonAnpa.cbegin();
+			
+				for (size_t lon = kasiPiNimiWawaTawa->lonTawaTawa
+						; alasaKasi != kasiOpen.kasiLonAnpa.cend() && lon > 0
+						; lon--)
+					alasaKasi++;
+
+				assert(alasaKasi != kasiOpen.kasiLonAnpa.cend() && "nimi wawa tawa li wile tawa lon kasi"
+																   " pi lon ala!");
+
+				kasiTawaTawa = alasaKasi->get();
+
+
                 std::cout << ante_toki::anteENimi( ante_toki::nimiTawaJan("toki.nanpa_linja")
                                                  , "%d"
-                                                 , std::to_string(kasiPiNimiWawaTawa->lonTawaTawa)) // TODO o toki e lina pi sona pona.
+                                                 , std::to_string(kasiTawaTawa->lonKasi.nanpaLinja))
                           << '\n';
             }
 
@@ -182,7 +199,7 @@ namespace ilo {
 				std::cout << ante_toki::anteENimi( ante_toki::nimiTawaJan("toki.nanpa_linja")
                                                  , "%d", std::to_string(kasi->lonKasi.nanpaLinja)) 
 					      << ":\n";
-				tokiEKasiPiKasiSuli(kasi, 1, kasi->lonKasi.nanpaLinja);
+				tokiEKasiPiKasiSuli(kasiOpen, kasi, 1, kasi->lonKasi.nanpaLinja);
 			}
 
 		} else

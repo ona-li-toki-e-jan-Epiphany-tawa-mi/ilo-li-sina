@@ -4,6 +4,8 @@
 #include <string>
 #include <stack>
 
+#include "sona_lawa.hpp"
+
 /**
  * nimi wawa ni li ken kepeken lon lipu wawa pi toki "ilo li sina."
  */
@@ -11,11 +13,11 @@ namespace ilo {
     /**
      * @brief nimi wawa kiwen lon C++ tawa kepeken lon lipu pi toki "ilo li sina".
      */
-    typedef void(*NimiWawaKiwen)(std::stack<std::string>&, unsigned int);
+    typedef void(*NimiWawaKiwen)(SonaLawa&, unsigned int);
     /**
      * @brief nimi wawa tawa kiwen lon C++ tawa kepeken lon li pi toki "ilo li sina".
      */
-    typedef bool(*NimiWawaTawaKiwen)(std::stack<std::string>&, unsigned int);
+    typedef bool(*NimiWawaTawaKiwen)(SonaLawa&, unsigned int);
     /**
      * @brief nanpa pi ijo wile li ken nanpa ali la nanpa ni li kepeken.
      */
@@ -48,10 +50,9 @@ namespace ilo {
              *      tan poki pokiPali. 
              * @attention nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
              * 
-             * @param pokiPali poki ijo lon tenpo lawa.
              * @param nanpaIjo li moku e ijo pi nanpa ni tan pokiPali.
              */
-            void lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo);
+            void lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const;
     };
 
     class NimiWawaTawa : public TomoPiNimiWawa {
@@ -69,11 +70,10 @@ namespace ilo {
              *      nanpaIjo tan poki pokiPali. li ken tawa lon ante lon lipu wawa.
              * @attention nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
              * 
-             * @param pokiPali poki ijo lon tenpo lawa.
              * @param nanpaIjo li moku e ijo pi nanpa ni tan pokiPali.
              * @return true la li wile tawa lon ante. false la li wile ala.
              */
-            bool lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo);
+            bool lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const;
     };
 
 

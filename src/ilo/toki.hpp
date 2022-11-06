@@ -1,4 +1,4 @@
-#include "pali.hpp"
+#include "pali/pali.hpp"
 
 /**
  * ilo tawa toki e ijo pi nimi wawa tawa jan.

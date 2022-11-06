@@ -6,8 +6,8 @@
 #include <chrono>
 #include <cstring>
 
-#include "../ijo_kepeken/ike.hpp"
-#include "../ante_toki/ante_toki.hpp"
+#include "../../ijo_kepeken/ike.hpp"
+#include "../../ante_toki/ante_toki.hpp"
 
 
 
@@ -34,75 +34,73 @@ void pakalaEAwen(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
 /**
  * @brief li toki e nimi lon lupa Stdout.
  */
-void toki(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-    tokiEAli(std::cout, pokiPali, nanpaIjo);
-
-    pokiPali.push("");
+void toki(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    tokiEAli(std::cout, sonaLawa.pokiPali, nanpaIjo);
+    sonaLawa.pokiPali.push("");
 }
 
 /**
  * @brief lon lupa Stdout la li toki e nimi e ike.
  */
-void tokiELinja(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-    toki(pokiPali, nanpaIjo);
+void tokiELinja(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    toki(sonaLawa, nanpaIjo);
     std::cout << '\n';
 
-    pokiPali.push("");
+    sonaLawa.pokiPali.push("");
 }
 
 /**
  * @brief li toki e nimi lon lupa Stderr.
  */
-void tokiEIke(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-    tokiEAli(std::cerr, pokiPali, nanpaIjo);
-
-    pokiPali.push("");
+void tokiEIke(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    tokiEAli(std::cerr, sonaLawa.pokiPali, nanpaIjo);
+    sonaLawa.pokiPali.push("");
 }
 
 /**
  * @brief lon lupa Stderr la li toki e nimi e ike.
  */
-void tokiEIkeELinja(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-    tokiEIke(pokiPali, nanpaIjo);
+void tokiEIkeELinja(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    tokiEIke(sonaLawa, nanpaIjo);
     std::cerr << '\n';
 
-    pokiPali.push("");
+    sonaLawa.pokiPali.push("");
 }
 
 /**
  * @brief li toki e nimi tawa jan li kama jo e nimi tan ona.
  */
-void kamaJoTanJan(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+void kamaJoTanJan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     if (nanpaIjo != 0)
-        tokiELinja(pokiPali, nanpaIjo);
+        tokiELinja(sonaLawa, nanpaIjo);
 
-    pokiPali.push("");
-    if (!std::getline(std::cin, pokiPali.top())) {
-        kepeken::tokiEIke({ "nimiPiLipuWawa" //TODO
-                          , (unsigned int)-1, (unsigned int)-1   // TODO "lonKasi"
+    sonaLawa.pokiPali.push("");
+    if (!std::getline(std::cin, sonaLawa.pokiPali.top())) {
+        kepeken::tokiEIke({ sonaLawa.lonLipu
+                          , sonaLawa.lonPiKasiPiTenpoNi
                           , "kamaJoTanJan(): " + ante_toki::nimiTawaJan("ike.lawa.pini_lipu")});
-        //TODO o "throw" e ike.
+        throw std::runtime_error("kamaJoTanJan() la li kama jo e pini lipu!");
     }
 }
 
 /**
  * @brief li wan e poki nimi mute.
  */
-void wan(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+void wan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     std::string nimiSin;
 
     for (; nanpaIjo > 0; nanpaIjo--) {
-        nimiSin.append(pokiPali.top());
-        pokiPali.pop();
+        nimiSin.append(sonaLawa.pokiPali.top());
+        sonaLawa.pokiPali.pop();
     }
 
-    pokiPali.push(std::move(nimiSin));
+    sonaLawa.pokiPali.push(std::move(nimiSin));
 }
 
 /**
  * @brief li awen lon tenpo pana.
  */
-void awen(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+void awen(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     // li weka e ijo tan lupa tawa ni: sitelen ali lon ona li kama lon ilo CLI pi pana sitelen.
     std::cout.flush();
     std::cerr.flush();
@@ -112,7 +110,7 @@ void awen(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
     bool nanpaIke = false;
     
     for (; nanpaIjo > 0; nanpaIjo--) {
-        const std::string& ijo = pokiPali.top();
+        const std::string& ijo = sonaLawa.pokiPali.top();
 
         try {
             // nimi li jo e ala la li pona. ni la mi wile ala toki e ike.
@@ -120,79 +118,82 @@ void awen(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
                 tenpoLape += std::stoi(ijo);
 
         } catch (const std::invalid_argument& liNanpaAla) {
-            kepeken::tokiEIke({ "nimiPiLipuWawa" // TODO
-                              , 10, 10 //TODO lonKasi
+            kepeken::tokiEIke({ sonaLawa.lonLipu
+                              , sonaLawa.lonPiKasiPiTenpoNi
                               , "awen(): " + ante_toki::anteENimi(
                                         ante_toki::nimiTawaJan("ike.lawa.awen.nanpa_ala")
                                       , "%s", ijo)});
             
-            nanpaIke = true;
-            break;                                      
+            throw std::runtime_error("awen() la li kama jo e nimi '" + ijo + "' pi nanpa ala!");                            
 
         } catch (const std::out_of_range& liNanpaIke) {
-            kepeken::tokiEIke({ "nimiPiLipuWawa" //TODO
-                              , 10, 10 //TODO "lonKasi"
+            kepeken::tokiEIke({ sonaLawa.lonLipu
+                              , sonaLawa.lonPiKasiPiTenpoNi
                               , "awen(): " + ante_toki::anteENimi(
                                         ante_toki::nimiTawaJan("ike.lawa.awen.nanpa_ike")
                                       , "%s", ijo)});
 
-            nanpaIke = true;
+            throw std::runtime_error("awen() la li kama jo e nanpa ike '" + ijo + "' pi suli suli anu "
+                                     "lili lili!");
             break;
         }
 
-        pokiPali.pop();
+        sonaLawa.pokiPali.pop();
     }
 
-    pakalaEAwen(pokiPali, nanpaIjo);
-    
+    pakalaEAwen(sonaLawa.pokiPali, nanpaIjo);
 
-    if (!nanpaIke)
-        std::this_thread::sleep_for(std::chrono::milliseconds(tenpoLape));
 
-    pokiPali.push("");
+    std::this_thread::sleep_for(std::chrono::milliseconds(tenpoLape));
+    sonaLawa.pokiPali.push("");
 }
-
-
-
-bool tawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-    pokiPali.push("");
-    return true;
-}
-
-bool niLaTawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-    assert(false && "o pona e ni!"); //TODO
-}
-
-bool alaLaTawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-    for (; nanpaIjo > 0; nanpaIjo--) 
-        if (!pokiPali.top().empty()) {
-            pakalaEAwen(pokiPali, nanpaIjo);
-            return false;
-        }
-
-    return true;
-}
-
-
 
 /**
  * @brief li kama jo e poki nanpa pi lawa OS tan lawa OS sama "LANG" anu "USER" anu "LOGNAME".
  */
-void kamaJoEPokiNanpaPiLawaOS(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
+void kamaJoEPokiNanpaPiLawaOS(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     const char* pokiNanpaPiLawaOS = nullptr;
 
     for (; nanpaIjo > 0; nanpaIjo--) {
-        pokiNanpaPiLawaOS = getenv(pokiPali.top().c_str());
+        pokiNanpaPiLawaOS = getenv(sonaLawa.pokiPali.top().c_str());
 
         if (pokiNanpaPiLawaOS != nullptr && strcmp(pokiNanpaPiLawaOS, "") != 0)
             break;
 
-        pokiPali.pop();
+        sonaLawa.pokiPali.pop();
     }
 
-    pakalaEAwen(pokiPali, nanpaIjo);
-    pokiPali.push(pokiNanpaPiLawaOS != nullptr ? pokiNanpaPiLawaOS : "");
+    pakalaEAwen(sonaLawa.pokiPali, nanpaIjo);
+    sonaLawa.pokiPali.push(pokiNanpaPiLawaOS != nullptr ? pokiNanpaPiLawaOS : "");
 }
+
+
+
+bool tawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    sonaLawa.pokiPali.push("");
+    return true;
+}
+
+bool niLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    assert(false && "o pona e ni!"); //TODO
+}
+
+bool alaLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    for (; nanpaIjo > 0; nanpaIjo--) {
+        if (!sonaLawa.pokiPali.top().empty()) {
+            pakalaEAwen(sonaLawa.pokiPali, nanpaIjo);
+            sonaLawa.pokiPali.push("");
+
+            return false;
+        }
+
+        sonaLawa.pokiPali.pop();
+    }
+
+    sonaLawa.pokiPali.push("");
+    return true;
+}
+
 
 
 namespace ilo {
@@ -214,14 +215,14 @@ namespace ilo {
         this->nimiWawaKiwen = nimiWawaKiwen;
     }
 
-    void NimiWawa::lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-        assert( (this->nanpaLiliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo < this->nanpaLiliPiIjoWile)
-             || (this->nanpaSuliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo > this->nanpaSuliPiIjoWile)
+    void NimiWawa::lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const {
+        assert( (this->nanpaLiliPiIjoWile == nanpaPiIjoWileAli || nanpaIjo >= this->nanpaLiliPiIjoWile)
+             && (this->nanpaSuliPiIjoWile == nanpaPiIjoWileAli || nanpaIjo <= this->nanpaSuliPiIjoWile)
              && "nanpa ijo tawa nimi wawa li ken ala lon ante tannanpaLiliPiIjoWile en nanpaSuliPiIjoWile!");
 
-        assert(pokiPali.size() > nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");
+        assert(sonaLawa.pokiPali.size() >= nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");
 
-        this->nimiWawaKiwen(pokiPali, nanpaIjo);
+        this->nimiWawaKiwen(sonaLawa, nanpaIjo);
     }
 
 
@@ -242,14 +243,14 @@ namespace ilo {
         this->nimiWawaTawaKiwen = nimiWawaTawaKiwen;
     }
 
-    bool NimiWawaTawa::lawa(std::stack<std::string>& pokiPali, unsigned int nanpaIjo) {
-        assert( (this->nanpaLiliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo < this->nanpaLiliPiIjoWile)
-             || (this->nanpaSuliPiIjoWile != nanpaPiIjoWileAli && nanpaIjo > this->nanpaSuliPiIjoWile)
+    bool NimiWawaTawa::lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const {
+        assert( (this->nanpaLiliPiIjoWile == nanpaPiIjoWileAli || nanpaIjo >= this->nanpaLiliPiIjoWile)
+             && (this->nanpaSuliPiIjoWile == nanpaPiIjoWileAli || nanpaIjo <= this->nanpaSuliPiIjoWile)
              && "nanpa ijo tawa nimi wawa li ken ala lon ante tannanpaLiliPiIjoWile en nanpaSuliPiIjoWile!");
 
-        assert(pokiPali.size() > nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");
+        assert(sonaLawa.pokiPali.size() >= nanpaIjo && "poki pali li jo e ijo lili lili tawa lawa e nimi wawa!");
 
-        return this->nimiWawaTawaKiwen(pokiPali, nanpaIjo);
+        return this->nimiWawaTawaKiwen(sonaLawa, nanpaIjo);
     }
 
 

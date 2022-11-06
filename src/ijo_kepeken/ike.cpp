@@ -1,6 +1,7 @@
 #include "ike.hpp"
 #include <optional>
 #include "../ante_toki/ante_toki.hpp"
+#include "toki.hpp"
 
 namespace kepeken {
 	std::optional<std::string> nimiPiILO_LI_SINA = std::nullopt;

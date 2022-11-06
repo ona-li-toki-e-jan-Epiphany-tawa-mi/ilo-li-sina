@@ -1,16 +1,13 @@
 #pragma once
 
-#include <memory>
+#include <vector>
 
-#include "kipisi.hpp"
-#include "nimi_wawa.hpp"
-#include "../ijo_kepeken/ike.hpp"
+#include "../lawa/nimi_wawa.hpp"
+#include "../../ijo_kepeken/ike.hpp"
+#include "../lawa/sona_lawa.hpp"
 
-/**
- * ilo pali tawa pali e lipu wawa tan ijo lipu tan kipisi.
- */
 namespace ilo {
-	/**
+    /**
 	 * @brief li poki e lipu wawa lon kasi tawa lawa e ilo nanpa kepeken tenpo lili.
 	 */
     class KasiLipu {
@@ -31,6 +28,9 @@ namespace ilo {
 			 * @return nimi kasi tawa toki tawa jan kepeken ante_toki::nimiTawaJan().
 			 */
 			virtual std::string nimiPiNimiKasi() const = 0;
+
+			//TODO
+			virtual void lawa(SonaLawa& sonaLawa) const = 0;
 	};
 
 	/**
@@ -41,7 +41,7 @@ namespace ilo {
 			/**
 			 * @brief kasi lon ni li open pi linja ali lon lipu wawa.
 			 */
-			std::list<std::shared_ptr<KasiLipu>> kasiLonAnpa;
+			std::vector<std::shared_ptr<KasiLipu>> kasiLonAnpa;
 
 			KasiOpen();
 			KasiOpen& operator=(const KasiOpen&) = delete;
@@ -50,6 +50,8 @@ namespace ilo {
 			KasiOpen& operator=(KasiOpen&& ante) noexcept;
 
 			virtual std::string nimiPiNimiKasi() const override;
+
+			virtual void lawa(SonaLawa& sonaLawa) const override;
 
 		private:
 			KasiOpen(const KasiOpen& ante);
@@ -67,6 +69,8 @@ namespace ilo {
 			KasiPini& operator=(KasiPini&& ante) noexcept = default;
 
 			virtual std::string nimiPiNimiKasi() const override;
+
+			virtual void lawa(SonaLawa& sonaLawa) const override;
 
 		private:
 			KasiPini(const KasiPini& ante) = default;
@@ -90,6 +94,8 @@ namespace ilo {
 
 			virtual std::string nimiPiNimiKasi() const override;
 
+			virtual void lawa(SonaLawa& sonaLawa) const override;
+
 		private:
 			KasiPiPokiNimi(const KasiPiPokiNimi& ante) = default;
 	};
@@ -112,6 +118,8 @@ namespace ilo {
 
 			virtual std::string nimiPiNimiKasi() const override;
 
+			virtual void lawa(SonaLawa& sonaLawa) const override;
+
 		private:
 			KasiPoki(const KasiPoki& kasiPoki) = default;
 	};
@@ -125,7 +133,7 @@ namespace ilo {
 			 * @brief ni li ijo tawa nimi wawa. tenpo 1 la ona li lawa. tenpo 2 la ijo tan lawa ona li
 			 * 		pana tawa nimi wawa.
 			 */
-			std::list<std::shared_ptr<KasiLipu>> ijoPiNimiWawa;
+			std::vector<std::shared_ptr<KasiLipu>> ijoPiNimiWawa;
 
 			KasiTomoPiNimiWawa() = default;
 			KasiTomoPiNimiWawa& operator=(const KasiTomoPiNimiWawa&) = delete;
@@ -155,6 +163,8 @@ namespace ilo {
 			virtual std::string nimiPiNimiKasi() const override;
 			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const override;
 
+			virtual void lawa(SonaLawa& sonaLawa) const override;
+
 		private:
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante);
 	};
@@ -179,6 +189,8 @@ namespace ilo {
 
 			virtual std::string nimiPiNimiKasi() const override;
 			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const override;
+
+			virtual void lawa(SonaLawa& sonaLawa) const override;
 
 		private:
 			KasiPiNimiWawaTawa(const KasiPiNimiWawaTawa& ante);
@@ -206,18 +218,9 @@ namespace ilo {
 
 			virtual std::string nimiPiNimiKasi() const override;
 
+			virtual void lawa(SonaLawa& sonaLawa) const override;
+
 		private:
 			KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante);
 	};
-
-
-
-	/**
-	 * @brief li pali e lipu wawa tan kulupu nimi tan kipisi pi lipu wawa jan.
-	 *
-	 * @param ijoKipisi ijo tan kipisi lipu. o sona e ni: ni li kama ante tan nimi wawa ni!
-	 * @param lonLipu   lon pi lipu wawa.
-	 * @return lipu wawa (lon tomo AST) tan ijo kipisi.
-	 */
-	KasiOpen pali(std::list<Ijo>& ijoKipisi, const std::string& lonLipu);
 }

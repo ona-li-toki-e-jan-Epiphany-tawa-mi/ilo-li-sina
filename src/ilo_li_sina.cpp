@@ -205,7 +205,9 @@ void lawaEIloNanpa(const std::string& lonLipu) {
 		kasiOpen                       = ilo::pali(lipuKipisi, lonLipu);
 	}
 
-	ilo::lawaELipu(kasiOpen, lonLipu);
+	std::unordered_map<std::string, std::string> pokiAli;
+	ilo::panaEPokiOpenLonPokiAli(pokiAli, lonLipu);
+	ilo::lawaELipu(kasiOpen, pokiAli, lonLipu);
 }
 
 

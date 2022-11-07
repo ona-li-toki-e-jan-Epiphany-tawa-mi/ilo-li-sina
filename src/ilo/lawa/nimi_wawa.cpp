@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 #include <cstring>
+#include <list>
 
 #include "../../ijo_kepeken/ike.hpp"
 #include "../../ante_toki/ante_toki.hpp"
@@ -45,8 +46,6 @@ void toki(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
 void tokiELinja(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     toki(sonaLawa, nanpaIjo);
     std::cout << '\n';
-
-    sonaLawa.pokiPali.push("");
 }
 
 /**
@@ -63,18 +62,18 @@ void tokiEIke(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
 void tokiEIkeELinja(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     tokiEIke(sonaLawa, nanpaIjo);
     std::cerr << '\n';
-
-    sonaLawa.pokiPali.push("");
 }
 
 /**
  * @brief li toki e nimi tawa jan li kama jo e nimi tan ona.
  */
 void kamaJoTanJan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
-    if (nanpaIjo != 0)
+    if (nanpaIjo != 0) {
         tokiELinja(sonaLawa, nanpaIjo);
 
-    sonaLawa.pokiPali.push("");
+    } else
+        sonaLawa.pokiPali.push("");
+
     if (!std::getline(std::cin, sonaLawa.pokiPali.top())) {
         kepeken::tokiEIke({ sonaLawa.lonLipu
                           , sonaLawa.lonPiKasiPiTenpoNi
@@ -90,7 +89,7 @@ void wan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     std::string nimiSin;
 
     for (; nanpaIjo > 0; nanpaIjo--) {
-        nimiSin.append(sonaLawa.pokiPali.top());
+        nimiSin.append(std::move(sonaLawa.pokiPali.top()));
         sonaLawa.pokiPali.pop();
     }
 
@@ -135,13 +134,10 @@ void awen(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
 
             throw std::runtime_error("awen() la li kama jo e nanpa ike '" + ijo + "' pi suli suli anu "
                                      "lili lili!");
-            break;
         }
 
         sonaLawa.pokiPali.pop();
     }
-
-    pakalaEAwen(sonaLawa.pokiPali, nanpaIjo);
 
 
     std::this_thread::sleep_for(std::chrono::milliseconds(tenpoLape));
@@ -174,16 +170,71 @@ bool tawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     return true;
 }
 
-bool niLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
-    assert(false && "o pona e ni!"); //TODO
+bool niLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {		
+    std::string nimiLon = std::move(sonaLawa.pokiPali.top());
+    sonaLawa.pokiPali.pop();
+    std::string nimiPiLonAla = std::move(sonaLawa.pokiPali.top());
+    sonaLawa.pokiPali.pop();
+    nanpaIjo -= 2;
+    
+    if (nimiLon == nimiPiLonAla) {
+        kepeken::tokiEIke({ sonaLawa.lonLipu
+                          , sonaLawa.lonPiKasiPiTenpoNi
+                          , "niLaTawa(): " + ante_toki::anteENimi( ante_toki::nimiTawaJan(
+                                    "ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama")
+                                                                 , "%s", nimiLon)});
+
+        throw std::runtime_error("niLaTawa() la nimi lon en nimi pi lon ala li ken ala sama!");
+    }
+
+    std::list<std::string> nimiTawaJan;
+    for (; nanpaIjo > 0; nanpaIjo--) {
+        nimiTawaJan.push_back(std::move(sonaLawa.pokiPali.top()));
+        sonaLawa.pokiPali.pop();
+    }
+
+
+    sonaLawa.pokiPali.push("");
+    std::string& nimiJan = sonaLawa.pokiPali.top();
+
+    // jan li toki e ike la li wile toki sin e ijo.
+    while (true) {
+        if (!nimiTawaJan.empty()) {
+            for (const auto& nimi : nimiTawaJan)
+                std::cout << nimi;
+
+            std::cout << ' ';
+        }
+        std::cout << "(" << nimiLon << '/' << nimiPiLonAla << ")\n";
+
+        if (!std::getline(std::cin, nimiJan)) {
+            kepeken::tokiEIke({ sonaLawa.lonLipu
+                              , sonaLawa.lonPiKasiPiTenpoNi
+                              , "niLaTawa(): " + ante_toki::nimiTawaJan("ike.lawa.pini_lipu")});
+
+            throw std::runtime_error("niLaTawa() la li kama jo e pini lipu!");
+        }
+
+        if (nimiLon.empty() && nimiJan != nimiPiLonAla) {
+            return true;
+
+        } else if (nimiPiLonAla.empty() && nimiJan != nimiLon) {
+            return false;
+
+        } else if (sonaLawa.pokiPali.top() == nimiLon) {
+            return true;
+        
+        } else if (sonaLawa.pokiPali.top() == nimiPiLonAla)
+            return false;
+    }
 }
 
 bool alaLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     for (; nanpaIjo > 0; nanpaIjo--) {
         if (!sonaLawa.pokiPali.top().empty()) {
             pakalaEAwen(sonaLawa.pokiPali, nanpaIjo);
-            sonaLawa.pokiPali.push("");
 
+            sonaLawa.pokiPali.push("");
             return false;
         }
 

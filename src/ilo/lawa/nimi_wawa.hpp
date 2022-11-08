@@ -51,8 +51,9 @@ namespace ilo {
              * @attention nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
              * 
              * @param nanpaIjo li moku e ijo pi nanpa ni tan pokiPali.
+             * @throws std::runtime_error ike li kama.
              */
-            void lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const;
+            void lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const noexcept(false);
     };
 
     class NimiWawaTawa : public TomoPiNimiWawa {
@@ -72,8 +73,9 @@ namespace ilo {
              * 
              * @param nanpaIjo li moku e ijo pi nanpa ni tan pokiPali.
              * @return true la li wile tawa lon ante. false la li wile ala.
+             * @throws std::runtime_error ike li kama.
              */
-            bool lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const;
+            bool lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const noexcept(false);
     };
 
 

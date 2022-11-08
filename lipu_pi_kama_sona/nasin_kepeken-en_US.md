@@ -66,6 +66,14 @@ Concatenates the given strings into a single string and returns it.
 
 Waits for the duration made by summing up the given durations. Durations must be valid integers and represent the time to wait in miliseconds. awen() will ignore any empty strings (for instance, "awen("200" _)" is valid and will wait for 200 miliseconds.)
 
+#### **pokiPiLawaOS(\[names...\]) -> stored value | nothing**
+
+Gets the value from a given enviroment variable.
+
+The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one and isn't empty. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows (only for example, you should use the preinitialized variable __nimi_jan instead.) By supplying all 3 variants, you can ensure that it will work on both.
+
+If none of the given variables have a value, then nothing is returned.
+
 #### **tawa(label) -> nothing**
 
 Jumps to the given label.
@@ -83,14 +91,6 @@ If both the yes and no messages are not wildcards, and the user types anything o
 #### **alaLaTawa(label string \[strings...\]) -> nothing**
 
 If all of the given strings contain nothing then it will jump to the given label.
-
-#### **pokiPiLawaOS(\[names...\]) -> stored value or nothing**
-
-Gets the value from a given enviroment variable.
-
-The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one and isn't empty. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows (only for example, you should use the preinitialized variable __nimi_jan instead.) By supplying all 3 variants, you can ensure that it will work on both.
-
-If none of the given variables have a value, then nothing is returned.
 
 ### ***Flow Control***
 

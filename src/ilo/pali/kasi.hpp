@@ -6,6 +6,9 @@
 #include "../../ijo_kepeken/ike.hpp"
 #include "../lawa/sona_lawa.hpp"
 
+/**
+ * @brief kasi ali tawa pali e kasi AST pi lipu wawa kepeken ilo pali.
+ */
 namespace ilo {
     /**
 	 * @brief li poki e lipu wawa lon kasi tawa lawa e ilo nanpa kepeken tenpo lili.
@@ -29,7 +32,11 @@ namespace ilo {
 			 */
 			virtual std::string nimiPiNimiKasi() const = 0;
 
-			//TODO
+			/**
+			 * @brief ilo lawa li lawa kepeken nimi ni tawa pali e ijo. nimi wawa kiwen li lon 
+			 * 		<../lawa/lawa.cpp>
+			 * @attention li wile pana e nimi lon poki pali. li jo e ala tawa ni la o pana e "".
+			 */
 			virtual void lawa(SonaLawa& sonaLawa) const = 0;
 	};
 
@@ -118,7 +125,10 @@ namespace ilo {
 
 			virtual std::string nimiPiNimiKasi() const override;
 
-			virtual void lawa(SonaLawa& sonaLawa) const override;
+			/**
+			 * @throws std::runtime_error poki li lon ala.
+			 */
+			virtual void lawa(SonaLawa& sonaLawa) const noexcept(false) override;
 
 		private:
 			KasiPoki(const KasiPoki& kasiPoki) = default;
@@ -163,7 +173,10 @@ namespace ilo {
 			virtual std::string nimiPiNimiKasi() const override;
 			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const override;
 
-			virtual void lawa(SonaLawa& sonaLawa) const override;
+			/**
+			 * @throws std::runtime_error ike li kama tan nimi wawa anu lawa e ijo pi nimi wawa.
+			 */
+			virtual void lawa(SonaLawa& sonaLawa) const noexcept(false) override;
 
 		private:
 			KasiPiNimiWawa(const KasiPiNimiWawa& ante);
@@ -188,9 +201,12 @@ namespace ilo {
 			KasiPiNimiWawaTawa& operator=(KasiPiNimiWawaTawa&& ante) noexcept;
 
 			virtual std::string nimiPiNimiKasi() const override;
-			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const override;
+			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const noexcept(false) override;
 
-			virtual void lawa(SonaLawa& sonaLawa) const override;
+			/**
+			 * @throws std::runtime_error ike li kama tan nimi wawa anu lawa e ijo pi nimi wawa.
+			 */
+			virtual void lawa(SonaLawa& sonaLawa) const noexcept(false) override;
 
 		private:
 			KasiPiNimiWawaTawa(const KasiPiNimiWawaTawa& ante);
@@ -204,7 +220,7 @@ namespace ilo {
 			/**
 			 * @brief nimi poki tawa poki e ijo.
 			 */
-			std::string               nimiPoki;
+			std::string nimiPoki;
 			/**
 			 * @brief tenpo 1 la ni li lawa. tenpo 2 la li pana e ijo kama lon poki.
 			 */
@@ -218,7 +234,10 @@ namespace ilo {
 
 			virtual std::string nimiPiNimiKasi() const override;
 
-			virtual void lawa(SonaLawa& sonaLawa) const override;
+			/**
+			 * @throws std::runtime_error ike li kama tan lawa e ijo pana.
+			 */
+			virtual void lawa(SonaLawa& sonaLawa) const noexcept(false) override;
 
 		private:
 			KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante);

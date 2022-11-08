@@ -66,6 +66,16 @@ li wan e nimi lon nimi wan.
 
 li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi nanpa lili ala (sama "400" anu "1369" sama ala "3.5" anu "0.1111") li sama tenpo Milisekon (Miliseconds). nimi tenpo li ala la li pali e ala kepeken ona (pana la sina ken pana e "awen("200" _)". ni li awen lon tenpo Milisekon 200 li toki ala e ike).
 
+#### **pokiPiLawaOS(\[nimiKen...\]) -> nimi lon poki nanpa | ala**
+
+li kama jo e nimi lon poki nanpa Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
+
+lawa OS (sama Windows en Linux) li jo e poki nanpa Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
+
+nimi ken li nimi ali tawa poki nanpa wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
+
+poki nanpa li lon ala la li pana e ala.
+
 #### **tawa(nimiTawa) -> ala**
 
 li tawa lon nimi tawa.
@@ -83,16 +93,6 @@ nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e n
 #### **alaLaTawa(nimiTawa nimi \[nimi...\]) -> ala**
 
 nimi pana ale li jo e ala la li tawa.
-
-#### **pokiPiLawaOS(\[nimiKen...\]) -> nimi lon poki nanpa anu ala**
-
-li kama jo e nimi lon poki nanpa Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
-
-lawa OS (sama Windows en Linux) li jo e poki nanpa Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
-
-nimi ken li nimi ali tawa poki nanpa wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
-
-poki nanpa li lon ala la li pana e ala.
 
 ### ***tawa***
 

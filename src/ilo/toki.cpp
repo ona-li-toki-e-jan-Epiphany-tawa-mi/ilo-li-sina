@@ -135,7 +135,7 @@ namespace ilo {
             if (kasiTomoPiNimiWawa->ijoPiNimiWawa.size() > 0) {
                 std::cout << ":\n";
 
-                for (const std::shared_ptr<KasiLipu>& ijo : kasiTomoPiNimiWawa->ijoPiNimiWawa)
+                for (const std::unique_ptr<KasiLipu>& ijo : kasiTomoPiNimiWawa->ijoPiNimiWawa)
                     tokiEKasiPiKasiSuli(kasiOpen, ijo.get(), lonInsaPiNanpaNi + 1, nanpaPiKasiLonSewi);
             
             } else

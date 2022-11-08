@@ -48,7 +48,7 @@ namespace ilo {
 			/**
 			 * @brief kasi lon ni li open pi linja ali lon lipu wawa.
 			 */
-			std::vector<std::shared_ptr<KasiLipu>> kasiLonAnpa;
+			std::vector<std::unique_ptr<KasiLipu>> kasiLonAnpa;
 
 			KasiOpen();
 			KasiOpen& operator=(const KasiOpen&) = delete;
@@ -143,7 +143,7 @@ namespace ilo {
 			 * @brief ni li ijo tawa nimi wawa. tenpo 1 la ona li lawa. tenpo 2 la ijo tan lawa ona li
 			 * 		pana tawa nimi wawa.
 			 */
-			std::vector<std::shared_ptr<KasiLipu>> ijoPiNimiWawa;
+			std::vector<std::unique_ptr<KasiLipu>> ijoPiNimiWawa;
 
 			KasiTomoPiNimiWawa() = default;
 			KasiTomoPiNimiWawa& operator=(const KasiTomoPiNimiWawa&) = delete;
@@ -224,7 +224,7 @@ namespace ilo {
 			/**
 			 * @brief tenpo 1 la ni li lawa. tenpo 2 la li pana e ijo kama lon poki.
 			 */
-			std::shared_ptr<KasiLipu> ijoPana;
+			std::unique_ptr<KasiLipu> ijoPana;
 
 			KasiPiPanaLonPoki() = default;
 			KasiPiPanaLonPoki& operator=(const KasiPiPanaLonPoki&) = delete;

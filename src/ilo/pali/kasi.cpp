@@ -27,7 +27,7 @@ namespace ilo {
     KasiOpen::KasiOpen(const KasiOpen& ante) {
         for (const auto& kasi : ante.kasiLonAnpa)
             this->kasiLonAnpa.push_back(
-                    std::shared_ptr<KasiLipu>(kasi->paliSama()));
+                    std::unique_ptr<KasiLipu>(kasi->paliSama()));
     }
 
 
@@ -98,7 +98,7 @@ namespace ilo {
     KasiTomoPiNimiWawa::KasiTomoPiNimiWawa(const KasiTomoPiNimiWawa& ante) {
         for (const auto& kasi : ante.ijoPiNimiWawa)
             this->ijoPiNimiWawa.push_back(
-                    std::shared_ptr<KasiLipu>(kasi->paliSama()));
+                    std::unique_ptr<KasiLipu>(kasi->paliSama()));
     }
 
 
@@ -199,6 +199,6 @@ namespace ilo {
 
     KasiPiPanaLonPoki::KasiPiPanaLonPoki(const KasiPiPanaLonPoki& ante) {
         this->nimiPoki = ante.nimiPoki;
-        this->ijoPana  = std::shared_ptr<KasiLipu>(ante.ijoPana->paliSama());
+        this->ijoPana  = std::unique_ptr<KasiLipu>(ante.ijoPana->paliSama());
     }
 }

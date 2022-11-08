@@ -39,8 +39,8 @@ namespace ilo {
      * @return poki nimi sin tan lon pi tenpo ni lon poki pi lipu kipisi.
      * @attention o pali e ni lon monsi pi kepeken ni: nimi pi ijo pi tenpo ni li POKI_NIMI. 
      */
-    std::shared_ptr<KasiPiPokiNimi> paliEPokiNimi(SonaPali& sonaPali) {
-        auto kasiPiPokiNimi = std::make_shared<KasiPiPokiNimi>();
+    std::unique_ptr<KasiPiPokiNimi> paliEPokiNimi(SonaPali& sonaPali) {
+        auto kasiPiPokiNimi = std::make_unique<KasiPiPokiNimi>();
 
         kasiPiPokiNimi->nimi = std::move(sonaPali.alasaIjo->ijo);
         kasiPiPokiNimi->lonKasi = sonaPali.alasaIjo->lonIjo;
@@ -53,8 +53,8 @@ namespace ilo {
      * @return poki sin tan lon pi tenpo ni lon poki pi lipu kipisi.
      * @attention o pali e ni lon monsi pi kepeken ni: nimi pi ijo pi tenpo ni li POKI. 
      */
-    std::shared_ptr<KasiPoki> paliEPoki(SonaPali& sonaPali) {
-        auto kasiPiPoki = std::make_shared<KasiPoki>();
+    std::unique_ptr<KasiPoki> paliEPoki(SonaPali& sonaPali) {
+        auto kasiPiPoki = std::make_unique<KasiPoki>();
 
         kasiPiPoki->nimiPoki = std::move(sonaPali.alasaIjo->ijo);
         kasiPiPoki->lonKasi = sonaPali.alasaIjo->lonIjo;
@@ -67,19 +67,19 @@ namespace ilo {
      * @return nimi wawa (anu nimi wawa tawa) sin tan lon pi tenpo ni lon poki pi lipu kipisi.
      * @attention o pali e ni lon monsi pi kepeken ni: nimi pi ijo pi tenpo ni li NIMI_WAWA.
      */
-    std::shared_ptr<KasiTomoPiNimiWawa> paliENimiWawa(SonaPali& sonaPali) {
-        std::shared_ptr<KasiTomoPiNimiWawa> kasiTomoPiNimiWawa = nullptr;
+    std::unique_ptr<KasiTomoPiNimiWawa> paliENimiWawa(SonaPali& sonaPali) {
+        std::unique_ptr<KasiTomoPiNimiWawa> kasiTomoPiNimiWawa = nullptr;
         bool nimiWawaLiLon = false;
         bool liNimiWawaTawa = false;
 
         try {
-            kasiTomoPiNimiWawa = std::make_shared<KasiPiNimiWawa>(
+            kasiTomoPiNimiWawa = std::make_unique<KasiPiNimiWawa>(
                     &nimiTawaNimiWawa.at(sonaPali.alasaIjo->ijo));
             nimiWawaLiLon  = true;
         
         } catch (const std::out_of_range& liLonAla) {
             try {
-                kasiTomoPiNimiWawa = std::make_shared<KasiPiNimiWawaTawa>(
+                kasiTomoPiNimiWawa = std::make_unique<KasiPiNimiWawaTawa>(
                         &nimiTawaNimiWawaTawa.at(sonaPali.alasaIjo->ijo)); 
                 
                 nimiWawaLiLon  = true;
@@ -133,8 +133,8 @@ namespace ilo {
         for (sonaPali.alasaIjo++; sonaPali.alasaIjo != sonaPali.ijoKipisi.end();)
             switch (sonaPali.alasaIjo->nimiIjo) {
                 case NimiIjo::NIMI_WAWA:
-                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(
-                            std::static_pointer_cast<KasiLipu>(paliENimiWawa(sonaPali)));
+                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(std::move(
+                            paliENimiWawa(sonaPali)));
 
                     // li pini pali e linja ni tan ni: ni li ike la ike sona sin li ken ala kama tan linja.
                     if (kasiTomoPiNimiWawa->ijoPiNimiWawa.back() == nullptr)
@@ -143,13 +143,13 @@ namespace ilo {
                     break;
 
                 case NimiIjo::POKI:
-                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(
-                            std::static_pointer_cast<KasiLipu>(paliEPoki(sonaPali)));
+                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(std::move(
+                            paliEPoki(sonaPali)));
                     break; 
 
                 case NimiIjo::POKI_NIMI:
-                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(
-                            std::static_pointer_cast<KasiLipu>(paliEPokiNimi(sonaPali)));
+                    kasiTomoPiNimiWawa->ijoPiNimiWawa.push_back(std::move(
+                            paliEPokiNimi(sonaPali)));
                     break;
 
                 case NimiIjo::POKI_PI_IJO_PI_NIMI_WAWA:
@@ -216,8 +216,8 @@ namespace ilo {
      * @return pana sin lon poki tan lon pi tenpo ni lon poki pi lipu kipisi.
      * @attention o pali e ni lon monsi pi kepeken ni: nimi lon sinpin pi ijo pi tenpo ni li PANA_LON_POKI.
      */
-    std::shared_ptr<KasiPiPanaLonPoki> paliEPanaLonPoki(SonaPali& sonaPali) {
-        auto kasiPiPanaLonPoki = std::make_shared<KasiPiPanaLonPoki>();
+    std::unique_ptr<KasiPiPanaLonPoki> paliEPanaLonPoki(SonaPali& sonaPali) {
+        auto kasiPiPanaLonPoki = std::make_unique<KasiPiPanaLonPoki>();
 
         // ijo wan pi pana lon poki li wile poki.
         if (sonaPali.alasaIjo->nimiIjo != NimiIjo::POKI) {
@@ -251,7 +251,7 @@ namespace ilo {
         // nimi ijo li lon ala nimi "case" la li wile ala tan ni: ona li ken ala lon sinpin pi pana lon poki.
         switch (sonaPali.alasaIjo->nimiIjo) {
             case NimiIjo::NIMI_WAWA:
-                kasiPiPanaLonPoki->ijoPana = std::static_pointer_cast<KasiLipu>(paliENimiWawa(sonaPali));
+                kasiPiPanaLonPoki->ijoPana = std::move(paliENimiWawa(sonaPali));
 
                 // li pini pali e linja ni tan ni: ni li ike la ike sona sin li ken ala kama tan linja.
                 if (kasiPiPanaLonPoki->ijoPana == nullptr)
@@ -260,11 +260,11 @@ namespace ilo {
                 break;  
 
             case NimiIjo::POKI:
-                kasiPiPanaLonPoki->ijoPana = std::static_pointer_cast<KasiLipu>(paliEPoki(sonaPali));
+                kasiPiPanaLonPoki->ijoPana = std::move(paliEPoki(sonaPali));
                 break;  
 
             case NimiIjo::POKI_NIMI:
-                kasiPiPanaLonPoki->ijoPana = std::static_pointer_cast<KasiLipu>(paliEPokiNimi(sonaPali));
+                kasiPiPanaLonPoki->ijoPana = std::move(paliEPokiNimi(sonaPali));
                 break;  
 
             default:
@@ -346,7 +346,7 @@ namespace ilo {
 
             if (alasaIjo->nimiIjo == NimiIjo::NIMI_WAWA) {
                 openKasi.kasiLonAnpa.push_back(
-                        std::static_pointer_cast<KasiLipu>(paliENimiWawa(sonaPali)));
+                        std::move(paliENimiWawa(sonaPali)));
 
                 wanEKasiENimiTawa(sonaPali);
 
@@ -361,7 +361,7 @@ namespace ilo {
 
             if (ijoLonSinpin->nimiIjo == NimiIjo::PANA_LON_POKI) {
                 openKasi.kasiLonAnpa.push_back(
-                        std::static_pointer_cast<KasiLipu>(paliEPanaLonPoki(sonaPali)));
+                        std::move(paliEPanaLonPoki(sonaPali)));
 
                 wanEKasiENimiTawa(sonaPali);
 
@@ -377,7 +377,7 @@ namespace ilo {
             tawaLinjaSinLonSinpin(sonaPali);
         }
 
-        openKasi.kasiLonAnpa.push_back(std::make_shared<KasiPini>());
+        openKasi.kasiLonAnpa.push_back(std::make_unique<KasiPini>());
         openKasi.kasiLonAnpa.back()->lonKasi = {ijoKipisi.back().lonIjo.nanpaLinja + 1, 0};
         // tenpo ni la nimi tawa tawa li lon la ona li lon pini pi lipu wawa li wile e kasi tawa tawa.
         if (!nimiTawaTawaPiTenpoNi.empty())

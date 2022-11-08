@@ -94,7 +94,7 @@ If all of the given strings contain nothing then it will jump to the given label
 
 ### ***Flow Control***
 
-ilo li sina utilizes GOTOs (tawa(), niLaTawa(), and alaLaTawa()) for flow control.
+ilo li sina utilizes GOTOs for flow control.
 
 The GOTOs require a label to jump to. A label can be created by typing the label name and placing a semicolon after it. Labels can only occur at the start of a line.
 
@@ -160,6 +160,26 @@ SpittingFacts:
         niLaTawa(KnowNothing "continue" "stop" \
             "Do you want to continue?")        \
         " the program"))
+```
+
+One small nuance is that a jump is not preformed until the line is fully evaluated. Until then, jumps act like normal functions and run a result that can be passed to a different one or stored. For example:
+
+```ilo li sina
+    likesApples = niLaTawa(End "yes" "no"        \
+                           "Do you like apples?")
+    
+AskAgain: 
+    # If they say nothing they will be asked again. If they say something other than the yes message, 
+    # it responds with "Incorrect!". 
+    alaLaTawa(AskAgain niLaTawa(End "I like apples" _                                              \
+                                    likesApples "? You don't like apples? Incorrect! Say that you" \
+                                    " like apples right now!"))  
+
+    tokiELinja("Incorrect!")
+    tawa(AskAgain)
+
+End:
+    tokiELinja("That's good! I think we're friends!")
 ```
 
 ### ***Variables***

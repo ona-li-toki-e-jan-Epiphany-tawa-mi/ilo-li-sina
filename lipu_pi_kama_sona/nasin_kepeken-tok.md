@@ -14,7 +14,7 @@ ali lon toki ni li nimi. sina ken kepeken e nimi taso. sina ken pali e nimi lon 
 
 "ilo li sina" li jo e nimi wawa lili. ona li kama jo e ijo li pali e ijo. tawa pali la sina sitelen e nimi e poki tawa ijo "(" en ")" e ijo lon ona.
 
-ijo tawa nimi wawa li kipisi kepeken sitelen " " pi lukin ala. ni li wile ala tawa ijo ante sama poki nanpa en nimi. taso, ni li lukin pona. pana la:
+ijo tawa nimi wawa li kipisi kepeken sitelen " " pi lukin ala. ni li wile ala tawa ijo ante sama poki en nimi. taso, ni li lukin pona. pana la:
 
 ```ilo li sina
     tokiELinja("ni li" " nimi") # pona. li toki e "ni li nimi".
@@ -70,11 +70,11 @@ li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi na
 
 li kama jo e nimi lon poki nanpa Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
 
-lawa OS (sama Windows en Linux) li jo e poki nanpa Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
+lawa OS (sama Windows anu Linux) li jo e poki nanpa Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
 
 nimi ken li nimi ali tawa poki nanpa wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
 
-poki nanpa li lon ala la li pana e ala.
+poki li lon ala la li pana e ala.
 
 #### **tawa(nimiTawa) -> ala**
 
@@ -96,7 +96,7 @@ nimi pana ale li jo e ala la li tawa.
 
 ### ***tawa***
 
-toki li kepeken e nimi wawa GOTO (tawa() en niLaTawa() en alaLaTawa()) tawa tawa lon lipu wawa.
+toki li kepeken e nimi wawa tawa GOTO tawa tawa lon lipu wawa.
 
 nimi wawa ni li wile e nimi tawa tawa ni: ona li ken tawa lon ona. sina ken pali e ona kepeken nimi en sitelen ':' lon monsi. ona li ken lon open linja taso. pana la:
 
@@ -163,9 +163,9 @@ sonaPona:
         " e lipu wawa ni"))
 ```
 
-### ***poki nanpa***
+### ***poki***
 
-sina ken kepeken e poki nanpa tawa poki e nimi. sina ken pali e ona kepeken nimi en sitelen '=' en ijo tawa poki. sina ken pana e ona lon nimi wawa anu poki ante kepeken nimi ona. pana la:
+sina ken kepeken e poki tawa poki e nimi. sina ken pali e ona kepeken nimi en sitelen '=' en ijo tawa poki. sina ken pana e ona lon nimi wawa anu poki ante kepeken nimi ona. pana la:
 
 ```ilo li sina
     a = "test"
@@ -198,9 +198,15 @@ sina ken sitelen e sitelen nasa (sama linja sin) kepeken sitelen '\\'. ni li ona
  - \\" - li ken e ni: sina sitelen e sitelen '"' lon poki nimi.
  - \\\\ - li ken e ni: sina sitelen e sitelen '\\' lon poki nimi.
 
+pana la:
+
+```ilo li sina
+    toki("ni li toki \"ilo li sina\" !\b\b") # li toki e 'ni li toki "ilo li sina"'.
+```
+
 #### *ijo lon linja mute:*
 
-"ilo li sina" la linja li kipisi e nimi wawa e pana lon poki nanpa e nimi tawa. taso, sina ken sitelen e ona lon linja mute kepeken sitelen '\\'. sina pana e ona lon pini linja la li awen lukin e linja lon anpa. pana la:
+"ilo li sina" la linja li kipisi e nimi wawa e pana lon poki e nimi tawa. taso, sina ken sitelen e ona lon linja mute kepeken sitelen '\\'. sina pana e ona lon pini linja la li awen lukin e linja lon anpa. pana la:
 
 ```ilo li sina
     abc    \
@@ -233,9 +239,9 @@ nimi wawa kamaJoTanJan() en niLaTawa() li kama jo e sitelen EOF la li pini e lip
 
 ni li tan ni: ali pi toki ni li kama jo e nimi li toki e nimi. nimi li lon ala tawa kama la "ilo li sina" li ken pali e ala. taso, ona li ken e ni: kama jo e nimi tan lipu. pana la sina ken pana e nimi wile lon lipu "temp.txt" li sitelen e "temp.txt | ilo_li_sina \<nimi pi lipu wawa\>". lipu wawa li kama jo e nimi ali tan "temp.txt" la li pini li awen ala lon tenpo ali.
 
-#### *poki nanpa lon open pi lipu wawa ali:*
+#### *poki lon open pi lipu wawa ali:*
 
-poki nanpa lili li jo e nimi lon open pi lipu wawa ali "ilo li sina".
+poki lili li jo e nimi lon open pi lipu wawa ali "ilo li sina".
 
 **__nanpa_Ilo_Li_Sina** - nanpa pali pi ilo tawa lawa kepeken "ilo li sina".
 

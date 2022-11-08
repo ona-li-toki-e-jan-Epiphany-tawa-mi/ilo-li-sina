@@ -235,7 +235,7 @@ namespace ilo {
 				ante_toki::anteENimi(
 					ante_toki::nimiTawaJan("ike.kipisi.li_ken_ala_open_e_lipu"),
 					"%s", lonLipu)});
-            throw std::runtime_error("li ken ala open e poki '" + lonLipu + "'");
+            throw std::invalid_argument("li ken ala open e poki '" + lonLipu + "'");
 		}
 
 

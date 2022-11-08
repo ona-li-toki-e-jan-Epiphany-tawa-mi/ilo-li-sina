@@ -324,7 +324,15 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 		paliWile = &tokiEKasiLipu;
 	
 	for (const std::string *const lipuWawa : lipuWawaPana) 
-		paliWile(*lipuWawa);
+		try {
+			paliWile(*lipuWawa);
+		
+		} catch(const std::runtime_error& liIke) {
+			return 1;
+		
+		} catch(const std::invalid_argument& lipuLiLonAla) {
+			return -1;
+		}
 
 	return 0;
 }

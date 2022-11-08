@@ -46,6 +46,8 @@ namespace ilo {
 	 *
 	 * @param lonLipu lon pi lipu wawa.
 	 * @return poki pi ijo pi lipu wawa.
+     * @throw std::invalid_argument li ken ala open e lipu.
+     * @throw std::runtime_error    ike li kama.
 	 */
 	std::list<Ijo> kipisi(const std::string& lonLipu) noexcept(false);
 

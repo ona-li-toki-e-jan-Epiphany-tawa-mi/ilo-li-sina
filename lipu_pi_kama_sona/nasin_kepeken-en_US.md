@@ -197,6 +197,12 @@ You can write special characters (such as a newline) within string literals usin
  - \\" - Allows putting quotes into strings.
  - \\\\ - Allows putting backslashes into strings.
 
+An example: 
+
+```ilo li sina
+    toki("This is \"ilo li sina\" !\b\b") # Says 'This is "ilo li sina"'.
+```
+
 #### *Multiline statements:*
 
 ilo li sina delimits statements usings newlines, meaning that statments start and end in a single line. However, you can place a backslash at the end of a line to carry a statement over to the next.

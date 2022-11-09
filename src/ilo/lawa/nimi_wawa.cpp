@@ -394,10 +394,10 @@ namespace ilo {
     };
 
     const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa = {
-        {"tawa",        NimiWawaTawa(&tawa,     0, 0)},
-        {"niLaTawa",    NimiWawaTawa(&niLaTawa, 3)},
-        {"alaLaTawa",   NimiWawaTawa(&alaLaTawa)},
-        {"nanpaLaTawa", NimiWawaTawa(&nanpaLaTawa)}
+        {"tawa",        NimiWawaTawa(&tawa,        0, 0)},
+        {"niLaTawa",    NimiWawaTawa(&niLaTawa,    3)},
+        {"alaLaTawa",   NimiWawaTawa(&alaLaTawa,   1)},
+        {"nanpaLaTawa", NimiWawaTawa(&nanpaLaTawa, 1)}
     };
 
     const std::string& tomoPiNimiWawaTawaNimi(const TomoPiNimiWawa* tomoPiNimiWawa) noexcept(false) {

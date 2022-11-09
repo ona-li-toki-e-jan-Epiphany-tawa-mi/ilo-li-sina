@@ -92,7 +92,7 @@ If both the yes and no messages are not wildcards, and the user types anything o
 
 If all of the given strings contain nothing it will jump to the given label.
 
-#### **nanpaLaTawa(label \[possibleNumbers...\]) -> nothing**
+#### **nanpaLaTawa(label possibleNumber \[possibleNumbers...\]) -> nothing**
 
 If all of the given strings are valid integers it will jump to the given label.
 

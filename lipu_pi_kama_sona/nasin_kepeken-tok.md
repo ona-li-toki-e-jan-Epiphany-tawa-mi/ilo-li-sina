@@ -94,7 +94,7 @@ nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e n
 
 nimi pana ale li jo e ala la li tawa.
 
-#### **nanpaLaTawa(\[nanpaKen...\]) -> ala**
+#### **nanpaLaTawa(nimiTawa nanpaKen \[nanpaKen...\]) -> ala**
 
 nimi ali pana li nanpa la li tawa.
 

@@ -4,7 +4,7 @@ lukin kepeken toki ante: [English](lipu_pi_kama_sona/README-en_US.md "View in En
 
 # **ilo li sina**
 
-ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)
+ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)
 
 "ilo li sina" li toki musi (jan pi toki Inli li kepeken e nimi "esoteric" tawa toki sama ni). ona li tawa ala pali suli. ona li tawa musi.
 

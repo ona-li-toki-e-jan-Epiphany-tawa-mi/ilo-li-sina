@@ -17,5 +17,5 @@ NoModulo:
     output = i
 Print:
     tokiELinja("output: " output)
-    i = kamaJoTanJan("What is " i "+1? ")
+    i = kamaJo("What is " i "+1? ")
     tawa(Start)

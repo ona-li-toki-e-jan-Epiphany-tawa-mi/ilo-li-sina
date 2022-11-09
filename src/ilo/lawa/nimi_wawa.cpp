@@ -73,13 +73,13 @@ void tokiEIkeELinja(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
 }
 
 /**
- * @brief kamaJoTanJan([nimi...]) -> nimi tan jan
+ * @brief kamaJo([nimi...]) -> nimi tan jan
  * 
  * li toki e nimi tawa jan li kama jo e nimi tan ona.
  * 
  * @throws std::runtime_error li kama jo e sitelen pi pini lipu.
  */
-void kamaJoTanJan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false) {
+void kamaJo(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false) {
     // nimi li wile lon sewi pi poki pali tawa poki e nimi tawa jan. toki la 1 li lon tawa ni. ni ala la
     //      mi wile pana e poki nimi ala lon ona.
     if (nanpaIjo != 0) {
@@ -91,9 +91,9 @@ void kamaJoTanJan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false
     if (!std::getline(std::cin, sonaLawa.pokiPali.top())) {
         kepeken::tokiEIke({ sonaLawa.lonLipu
                           , sonaLawa.lonPiKasiPiTenpoNi
-                          , "kamaJoTanJan(): " + ante_toki::nimiTawaJan("ike.lawa.pini_lipu")});
+                          , "kamaJo(): " + ante_toki::nimiTawaJan("ike.lawa.pini_lipu")});
 
-        throw std::runtime_error("kamaJoTanJan() la li kama jo e pini lipu!");
+        throw std::runtime_error("kamaJo() la li kama jo e pini lipu!");
     }
 }
 
@@ -166,7 +166,7 @@ void awen(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false) {
 }
 
 /**
- * @brief pokiPiLawaOS([nimiKen...]) -> nimi lon poki nanpa | ala
+ * @brief pokiPiLawaOS([nimiKen...]) -> nimi lon poki | ala
  * 
  * li kama jo e poki pi lawa OS tan lawa OS sama "LANG" anu "USER" anu "LOGNAME".
  */
@@ -380,7 +380,7 @@ namespace ilo {
         {"tokiEIke",       NimiWawa(&tokiEIke)},
         {"tokiEIkeELinja", NimiWawa(&tokiEIkeELinja)},
 
-        {"kamaJoTanJan",   NimiWawa(&kamaJoTanJan)},
+        {"kamaJo",         NimiWawa(&kamaJo)},
         {"wan",            NimiWawa(&wan)},
 
         {"awen",           NimiWawa(&awen)},

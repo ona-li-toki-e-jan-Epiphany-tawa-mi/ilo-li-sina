@@ -31,9 +31,9 @@ Function calls can also be nested to pass the result of a function as an argumen
 
 ```ilo li sina
     # Echoes what the user types.
-    tokiELinja("You typed: " kamaJoTanJan()) 
+    tokiELinja("You typed: " kamaJo()) 
 
-    tokiELinja("Your name is: " kamaJoTanJan("What is your name? "))
+    tokiELinja("Your name is: " kamaJo("What is your name? "))
 ```
 
 Here are all of the functions:
@@ -54,9 +54,9 @@ Like toki(), but prints the messages to stderr instead of stdout.
 
 Like tokiELinja(), but prints the messages to stderr instead of stdout.
 
-#### **kamaJoTanJan(\[messages...\]) -> user input**
+#### **kamaJo(\[messages...\]) -> user input**
 
-Passes the messages to tokiELinja() and then gets input from the user and returns it. Blocks until input is received.
+Passes the messages to toki() and then gets input from the user and returns it. Blocks until input is received.
 
 #### **wan(\[strings...\]) -> concatenated string**
 
@@ -129,7 +129,7 @@ You can also use alaLaTawa() for conditional jumping. It will jump if the all of
 Nothing:
     tokiELinja("You said nothing!")
 GetName:
-    name = kamaJoTanJan("What's your name? ")
+    name = kamaJo("What's your name? ")
     alaLaTawa(Nothing name)
     tokiELinja("Hello, " name "!")
 ```
@@ -170,33 +170,13 @@ For awen(), you may wish to verify if a string is an integer without rasing an e
 
 ```ilo li sina
 notNumber:
-    possibleNumber = kamaJoTanJan("Say a number! ")
+    possibleNumber = kamaJo("Say a number! ")
     nanpaLaTawa(isNumber possibleNumber)
     tokiELinja("'" possibleNumber "' is not a number!")
     tawa(notNumber)
 
 isNumber:
     tokiELinja("Your're " possibleNumber " years old? Old as, ha ha ha!")
-```
-
-One small nuance is that a jump is not preformed until the line is fully evaluated. Until then, jumps act like normal functions and run a result that can be passed to a different one or stored. For example:
-
-```ilo li sina
-    likesApples = niLaTawa(End "yes" "no"                   \
-                           "Do you like apples? [yes/no] ")
-    
-AskAgain: 
-    # If they say nothing they will be asked again. If they say something other than the yes message, 
-    # it responds with "Incorrect!". 
-    alaLaTawa(AskAgain niLaTawa(End "I like apples" _                                              \
-                                    likesApples "? You don't like apples? Incorrect! Say \"I like" \
-                                    "apples\" right now!"))  
-
-    tokiELinja("Incorrect!")
-    tawa(AskAgain)
-
-End:
-    tokiELinja("That's good! I think we're friends!")
 ```
 
 ### ***Variables***
@@ -208,7 +188,7 @@ You can use variables to store data for later. They are created by typing a name
     b = a
     tokiELinja(b) # Says "test"
 
-    a = kamaJoTanJan("What would you like? ")
+    a = kamaJo("What would you like? ")
     tokiELinja("You cannot have " a) # If the user says "money" then "You cannot have money" will be printed.
 
     test = "test"    
@@ -271,7 +251,7 @@ End:
 
 #### *EOF handling:*
 
-kamaJoTanJan() and niLaTawa() force exit the program when they encounter an EOF character.
+kamaJo() and niLaTawa() force exit the program when they encounter an EOF character.
 
 This is mainly due to the fact that the language is all IO. If there is nothing to read, there is nothing to do. Though, this does allow reading from files. For example, if you make and fill a file called "temp.txt" and run "temp.txt | ilo_li_sina \<program name\>", that ilo li sina program will pull input from that file until it hits the end, rather then forming an infinite loop.
 

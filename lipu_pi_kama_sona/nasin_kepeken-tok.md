@@ -31,9 +31,9 @@ sina ken pana e nimi wawa tawa nimi ante:
 
 ```ilo li sina
     # li toki e nimi jan.
-    tokiELinja("sina toki e ni: " kamaJoTanJan()) 
+    tokiELinja("sina toki e ni: " kamaJo()) 
 
-    tokiELinja("sina jan " kamaJoTanJan("nimi sina li seme? "))
+    tokiELinja("sina jan " kamaJo("nimi sina li seme? "))
 ```
 
 ona ale li ni:
@@ -54,9 +54,9 @@ sama toki() la li toki e nimi. taso, li toki e ona lon lupa Stderr lon ala lupa 
 
 sama tokiELinja() la li toki e nimi e linja sin. taso, li toki e ona lon lupa Stderr lon ala lupa Stdout.
 
-#### **kamaJoTanJan(\[nimi...\]) -> nimi tan jan**
+#### **kamaJo(\[nimi...\]) -> nimi tan jan**
 
-li pana e nimi tawa tokiELinja() li kama jo e nimi tan jan. li awen e lipu wawa. jan li toki e nimi la li open e lipu wawa.
+li pana e nimi tawa toki() li kama jo e nimi tan jan. li awen e lipu wawa. jan li toki e nimi la li open e lipu wawa.
 
 #### **wan(\[nimi...\]) -> nimi wan tan nimi pana**
 
@@ -66,13 +66,13 @@ li wan e nimi lon nimi wan.
 
 li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi nanpa lili ala (sama "400" anu "1369" sama ala "3.5" anu "0.1111") li sama tenpo Milisekon (Miliseconds). nimi tenpo li ala la li pali e ala kepeken ona (pana la sina ken pana e "awen("200" _)". ni li awen lon tenpo Milisekon 200 li toki ala e ike).
 
-#### **pokiPiLawaOS(\[nimiKen...\]) -> nimi lon poki nanpa | ala**
+#### **pokiPiLawaOS(\[nimiKen...\]) -> nimi lon poki | ala**
 
-li kama jo e nimi lon poki nanpa Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
+li kama jo e nimi lon poki Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
 
-lawa OS (sama Windows anu Linux) li jo e poki nanpa Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
+lawa OS (sama Windows anu Linux) li jo e poki Enviroment Variables lon poki Enviroment. lipu wawa ali li ken lukin e ona. sina ken kama jo e nimi lon poki ni kepeken nimi wawa ni.
 
-nimi ken li nimi ali tawa poki nanpa wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
+nimi ken li nimi ali tawa poki wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
 
 poki li lon ala la li pana e ala.
 
@@ -82,7 +82,7 @@ li tawa lon nimi tawa.
 
 #### **niLaTawa(nimiTawa nimiLon nimiPiLonAla \[nimiTawaToki...\]) -> nimi tan jan**
 
-li toki e nimi tawa toki. jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala. li tawa anu tawa ala la li pana e nimi tan jan.
+li toki e nimi tawa toki(). jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala. li tawa anu tawa ala la li pana e nimi tan jan.
 
 sina ken pana e nimi lon ala "" anu nimi ala pi lon ala. ni la nimi ali pi nimi ante ala li ken tawa ona. taso, ona tu li ken ala jo e ala lon tenpo sama.
 
@@ -131,7 +131,7 @@ sin la sina ken kepeken e alaLaTawa() tawa tawa ken. nimi ali tawa ona li jo e a
 liTokiEAla:
     tokiELinja("sina toki e ala!")
 kamaPiJoNimi:
-    nimi = kamaJoTanJan("nimi sina li seme? ")
+    nimi = kamaJo("nimi sina li seme? ")
     alaLaTawa(liTokiEAla nimi)
     tokiELinja("jan " nimi " o, toki!")
 ```
@@ -171,7 +171,7 @@ ken la sina kepeken e awen() la sina wile sona e ni kepeken ala ike: nimi li nan
 
 ```ilo li sina
 nanpaAla:
-    nanpaKen = kamaJoTanJan("o toki e nanpa! ")
+    nanpaKen = kamaJo("o toki e nanpa! ")
     nanpaLaTawa(liNanpa nanpaKen)
     tokiELinja("'" nanpaKen "' li nanpa ala a!")
     tawa(nanpaAla)
@@ -182,24 +182,6 @@ liNanpa:
 
 o sona e ni: nimi wawa tawa li tawa lon tenpo ni: ijo ali lon linja li pini. ni la sina ken pana e tawa mute lon linja wan, anu poki e ijo tan ona. pana la:
 
-```ilo li sina
-    kiliLiPona = niLaTawa(pini "pona" "pona ala"                                                       \
-                          "kili loje kiwen pi kasi suli li pona ala pona tawa sina? [pona/pona ala] ")
-    
-tokiSin: 
-    # jan li toki e ala la li kepeken sin e niLaTawa(). ona li toki e ijo ala pi nimi lon la li toki e 
-    #       "ike!" li kepeken sin e niLaTawa(). ona li toki e nimi lon la li pini e lipu wawa.
-    alaLaTawa(tokiSin niLaTawa(pini "kili li pona tawa mi" _                                   \
-                                    "kili li " kiliLiPona " tawa sina? ike a! o toki e ni lon" \
-                                    " tenpo ni!: kili li pona tawa mi"))
-
-    tokiELinja("ike!")
-    tawa(tokiSin)
-
-pini:
-    tokiELinja("ni li pona! sina jan pona mi!")
-```
-
 ### ***poki***
 
 sina ken kepeken e poki tawa poki e nimi. sina ken pali e ona kepeken nimi en sitelen '=' en ijo tawa poki. sina ken pana e ona lon nimi wawa anu poki ante kepeken nimi ona. pana la:
@@ -209,7 +191,7 @@ sina ken kepeken e poki tawa poki e nimi. sina ken pali e ona kepeken nimi en si
     b = a
     tokiELinja(b) # li toki e "test"
 
-    a = kamaJoTanJan("sina wile e seme? ")
+    a = kamaJo("sina wile e seme? ")
     tokiELinja(a " li tawa ala sina") # nimi jan li "mani" la li toki e "mani li tawa ala sina".
 
     ijo = "ijo"
@@ -272,7 +254,7 @@ pini:
 
 #### *kama jo pi sitelen EOF (pini lipu):*
 
-nimi wawa kamaJoTanJan() en niLaTawa() li kama jo e sitelen EOF la li pini e lipu wawa. 
+nimi wawa kamaJo() en niLaTawa() li kama jo e sitelen EOF la li pini e lipu wawa. 
 
 ni li tan ni: ali pi toki ni li kama jo e nimi li toki e nimi. nimi li lon ala tawa kama la "ilo li sina" li ken pali e ala. taso, ona li ken e ni: kama jo e nimi tan lipu. pana la sina ken pana e nimi wile lon lipu "temp.txt" li sitelen e "temp.txt | ilo_li_sina \<nimi pi lipu wawa\>". lipu wawa li kama jo e nimi ali tan "temp.txt" la li pini li awen ala lon tenpo ali.
 

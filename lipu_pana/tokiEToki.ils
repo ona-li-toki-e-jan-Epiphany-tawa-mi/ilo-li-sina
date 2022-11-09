@@ -18,7 +18,7 @@ tokiNimi:
 
 nimiAla:
     tokiELinja()
-    __nimi_jan = kamaJoTanJan("mi sona ala e nimi sina. nimi sina li seme? ")
+    __nimi_jan = kamaJo("mi sona ala e nimi sina. nimi sina li seme? ")
     tawa(tokiNimi)
 
 piniLipu:

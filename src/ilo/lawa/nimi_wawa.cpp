@@ -290,6 +290,28 @@ bool alaLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     return true;
 }
 
+/**
+ * @brief nanpaLaTawa([nanpaKen...]) -> ala
+ * 
+ * nimi ali pana li nanpa la li tawa.
+ */
+bool nanpaLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    for (; nanpaIjo > 0; nanpaIjo--) 
+        try {
+            std::stoi(sonaLawa.pokiPali.top());
+            sonaLawa.pokiPali.pop();
+        
+        } catch (const std::logic_error liNanpaAlaAnuPonaAla) {
+            pakalaEAwen(sonaLawa.pokiPali, nanpaIjo);
+            sonaLawa.pokiPali.push("");
+
+            return false;
+        }
+
+    sonaLawa.pokiPali.push("");
+    return true;
+}
+
 
 
 namespace ilo {
@@ -372,9 +394,10 @@ namespace ilo {
     };
 
     const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa = {
-        {"tawa",      NimiWawaTawa(&tawa,     0, 0)},
-        {"niLaTawa",  NimiWawaTawa(&niLaTawa, 3)},
-        {"alaLaTawa", NimiWawaTawa(&alaLaTawa)}
+        {"tawa",        NimiWawaTawa(&tawa,     0, 0)},
+        {"niLaTawa",    NimiWawaTawa(&niLaTawa, 3)},
+        {"alaLaTawa",   NimiWawaTawa(&alaLaTawa)},
+        {"nanpaLaTawa", NimiWawaTawa(&nanpaLaTawa)}
     };
 
     const std::string& tomoPiNimiWawaTawaNimi(const TomoPiNimiWawa* tomoPiNimiWawa) noexcept(false) {

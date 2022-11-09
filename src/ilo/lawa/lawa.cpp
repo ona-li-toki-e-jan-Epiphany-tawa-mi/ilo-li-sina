@@ -151,9 +151,6 @@ namespace ilo {
             assert( pokiPali.size() == 1
                  && "lawa e nimi wawa la nanpa ijo ike lon poki pali!");
             pokiPali.pop();
-
-            assert( kasiPiTenpoNi >= 0 && kasiPiTenpoNi < lipuWawa.kasiLonAnpa.size()
-                 && "lawa la nimi wawa tawa li wile tawa lon lon ike. ona li lon ala lipu wawa!");
         }
     }
 }

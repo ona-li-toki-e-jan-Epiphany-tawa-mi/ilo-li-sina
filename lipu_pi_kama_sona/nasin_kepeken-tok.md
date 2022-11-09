@@ -94,6 +94,10 @@ nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e n
 
 nimi pana ale li jo e ala la li tawa.
 
+#### **nanpaLaTawa(\[nanpaKen...\]) -> ala**
+
+nimi ali pana li nanpa la li tawa.
+
 ### ***tawa***
 
 toki li kepeken e nimi wawa tawa GOTO tawa tawa lon lipu wawa.
@@ -161,6 +165,19 @@ sonaPona:
         niLaTawa(ala "pini ala" "pini"              \
             "sina wile pini ala pini e lipu wawa?") \
         " e lipu wawa ni"))
+```
+
+ken la sina kepeken e awen() la sina wile sona e ni kepeken ala ike: nimi li nanpa ala nanpa? kepeken nanpaLaTawa() ni li pona. nimi ali tawa ona li nanpa la li tawa. pana la:
+
+```ilo li sina
+nanpaAla:
+    nanpaKen = kamaJoTanJan("o toki e nanpa!")
+    nanpaLaTawa(liNanpa nanpaKen)
+    tokiELinja("'" nanpaKen "' li nanpa ala a!")
+    tawa(nanpaAla)
+
+liNanpa:
+    tokiELinja("tenpo sike " nanpaKen " la sina lon a! sina suli! a a a!")
 ```
 
 o sona e ni: nimi wawa tawa li tawa lon tenpo ni: ijo ali lon linja li pini. ni la sina ken pana e tawa mute lon linja wan, anu poki e ijo tan ona. pana la:

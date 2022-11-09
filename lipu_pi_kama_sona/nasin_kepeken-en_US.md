@@ -90,7 +90,11 @@ If both the yes and no messages are not wildcards, and the user types anything o
 
 #### **alaLaTawa(label string \[strings...\]) -> nothing**
 
-If all of the given strings contain nothing then it will jump to the given label.
+If all of the given strings contain nothing it will jump to the given label.
+
+#### **nanpaLaTawa(label \[possibleNumbers...\]) -> nothing**
+
+If all of the given strings are valid integers it will jump to the given label.
 
 ### ***Flow Control***
 
@@ -160,6 +164,19 @@ SpittingFacts:
         niLaTawa(KnowNothing "continue" "stop" \
             "Do you want to continue?")        \
         " the program"))
+```
+
+For awen(), you may wish to verify if a string is an integer without rasing an exception. This can be done with nanpaLaTawa(), which jumps if all of it's arguments are valid integers.
+
+```ilo li sina
+notNumber:
+    possibleNumber = kamaJoTanJan("Say a number!")
+    nanpaLaTawa(isNumber possibleNumber)
+    tokiELinja("'" possibleNumber "' is not a number!")
+    tawa(notNumber)
+
+isNumber:
+    tokiELinja("Your're " possibleNumber " years old? Old as, ha ha ha!")
 ```
 
 One small nuance is that a jump is not preformed until the line is fully evaluated. Until then, jumps act like normal functions and run a result that can be passed to a different one or stored. For example:

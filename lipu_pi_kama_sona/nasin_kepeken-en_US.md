@@ -33,7 +33,7 @@ Function calls can also be nested to pass the result of a function as an argumen
     # Echoes what the user types.
     tokiELinja("You typed: " kamaJoTanJan()) 
 
-    tokiELinja("Your name is: " kamaJoTanJan("What is your name?"))
+    tokiELinja("Your name is: " kamaJoTanJan("What is your name? "))
 ```
 
 Here are all of the functions:
@@ -80,7 +80,7 @@ Jumps to the given label.
 
 #### **niLaTawa(label yesMessage noMessage \[messages...\]) -> user input**
 
-Passes the messages to tokiELinja() along with the yes and no messages, and blocks until input is received from the user. If the user responds with the yes message, then it will jump to the given label. If the user responds with the no message then it will not jump and continue to the next line. Returns user input regardless of whether it jumped.
+Passes the messages to tokiELinja() and blocks until input is received from the user. If the user responds with the yes message, then it will jump to the given label. If the user responds with the no message then it will not jump and continue to the next line. Returns user input regardless of whether it jumped.
 
 You can supply an empty string as either the yes or no message, but not both, as a wild card.
 
@@ -115,8 +115,8 @@ tawa() always jumps, for conditional jumping you can use niLaTawa() instead.
 ```ilo li sina
 Continue:
     tokiELinja("I'm continuing to say this!")
-    niLaTawa(Continue "continue" "stop" \
-             "Continue?")
+    niLaTawa(Continue "continue" "stop"    \
+             "Continue? [continue/stop] ")
     tokiELinja("I'm no longer continuing to say that ;(")
 ```
 
@@ -129,7 +129,7 @@ You can also use alaLaTawa() for conditional jumping. It will jump if the all of
 Nothing:
     tokiELinja("You said nothing!")
 GetName:
-    name = kamaJoTanJan("What's your name?")
+    name = kamaJoTanJan("What's your name? ")
     alaLaTawa(Nothing name)
     tokiELinja("Hello, " name "!")
 ```
@@ -142,8 +142,8 @@ GOTOs jump only when the entire line that they are in has finished executing. Be
 
 ```ilo li sina
     # If the user says anything other than "yes" that is then stored in "knows".
-KnowNothing: knows = niLaTawa(SpittingFacts "yes" _   \
-        "Is kijetesantakalu the best word in Toki Pona?"))
+KnowNothing: knows = niLaTawa(SpittingFacts "yes" _               \
+        "Is kijetesantakalu the best word in Toki Pona? [yes] "))
 
     tokiELinja("The only answer is \"yes\"! \"" knows "\"er?, I don't even know her!")
     awen("1500")
@@ -159,10 +159,10 @@ SpittingFacts:
     # awen() will delay the program regardless of whether niLaTawa() jumps.
     #   Normally awen() throws an error when it receives non-numbers, but tokiELinja()
     #   always returns an empty string, which will simply be ignored.
-    awen("1500" tokiELinja(                    \
-        "You chose to "                        \
-        niLaTawa(KnowNothing "continue" "stop" \
-            "Do you want to continue?")        \
+    awen("1500" tokiELinja(                               \
+        "You chose to "                                   \
+        niLaTawa(KnowNothing "continue" "stop"            \
+            "Do you want to continue? [continue, stop] ") \
         " the program"))
 ```
 
@@ -170,7 +170,7 @@ For awen(), you may wish to verify if a string is an integer without rasing an e
 
 ```ilo li sina
 notNumber:
-    possibleNumber = kamaJoTanJan("Say a number!")
+    possibleNumber = kamaJoTanJan("Say a number! ")
     nanpaLaTawa(isNumber possibleNumber)
     tokiELinja("'" possibleNumber "' is not a number!")
     tawa(notNumber)
@@ -182,15 +182,15 @@ isNumber:
 One small nuance is that a jump is not preformed until the line is fully evaluated. Until then, jumps act like normal functions and run a result that can be passed to a different one or stored. For example:
 
 ```ilo li sina
-    likesApples = niLaTawa(End "yes" "no"        \
-                           "Do you like apples?")
+    likesApples = niLaTawa(End "yes" "no"                   \
+                           "Do you like apples? [yes/no] ")
     
 AskAgain: 
     # If they say nothing they will be asked again. If they say something other than the yes message, 
     # it responds with "Incorrect!". 
     alaLaTawa(AskAgain niLaTawa(End "I like apples" _                                              \
-                                    likesApples "? You don't like apples? Incorrect! Say that you" \
-                                    " like apples right now!"))  
+                                    likesApples "? You don't like apples? Incorrect! Say \"I like" \
+                                    "apples\" right now!"))  
 
     tokiELinja("Incorrect!")
     tawa(AskAgain)
@@ -208,13 +208,13 @@ You can use variables to store data for later. They are created by typing a name
     b = a
     tokiELinja(b) # Says "test"
 
-    a = kamaJoTanJan("What would you like?")
+    a = kamaJoTanJan("What would you like? ")
     tokiELinja("You cannot have " a) # If the user says "money" then "You cannot have money" will be printed.
 
     test = "test"    
 Multiply:
-    niLaTawa(Done "no" "yes"                      \
-             "Do you want to multiply \"test\"?")
+    niLaTawa(Done "no" "yes"                                \
+             "Do you want to multiply \"test\"? [yes/no] ")
     test = wan(test test)
     tawa(Multiply)
 Done:
@@ -248,8 +248,8 @@ ilo li sina delimits statements usings newlines, meaning that statments start an
     abc   \
     =     \
     "yes"
-    niLaTawa(Knows abc "no"                      \
-             "Do you know the gingerbread man?")
+    niLaTawa(Knows abc "no"                                \
+             "Do you know the gingerbread man? [yes/no] ")
 
     tokiELinja("This statement " " is" \
                " on several"           \

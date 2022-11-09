@@ -83,7 +83,7 @@ void kamaJoTanJan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false
     // nimi li wile lon sewi pi poki pali tawa poki e nimi tawa jan. toki la 1 li lon tawa ni. ni ala la
     //      mi wile pana e poki nimi ala lon ona.
     if (nanpaIjo != 0) {
-        tokiELinja(sonaLawa, nanpaIjo);
+        toki(sonaLawa, nanpaIjo);
 
     } else
         sonaLawa.pokiPali.push("");
@@ -238,15 +238,9 @@ bool niLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false) {
 
     // jan li toki e ike la li wile toki sin e ijo.
     while (true) {
-        if (!nimiTawaJan.empty()) {
-            for (const auto& nimi : nimiTawaJan)
-                std::cout << nimi;
-
-            std::cout << ' ';
-        }
-        std::cout << "(" << nimiLon << '/' << nimiPiLonAla << ")\n";
+        for (const auto& nimi : nimiTawaJan)
+            std::cout << nimi;
         
-
         if (!std::getline(std::cin, nimiJan)) {
             kepeken::tokiEIke({ sonaLawa.lonLipu
                               , sonaLawa.lonPiKasiPiTenpoNi
@@ -254,6 +248,7 @@ bool niLaTawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false) {
 
             throw std::runtime_error("niLaTawa() la li kama jo e pini lipu!");
         }
+
 
         if (nimiLon.empty() && nimiJan != nimiPiLonAla) {
             return true;

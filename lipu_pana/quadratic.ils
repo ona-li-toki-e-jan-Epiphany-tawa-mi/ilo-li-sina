@@ -5,46 +5,46 @@
     tokiELinja()
 
     quadratic = kamaJoTanJan("Enter the equation you would like to solve (in the form ax^2+bx+c): ")
-    a = kamaJoTanJan("What is the multiple on x^2 (a) in " quadratic "?")
+    a = kamaJoTanJan("What is the multiple on x^2 (a) in " quadratic "? ")
 
     niLaTawa(HasSolution "no" "yes" \
-            "Is " a " equal to 0?")
+            "Is " a " equal to 0? [yes/no] ")
     tokiELinja()
     tokiELinja("No solution")
     tawa(ProgramEnd)
 HasSolution:
 
-    b = kamaJoTanJan("What is the multiple on x (b) in " quadratic "?")
-    c = kamaJoTanJan("What is the constant (c) in " quadratic "?")
-    discriminant = kamaJoTanJan(                           \
-            "What is (" kamaJoTanJan("What is (" b ")^2?") \
-            ")-("                                          \
-            kamaJoTanJan("What is ("                       \
-                kamaJoTanJan("What is 4*(" a ")?")         \
-                ")*(" c ")?")                              \
-            ")?")
-    divisor = kamaJoTanJan("What is 2*(" a ")?")
+    b = kamaJoTanJan("What is the multiple on x (b) in " quadratic "? ")
+    c = kamaJoTanJan("What is the constant (c) in " quadratic "? ")
+    discriminant = kamaJoTanJan(                            \
+            "What is (" kamaJoTanJan("What is (" b ")^2? ") \
+            ")-("                                           \
+            kamaJoTanJan("What is ("                        \
+                kamaJoTanJan("What is 4*(" a ")? ")         \
+                ")*(" c ")? ")                              \
+            ")? ")
+    divisor = kamaJoTanJan("What is 2*(" a ")? ")
 
     niLaTawa(OneSolution "yes" "no"            \
-            "Is " discriminant " equal to 0?")
+            "Is " discriminant " equal to 0? [yes/no] ")
     
 # 2 solution branch.
-    niLaTawa(NegativeDiscriminant "yes" "no" \
-            "Is " discriminant " negative?")
-    discriminant = kamaJoTanJan("What is the square root of " discriminant "?")
+    niLaTawa(NegativeDiscriminant "yes" "no"          \
+            "Is " discriminant " negative? [yes/no] ")
+    discriminant = kamaJoTanJan("What is the square root of " discriminant "? ")
     tawa(PositiveDisciminant)
 NegativeDiscriminant:
-    discriminant = wan(                                                           \
-            "(" kamaJoTanJan("What is the square root of (" discriminant ")*-1?") \
+    discriminant = wan(                                                            \
+            "(" kamaJoTanJan("What is the square root of (" discriminant ")*-1? ") \
             ")i")
 PositiveDisciminant:
 
     positiveSolution = wan("(-(" b ")+(" discriminant "))/(" divisor ")")
     negativeSolution = wan("(-(" b ")-(" discriminant "))/(" divisor ")")
     niLaTawa(NoSimplificationTS "no" "yes" \
-            "Can " positiveSolution " and " negativeSolution " be simplified?")
-    positiveSolution = kamaJoTanJan("What is the simplified form of " positiveSolution "?")
-    negativeSolution = kamaJoTanJan("What is the simplified form of " negativeSolution "?")
+            "Can " positiveSolution " and " negativeSolution " be simplified? [yes/no] ")
+    positiveSolution = kamaJoTanJan("What is the simplified form of " positiveSolution "? ")
+    negativeSolution = kamaJoTanJan("What is the simplified form of " negativeSolution "? ")
 NoSimplificationTS:
     tokiELinja()
     tokiELinja("The solutions to the equation " quadratic " are " positiveSolution " and " negativeSolution)
@@ -53,9 +53,9 @@ NoSimplificationTS:
 
 OneSolution:
     solution = wan("-(" b ")/(" divisor ")")
-    niLaTawa(NoSimplificationOS "no" "yes" \
-            "Can " solution " be simplified?")
-    solution = kamaJoTanJan("What is the simplified form of " solution "?")
+    niLaTawa(NoSimplificationOS "no" "yes"     \
+            "Can " solution " be simplified? [yes/no] ")
+    solution = kamaJoTanJan("What is the simplified form of " solution "? ")
 NoSimplificationOS:
     tokiELinja()
     tokiELinja("The solution to the equation " quadratic " is " solution)

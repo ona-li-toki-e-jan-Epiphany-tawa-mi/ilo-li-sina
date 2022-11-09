@@ -33,7 +33,7 @@ sina ken pana e nimi wawa tawa nimi ante:
     # li toki e nimi jan.
     tokiELinja("sina toki e ni: " kamaJoTanJan()) 
 
-    tokiELinja("sina jan " kamaJoTanJan("nimi sina li seme?"))
+    tokiELinja("sina jan " kamaJoTanJan("nimi sina li seme? "))
 ```
 
 ona ale li ni:
@@ -82,7 +82,7 @@ li tawa lon nimi tawa.
 
 #### **niLaTawa(nimiTawa nimiLon nimiPiLonAla \[nimiTawaToki...\]) -> nimi tan jan**
 
-li toki e nimi tawa toki e nimi lon e nimi pi lon ala e linja sin. jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala. li tawa anu tawa ala la li pana e nimi tan jan.
+li toki e nimi tawa toki. jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala. li tawa anu tawa ala la li pana e nimi tan jan.
 
 sina ken pana e nimi lon ala "" anu nimi ala pi lon ala. ni la nimi ali pi nimi ante ala li ken tawa ona. taso, ona tu li ken ala jo e ala lon tenpo sama.
 
@@ -118,7 +118,7 @@ sina ken kepeken e nimi niLaTawa() sama ni tawa tawa ken. pana la:
 awen:
     tokiELinja("mi awen toki e nimi ni!")
     niLaTawa(awen "pini ala" "pini" \
-             "pini anu pini ala?")
+             "pini anu pini ala? ")
     tokiELinja("mi awen ala toki e nimi ni ;(")
 ```
 
@@ -131,7 +131,7 @@ sin la sina ken kepeken e alaLaTawa() tawa tawa ken. nimi ali tawa ona li jo e a
 liTokiEAla:
     tokiELinja("sina toki e ala!")
 kamaPiJoNimi:
-    nimi = kamaJoTanJan("nimi sina li seme?")
+    nimi = kamaJoTanJan("nimi sina li seme? ")
     alaLaTawa(liTokiEAla nimi)
     tokiELinja("jan " nimi " o, toki!")
 ```
@@ -144,8 +144,8 @@ nimi wawa tawa li tawa lon tenpo ni taso: nimi wawa ali en ijo ante ali lon linj
 
 ```ilo li sina
     # jan li toki ala e sona pona la li poki e nimi ona lon poki liSonaPona.
-ala: liSonaPona = niLaTawa(sonaPona "sona pona" _                     \
-        "kijetesantakalu li nimi pona pona pi toki pona, anu seme?"))
+ala: liSonaPona = niLaTawa(sonaPona "sona pona" _                                  \
+        "kijetesantakalu li nimi pona pona pi toki pona, anu seme? [sona pona] "))
 
     tokiELinja("sina sona e ala! o toki e \"sona pona\" e \"" liSonaPona "\" ala!")
     awen("1500")
@@ -160,10 +160,10 @@ sonaPona:
     #
     # sin la niLaTawa() li tawa ala tawa la awen() li awen() li toki e ike ala tan ni: 
     #   tokiELinja li pana e ala. awen() li pali e ala kepeken nimi ala.
-    awen("1500" tokiELinja(                         \
-        "sina pilin "                               \
-        niLaTawa(ala "pini ala" "pini"              \
-            "sina wile pini ala pini e lipu wawa?") \
+    awen("1500" tokiELinja(                          \
+        "sina pilin "                                \
+        niLaTawa(ala "pini ala" "pini"               \
+            "sina wile pini ala pini e lipu wawa? ") \
         " e lipu wawa ni"))
 ```
 
@@ -171,7 +171,7 @@ ken la sina kepeken e awen() la sina wile sona e ni kepeken ala ike: nimi li nan
 
 ```ilo li sina
 nanpaAla:
-    nanpaKen = kamaJoTanJan("o toki e nanpa!")
+    nanpaKen = kamaJoTanJan("o toki e nanpa! ")
     nanpaLaTawa(liNanpa nanpaKen)
     tokiELinja("'" nanpaKen "' li nanpa ala a!")
     tawa(nanpaAla)
@@ -183,8 +183,8 @@ liNanpa:
 o sona e ni: nimi wawa tawa li tawa lon tenpo ni: ijo ali lon linja li pini. ni la sina ken pana e tawa mute lon linja wan, anu poki e ijo tan ona. pana la:
 
 ```ilo li sina
-    kiliLiPona = niLaTawa(pini "pona" "pona ala"                                      \
-                          "kili loje kiwen pi kasi suli li pona ala pona tawa sina?")
+    kiliLiPona = niLaTawa(pini "pona" "pona ala"                                                       \
+                          "kili loje kiwen pi kasi suli li pona ala pona tawa sina? [pona/pona ala] ")
     
 tokiSin: 
     # jan li toki e ala la li kepeken sin e niLaTawa(). ona li toki e ijo ala pi nimi lon la li toki e 
@@ -209,13 +209,13 @@ sina ken kepeken e poki tawa poki e nimi. sina ken pali e ona kepeken nimi en si
     b = a
     tokiELinja(b) # li toki e "test"
 
-    a = kamaJoTanJan("sina wile e seme?")
+    a = kamaJoTanJan("sina wile e seme? ")
     tokiELinja(a " li tawa ala sina") # nimi jan li "mani" la li toki e "mani li tawa ala sina".
 
     ijo = "ijo"
 mute:
     niLaTawa(muteAla "mute ala" "mute"       \
-             "li wile mute ala mute e ijo?")
+             "li wile mute ala mute e ijo? ")
     ijo = wan(ijo ijo)
     tawa(mute)
 muteAla:

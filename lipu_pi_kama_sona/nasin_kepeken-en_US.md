@@ -58,43 +58,25 @@ Like tokiELinja(), but prints the messages to stderr instead of stdout.
 
 Passes the messages to toki() and then gets input from the user and returns it. Blocks until input is received.
 
-#### **wan(\[strings...\]) -> concatenated string**
+#### **wan(string string \[strings...\]) -> concatenated string**
 
 Concatenates the given strings into a single string and returns it.
 
-#### **awen(\[durations...\]) -> nothing**
+#### **awen(duration \[durations...\]) -> nothing**
 
 Waits for the duration made by summing up the given durations. Durations must be valid integers and represent the time to wait in miliseconds. awen() will ignore any empty strings (for instance, "awen("200" _)" is valid and will wait for 200 miliseconds.)
 
-#### **pokiPiLawaOS(\[names...\]) -> stored value | nothing**
+#### **pilin(string string \[strings...\]) -> 1 string from the given strings**
+
+Chooses a random string from the given ones.
+
+#### **pokiPiLawaOS(name \[names...\]) -> stored value | nothing**
 
 Gets the value from a given enviroment variable.
 
 The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one and isn't empty. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows (only for example, you should use the preinitialized variable __nimi_jan instead.) By supplying all 3 variants, you can ensure that it will work on both.
 
 If none of the given variables have a value, then nothing is returned.
-
-#### **tawa(label) -> nothing**
-
-Jumps to the given label.
-
-#### **niLaTawa(label yesMessage noMessage \[messages...\]) -> user input**
-
-Passes the messages to tokiELinja() and blocks until input is received from the user. If the user responds with the yes message, then it will jump to the given label. If the user responds with the no message then it will not jump and continue to the next line. Returns user input regardless of whether it jumped.
-
-You can supply an empty string as either the yes or no message, but not both, as a wild card.
-
-For example, if you put a wildcard for the yes message and "test" for the no message, then if the user types "test", it will not jump, but if they put anything else, it will.
-
-If both the yes and no messages are not wildcards, and the user types anything other than those messages, then it will repeatedly ask until the user does.
-
-#### **alaLaTawa(label string \[strings...\]) -> nothing**
-
-If all of the given strings contain nothing it will jump to the given label.
-
-#### **nanpaLaTawa(label possibleNumber \[possibleNumbers...\]) -> nothing**
-
-If all of the given strings are valid integers it will jump to the given label.
 
 ### ***Flow Control***
 
@@ -178,6 +160,32 @@ notNumber:
 isNumber:
     tokiELinja("Your're " possibleNumber " years old? Old as, ha ha ha!")
 ```
+
+You can create a random jump using alaLaTawa() in combination with pilin(). Place the amount of empty and non-empty strings required within the call to pilin(), where the chance of jumping is the number of the empty strings divided by the total number of strings given to it. If you wanted a 30% chance (3/10), you can use alaLaTawa(label pilin(_ _ _ "1" "2" "3" "4" "5" "6" "7")). The non-empty strings being numbers is not important, just that they are not empty. 
+
+Here are all of the GOTOs in ilo li sina.
+
+#### **tawa(label) -> nothing**
+
+Jumps to the given label.
+
+#### **niLaTawa(label yesMessage noMessage \[messages...\]) -> user input**
+
+Passes the messages to tokiELinja() and blocks until input is received from the user. If the user responds with the yes message, then it will jump to the given label. If the user responds with the no message then it will not jump and continue to the next line. Returns user input regardless of whether it jumped.
+
+You can supply an empty string as either the yes or no message, but not both, as a wild card.
+
+For example, if you put a wildcard for the yes message and "test" for the no message, then if the user types "test", it will not jump, but if they put anything else, it will.
+
+If both the yes and no messages are not wildcards, and the user types anything other than those messages, then it will repeatedly ask until the user does.
+
+#### **alaLaTawa(label string \[strings...\]) -> nothing**
+
+If all of the given strings contain nothing it will jump to the given label.
+
+#### **nanpaLaTawa(label possibleNumber \[possibleNumbers...\]) -> nothing**
+
+If all of the given strings are valid integers it will jump to the given label.
 
 ### ***Variables***
 

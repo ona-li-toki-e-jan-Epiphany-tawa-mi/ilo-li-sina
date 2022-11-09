@@ -58,15 +58,19 @@ sama tokiELinja() la li toki e nimi e linja sin. taso, li toki e ona lon lupa St
 
 li pana e nimi tawa toki() li kama jo e nimi tan jan. li awen e lipu wawa. jan li toki e nimi la li open e lipu wawa.
 
-#### **wan(\[nimi...\]) -> nimi wan tan nimi pana**
+#### **wan(nimi nimi \[nimi...\]) -> nimi wan tan nimi pana**
 
 li wan e nimi lon nimi wan. 
 
-#### **awen(\[tenpo...\]) -> ala**
+#### **awen(tenpo \[tenpo...\]) -> ala**
 
 li awen lon tenpo tan wan e tenpo pana. nimi tenpo li wile sama nanpa pona pi nanpa lili ala (sama "400" anu "1369" sama ala "3.5" anu "0.1111") li sama tenpo Milisekon (Miliseconds). nimi tenpo li ala la li pali e ala kepeken ona (pana la sina ken pana e "awen("200" _)". ni li awen lon tenpo Milisekon 200 li toki ala e ike).
 
-#### **pokiPiLawaOS(\[nimiKen...\]) -> nimi lon poki | ala**
+#### **pilin(nimi nimi \[nimi...\]) -> nimi 1 tan nimi pana**
+
+nasin ala la li pilin e nimi 1 tan nimi pana.
+
+#### **pokiPiLawaOS(nimiKen \[nimiKen...\]) -> nimi lon poki | ala**
 
 li kama jo e nimi lon poki Enviroment Variables pi lawa OS pi nimi ken pi nanpa 1 pi jo e nimi.
 
@@ -75,28 +79,6 @@ lawa OS (sama Windows anu Linux) li jo e poki Enviroment Variables lon poki Envi
 nimi ken li nimi ali tawa poki wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
 
 poki li lon ala la li pana e ala.
-
-#### **tawa(nimiTawa) -> ala**
-
-li tawa lon nimi tawa.
-
-#### **niLaTawa(nimiTawa nimiLon nimiPiLonAla \[nimiTawaToki...\]) -> nimi tan jan**
-
-li toki e nimi tawa toki(). jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala. li tawa anu tawa ala la li pana e nimi tan jan.
-
-sina ken pana e nimi lon ala "" anu nimi ala pi lon ala. ni la nimi ali pi nimi ante ala li ken tawa ona. taso, ona tu li ken ala jo e ala lon tenpo sama.
-
-pana la sina pana e "" tawa nimi lon e "test" tawa ante la jan li toki e "test" la ona li tawa ala. taso, jan li toki e nimi sama ala "test" la ona li tawa.
-
-nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e nimi ante la nimi niLaTawa() li toki sin e nimi tawa toki e nimi lon e nimi pi lon ala e linja sin.
-
-#### **alaLaTawa(nimiTawa nimi \[nimi...\]) -> ala**
-
-nimi pana ale li jo e ala la li tawa.
-
-#### **nanpaLaTawa(nimiTawa nanpaKen \[nanpaKen...\]) -> ala**
-
-nimi ali pana li nanpa la li tawa.
 
 ### ***tawa***
 
@@ -180,7 +162,31 @@ liNanpa:
     tokiELinja("tenpo sike " nanpaKen " la sina lon a! sina suli! a a a!")
 ```
 
-o sona e ni: nimi wawa tawa li tawa lon tenpo ni: ijo ali lon linja li pini. ni la sina ken pana e tawa mute lon linja wan, anu poki e ijo tan ona. pana la:
+sina ken pali e tawa ken pi nasin ala kepeken alaLaTawa() en pilin() sama ni: o pana e nimi en ala lon kepeken pilin(), en, pana e ijo kama tawa alaLaTawa(). pilin() li pana e ala la ona li tawa. sina ken ante e nanpa pi nimi en ala tawa ante e ken tawa. pana la sina wile tawa lon tenpo 3 tan 10 la o kepeken e alaLaTawa(nimiTawa pilin(_ _ _ "1" "2" "3" "4" "5" "6" "7")). nanpa li toki e ala. ijo suli 1 ona li lon: ona li ala ala (sama '_').
+
+ni li nimi wawa tawa ali lon toki "ilo li sina".
+
+#### **tawa(nimiTawa) -> ala**
+
+li tawa lon nimi tawa.
+
+#### **niLaTawa(nimiTawa nimiLon nimiPiLonAla \[nimiTawaToki...\]) -> nimi tan jan**
+
+li toki e nimi tawa toki(). jan li toki e nimi lon la li tawa lon nimi tawa. jan li toki e nimi pi lon ala la li tawa ala. li tawa anu tawa ala la li pana e nimi tan jan.
+
+sina ken pana e nimi lon ala "" anu nimi ala pi lon ala. ni la nimi ali pi nimi ante ala li ken tawa ona. taso, ona tu li ken ala jo e ala lon tenpo sama.
+
+pana la sina pana e "" tawa nimi lon e "test" tawa ante la jan li toki e "test" la ona li tawa ala. taso, jan li toki e nimi sama ala "test" la ona li tawa.
+
+nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e nimi ante la nimi niLaTawa() li toki sin e nimi tawa toki e nimi lon e nimi pi lon ala e linja sin.
+
+#### **alaLaTawa(nimiTawa nimi \[nimi...\]) -> ala**
+
+nimi pana ale li jo e ala la li tawa.
+
+#### **nanpaLaTawa(nimiTawa nanpaKen \[nanpaKen...\]) -> ala**
+
+nimi ali pana li nanpa la li tawa.
 
 ### ***poki***
 

@@ -41,9 +41,13 @@ namespace ilo {
      */
     class NimiWawa : public TomoPiNimiWawa {
         public:
-            NimiWawaKiwen nimiWawaKiwen;
+            NimiWawaKiwen nimiWawaKiwen = nullptr;
 
             NimiWawa(NimiWawaKiwen nimiWawaKiwen);
+            NimiWawa(unsigned int nanpaLiliPiIjoWile, NimiWawaKiwen nimiWawaKiwen);
+            NimiWawa(NimiWawaKiwen nimiWawaKiwen
+                    , unsigned int nanpaLiliPiIjoWile
+                    , unsigned int nanpaSuliPiIjoWile);
 
             /**
              * @brief li lawa e ilo nanpa kepeken nimi wawa kiwen lon ni. li moku e ijo pi nanpa nanpaIjo
@@ -58,10 +62,10 @@ namespace ilo {
 
     class NimiWawaTawa : public TomoPiNimiWawa {
         public:
-            NimiWawaTawaKiwen nimiWawaTawaKiwen;
+            NimiWawaTawaKiwen nimiWawaTawaKiwen = nullptr;
 
             NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen);
-            NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen, unsigned int nanpaLiliPiIjoWile);
+            NimiWawaTawa(unsigned int nanpaLiliPiIjoWile, NimiWawaTawaKiwen nimiWawaTawaKiwen);
             NimiWawaTawa( NimiWawaTawaKiwen nimiWawaTawaKiwen
                         , unsigned int nanpaLiliPiIjoWile
                         , unsigned int nanpaSuliPiIjoWile);

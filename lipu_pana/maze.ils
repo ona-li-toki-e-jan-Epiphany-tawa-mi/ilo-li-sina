@@ -1,0 +1,6 @@
+# That maze program one-liner you see in BASIC implemented in ilo li sina.
+# 10 PRINT CHR$(205.5+RND(1)); : GOTO 10
+Loop:
+    toki(pilin("/" "\\"))
+    awen("25")
+    tawa(Loop)

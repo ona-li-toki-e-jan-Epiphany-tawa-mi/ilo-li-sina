@@ -167,7 +167,7 @@ void tokiESonaKepeken() {
  * @brief li toki e nanpa pi ilo ni tawa jan.
  */
 void tokiENanpaPiIloNi() {
-	std::cout << "ilo_li_sina 0.0\n";
+	std::cout << "ilo_li_sina 1.0.0\n";
 }
 
 /**
@@ -175,7 +175,7 @@ void tokiENanpaPiIloNi() {
  * @param lonLipu lon pi lipu wawa.
  */
 void tokiELipuKipisi(const std::string& lonLipu) {
-	ilo::tokiELipuKipisi(ilo::kipisi(lonLipu), lonLipu);
+	ilo::tokiELipuKipisi(ilo::kipisiELipu(lonLipu), lonLipu);
 }
 
 /**
@@ -186,7 +186,7 @@ void tokiEKasiLipu(const std::string& lonLipu) {
 	ilo::KasiOpen kasiOpen;
 	
 	{
-		std::list<ilo::Ijo> lipuKipisi = ilo::kipisi(lonLipu);
+		std::list<ilo::Ijo> lipuKipisi = ilo::kipisiELipu(lonLipu);
 		kasiOpen                       = ilo::pali(lipuKipisi, lonLipu);
 	}
 
@@ -201,7 +201,7 @@ void lawaEIloNanpa(const std::string& lonLipu) {
 	ilo::KasiOpen kasiOpen;
 	
 	{
-		std::list<ilo::Ijo> lipuKipisi = ilo::kipisi(lonLipu);
+		std::list<ilo::Ijo> lipuKipisi = ilo::kipisiELipu(lonLipu);
 		kasiOpen                       = ilo::pali(lipuKipisi, lonLipu);
 	}
 

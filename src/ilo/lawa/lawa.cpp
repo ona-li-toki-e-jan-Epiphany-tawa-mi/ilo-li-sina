@@ -123,7 +123,7 @@ namespace ilo {
         }
 
 
-        pokiAli["__nanpa_Ilo_Li_Sina"] = "0.0";
+        pokiAli["__nanpa_Ilo_Li_Sina"] = "1.0.0";
         pokiAli["__nimi_Ilo_Li_Sina"]  = kepeken::kamaJoENimiPiILO_LI_SINA();
         pokiAli["__nimi_lipu"]         = lonLipu;
         pokiAli["__nimi_jan"]          = nimiJan != nullptr ? nimiJan : "";

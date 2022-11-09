@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 
-project(ilo_li_sina VERSION 0.0)
+project(ilo_li_sina VERSION 1.0.0)
 
 
 file(GLOB_RECURSE pokiPiNimiWawa ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)

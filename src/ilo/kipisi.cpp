@@ -224,20 +224,10 @@ namespace ilo {
                                                                                  , openPiPokiNanpa));
     }
 
-	std::list<Ijo> kipisi(const std::string& lonLipu) noexcept(false) {
+
+
+	std::list<Ijo> kipisi(std::istream& lipu, const std::string& lonLipu) noexcept(false) {
 		std::list<Ijo> pokiIjo;
-
-
-		std::ifstream lipu(lonLipu);
-
-		if (!lipu.is_open()) {
-			kepeken::tokiEIke({ 
-				ante_toki::anteENimi(
-					ante_toki::nimiTawaJan("ike.kipisi.li_ken_ala_open_e_lipu"),
-					"%s", lonLipu)});
-            throw std::invalid_argument("li ken ala open e poki '" + lonLipu + "'");
-		}
-
 
 		std::string linja;
 		size_t      nanpaLinja   = 1;
@@ -339,6 +329,20 @@ namespace ilo {
 
 		return pokiIjo;
 	}
+
+    std::list<Ijo> kipisiELipu(const std::string& lonLipu) noexcept(false) {
+        std::ifstream lipu(lonLipu);
+
+		if (!lipu.is_open()) {
+			kepeken::tokiEIke({ 
+				ante_toki::anteENimi(
+					ante_toki::nimiTawaJan("ike.kipisi.li_ken_ala_open_e_lipu"),
+					"%s", lonLipu)});
+            throw std::invalid_argument("li ken ala open e poki '" + lonLipu + "'");
+		}
+
+        return kipisi(lipu, lonLipu);
+    }
 
 
 

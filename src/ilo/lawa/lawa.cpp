@@ -27,7 +27,7 @@ namespace ilo {
 
         } catch (const std::out_of_range& liLonAla) {
             kepeken::tokiEIke({ sonaLawa.lonLipu
-                              , sonaLawa.lonPiKasiPiTenpoNi
+                              , this->lonKasi
                               , ante_toki::anteENimi(ante_toki::nimiTawaJan(
                                         "ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala")
                                       , "%s", this->nimiPoki)});
@@ -56,6 +56,7 @@ namespace ilo {
         suliPiPokiPali = sonaLawa.pokiPali.size(); // li lon tawa assert() taso.
 #endif
 
+        sonaLawa.lonPiKasiPiTenpoNi = &this->lonKasi;
         this->nimiWawa->lawa(sonaLawa, this->ijoPiNimiWawa.size());
 
         assert( suliPiPokiPali - sonaLawa.pokiPali.size() == this->ijoPiNimiWawa.size() - 1
@@ -82,6 +83,7 @@ namespace ilo {
         suliPiPokiPali = sonaLawa.pokiPali.size(); // li lon tawa assert() taso.
 #endif
 
+        sonaLawa.lonPiKasiPiTenpoNi = &this->lonKasi;
         if (this->nimiWawaTawa->lawa(sonaLawa, this->ijoPiNimiWawa.size())) 
             sonaLawa.kasiPiTenpoNi = this->lonTawaTawa - 1;
 

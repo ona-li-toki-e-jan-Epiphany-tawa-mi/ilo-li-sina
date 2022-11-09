@@ -1,4 +1,0 @@
-#!/usr/bin/env ilo_li_sina
-# ike ni li ken lon tenpo lawa.
-    # awen() li ken kama jo e nanpa taso.
-    awen("test")

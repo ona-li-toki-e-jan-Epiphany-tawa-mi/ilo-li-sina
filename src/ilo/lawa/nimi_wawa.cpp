@@ -119,6 +119,25 @@ void kamaJo(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) noexcept(false) {
 }
 
 /**
+ * @brief alaEIloPana() -> ala
+ * @attention li lon taso lawa Windows en lawa UNIX.
+ * 
+ * li ala (weka e sitelen) e ilo pana.
+ */
+void alaEIloPana(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    if (!kepeken::alaEIloPana()) {
+        kepeken::tokiEIke({ sonaLawa.lonLipu
+                          , sonaLawa.lonPiKasiPiTenpoNi
+                          , ante_toki::nimiTawaJan("ike.lawa.ala_e_ilo_pana.li_alasa_ala")});
+
+        throw std::runtime_error("alaEIloPana() li pali ala! li ken ala alasa e nimi wawa wile. ken la "
+                                 "lawa OS sina li pali ala tawa ni.");
+    }
+
+    sonaLawa.pokiPali.push("");
+}
+
+/**
  * @brief wan(nimi nimi [nimi...]) -> nimi wan tan nimi pana
  * 
  * li wan e poki nimi mute.
@@ -254,25 +273,6 @@ void lawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     }
 
     ilo::lawaELipu(lipuPali, sonaLawa.pokiAli, nimiPiLonLipu);
-    sonaLawa.pokiPali.push("");
-}
-
-/**
- * @brief alaEIloPana() -> ala
- * @attention li lon taso lawa Windows en lawa UNIX.
- * 
- * li ala (weka e sitelen) e ilo pana.
- */
-void alaEIloPana(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
-    if (!kepeken::alaEIloPana()) {
-        kepeken::tokiEIke({ sonaLawa.lonLipu
-                          , sonaLawa.lonPiKasiPiTenpoNi
-                          , ante_toki::nimiTawaJan("ike.lawa.ala_e_ilo_pana.li_alasa_ala")});
-
-        throw std::runtime_error("alaEIloPana() li pali ala! li ken ala alasa e nimi wawa wile. ken la "
-                                 "lawa OS sina li pali ala tawa ni.");
-    }
-
     sonaLawa.pokiPali.push("");
 }
 

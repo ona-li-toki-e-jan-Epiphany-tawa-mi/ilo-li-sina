@@ -1,0 +1,17 @@
+#!/usr/bin/env ilo_li_sina
+
+# ilo REPL lili pi toki "ilo li sina".
+    tokiELinja("\tilo REPL pona pi toki 'ilo li sina' pi nanpa " __nanpa_Ilo_Li_Sina)
+    tokiELinja()
+    tokiELinja("\to sona e ni: nimi wawa tawa li pali ala lon ni.")
+    tokiELinja("\tsina la sina ken ala kepeken e sitelen '\\' tawa toki e ijo lon linja mute.")
+    tokiELinja("\tsina wile kepeken e nimi wawa tawa la sina wile kepeken e lawa().")
+    tokiELinja()
+    tokiELinja("\to pilin e nena pi Ctrl en D tawa pini e ilo ni")
+    tokiELinja()
+    # tawa pilin pona. ni ala la ijo li pilin ike.
+    awen("500") 
+
+open:
+    lawa(kamaJo(">>> "))
+    tawa(open)

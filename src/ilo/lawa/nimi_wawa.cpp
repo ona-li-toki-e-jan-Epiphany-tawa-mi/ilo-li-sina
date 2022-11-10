@@ -5,11 +5,12 @@
 #include <thread>
 #include <chrono>
 #include <cstring>
-#include <list>
 #include <random>
+#include <sstream>
 
 #include "../../ijo_kepeken/ike.hpp"
 #include "../../ante_toki/ante_toki.hpp"
+#include "lawa.hpp"
 
 
 
@@ -222,6 +223,39 @@ void pokiPiLawaOS(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     sonaLawa.pokiPali.push(pokiNanpaPiLawaOS != nullptr ? pokiNanpaPiLawaOS : "");
 }
 
+/**
+ * @brief lawa([linja...]) -> ala
+ * 
+ * li pali e lipu wawa tan linja li lawa e ilo nanpa kepeken ona.
+ */
+void lawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    std::string nimiPiLonLipu = sonaLawa.lonLipu + "(" + 
+                                std::to_string(sonaLawa.lonPiKasiPiTenpoNi->nanpaLinja) + "," + 
+                                std::to_string(sonaLawa.lonPiKasiPiTenpoNi->nanpaSitelenLonLinja) + "):"
+                                " lawa()";
+    ilo::KasiOpen lipuPali;
+
+    {
+        std::list<ilo::Ijo> lipuKipisi;
+
+        {
+            std::stringstream lipuWawaSin;
+
+            for (; nanpaIjo > 0; nanpaIjo--) {
+                lipuWawaSin << sonaLawa.pokiPali.top() << '\n';
+                sonaLawa.pokiPali.pop();
+            }
+            
+            lipuKipisi = ilo::kipisi(lipuWawaSin, nimiPiLonLipu);
+        }
+
+        lipuPali = ilo::pali(lipuKipisi, nimiPiLonLipu);
+    }
+
+    ilo::lawaELipu(lipuPali, sonaLawa.pokiAli, nimiPiLonLipu);
+    sonaLawa.pokiPali.push("");
+}
+
 
 
 /**
@@ -419,17 +453,18 @@ namespace ilo {
         {"tokiEIke",       NimiWawa(&tokiEIke)},
         {"tokiEIkeELinja", NimiWawa(&tokiEIkeELinja)},
 
-        {"kamaJo",         NimiWawa(&kamaJo)},
+        {"kamaJo",         NimiWawa(   &kamaJo)},
         {"wan",            NimiWawa(2, &wan)},
         {"pilin",          NimiWawa(2, &pilin)},
-
         {"awen",           NimiWawa(1, &awen)},
 
-        {"pokiPiLawaOS",   NimiWawa(1, &pokiPiLawaOS)}
+        {"pokiPiLawaOS",   NimiWawa(1, &pokiPiLawaOS)},
+
+        {"lawa",           NimiWawa(&lawa)}
     };
 
     const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa = {
-        {"tawa",        NimiWawaTawa(&tawa, 0, 0)},
+        {"tawa",        NimiWawaTawa(   &tawa, 0, 0)},
         {"niLaTawa",    NimiWawaTawa(2, &niLaTawa)},
         {"alaLaTawa",   NimiWawaTawa(1, &alaLaTawa)},
         {"nanpaLaTawa", NimiWawaTawa(1, &nanpaLaTawa)}

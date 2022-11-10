@@ -36,7 +36,37 @@ sina ken pana e nimi wawa tawa nimi ante:
     tokiELinja("sina jan " kamaJo("nimi sina li seme? "))
 ```
 
-ona ale li ni:
+sina ken pali e nimi wawa sin kepeken lawa(). sina wile pana e ali pi nimi wawa lon poki 1 li wile pana e poki ni tawa lawa(). nimi wawa li jo e linja mute la o pana e sitelen pi linja sin ('\n') lon pini pi linja ali. tawa lukin pona la sina ken kepeken e wan() li ken pana e linja lon poki nimi ante. pana la:
+
+```ilo li sina
+    tokiEToki = "tokiELinja(nimi \" o, toki!\")"
+    
+    nimi = __nimi_jan
+    lawa(tokiEToki) # li toki e toki tawa jan.
+    nimi = "ma"
+    lawa(tokiEToki) # li toki e "ma o, toki!".
+
+    tokiPonaEWile = wan("wile = kamaJo(\"sina wile e seme? \")\n"                   \
+                        "tokiELinja(wile \" li ijo pona kin.\")\n"                  \
+                        "tokiELinja(\"mi wile e ni: sina ken kama jo e \" wile)\n")
+    lawa(tokiPonaEWile)
+    # $ sina wile e seme? mani
+    # $ mani li ijo pona kin
+    # $ mi wile e ni: sina ken kama jo e mani
+```
+
+sina ante e poki lon lawa() la ona li ante lon ali pi lipu wawa sina. kepeken ni li sina ken kama jo e ijo kama tan nimi wawa lon lawa(). o pana e ijo kama lon poki o kama jo tan poki ni, en, ijo kama li lon ni. pana la:
+
+```ilo li sina
+    tokiPonaEWile = wan("wile = kamaJo(\"sina wile e seme? \")\n"                   \
+                        "tokiELinja(wile \" li ijo pona kin.\")\n"                  \
+                        "tokiELinja(\"mi wile e ni: sina ken kama jo e \" wile)\n")
+    lawa(tokiPonaEWile)
+
+    tokiELinja("a a a! mi sona e sona suli sina! sina wile e " wile)
+```
+
+ni li nimi wawa ale:
 
 #### **toki(\[nimi...\]) -> ala**
 
@@ -79,6 +109,10 @@ lawa OS (sama Windows anu Linux) li jo e poki Enviroment Variables lon poki Envi
 nimi ken li nimi ali tawa poki wile. pana la nimi jan li ken lon "USER" anu "USERNAME" anu "LOGNAME" anu ante. taso, ona li lon ala ona ali. ni la sina ken pana e ona ali lon pokiPiLawaOS() li kama jo e nimi lon poki pi nanpa 1 pi jo e nimi (taso, tawa ni la sina ken pona kepeken e poki "__nimi_jan").
 
 poki li lon ala la li pana e ala.
+
+## **lawa([linja...]) -> ala**
+
+li pali e lipu wawa tan linja li lawa e ilo nanpa kepeken ona. lawa pi lipu wawa ni li kepeken e poki sama lipu wawa suli. sina ante e poki lon ona la ona li ante lon ali pi lipu wawa sina. kepeken ni la sina ken pali e nimi wawa sin. o lukin lon sewi tawa sona pona.
 
 ### ***tawa***
 

@@ -36,6 +36,36 @@ Function calls can also be nested to pass the result of a function as an argumen
     tokiELinja("Your name is: " kamaJo("What is your name? "))
 ```
 
+It is possible to create your own functions (more like subroutines, really) using lawa() by placing the functions code inside a single string and calling lawa with it. For multiline functions you will need to separate each line with a newline character (\\n). I recommend putting each line in a separate string, using wan() to join them together.
+
+```ilo li sina
+    greet = "tokiELinja(\"Hello \" name \"!\")"
+    
+    name = __nimi_jan
+    lawa(greet) # Greets the user.
+    name = "world"
+    lawa(greet) # Says "Hello world!"
+
+    talkAboutWish = wan("wish = kamaJo(\"What do you want? \")\n"     \
+                        "tokiELinja(wish \" is a great thing\")\n"    \
+                        "tokiELinja(\"I hope you can get \" wish)\n")
+    lawa(talkAboutWish)
+    # $ What do you want? money
+    # $ money is a great thing
+    # $ I hope you can get money
+```
+
+Chaanges to variables within lawa() carry outside of it. With this is possible to create subroutines, where returning a result can be done by assigning a value to a variable.
+
+```ilo li sina
+    talkAboutWish = wan("wish = kamaJo(\"What do you want? \")\n"     \
+                        "tokiELinja(wish \" is a great thing\")\n"    \
+                        "tokiELinja(\"I hope you can get \" wish)\n")
+    lawa(talkAboutWish)
+
+    tokiELinja("Haha! I know your secret! You want " wish)
+```
+
 Here are all of the functions:
 
 #### **toki(\[messages...\]) -> nothing**
@@ -77,6 +107,10 @@ Gets the value from a given enviroment variable.
 The names are the possible variants for the desired variable. Each will be accessed one by one, returing the value of the first variable that has one and isn't empty. For example, the name of the user is usually stored in "USER" or "LOGNAME" on Linux distros, but in "USERNAME" on Windows (only for example, you should use the preinitialized variable __nimi_jan instead.) By supplying all 3 variants, you can ensure that it will work on both.
 
 If none of the given variables have a value, then nothing is returned.
+
+## **lawa([lines...]) -> nothing**
+
+Converts the given lines into code and runs it, where each line is like a line in a file. The execution inside lawa() shares the same memory space for variables as the calling program. Any changes to variables within lawa() will show outside of it. It is possible to create subroutines using this; look above for more information.
 
 ### ***Flow Control***
 

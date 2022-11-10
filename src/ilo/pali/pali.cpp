@@ -390,8 +390,10 @@ namespace ilo {
             
             } catch (const std::out_of_range& liLonAla) {
                 kepeken::tokiEIke({ sonaPali.lonLipu
-                                  , sonaPali.alasaIjo->lonIjo
-                                  , ante_toki::nimiTawaJan("ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala")});
+                                  , nimiWawaTawa.lonKasi
+                                  , ante_toki::anteENimi(ante_toki::nimiTawaJan(
+                                        "ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala")
+                                      , "%s", nimiTawaTawa)});
             
                 sonaPali.liLipuPona = false;
             }

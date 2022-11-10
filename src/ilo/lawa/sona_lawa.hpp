@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <stack>
 
-#include "../../ijo_kepeken/ike.hpp"
+#include "../../kepeken/ike.hpp"
 
 /**
  * ijo pona tawa lawa.

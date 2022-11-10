@@ -88,6 +88,12 @@ sama tokiELinja() la li toki e nimi e linja sin. taso, li toki e ona lon lupa St
 
 li pana e nimi tawa toki() li kama jo e nimi tan jan. li awen e lipu wawa. jan li toki e nimi la li open e lipu wawa.
 
+#### **alaEIloPana() -> ala**
+
+li ala (weka e sitelen) e ilo pana.
+
+*li lon taso lawa Windows en lawa UNIX.*
+
 #### **wan(nimi nimi \[nimi...\]) -> nimi wan tan nimi pana**
 
 li wan e nimi lon nimi wan. 
@@ -110,7 +116,7 @@ nimi ken li nimi ali tawa poki wile. pana la nimi jan li ken lon "USER" anu "USE
 
 poki li lon ala la li pana e ala.
 
-## **lawa([linja...]) -> ala**
+## **lawa(\[linja...\]) -> ala**
 
 li pali e lipu wawa tan linja li lawa e ilo nanpa kepeken ona. lawa pi lipu wawa ni li kepeken e poki sama lipu wawa suli. sina ante e poki lon ona la ona li ante lon ali pi lipu wawa sina. kepeken ni la sina ken pali e nimi wawa sin. o lukin lon sewi tawa sona pona.
 

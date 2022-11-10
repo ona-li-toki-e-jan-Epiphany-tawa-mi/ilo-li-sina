@@ -89,6 +89,8 @@ ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=The yes and no messages
 ike.lawa.awen.nanpa_ala=Expected an integer but got '%s' instead
 ike.lawa.awen.nanpa_ike=Received an integer '%s' outside of the representable range
 
+ike.lawa.ala_e_ilo_pana.li_alasa_ala=alaEIloPana() is not working. Either unable to find correct libraries, or something else went wrong. Your operating system may be incompatible (supported on Windows and UNIX)
+
 
 # General error messages.
 ike.sitelen_pi_wile_ala=Unexpected token '%s'

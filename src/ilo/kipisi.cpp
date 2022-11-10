@@ -5,8 +5,8 @@
 #include <fstream>
 #include <cassert>
 
-#include "../ijo_kepeken/ike.hpp"
-#include "../ijo_kepeken/poki_Map.hxx"
+#include "../kepeken/ike.hpp"
+#include "../kepeken/poki_Map.hxx"
 #include "../ante_toki/ante_toki.hpp"
 
 namespace ilo {

@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "../ijo_kepeken/ike.hpp"
+#include "../kepeken/ike.hpp"
 
 /**
  * ilo kipisi tawa kipisi pi lipu wawa pi toki "ilo li sina".

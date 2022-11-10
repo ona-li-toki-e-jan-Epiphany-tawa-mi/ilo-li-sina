@@ -8,9 +8,10 @@
 #include <random>
 #include <sstream>
 
-#include "../../ijo_kepeken/ike.hpp"
+#include "../../kepeken/ike.hpp"
 #include "../../ante_toki/ante_toki.hpp"
 #include "lawa.hpp"
+#include "../../kepeken/lawa_OS.hpp"
 
 
 
@@ -256,6 +257,25 @@ void lawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     sonaLawa.pokiPali.push("");
 }
 
+/**
+ * @brief alaEIloPana() -> ala
+ * @attention li lon taso lawa Windows en lawa UNIX.
+ * 
+ * li ala (weka e sitelen) e ilo pana.
+ */
+void alaEIloPana(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    if (!kepeken::alaEIloPana()) {
+        kepeken::tokiEIke({ sonaLawa.lonLipu
+                          , sonaLawa.lonPiKasiPiTenpoNi
+                          , ante_toki::nimiTawaJan("ike.lawa.ala_e_ilo_pana.li_alasa_ala")});
+
+        throw std::runtime_error("alaEIloPana() li pali ala! li ken ala alasa e nimi wawa wile. ken la "
+                                 "lawa OS sina li pali ala tawa ni.");
+    }
+
+    sonaLawa.pokiPali.push("");
+}
+
 
 
 /**
@@ -452,6 +472,7 @@ namespace ilo {
         {"tokiELinja",     NimiWawa(&tokiELinja)},
         {"tokiEIke",       NimiWawa(&tokiEIke)},
         {"tokiEIkeELinja", NimiWawa(&tokiEIkeELinja)},
+        {"alaEIloPana",    NimiWawa(&alaEIloPana, 0, 0)},
 
         {"kamaJo",         NimiWawa(   &kamaJo)},
         {"wan",            NimiWawa(2, &wan)},

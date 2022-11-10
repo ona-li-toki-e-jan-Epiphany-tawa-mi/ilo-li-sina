@@ -2,8 +2,8 @@
 #include <cassert>
 
 #include "ante_toki/ante_toki.hpp"
-#include "ijo_kepeken/toki.hpp"
-#include "ijo_kepeken/ike.hpp"
+#include "kepeken/toki.hpp"
+#include "kepeken/ike.hpp"
 #include "ilo/toki.hpp"
 #include "ilo/lawa/lawa.hpp"
 

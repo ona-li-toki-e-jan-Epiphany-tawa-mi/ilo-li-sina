@@ -88,6 +88,12 @@ Like tokiELinja(), but prints the messages to stderr instead of stdout.
 
 Passes the messages to toki() and then gets input from the user and returns it. Blocks until input is received.
 
+#### **alaEIloPana() -> nothing**
+
+Clears the terminal.
+
+*Supported on Windows and UNIX.*
+
 #### **wan(string string \[strings...\]) -> concatenated string**
 
 Concatenates the given strings into a single string and returns it.

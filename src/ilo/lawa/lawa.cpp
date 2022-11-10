@@ -4,7 +4,7 @@
 #include <cstring>
 #include <cassert>
 
-#include "../../ijo_kepeken/ike.hpp"
+#include "../../kepeken/ike.hpp"
 #include "../../ante_toki/ante_toki.hpp"
 
 namespace ilo {

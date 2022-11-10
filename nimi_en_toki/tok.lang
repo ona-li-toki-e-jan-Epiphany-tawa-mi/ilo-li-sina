@@ -89,6 +89,8 @@ ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=nimi lon pi nimi wawa '
 ike.lawa.awen.nanpa_ala=nanpa pi nanpa lili ala li wile la li kama jo e ijo '%s' sama ala nanpa
 ike.lawa.awen.nanpa_ike=li kama jo e nanpa ike '%s' pi nanpa lili ala. li suli suli kin anu lili lili kin
 
+ike.lawa.ala_e_ilo_pana.li_alasa_ala=alaEIloPana() li pali ala. ken la li ken ala alasa e nimi wawa wile pi lon ante, anu, ijo li ike. ken la lawa OS sina li pali ala tawa ni (lawa Windows anu lawa UNIX li wile)
+
 
 # ike ni li ken lon tenpo ali.
 ike.sitelen_pi_wile_ala=sitelen '%s' pi sona ala

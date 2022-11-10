@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "../lawa/nimi_wawa.hpp"
-#include "../../ijo_kepeken/ike.hpp"
+#include "../../kepeken/ike.hpp"
 #include "../lawa/sona_lawa.hpp"
 
 /**

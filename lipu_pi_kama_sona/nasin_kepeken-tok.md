@@ -116,9 +116,13 @@ nimi ken li nimi ali tawa poki wile. pana la nimi jan li ken lon "USER" anu "USE
 
 poki li lon ala la li pana e ala.
 
-## **lawa(\[linja...\]) -> ala**
+#### **lawa(\[linja...\]) -> ala**
 
 li pali e lipu wawa tan linja li lawa e ilo nanpa kepeken ona. lawa pi lipu wawa ni li kepeken e poki sama lipu wawa suli. sina ante e poki lon ona la ona li ante lon ali pi lipu wawa sina. kepeken ni la sina ken pali e nimi wawa sin. o lukin lon sewi tawa sona pona.
+
+#### **ikeLaTawaAla() -> ala**
+
+o lukin e ["ike la seme?".](nasin_kepeken-tok.md#ike-la-seme "ike la seme?")
 
 ### ***tawa***
 
@@ -189,19 +193,6 @@ sonaPona:
         " e lipu wawa ni"))
 ```
 
-ken la sina kepeken e awen() la sina wile sona e ni kepeken ala ike: nimi li nanpa ala nanpa? kepeken nanpaLaTawa() ni li pona. nimi ali tawa ona li nanpa la li tawa. pana la:
-
-```ilo li sina
-nanpaAla:
-    nanpaKen = kamaJo("o toki e nanpa! ")
-    nanpaLaTawa(liNanpa nanpaKen)
-    tokiELinja("'" nanpaKen "' li nanpa ala a!")
-    tawa(nanpaAla)
-
-liNanpa:
-    tokiELinja("tenpo sike " nanpaKen " la sina lon a! sina suli! a a a!")
-```
-
 sina ken pali e tawa ken pi nasin ala kepeken alaLaTawa() en pilin() sama ni: o pana e nimi en ala lon kepeken pilin(), en, pana e ijo kama tawa alaLaTawa(). pilin() li pana e ala la ona li tawa. sina ken ante e nanpa pi nimi en ala tawa ante e ken tawa. pana la sina wile tawa lon tenpo 3 tan 10 la o kepeken e alaLaTawa(nimiTawa pilin(_ _ _ "1" "2" "3" "4" "5" "6" "7")). nanpa li toki e ala. ijo suli 1 ona li lon: ona li ala ala (sama '_').
 
 ni li nimi wawa tawa ali lon toki "ilo li sina".
@@ -224,11 +215,11 @@ nimi lon en nimi pi lon ala li jo ala e ala la jan li toki ala e ona li toki e n
 
 nimi pana ale li jo e ala la li tawa.
 
-#### **nanpaLaTawa(nimiTawa nanpaKen \[nanpaKen...\]) -> ala**
+#### **ikeLaTawa(nimiTawa) -> ala**
 
-nimi ali pana li nanpa la li tawa.
+o lukin e ["ike la seme?".](nasin_kepeken-tok.md#ike-la-seme "ike la seme?")
 
-### ***poki***
+### **poki**
 
 sina ken kepeken e poki tawa poki e nimi. sina ken pali e ona kepeken nimi en sitelen '=' en ijo tawa poki. sina ken pana e ona lon nimi wawa anu poki ante kepeken nimi ona. pana la:
 
@@ -248,6 +239,77 @@ mute:
     tawa(mute)
 muteAla:
     tokiELinja(ijo) # jan li toki e mute lon tenpo 4 la li toki e "ijoijoijoijoijoijoijoijoijoijoijoijoijoijoijoijo".
+```
+
+### **ike la seme?**
+
+nimi wawa li ken pali e ike. pana la awen() li kama jo e ijo pi nanpa ala la ona li ike. lawa() li kama jo e lipu wawa ike, anu, ike li kama lon ona la ona li ike. sina pali e ala la ike li kama la lipu wawa li pini. taso, sina ken pali e ni kepeken ikeLaTawa() en ikeLaTawaAla(): ike la ona li awen pali. ikeLaTawa() li tawa ala. ona li pali e ni: ike li kama la ilo pi toki "ilo li sina" li tawa lon nimi tawa ona. pana la:
+
+```ilo li sina
+open:
+    suli = kamaJo("tenpo sike pi nanpa seme la sina lon? ")
+
+    ikeLaTawa(ike)
+    awen(suli)
+    tokiELinja("tenpo ni la suli sina li tenpo sike " suli " + " suli " Milisekon!")
+
+    tawa(pini)
+ike:
+    tokiELinja("'" suli "' li nanpa ala!")
+    tawa(open)
+pini:
+```
+
+jan li toki e nanpa la li awen li pini. taso, ona li toki e ijo pi nanpa ala la awen() li ike la ona li tawa `ike:` li toki e ike tawa ona li tawa open li toki sin e toki seme.
+
+taso, ni li pini ala. ona li toki e ijo pi nanpa ala la kamaJo() li lawa sin la ona li pilin e nena `Ctrl-D` tawa pini la ona li lukin e ni:
+
+```console
+tenpo sike pi nanpa seme la sina lon? nanpa
+ilo_li_sina: <nimi lipu>(5,5): ike: awen(): nanpa pi nanpa lili 
+        ala li wile la li kama jo e ijo 'nanpa' sama ala nanpa
+'nanpa' li nanpa ala!
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon? 
+...
+```
+
+ike a! sina kepeken e ikeLaTawa() la nimi wawa pi ken ike li pini la o kepeken e ikeLaTawaAla() tawa weka e ike nasa sama ni. pana la:
+
+```ilo li sina
+open:
+    suli = kamaJo("tenpo sike pi nanpa seme la sina lon? ")
+
+    ikeLaTawa(ike)
+    awen(suli)
+    ikeLaTawaAla()
+
+    tokiELinja("tenpo ni la suli sina li tenpo sike " suli " + " suli " Milisekon!")
+
+
+    tawa(pini)
+ike:
+    ikeLaTawaAla()
+    tokiELinja("'" suli "' li nanpa ala!")
+    tawa(open)
+pini:
 ```
 
 ### ***ijo lili***

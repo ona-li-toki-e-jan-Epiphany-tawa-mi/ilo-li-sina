@@ -13,5 +13,9 @@
     awen("500") 
 
 open:
-    lawa(kamaJo(">>> "))
+    ikeLaTawaAla()
+    nimiTanJan = kamaJo(">>> ")
+
+    ikeLaTawa(open)
+    lawa(nimiTanJan)
     tawa(open)

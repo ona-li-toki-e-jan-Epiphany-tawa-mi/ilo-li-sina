@@ -17,7 +17,7 @@ namespace ilo {
     /**
      * @brief nimi wawa tawa kiwen lon C++ tawa kepeken lon li pi toki "ilo li sina".
      */
-    typedef bool(*NimiWawaTawaKiwen)(SonaLawa&, unsigned int);
+    typedef void(*NimiWawaTawaKiwen)(SonaLawa&, unsigned int, size_t);
     /**
      * @brief nanpa pi ijo wile li ken nanpa ali la nanpa ni li kepeken.
      */
@@ -75,11 +75,12 @@ namespace ilo {
              *      nanpaIjo tan poki pokiPali. li ken tawa lon ante lon lipu wawa.
              * @attention nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
              * 
-             * @param nanpaIjo li moku e ijo pi nanpa ni tan pokiPali.
-             * @return true la li wile tawa lon ante. false la li wile ala.
+             * @param nanpaIjo    li moku e ijo pi nanpa ni tan pokiPali.
+             * @param lonTawaTawa li ken tawa lon ni.
              * @throws std::runtime_error ike li kama.
              */
-            bool lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo) const noexcept(false);
+            void lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo, size_t lonTawaTawa) const 
+                    noexcept(false);
     };
 
 

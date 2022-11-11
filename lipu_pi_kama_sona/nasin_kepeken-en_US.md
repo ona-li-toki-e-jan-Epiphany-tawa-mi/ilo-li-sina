@@ -114,9 +114,13 @@ The names are the possible variants for the desired variable. Each will be acces
 
 If none of the given variables have a value, then nothing is returned.
 
-## **lawa([lines...]) -> nothing**
+#### **lawa(\[lines...\]) -> nothing**
 
 Converts the given lines into code and runs it, where each line is like a line in a file. The execution inside lawa() shares the same memory space for variables as the calling program. Any changes to variables within lawa() will show outside of it. It is possible to create subroutines using this; look above for more information.
+
+#### **ikeLaTawaAla() -> nothing**
+
+See [Exception Handling.](nasin_kepeken-en_US#exception-handling "Exception Handling")
 
 ### ***Flow Control***
 
@@ -188,19 +192,6 @@ SpittingFacts:
         " the program"))
 ```
 
-For awen(), you may wish to verify if a string is an integer without rasing an exception. This can be done with nanpaLaTawa(), which jumps if all of it's arguments are valid integers.
-
-```ilo li sina
-notNumber:
-    possibleNumber = kamaJo("Say a number! ")
-    nanpaLaTawa(isNumber possibleNumber)
-    tokiELinja("'" possibleNumber "' is not a number!")
-    tawa(notNumber)
-
-isNumber:
-    tokiELinja("Your're " possibleNumber " years old? Old as, ha ha ha!")
-```
-
 You can create a random jump using alaLaTawa() in combination with pilin(). Place the amount of empty and non-empty strings required within the call to pilin(), where the chance of jumping is the number of the empty strings divided by the total number of strings given to it. If you wanted a 30% chance (3/10), you can use alaLaTawa(label pilin(_ _ _ "1" "2" "3" "4" "5" "6" "7")). The non-empty strings being numbers is not important, just that they are not empty. 
 
 Here are all of the GOTOs in ilo li sina.
@@ -223,11 +214,11 @@ If both the yes and no messages are not wildcards, and the user types anything o
 
 If all of the given strings contain nothing it will jump to the given label.
 
-#### **nanpaLaTawa(label possibleNumber \[possibleNumbers...\]) -> nothing**
+#### **ikeLaTawa(label) -> nothing**
 
-If all of the given strings are valid integers it will jump to the given label.
+See [Exception Handling.](nasin_kepeken-en_US#exception-handling "Exception Handling")
 
-### ***Variables***
+### **Variables**
 
 You can use variables to store data for later. They are created by typing a name, the assignment operator '=', and an expression that is or returns a value. Their stored value can then be passed to functions or assigned to other variables.
 
@@ -247,6 +238,74 @@ Multiply:
     tawa(Multiply)
 Done:
     tokiELinja(test) # if the user chooses to multiply 4 times the output will be "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest."
+```
+
+### **Exception Handling**
+
+Some function are capable of throwing exceptions. For example, awen() will throw if it recieves a non-number string. lawa() will throw if passed a malformed program or an exception occurs while running it. Without hanlding the exception the program will crash, but that can be changed using ikeLaTawa() and ikeLaTawaAla(). ikeLaTawa() sets the label to jump to incase of an exception instead of crashing.
+
+```ilo li sina
+Start:
+    age = kamaJo("How old are you? ")
+
+    ikeLaTawa(Error)
+    awen(age)
+    tokiELinja("Now you are " age " milliseconds older!")
+
+    tawa(End)
+Error:
+    tokiELinja("'" age "' is not a number!")
+    tawa(Start)
+End:
+```
+
+If the user says a number it will delay for that many miliseconds and exit. But, if they say something else, awen() throws and jumps to `ike:`. This tells them their error and asks again.
+
+taso, ni li pini ala. ona li toki e ijo pi nanpa ala la kamaJo() li lawa sin la ona li pilin e nena `Ctrl+D` tawa pini la ona li lukin e ni:
+
+But this is not complete; If the user says a non-number and presses `Ctrl-D` on kamaJo() to exit, they will be met with this:
+
+```console
+How old are you? number
+build/ilo_li_sina: ilo_li_sina-test.ils(5,5): Error: awen(): Expected an
+        integer but got 'number' instead
+'number' is not a number!
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+How old are you? 
+...
+```
+
+Yikes! If you use ikeLaTawa(), you should use ikeLaTawaAla() once the exception-handled code is over in order to prevent such bugs.
+
+```ilo li sina
+Start:
+    age = kamaJo("How old are you? ")
+
+    ikeLaTawa(Error)
+    awen(age)
+    ikeLaTawaAla()
+
+    tokiELinja("Now you are " age " milliseconds older!")
+
+
+    tawa(End)
+Error:
+    ikeLaTawaAla()
+    tokiELinja("'" age "' is not a number!")
+    tawa(Start)
+End:
 ```
 
 ### ***Smaller Features***

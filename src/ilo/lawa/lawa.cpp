@@ -3,6 +3,7 @@
 #include <array>
 #include <cstring>
 #include <cassert>
+#include <stdexcept>
 
 #include "../../kepeken/ike.hpp"
 #include "../../ante_toki/ante_toki.hpp"
@@ -26,13 +27,11 @@ namespace ilo {
             sonaLawa.pokiPali.push(sonaLawa.pokiAli.at(this->nimiPoki));
 
         } catch (const std::out_of_range& liLonAla) {
-            kepeken::tokiEIke({ sonaLawa.lonLipu
-                              , this->lonKasi
-                              , ante_toki::anteENimi(ante_toki::nimiTawaJan(
-                                        "ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala")
-                                      , "%s", this->nimiPoki)});
-
-            throw std::runtime_error("li kama jo e nimi tan poki la li lukin kepeken e poki pi lon ala!");
+            paliEIke(sonaLawa, { sonaLawa.lonLipu
+                               , this->lonKasi
+                               , ante_toki::anteENimi(ante_toki::nimiTawaJan(
+                                    "ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala")
+                               , "%s", this->nimiPoki)});
         }
     }
 
@@ -84,8 +83,7 @@ namespace ilo {
 #endif
 
         sonaLawa.lonPiKasiPiTenpoNi = &this->lonKasi;
-        if (this->nimiWawaTawa->lawa(sonaLawa, this->ijoPiNimiWawa.size())) 
-            sonaLawa.kasiPiTenpoNi = this->lonTawaTawa - 1;
+        this->nimiWawaTawa->lawa(sonaLawa, this->ijoPiNimiWawa.size(), this->lonTawaTawa - 1);
 
         assert( suliPiPokiPali - sonaLawa.pokiPali.size() == this->ijoPiNimiWawa.size() - 1
              && "li lawa e nimi wawa tawa la nanpa ijo ike lon poki pali!");
@@ -110,6 +108,54 @@ namespace ilo {
 
 
 
+    void paliEIke(const SonaLawa& sonaLawa, const kepeken::IjoPiTokiIke& ike) noexcept(false) {
+        // ikeLaTawa() li kepeken la jan li sona e ike. ni la mi wile ala toki e ni tawa ona.
+        if (sonaLawa.ikeLaLonTawaTawa == static_cast<size_t>(-1))
+            kepeken::tokiEIke(ike);
+        throw std::runtime_error(ike.kamaJoENimiIke());
+    }
+
+
+
+    void lawaELipu(const KasiOpen& lipuWawa, const std::string& lonLipu) noexcept(false) {
+        std::unordered_map<std::string, std::string> pokiAli;
+        lawaELipu(lipuWawa, pokiAli, lonLipu);
+    }
+
+    void lawaELipu(const KasiOpen& lipuWawa
+             , std::unordered_map<std::string, std::string>& pokiAli
+             , const std::string& lonLipu) noexcept(false) {
+        std::stack<std::string> pokiPali;
+        size_t kasiPiTenpoNi    = 0;
+        size_t ikeLaLonTawaTawa = static_cast<size_t>(-1);
+        SonaLawa sonaLawa = {lonLipu, pokiAli, pokiPali, kasiPiTenpoNi, ikeLaLonTawaTawa, nullptr};
+
+        for (; kasiPiTenpoNi < lipuWawa.kasiLonAnpa.size(); kasiPiTenpoNi++) {
+            try {
+                lipuWawa.kasiLonAnpa.at(kasiPiTenpoNi)->lawa(sonaLawa);
+
+                // linja li pini la ona li wile pana e ijo 1 taso - ijo ona. ni ala la ike li lon.
+                assert( pokiPali.size() == 1
+                    && "lawa e nimi wawa la nanpa ijo ike lon poki pali!");
+                pokiPali.pop();
+            
+            } catch (const std::runtime_error& ikeLiKama) {
+                // ike la lon tawa tawa lon tenpo ike li lon la mi tawa lon ona. ni ala la lipu li wile
+                //      pini.
+                if (ikeLaLonTawaTawa != static_cast<size_t>(-1)) {
+                    kasiPiTenpoNi = ikeLaLonTawaTawa;
+
+                    while (!pokiPali.empty())
+                        pokiPali.pop();
+                
+                } else
+                    throw;
+            }
+        }
+    }
+
+
+
     void panaEPokiOpenLonPokiAli( std::unordered_map<std::string, std::string>& pokiAli
                                 , const std::string& lonLipu) {
         static const std::array<std::string, 3> pokiOSPiNimiJan = {"USER", "USERNAME", "LOGNAME"};
@@ -128,29 +174,5 @@ namespace ilo {
         pokiAli["__nimi_lipu"]         = lonLipu;
         pokiAli["__nimi_jan"]          = nimiJan != nullptr ? nimiJan : "";
         pokiAli["_"]                   = "";
-    }
-
-
-
-    void lawaELipu(const KasiOpen& lipuWawa, const std::string& lonLipu) noexcept(false) {
-        std::unordered_map<std::string, std::string> pokiAli;
-        lawaELipu(lipuWawa, pokiAli, lonLipu);
-    }
-
-    void lawaELipu(const KasiOpen& lipuWawa
-             , std::unordered_map<std::string, std::string>& pokiAli
-             , const std::string& lonLipu) noexcept(false) {
-        std::stack<std::string> pokiPali;
-        size_t kasiPiTenpoNi = 0;
-        SonaLawa sonaLawa = {lonLipu, pokiAli, pokiPali, kasiPiTenpoNi, nullptr};
-
-        for (; kasiPiTenpoNi < lipuWawa.kasiLonAnpa.size(); kasiPiTenpoNi++) {
-            lipuWawa.kasiLonAnpa.at(kasiPiTenpoNi)->lawa(sonaLawa);
-
-            // linja li pini la ona li wile pana e ijo 1 taso - ijo ona. ni ala la ike li lon.
-            assert( pokiPali.size() == 1
-                 && "lawa e nimi wawa la nanpa ijo ike lon poki pali!");
-            pokiPali.pop();
-        }
     }
 }

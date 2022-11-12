@@ -4,7 +4,7 @@ lukin kepeken toki ante: [English](nasin_kepeken-en_US.md "View in English"), [Ð
 
 "ilo li sina" li toki pi lawa e ilo nanpa li lili li tawa taso kama jo en toki e nimi. taso, kepeken ni taso la sina ken pali e ijo mute.
 
-ali lon toki ni li nimi. sina ken kepeken e nimi taso. sina ken pali e nimi lon lipu wawa kepeken sitelen `'"'` pi poki nimi (sama `"test"` en `"ni li nimi"`).
+ali lon toki ni li nimi. sina ken kepeken e nimi taso. sina ken pali e nimi lon lipu wawa kepeken sitelen pi `"` en `'` en `` ` `` pi poki nimi (sama `"test"` anu `'ni li nimi'`).
 
 ## **ijo pi toki ni**
 
@@ -39,16 +39,16 @@ sina ken pana e nimi wawa tawa nimi ante:
 sina ken pali e nimi wawa sin kepeken `lawa()`. sina wile pana e ali pi nimi wawa lon poki 1 li wile pana e poki ni tawa `lawa()`. nimi wawa li jo e linja mute la o pana e sitelen pi linja sin (`\n`) lon pini pi linja ali. tawa lukin pona la sina ken kepeken e `wan()` li ken pana e linja lon poki nimi ante. pana la:
 
 ```ilo li sina
-    tokiEToki = "tokiELinja(nimi \" o, toki!\")"
+    tokiEToki = "tokiELinja(nimi ` o, toki!`)"
     
     nimi = __nimi_jan
     lawa(tokiEToki) # li toki e toki tawa jan.
     nimi = "ma"
     lawa(tokiEToki) # li toki e "ma o, toki!".
 
-    tokiPonaEWile = wan("wile = kamaJo(\"sina wile e seme? \")\n"                   \
-                        "tokiELinja(wile \" li ijo pona kin.\")\n"                  \
-                        "tokiELinja(\"mi wile e ni: sina ken kama jo e \" wile)\n")
+    tokiPonaEWile = wan("wile = kamaJo(`sina wile e seme? `)                  \n"  \
+                        "tokiELinja(wile ` li ijo pona kin.`)                 \n"  \
+                        "tokiELinja(`mi wile e ni: sina ken kama jo e ` wile) \n")
     lawa(tokiPonaEWile)
     # $ sina wile e seme? mani
     # $ mani li ijo pona kin
@@ -58,9 +58,9 @@ sina ken pali e nimi wawa sin kepeken `lawa()`. sina wile pana e ali pi nimi waw
 sina ante e poki lon `lawa()` la ona li ante lon ali pi lipu wawa sina. kepeken ni li sina ken kama jo e ijo kama tan nimi wawa lon `lawa()`. o pana e ijo kama lon poki o kama jo tan poki ni, en, ijo kama li lon ni. pana la:
 
 ```ilo li sina
-    tokiPonaEWile = wan("wile = kamaJo(\"sina wile e seme? \")\n"                   \
-                        "tokiELinja(wile \" li ijo pona kin.\")\n"                  \
-                        "tokiELinja(\"mi wile e ni: sina ken kama jo e \" wile)\n")
+    tokiPonaEWile = wan("wile = kamaJo(`sina wile e seme? `)                  \n"  \
+                        "tokiELinja(wile ` li ijo pona kin.`)                 \n"  \
+                        "tokiELinja(`mi wile e ni: sina ken kama jo e ` wile) \n")
     lawa(tokiPonaEWile)
 
     tokiELinja("a a a! mi sona e sona suli sina! sina wile e " wile)
@@ -322,7 +322,9 @@ sina ken sitelen e sitelen nasa (sama linja sin) kepeken sitelen `'\'`. ni li on
  - `\t` - sitelen suli pi lukin ala.
  - `\v` - sama `\t`. taso, ona li tawa lon anpa.
  - `\b` - li weka e sitelen 1.
- - `\"` - li ken e ni: sina sitelen e sitelen `'"'` lon poki nimi.
+ - `\"` - li ken e ni: sina sitelen e sitelen `"` lon poki nimi.
+ - `\'` - li ken e ni: sina sitelen e sitelen `'` lon poki nimi.
+ - `` \` `` - li ken e ni: sina sitelen e sitelen `` ` `` lon poki nimi.
  - `\\` - li ken e ni: sina sitelen e sitelen `'\'` lon poki nimi.
 
 pana la:

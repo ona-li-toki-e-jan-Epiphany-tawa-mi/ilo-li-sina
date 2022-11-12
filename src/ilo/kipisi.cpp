@@ -31,7 +31,8 @@ namespace ilo {
 	const std::regex SITELEN_PI_LUKIN_ALA ("\\s",          std::regex_constants::optimize);
     // jan li sitelen e sitelen lon poka pilin la ni li pali e sitelen lon poka pi pilin ala.
 	const std::unordered_map<char, char> nimiTawaSitelenNasa = {
-		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\\', '\\'}};
+		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\'', '\''}, {'`', '`'}, 
+        {'\\', '\\'}};
 
     /**
      * @brief li pona e pana ijo tawa nimi wawa kipisi.
@@ -111,18 +112,20 @@ namespace ilo {
         bool liPona = true;
 
         std::string pokiNimi;
-        bool liJoEPini = false;
-        const auto openPoki = sonaKipisi.alasaSitelen;
+        bool liJoEPini         = false;
+        const auto openPoki    = sonaKipisi.alasaSitelen;
+        const char sitelenPoki = *sonaKipisi.alasaSitelen;
 
         sonaKipisi.alasaSitelen++;
         for (; sonaKipisi.alasaSitelen < sonaKipisi.linja.cend(); sonaKipisi.alasaSitelen++) {
-            switch (*sonaKipisi.alasaSitelen) {
-                // pini pi poki nimi.
-                case '"':
-                    sonaKipisi.alasaSitelen++;
-                    liJoEPini = true;
-                    goto liPiniPiPokiSitelen;
+            // pini pi poki nimi.
+            if (*sonaKipisi.alasaSitelen == sitelenPoki) {
+                sonaKipisi.alasaSitelen++;
+                liJoEPini = true;
+                goto liPiniPiPokiSitelen; // sama "break".
+            }
 
+            switch (*sonaKipisi.alasaSitelen) {
                 // nimi pi sitelen nasa (sama \n anu \v).
                 case '\\':
                     sonaKipisi.alasaSitelen++;
@@ -260,7 +263,9 @@ namespace ilo {
 							break;
 						}
 
-						case '"': {
+						case '"':
+                        case '\'':
+                        case '`': {
                             liLipuPona = paliEPokiNimi(sonaKipisi) && liLipuPona;
 							break;
 						}

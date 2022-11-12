@@ -4,7 +4,7 @@ View in a different language: [toki pona](nasin_kepeken-tok.md "lukin kepeken to
 
 ilo li sina is a small, string-only esoteric programming language, but you can still build interesting and useful things with it despite that fact.
 
-Everything in this language consists of or works with strings. You can create a string literal by encasing some text within quotes (i.e. `"test"` `"this is a string literal"`.)
+Everything in this language consists of or works with strings. You can create a string literal by encasing some text within single or double quotes, or backticks (i.e. `"test"` `'this is a string literal'`.)
 
 ## **Language features**
 
@@ -39,16 +39,16 @@ Function calls can also be nested to pass the result of a function as an argumen
 It is possible to create your own functions (more like subroutines, really) using `lawa()` by placing the functions code inside a single string and calling `lawa()` with it. For multiline functions you will need to separate each line with a `newline` character (`\n`). I recommend putting each line in a separate string, using `wan()` to join them together.
 
 ```ilo li sina
-    greet = "tokiELinja(\"Hello \" name \"!\")"
+    greet = "tokiELinja(`Hello ` name `!`)"
     
     name = __nimi_jan
     lawa(greet) # Greets the user.
     name = "world"
     lawa(greet) # Says "Hello world!"
 
-    talkAboutWish = wan("wish = kamaJo(\"What do you want? \")\n"     \
-                        "tokiELinja(wish \" is a great thing\")\n"    \
-                        "tokiELinja(\"I hope you can get \" wish)\n")
+    talkAboutWish = wan("wish = kamaJo(`What do you want? `)    \n"  \
+                        "tokiELinja(wish ` is a great thing`)   \n"  \
+                        "tokiELinja(`I hope you can get ` wish) \n")
     lawa(talkAboutWish)
     # $ What do you want? money
     # $ money is a great thing
@@ -58,9 +58,9 @@ It is possible to create your own functions (more like subroutines, really) usin
 Chaanges to variables within `lawa()` carry outside of it. With this is possible to create subroutines, where returning a result can be done by assigning a value to a variable.
 
 ```ilo li sina
-    talkAboutWish = wan("wish = kamaJo(\"What do you want? \")\n"     \
-                        "tokiELinja(wish \" is a great thing\")\n"    \
-                        "tokiELinja(\"I hope you can get \" wish)\n")
+    talkAboutWish = wan("wish = kamaJo(`What do you want? `)    \n"  \
+                        "tokiELinja(wish ` is a great thing`)   \n"  \
+                        "tokiELinja(`I hope you can get ` wish) \n")
     lawa(talkAboutWish)
 
     tokiELinja("Haha! I know your secret! You want " wish)
@@ -316,7 +316,9 @@ You can write special characters (such as a newline) within string literals usin
  - `\t` - Tab.
  - `\v` - Vertical tab.
  - `\b` - Backspace.
- - `\"` - Allows putting quotes into strings.
+ - `\"` - Allows putting double quotes into strings.
+ - `\'` - Allows putting single quotes into strings.
+ - `` \` `` - Allows putting backticks into strings.
  - `\\` - Allows putting backslashes into strings.
 
 An example: 

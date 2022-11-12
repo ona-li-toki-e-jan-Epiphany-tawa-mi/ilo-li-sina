@@ -14,9 +14,9 @@ endif ()
 
 
 file(GLOB_RECURSE pokiPiNimiWawa ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-add_executable(${PROJECT_NAME} ${pokiPiNimiWawa})
-add_compile_definitions(${lawaOS})
-target_link_libraries(${PROJECT_NAME} ${TERMINFO})
+add_executable(${CMAKE_PROJECT_NAME} ${pokiPiNimiWawa})
+add_compile_definitions(${lawaOS} NANPA_PI_ILO_PI_ILO_LI_SINA=\"${CMAKE_PROJECT_VERSION}\")
+target_link_libraries(${CMAKE_PROJECT_NAME} ${TERMINFO})
 #target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
@@ -42,4 +42,4 @@ add_custom_target(
     anteToki ALL
     DEPENDS  ${lipuPiAnteToki}
 )
-add_dependencies(${PROJECT_NAME} anteToki)
+add_dependencies(${CMAKE_PROJECT_NAME} anteToki)

@@ -167,7 +167,7 @@ void tokiESonaKepeken() {
  * @brief li toki e nanpa pi ilo ni tawa jan.
  */
 void tokiENanpaPiIloNi() {
-	std::cout << "ilo_li_sina 1.0.0\n";
+	std::cout << "ilo_li_sina " << NANPA_PI_ILO_PI_ILO_LI_SINA << '\n';
 }
 
 /**

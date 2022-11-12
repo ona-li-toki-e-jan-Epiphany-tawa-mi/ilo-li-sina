@@ -122,6 +122,10 @@ Converts the given `lines` into code and runs it, where each `line` is like a li
 
 See [Exception Handling.](nasin_kepeken-en_US#exception-handling "Exception Handling")
 
+#### **ike(\[messages\]) -> nothing**
+
+Throws an exception with the message created by concatenating the given `messages`.
+
 ### ***Flow Control***
 
 ilo li sina utilizes GOTOs for flow control.

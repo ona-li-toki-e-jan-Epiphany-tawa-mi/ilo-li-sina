@@ -274,6 +274,23 @@ void ikeLaTawaAla(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
     sonaLawa.pokiPali.push("");
 }
 
+/**
+ * @brief ike([nimi...]) -> ala
+ * 
+ * li ike. nimi li nimi lon ike li pana tawa jan.
+ */
+void ike(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    std::string nimiIke;
+
+    for (; nanpaIjo > 0; nanpaIjo--) {
+        nimiIke.append(sonaLawa.pokiPali.top());
+        sonaLawa.pokiPali.pop();
+    }
+
+    ilo::paliEIke(sonaLawa, { sonaLawa.lonLipu
+                            , sonaLawa.lonPiKasiPiTenpoNi
+                            , nimiIke});
+}
 
 
 /**
@@ -390,8 +407,9 @@ namespace ilo {
 
     TomoPiNimiWawa::TomoPiNimiWawa(unsigned int nanpaLiliPiIjoWile, unsigned int nanpaSuliPiIjoWile)
             : nanpaLiliPiIjoWile(nanpaLiliPiIjoWile), nanpaSuliPiIjoWile(nanpaSuliPiIjoWile) {
-        assert(nanpaSuliPiIjoWile >= nanpaLiliPiIjoWile && "nanpa lon nanpaLiliPiIjoWile li ken ala "
-                                                           "suli tawa nanpa lon nanpaSuliPiIjoWile!");
+        assert( (nanpaLiliPiIjoWile == nanpaPiIjoWileAli || nanpaSuliPiIjoWile == nanpaPiIjoWileAli
+             || nanpaSuliPiIjoWile >= nanpaLiliPiIjoWile)
+             && "nanpa lon nanpaLiliPiIjoWile li ken ala suli tawa nanpa lon nanpaSuliPiIjoWile!");
     }
 
     TomoPiNimiWawa::~TomoPiNimiWawa() {}
@@ -414,13 +432,16 @@ namespace ilo {
 
 
     NimiWawa::NimiWawa(NimiWawaKiwen nimiWawaKiwen)
-            : NimiWawa(nimiWawaKiwen, nanpaPiIjoWileAli, nanpaPiIjoWileAli) {}
+            : NimiWawa(nanpaPiIjoWileAli, nimiWawaKiwen, nanpaPiIjoWileAli) {}
 
     NimiWawa::NimiWawa(unsigned int nanpaLiliPiIjoWile, NimiWawaKiwen nimiWawaKiwen)
-            : NimiWawa(nimiWawaKiwen, nanpaLiliPiIjoWile, nanpaPiIjoWileAli) {}
+            : NimiWawa(nanpaLiliPiIjoWile, nimiWawaKiwen, nanpaPiIjoWileAli) {}
+
+    NimiWawa::NimiWawa(NimiWawaKiwen nimiWawaKiwen, unsigned int nanpaSuliPiIjoWile)
+            : NimiWawa(nanpaPiIjoWileAli, nimiWawaKiwen, nanpaSuliPiIjoWile) {}
     
-    NimiWawa::NimiWawa( NimiWawaKiwen nimiWawaKiwen
-                      , unsigned int nanpaLiliPiIjoWile
+    NimiWawa::NimiWawa( unsigned int nanpaLiliPiIjoWile
+                      , NimiWawaKiwen nimiWawaKiwen
                       , unsigned int nanpaSuliPiIjoWile)
             : TomoPiNimiWawa(nanpaLiliPiIjoWile, nanpaSuliPiIjoWile) {
         this->nimiWawaKiwen = nimiWawaKiwen;
@@ -433,13 +454,16 @@ namespace ilo {
 
 
     NimiWawaTawa::NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen)
-            : NimiWawaTawa(nimiWawaTawaKiwen, nanpaPiIjoWileAli, nanpaPiIjoWileAli) {}
+            : NimiWawaTawa(nanpaPiIjoWileAli, nimiWawaTawaKiwen, nanpaPiIjoWileAli) {}
 
     NimiWawaTawa::NimiWawaTawa(unsigned int nanpaLiliPiIjoWile, NimiWawaTawaKiwen nimiWawaTawaKiwen)
-            : NimiWawaTawa(nimiWawaTawaKiwen, nanpaLiliPiIjoWile, nanpaPiIjoWileAli) {}
+            : NimiWawaTawa(nanpaLiliPiIjoWile, nimiWawaTawaKiwen, nanpaPiIjoWileAli) {}
 
-    NimiWawaTawa::NimiWawaTawa( NimiWawaTawaKiwen nimiWawaTawaKiwen
-                              , unsigned int nanpaLiliPiIjoWile
+    NimiWawaTawa::NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen, unsigned int nanpaSuliPiIjoWile)
+            : NimiWawaTawa(nanpaPiIjoWileAli, nimiWawaTawaKiwen, nanpaSuliPiIjoWile) {}
+
+    NimiWawaTawa::NimiWawaTawa( unsigned int nanpaLiliPiIjoWile
+                              , NimiWawaTawaKiwen nimiWawaTawaKiwen
                               , unsigned int nanpaSuliPiIjoWile)
             : TomoPiNimiWawa(nanpaLiliPiIjoWile, nanpaSuliPiIjoWile) {
         this->nimiWawaTawaKiwen = nimiWawaTawaKiwen;
@@ -458,7 +482,7 @@ namespace ilo {
         {"tokiELinja",     NimiWawa(&tokiELinja)},
         {"tokiEIke",       NimiWawa(&tokiEIke)},
         {"tokiEIkeELinja", NimiWawa(&tokiEIkeELinja)},
-        {"alaEIloPana",    NimiWawa(&alaEIloPana, 0, 0)},
+        {"alaEIloPana",    NimiWawa(&alaEIloPana, 0)},
 
         {"kamaJo",         NimiWawa(   &kamaJo)},
         {"wan",            NimiWawa(2, &wan)},
@@ -469,15 +493,16 @@ namespace ilo {
 
         {"lawa",           NimiWawa(&lawa)},
 
-        {"ikeLaTawaAla",   NimiWawa(&ikeLaTawaAla, 0, 0)}
+        {"ikeLaTawaAla",   NimiWawa(&ikeLaTawaAla, 0)},
+        {"ike",            NimiWawa(&ike)}
     };
 
     const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa = {
-        {"tawa",        NimiWawaTawa(   &tawa, 0, 0)},
+        {"tawa",        NimiWawaTawa(   &tawa, 0)},
         {"niLaTawa",    NimiWawaTawa(2, &niLaTawa)},
         {"alaLaTawa",   NimiWawaTawa(1, &alaLaTawa)},
 
-        {"ikeLaTawa",   NimiWawaTawa(&ikeLaTawa, 0, 0)}
+        {"ikeLaTawa",   NimiWawaTawa(&ikeLaTawa, 0)}
     };
 
     const std::string& tomoPiNimiWawaTawaNimi(const TomoPiNimiWawa* tomoPiNimiWawa) noexcept(false) {

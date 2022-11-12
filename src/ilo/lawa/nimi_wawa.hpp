@@ -45,8 +45,9 @@ namespace ilo {
 
             NimiWawa(NimiWawaKiwen nimiWawaKiwen);
             NimiWawa(unsigned int nanpaLiliPiIjoWile, NimiWawaKiwen nimiWawaKiwen);
-            NimiWawa(NimiWawaKiwen nimiWawaKiwen
-                    , unsigned int nanpaLiliPiIjoWile
+            NimiWawa(NimiWawaKiwen nimiWawaKiwen, unsigned int nanpaSuliPiIjoWile);
+            NimiWawa( unsigned int nanpaLiliPiIjoWile
+                    , NimiWawaKiwen nimiWawaKiwen
                     , unsigned int nanpaSuliPiIjoWile);
 
             /**
@@ -66,8 +67,9 @@ namespace ilo {
 
             NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen);
             NimiWawaTawa(unsigned int nanpaLiliPiIjoWile, NimiWawaTawaKiwen nimiWawaTawaKiwen);
-            NimiWawaTawa( NimiWawaTawaKiwen nimiWawaTawaKiwen
-                        , unsigned int nanpaLiliPiIjoWile
+            NimiWawaTawa(NimiWawaTawaKiwen nimiWawaTawaKiwen, unsigned int nanpaSuliPiIjoWile);
+            NimiWawaTawa( unsigned int nanpaLiliPiIjoWile
+                        , NimiWawaTawaKiwen nimiWawaTawaKiwen
                         , unsigned int nanpaSuliPiIjoWile);
 
             /**

@@ -219,6 +219,10 @@ pana la sina pana e `""` tawa `nimi lon` e `"test"` tawa ante la jan li toki e `
 
 o lukin e ["ike la seme?".](nasin_kepeken-tok.md#ike-la-seme "ike la seme?")
 
+#### **ike(\[nimi\]) -> ala**
+
+li ike. `nimi` li nimi lon ike li pana tawa jan.
+
 ### **poki**
 
 sina ken kepeken e poki tawa poki e nimi. sina ken pali e ona kepeken nimi en sitelen `'='` en ijo tawa poki. sina ken pana e ona lon nimi wawa anu poki ante kepeken nimi ona. pana la:

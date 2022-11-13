@@ -1,11 +1,10 @@
 #include "lawa.hpp"
 
-#include <array>
-#include <cstring>
 #include <cassert>
 #include <stdexcept>
 
 #include "../../kepeken/ike.hpp"
+#include "../../kepeken/lawa_OS.hpp"
 #include "../../ante_toki/ante_toki.hpp"
 
 namespace ilo {
@@ -158,21 +157,10 @@ namespace ilo {
 
     void panaEPokiOpenLonPokiAli( std::unordered_map<std::string, std::string>& pokiAli
                                 , const std::string& lonLipu) {
-        static const std::array<std::string, 3> pokiOSPiNimiJan = {"USER", "USERNAME", "LOGNAME"};
-        const char* nimiJan = nullptr;
-
-        for (auto& poki : pokiOSPiNimiJan) {
-            nimiJan = getenv(poki.c_str());
-
-            if (nimiJan != nullptr && strcmp(nimiJan, "") != 0)
-                break;
-        }
-
-
         pokiAli["__nanpa_Ilo_Li_Sina"] = NANPA_PI_ILO_PI_ILO_LI_SINA;
         pokiAli["__nimi_Ilo_Li_Sina"]  = kepeken::kamaJoENimiPiILO_LI_SINA();
         pokiAli["__nimi_lipu"]         = lonLipu;
-        pokiAli["__nimi_jan"]          = nimiJan != nullptr ? nimiJan : "";
+        pokiAli["__nimi_jan"]          = kepeken::nimiJan();
         pokiAli["_"]                   = "";
     }
 }

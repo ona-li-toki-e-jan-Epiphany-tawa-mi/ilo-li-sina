@@ -293,6 +293,7 @@ void ike(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
 }
 
 
+
 /**
  * @brief tawa(nimiTawa) -> ala
  * 

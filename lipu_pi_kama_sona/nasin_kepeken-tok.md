@@ -382,6 +382,6 @@ poki lili li jo e nimi lon open pi lipu wawa ali "ilo li sina".
 
 **__nimi_lipu** - nasin tawa lipu wawa tan poki lipu pi tenpo ni.
 
-**__nimi_jan** - li jo e nimi jan e nimi tan `pokiPiLawaOS("USER" "USERNAME" "LOGNAME")`. li ken ala alasa e nimi jan la li jo e ala.
+**__nimi_jan** - li jo e nimi jan tan lawa OS. li ken ala alasa e nimi jan la li jo e ala.
 
 **_** - nimi lili tawa nimi (`""`) pi jo e ala.

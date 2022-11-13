@@ -376,6 +376,6 @@ There are a couple variables that come preinitialized and can be used in any ilo
 
 **__nimi_lipu** - name and path used to call the current program.
 
-**__nimi_jan** - name of the user, acquired using `pokiPiLawaOS("USER" "USERNAME" "LOGNAME")`. If the user's name is not found then __nimi_jan will be empty.
+**__nimi_jan** - name of the user, acquired from the operating system. If the user's name is not found then __nimi_jan will be empty.
 
 **_** - short hand for the empty string (`""`).

@@ -3,6 +3,7 @@
 #include <regex>
 #include <iostream>
 #include <fstream>
+#include <optional>
 #include <cassert>
 
 #include "../kepeken/ike.hpp"
@@ -354,7 +355,7 @@ namespace ilo {
     std::string nimiIjoTawaNimiPiNimiIjo(NimiIjo nimiIjo) {
 		switch (nimiIjo) {
 			case NimiIjo::POKI:
-				"toki.ijo_kipisi.poki";
+				return "toki.ijo_kipisi.poki";
 			case NimiIjo::PANA_LON_POKI:
 				return "toki.ijo_kipisi.pana_lon_poki";
 			case NimiIjo::POKI_NIMI:

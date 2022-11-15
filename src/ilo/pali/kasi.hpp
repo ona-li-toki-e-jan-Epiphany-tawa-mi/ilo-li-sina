@@ -26,6 +26,7 @@ namespace ilo {
 			 * 		ona tawa pali e nimi wawa ni.)
 			 */
 			virtual KasiLipu* paliSama() const = 0;
+			virtual ~KasiLipu() = 0;
 
 			/**
 			 * @return nimi kasi tawa toki tawa jan kepeken ante_toki::nimiTawaJan().
@@ -55,6 +56,7 @@ namespace ilo {
 			virtual KasiOpen* paliSama() const override;
 			KasiOpen(KasiOpen&& ante) noexcept;
 			KasiOpen& operator=(KasiOpen&& ante) noexcept;
+			virtual ~KasiOpen() override;
 
 			virtual std::string nimiPiNimiKasi() const override;
 
@@ -74,6 +76,7 @@ namespace ilo {
 			virtual KasiPini* paliSama() const override;
 			KasiPini(KasiPini&& ante) noexcept            = default;
 			KasiPini& operator=(KasiPini&& ante) noexcept = default;
+			virtual ~KasiPini() override;
 
 			virtual std::string nimiPiNimiKasi() const override;
 
@@ -98,6 +101,7 @@ namespace ilo {
 			virtual KasiPiPokiNimi* paliSama() const override;
 			KasiPiPokiNimi(KasiPiPokiNimi&& ante) noexcept;
 			KasiPiPokiNimi& operator=(KasiPiPokiNimi&& ante) noexcept;
+			virtual ~KasiPiPokiNimi() override;
 
 			virtual std::string nimiPiNimiKasi() const override;
 
@@ -122,6 +126,7 @@ namespace ilo {
 			virtual KasiPoki* paliSama() const override;
 			KasiPoki(KasiPoki&& ante) noexcept;
 			KasiPoki& operator=(KasiPoki&& ante) noexcept;
+			virtual ~KasiPoki() override;
 
 			virtual std::string nimiPiNimiKasi() const override;
 
@@ -169,6 +174,7 @@ namespace ilo {
 			virtual KasiPiNimiWawa* paliSama() const override;
 			KasiPiNimiWawa(KasiPiNimiWawa&& ante) noexcept;
 			KasiPiNimiWawa& operator=(KasiPiNimiWawa&& ante) noexcept;
+			virtual ~KasiPiNimiWawa() override;
 
 			virtual std::string nimiPiNimiKasi() const override;
 			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const override;
@@ -199,6 +205,7 @@ namespace ilo {
 			virtual KasiPiNimiWawaTawa* paliSama() const override;
 			KasiPiNimiWawaTawa(KasiPiNimiWawaTawa&& ante) noexcept;
 			KasiPiNimiWawaTawa& operator=(KasiPiNimiWawaTawa&& ante) noexcept;
+			virtual ~KasiPiNimiWawaTawa() override;
 
 			virtual std::string nimiPiNimiKasi() const override;
 			virtual const TomoPiNimiWawa* tomoPiNimiWawa() const noexcept(false) override;
@@ -231,6 +238,7 @@ namespace ilo {
 			virtual KasiPiPanaLonPoki* paliSama() const override;
 			KasiPiPanaLonPoki(KasiPiPanaLonPoki&& ante) noexcept;
 			KasiPiPanaLonPoki& operator=(KasiPiPanaLonPoki&& ante) noexcept;
+			virtual ~KasiPiPanaLonPoki() override;
 
 			virtual std::string nimiPiNimiKasi() const override;
 

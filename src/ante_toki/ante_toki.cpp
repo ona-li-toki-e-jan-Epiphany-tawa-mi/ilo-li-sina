@@ -1,9 +1,12 @@
 #include "ante_toki.hpp"
+
 #include <algorithm>
 #include <iostream>
 #include <clocale>
+#include <cstdlib>
 #include <cwchar>
 #include <cassert>
+
 #include "nimi_toki.hxx"
 
 namespace ante_toki {
@@ -15,6 +18,8 @@ namespace ante_toki {
         if (nimiTokiAli.size() == 0)
             return false;
 
+    //TODO ni li pali ala lon lawa Windows.
+#ifdef UNIX
         // li wile tawa kama jo e suli pi poki nimi UTF-8 tawa ijo toki ante.
         ijoCPiTokiWile = setlocale(LC_ALL, "");
 
@@ -22,6 +27,7 @@ namespace ante_toki {
         ijoPiTokiWile = std::locale("");
         std::cout.imbue(ijoPiTokiWile);
         std::cerr.imbue(ijoPiTokiWile);
+#endif
 
         // lawa OS mute li pana e toki wile lon "LANG". sin la ni li ken ni: jan li pilin e toki pi ilo ni.
         const char *const tokiJan = getenv("LANG");
@@ -81,13 +87,13 @@ namespace ante_toki {
         if (pini != std::string::npos) {
             suliSitelen = mbrlen(
                 &pokiNimi.at(open), 
-                std::min(pini - open, MB_CUR_MAX), 
+                std::min(pini - open, static_cast<size_t>(MB_CUR_MAX)), 
                 nullptr);
 
         } else
             suliSitelen = mbrlen(
                 &pokiNimi.at(open), 
-                std::min(pokiNimi.size() - open, MB_CUR_MAX), 
+                std::min(pokiNimi.size() - open, static_cast<size_t>(MB_CUR_MAX)), 
                 nullptr);
 
         // sitelen li jo e nanpa Byte mute li ike la li en taso e 1 tan ni: li ken ala pali ante tan sitelen ike.
@@ -124,7 +130,7 @@ namespace ante_toki {
         for (; open < pokiNimi.size() && nanpaSitelen > 0; nanpaSitelen--) {
             size_t suliSitelen = mbrlen(
                 &pokiNimi.at(open), 
-                std::min(pokiNimi.size() - open, MB_CUR_MAX), 
+                std::min(pokiNimi.size() - open, static_cast<size_t>(MB_CUR_MAX)), 
                 nullptr);
             
             suliSitelen = UTF8LaSuliSitelen(pokiNimi, open);

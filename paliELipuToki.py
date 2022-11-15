@@ -24,7 +24,7 @@ pokiTawaNimiWawa = r'src/ante_toki/nimi_toki.hxx'
 os.chdir(os.path.dirname(sys.argv[0]))
 # nimi pi lipu pi nimi toki li kepeken tawa nimi pi poki Map en nimi toki lon poki pi poki Map ali
 lipuTokiEnNimi = [(lipu, lipu.name.split('.', maxsplit=1)[0]) for lipu in pathlib.Path(pokiPiLipuToki).iterdir() if lipu.is_file()]
-with open(pokiTawaNimiWawa, mode='w') as nimiWawaSin:
+with open(pokiTawaNimiWawa, mode='w', encoding='utf-8') as nimiWawaSin:
     nimiWawaSin.writelines([
         '#pragma once\n',
         '\n',
@@ -51,7 +51,7 @@ with open(pokiTawaNimiWawa, mode='w') as nimiWawaSin:
             '\n',
             f'{sitelenTAB}const std::unordered_map<std::string, std::string> {nimi} = {{\n'])
 
-        with lipu.open() as nimiToki:
+        with lipu.open(encoding='utf-8') as nimiToki:
             linjaLonSinpin = nimiToki.readline()
             nanpaLinja = 0
 

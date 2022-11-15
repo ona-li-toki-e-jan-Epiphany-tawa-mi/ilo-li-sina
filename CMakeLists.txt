@@ -25,7 +25,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME} ${TERMINFO})
 find_package(PythonInterp REQUIRED)
 if (NOT ${PYTHON_VERSION_MAJOR} STREQUAL 3)
     message(FATAL_ERROR "ilo pi toki Python pi nanpa 3 anu suli tawa 3 li wile! li kama jo e " 
-                        ${PYTHON_VERSION_MAJOR} "!")
+                        ${PYTHON_VERSION_MAJOR} "! (nanpa ali li '" ${PYTHON_VERSION_STRING} "')")
 endif()
 
 set(lipuPiPaliPiLipuToki       ${CMAKE_CURRENT_SOURCE_DIR}/paliELipuToki.py)

@@ -1,6 +1,10 @@
 #include "kasi.hpp"
 
 namespace ilo {
+    KasiLipu::~KasiLipu() {}
+
+
+
     KasiOpen::KasiOpen() {
         this->lonKasi = {0, 0};
     }
@@ -30,6 +34,8 @@ namespace ilo {
                     std::unique_ptr<KasiLipu>(kasi->paliSama()));
     }
 
+    KasiOpen::~KasiOpen() {}
+
 
 
     KasiPini* KasiPini::paliSama() const {
@@ -39,6 +45,8 @@ namespace ilo {
     std::string KasiPini::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.pini"; 
     }
+
+    KasiPini::~KasiPini() {}
 
 
 
@@ -61,6 +69,8 @@ namespace ilo {
         return "toki.nimi_kasi.poki_nimi";
     }
 
+    KasiPiPokiNimi::~KasiPiPokiNimi() {}
+
 
 
     KasiPoki* KasiPoki::paliSama() const {
@@ -81,6 +91,8 @@ namespace ilo {
     std::string KasiPoki::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.kama_jo_tan_poki";
     }
+    
+    KasiPoki::~KasiPoki() {}
 
 
 
@@ -135,6 +147,8 @@ namespace ilo {
         this->nimiWawa = ante.nimiWawa;
     }
 
+    KasiPiNimiWawa::~KasiPiNimiWawa() {}
+
 
 
     KasiPiNimiWawaTawa::KasiPiNimiWawaTawa(const NimiWawaTawa* nimiWawaTawa) {
@@ -174,6 +188,8 @@ namespace ilo {
         this->lonTawaTawa  = ante.lonTawaTawa;
     }
 
+    KasiPiNimiWawaTawa::~KasiPiNimiWawaTawa() {}
+
 
 
     KasiPiPanaLonPoki* KasiPiPanaLonPoki::paliSama() const {
@@ -201,4 +217,6 @@ namespace ilo {
         this->nimiPoki = ante.nimiPoki;
         this->ijoPana  = std::unique_ptr<KasiLipu>(ante.ijoPana->paliSama());
     }
+
+    KasiPiPanaLonPoki::~KasiPiPanaLonPoki() {}
 }

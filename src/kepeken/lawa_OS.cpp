@@ -5,8 +5,9 @@
 #include <optional>
 
 #ifdef WINDOWS
-#include <cstdlib>
-//#include <windows.h>
+#include <memory>
+#include <windows.h>
+#include <lmcons.h>
 #elif UNIX
 #include <unistd.h>
 #include <term.h>
@@ -16,13 +17,41 @@
 namespace kepeken {
     bool alaEIloPana() {
 #ifdef WINDOWS
-        if (!system(nullptr))
-            return false;
-            
-        int nanpaIke = system("cls");//TODO o pona e ni kepeken ilo API pi lawa Windows.
-        return nanpaIke == 0;
+{
+        HANDLE                     lupaSTDOUT;
+        CONSOLE_SCREEN_BUFFER_INFO sonaPiIloPana;
+        DWORD                      nanpaPiPokiSitelen;
+        DWORD                      nanpaSitelen;
+        static COORD               lonOpenLonIloPana = {0, 0};
 
+        lupaSTDOUT = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (lupaSTDOUT == INVALID_HANDLE_VALUE
+                || !GetConsoleScreenBufferInfo(lupaSTDOUT, &sonaPiIloPana))
+            return false;
+        
+        // li pali e ni: poki sitelen ali li kama ' ' tawa ni: ilo pana li kama ala.
+        nanpaPiPokiSitelen = sonaPiIloPana.dwSize.X * sonaPiIloPana.dwSize.Y;
+        if (!FillConsoleOutputCharacter( lupaSTDOUT
+                                       , ' '
+                                       , nanpaPiPokiSitelen
+                                       , lonOpenLonIloPana
+                                       , &nanpaSitelen))
+            return false;
+
+        // li awen e ijo pi lukin pona tan ni: FillConsoleOutputCharacter() li weka e ona.
+        if (!FillConsoleOutputAttribute( lupaSTDOUT
+                                       , sonaPiIloPana.wAttributes
+                                       , nanpaPiPokiSitelen
+                                       , lonOpenLonIloPana
+                                       , &nanpaSitelen))
+            return false;
+
+        // li pali e ni: lon toki (sitelen tan toki() en nimi wawa ante li kama lon ni) li kama lon open pi
+        //      ilo pana.
+        return SetConsoleCursorPosition(lupaSTDOUT, lonOpenLonIloPana);
+}
 #elif UNIX
+{
         // ilo Terminfo li open ala la li open e ona.
         if (cur_term == nullptr) {
             int nanpaIke;
@@ -34,6 +63,7 @@ namespace kepeken {
 
         // li kama jo e nimi wawa "clear" li lawa e ona.
         return putp(tigetstr("clear")) == 0;  
+}
 #endif
 
         return false;
@@ -48,14 +78,21 @@ namespace kepeken {
 
 
     // li lukin kama jo e nimi tan lawa OS.
-#ifdef WINDOWS
-    //TODO o pona e ni kepeken ilo API pi lawa Windows.
-
-#elif UNIX
+#ifdef WINDOWS 
+{
+        DWORD suliNimi  = UNLEN + 1; 
+        auto nimiJanKen = std::make_unique<CHAR[]>(suliNimi);
+        
+        if (GetUserNameA(nimiJanKen.get(), &suliNimi))
+            return *(nimiJan = std::string(nimiJanKen.get(), suliNimi));
+}
+#elif UNIX 
+{
         passwd* tomoPiSonaJan = getpwuid(geteuid());
 
         if (tomoPiSonaJan != nullptr) 
             return *(nimiJan = tomoPiSonaJan->pw_name);
+}
 #endif
 
 

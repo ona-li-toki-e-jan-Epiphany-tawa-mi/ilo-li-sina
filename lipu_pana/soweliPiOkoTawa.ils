@@ -5,13 +5,14 @@
     ##
     # li ala e ilo pana li toki e soweli li awen lon tenpo 1 Sekon.
     # ^ijo_jo oko: oko soweli
-    tokiESoweli = wan("alaEIloPana()                       \n"  \
-                      "tokiELinja(`^__^`)                  \n"  \
-                      "tokiELinja(`(` oko `)\\\\_______`)  \n"  \
-                      "tokiELinja(`(__)\\\\       )\\\\/`) \n"  \
-                      "tokiELinja(`    ||----w |`)         \n"  \
-                      "tokiELinja(`    ||     ||`)         \n"  \
-                      "awen(`1000`)                        \n")
+    tokiESoweli = wanKepeken("\n"                  \
+            "alaEIloPana()                      "  \
+            "tokiELinja(`^__^`)                 "  \
+            "tokiELinja(`(` oko `)\\\\_______`) "  \
+            "tokiELinja(`(__)\\\\       )\\\\/`)"  \
+            "tokiELinja(`    ||----w |`)        "  \
+            "tokiELinja(`    ||     ||`)        "  \
+            "awen(`1000`)                       ")
 
 sinLaToki:
     oko = "oo"

@@ -22,8 +22,9 @@ open:
     tawa(open)
 
 pini:
-    tokiEPini = wan("toki(nimi)   \n"  \
-                    "awen(`250`)  \n")
+    tokiEPini = wanKepeken("\n" \
+            "toki(nimi) "       \
+            "awen(`250`)")
 
     nimi = "pini"
     lawa(tokiEPini)

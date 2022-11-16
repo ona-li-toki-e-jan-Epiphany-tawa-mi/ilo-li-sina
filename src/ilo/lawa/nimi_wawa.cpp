@@ -148,6 +148,28 @@ void wan(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
 }
 
 /**
+ * @brief wanKepeken(nimiKepeken nimi nimi [nimi...]) -> nimi wan tan nimi pana kepeken nimi.
+ * 
+ * li wan e nimi pana kepeken nimi kepeken pana. pana la wanKepeken(", " "1" "2" "3") -> "1, 2, 3".
+ */
+void wanKepeken(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    std::string nimiKepeken = std::move(sonaLawa.pokiPali.top());
+    sonaLawa.pokiPali.pop(); nanpaIjo--;
+
+    std::string nimiWan;
+
+    for (; nanpaIjo > 0; nanpaIjo--) {
+        nimiWan.append(std::move(sonaLawa.pokiPali.top()));
+        sonaLawa.pokiPali.pop();
+
+        if (nanpaIjo != 1)
+            nimiWan.append(nimiKepeken);
+    }
+
+    sonaLawa.pokiPali.push(std::move(nimiWan));
+}
+
+/**
  * @brief awen(tenpo [tenpo...]) -> ala
  * 
  * li awen lon tenpo pana.
@@ -488,6 +510,7 @@ namespace ilo {
 
         {"kamaJo",         NimiWawa(   &kamaJo)},
         {"wan",            NimiWawa(2, &wan)},
+        {"wanKepeken",     NimiWawa(3, &wanKepeken)},
         {"pilin",          NimiWawa(2, &pilin)},
         {"awen",           NimiWawa(1, &awen)},
 

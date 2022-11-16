@@ -36,7 +36,7 @@ sina ken pana e nimi wawa tawa nimi ante:
     tokiELinja("sina jan " kamaJo("nimi sina li seme? "))
 ```
 
-sina ken pali e nimi wawa sin kepeken `lawa()`. sina wile pana e ali pi nimi wawa lon poki 1 li wile pana e poki ni tawa `lawa()`. nimi wawa li jo e linja mute la o pana e sitelen pi linja sin (`\n`) lon pini pi linja ali. tawa lukin pona la sina ken kepeken e `wan()` li ken pana e linja lon poki nimi ante. pana la:
+sina ken pali e nimi wawa sin kepeken `lawa()`. sina wile pana e ali pi nimi wawa lon poki 1 li wile pana e poki ni tawa `lawa()`. nimi wawa li jo e linja mute la o pana e sitelen pi linja sin (`\n`) lon pini pi linja ali. tawa lukin pona la sina ken kepeken e `wan()` anu `wanKepeken()` li ken pana e linja lon poki nimi ante. pana la:
 
 ```ilo li sina
     tokiEToki = "tokiELinja(nimi ` o, toki!`)"
@@ -58,9 +58,10 @@ sina ken pali e nimi wawa sin kepeken `lawa()`. sina wile pana e ali pi nimi waw
 sina ante e poki lon `lawa()` la ona li ante lon ali pi lipu wawa sina. kepeken ni li sina ken kama jo e ijo kama tan nimi wawa lon `lawa()`. o pana e ijo kama lon poki o kama jo tan poki ni, en, ijo kama li lon ni. pana la:
 
 ```ilo li sina
-    tokiPonaEWile = wan("wile = kamaJo(`sina wile e seme? `)                  \n"  \
-                        "tokiELinja(wile ` li ijo pona kin.`)                 \n"  \
-                        "tokiELinja(`mi wile e ni: sina ken kama jo e ` wile) \n")
+    tokiPonaEWile = wanKepeken("\n"                                 \
+            "wile = kamaJo(`sina wile e seme? `)                 "  \
+            "tokiELinja(wile ` li ijo pona kin.`)                "  \
+            "tokiELinja(`mi wile e ni: sina ken kama jo e ` wile)")
     lawa(tokiPonaEWile)
 
     tokiELinja("a a a! mi sona e sona suli sina! sina wile e " wile)
@@ -97,6 +98,10 @@ li ala (weka e sitelen) e ilo pana.
 #### **wan(nimi nimi \[nimi...\]) -> nimi wan tan nimi pana**
 
 li wan e `nimi` lon `nimi wan`. 
+
+#### **wanKepeken(nimiKepeken nimi nimi \[nimi...\]) -> nimi wan tan nimi pana kepeken nimi.**
+
+li wan e `nimi` pana kepeken `nimi kepeken` pana. pana la `wanKepeken(", " "1" "2" "3")` -> `"1, 2, 3"`.
 
 #### **awen(tenpo \[tenpo...\]) -> ala**
 

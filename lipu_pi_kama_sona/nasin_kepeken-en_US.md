@@ -36,7 +36,7 @@ Function calls can also be nested to pass the result of a function as an argumen
     tokiELinja("Your name is: " kamaJo("What is your name? "))
 ```
 
-It is possible to create your own functions (more like subroutines, really) using `lawa()` by placing the functions code inside a single string and calling `lawa()` with it. For multiline functions you will need to separate each line with a `newline` character (`\n`). I recommend putting each line in a separate string, using `wan()` to join them together.
+It is possible to create your own functions (more like subroutines, really) using `lawa()` by placing the functions code inside a single string and calling `lawa()` with it. For multiline functions you will need to separate each line with a `newline` character (`\n`). I recommend putting each line in a separate string, using `wan()` or `wanKepeken()` to join them together.
 
 ```ilo li sina
     greet = "tokiELinja(`Hello ` name `!`)"
@@ -58,9 +58,10 @@ It is possible to create your own functions (more like subroutines, really) usin
 Chaanges to variables within `lawa()` carry outside of it. With this is possible to create subroutines, where returning a result can be done by assigning a value to a variable.
 
 ```ilo li sina
-    talkAboutWish = wan("wish = kamaJo(`What do you want? `)    \n"  \
-                        "tokiELinja(wish ` is a great thing`)   \n"  \
-                        "tokiELinja(`I hope you can get ` wish) \n")
+    talkAboutWish = wanKepeken("\n"                   \
+            "wish = kamaJo(`What do you want? `)   "  \
+            "tokiELinja(wish ` is a great thing`)  "  \
+            "tokiELinja(`I hope you can get ` wish)")
     lawa(talkAboutWish)
 
     tokiELinja("Haha! I know your secret! You want " wish)
@@ -97,6 +98,10 @@ Clears the terminal.
 #### **wan(string string \[strings...\]) -> concatenated string**
 
 Concatenates the given `strings` into a `single string` and returns it.
+
+#### **wanKepeken(delimeter string string \[strings...\]) -> concatenated string for the given strings separated by the delimeter.**
+
+Concatenates the given `strings`, placing the `delimeter` between each of them and returns it (for example, `wanKepeken(", " "1" "2" "3")` -> `"1, 2, 3"`.)
 
 #### **awen(duration \[durations...\]) -> nothing**
 

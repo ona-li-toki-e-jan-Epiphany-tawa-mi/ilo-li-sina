@@ -10,21 +10,22 @@
 
 namespace ante_toki {
     const std::unordered_map<std::string, std::string>* tokiWile = nullptr;
-    std::locale ijoPiTokiWile;
-    const char* ijoCPiTokiWile = nullptr;
 
     bool alasaETokiWile() {
         if (nimiTokiAli.size() == 0)
             return false;
 
-    //TODO ni li pali ala lon lawa Windows.
-#ifdef UNIX
         // li wile tawa kama jo e suli pi poki nimi UTF-8 tawa ijo toki ante.
-        ijoCPiTokiWile = setlocale(LC_ALL, "");
+        if (setlocale(LC_ALL, "") == nullptr)
+            setlocale(LC_ALL, "C"); 
 
         // li ante e nasin pi toki ijo tawa toki wile.
-        std::locale::global(std::locale(""));
-#endif
+        try {
+            std::locale::global(std::locale(""));
+
+        } catch (const std::runtime_error& liKenAla) {
+            std::locale::global(std::locale("C"));
+        }
 
         // lawa OS mute li pana e toki wile lon "LANG". sin la ni li ken ni: jan li pilin e toki pi ilo ni.
         const char *const tokiJan = getenv("LANG");
@@ -91,7 +92,7 @@ namespace ante_toki {
             return -static_cast<int>(suli);
 
         for (int i = 1; i < suli; i++)
-            if (pokiNimi.at(open + i) & 0b11'000000 != 0b10'000000)
+            if ((pokiNimi.at(open + i) & 0b11'000000) != 0b10'000000)
                 return -static_cast<int>(suli);
 
         return static_cast<int>(suli);

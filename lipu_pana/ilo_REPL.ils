@@ -7,15 +7,28 @@
     tokiELinja("\tsina la sina ken ala kepeken e sitelen '\\' tawa toki e ijo lon linja mute.")
     tokiELinja("\tsina wile kepeken e nimi wawa tawa la sina wile kepeken e lawa().")
     tokiELinja()
-    tokiELinja("\to pilin e nena pi Ctrl en D tawa pini e ilo ni")
+    tokiELinja("\ttawa pini e ilo ni la o pilin e nena pi Ctrl en D, anu, toki e \"pini()\".")
     tokiELinja()
     # tawa pilin pona. ni ala la ijo li pilin ike.
     awen("500") 
 
 open:
     ikeLaTawaAla()
-    nimiTanJan = kamaJo(">>> ")
+    nimiTanJan = niLaTawa(pini "pini()" _ \ 
+                               ">>> ")
 
     ikeLaTawa(open)
     lawa(nimiTanJan)
     tawa(open)
+
+pini:
+    tokiEPini = wan("toki(nimi)   \n"  \
+                    "awen(`250`)  \n")
+
+    nimi = "pini"
+    lawa(tokiEPini)
+    nimi = "."
+    lawa(tokiEPini)
+    lawa(tokiEPini)
+    lawa(tokiEPini)
+    tokiELinja()

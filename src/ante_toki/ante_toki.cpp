@@ -4,7 +4,6 @@
 #include <iostream>
 #include <clocale>
 #include <cstdlib>
-#include <cwchar>
 #include <cassert>
 
 #include "nimi_toki.hxx"
@@ -24,9 +23,7 @@ namespace ante_toki {
         ijoCPiTokiWile = setlocale(LC_ALL, "");
 
         // li ante e nasin pi toki ijo tawa toki wile.
-        ijoPiTokiWile = std::locale("");
-        std::cout.imbue(ijoPiTokiWile);
-        std::cerr.imbue(ijoPiTokiWile);
+        std::locale::global(std::locale(""));
 #endif
 
         // lawa OS mute li pana e toki wile lon "LANG". sin la ni li ken ni: jan li pilin e toki pi ilo ni.
@@ -80,39 +77,67 @@ namespace ante_toki {
 
 
 
-    size_t UTF8LaSuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini) {
+    /**
+     * @brief li kama sona e ni: sitelen UTF-8 pi nanpa Byte mute li pona ala pona.
+     * 
+     * @param pokiNimi li lukin lon poki ni.
+     * @param open     open sitelen li lon ni.
+     * @param suli     suli sitelen.
+     * @return li pona     la suli.
+     *         li pona ala la suli * -1.
+     */
+    int liSitelenPona(const std::string& pokiNimi, const size_t open, unsigned int suli) {
+        if (pokiNimi.size() <= open + suli)
+            return -static_cast<int>(suli);
+
+        for (int i = 1; i < suli; i++)
+            if (pokiNimi.at(open + i) & 0b11'000000 != 0b10'000000)
+                return -static_cast<int>(suli);
+
+        return static_cast<int>(suli);
+    }
+
+    int UTF8LaSuliSitelen(const std::string& pokiNimi, const size_t open) {
         assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
 
-        size_t suliSitelen;
-        if (pini != std::string::npos) {
-            suliSitelen = mbrlen(
-                &pokiNimi.at(open), 
-                std::min(pini - open, static_cast<size_t>(MB_CUR_MAX)), 
-                nullptr);
+        char sitelen = pokiNimi.at(open);
 
-        } else
-            suliSitelen = mbrlen(
-                &pokiNimi.at(open), 
-                std::min(pokiNimi.size() - open, static_cast<size_t>(MB_CUR_MAX)), 
-                nullptr);
+        // sitelen li lon kulupu ASCII anu li sitelen ante pi suli 1 la suli ona li 1.
+        if ((sitelen & 0b1'0000000) == 0)
+            return 1;
 
-        // sitelen li jo e nanpa Byte mute li ike la li en taso e 1 tan ni: li ken ala pali ante tan sitelen ike.
-        return suliSitelen > 0 && suliSitelen != static_cast<size_t>(-1) && suliSitelen != static_cast<size_t>(-2) ?
-            suliSitelen : 1;
+
+        // li pini pi sitelen UTF-8 pi nanapa Byte mute la li ken ala kama sona e suli. ken la ona li
+        //      ike.
+        if ((sitelen & 0b11'000000) == 0b10'000000)
+            return 0;
+
+        // li open pi sitelen UTF-8 pi nanpa Byte mute la mi wile alasa e suli li kama sona e ni: ona li
+        //      jo e nanpa pi nanpa wile lon pini, en, ona li sitelen pini pona (sama 0b10xxxxxx).
+        if ((sitelen & 0b0'11'00000) == 0b0'10'00000) 
+            return liSitelenPona(pokiNimi, open, 2);
+
+        if ((sitelen & 0b0'111'0000) == 0b0'110'0000)
+            return liSitelenPona(pokiNimi, open, 3);
+
+        if ((sitelen & 0b0'1111'000) == 0b0'1110'000) 
+            return liSitelenPona(pokiNimi, open, 4);
+
+        return -1;
     }
 
     size_t UTF8LaNanpaSitelen(const std::string& pokiNimi, size_t open, const size_t pini) {
         assert(open <= pokiNimi.size() && pini <= pokiNimi.size() && "open alasa en pini alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
         assert(open <= pini && "open alasa li ken ala suli tawa pini alasa");
 
-        // li sona ala e ijo pi toki wile la li ken taso pana e suli tan open tawa pini.
-        if (ijoCPiTokiWile == nullptr)
-            return pini - open;
-
         size_t suli = 0;
 
         while (open < pini) {
-            open += UTF8LaSuliSitelen(pokiNimi, open, pini);
+            int suliSitelen = std::abs(UTF8LaSuliSitelen(pokiNimi, open));
+            if (suliSitelen == 0)
+                suliSitelen = 1;
+
+            open += static_cast<size_t>(suliSitelen);
             suli++;
         }
 
@@ -122,18 +147,14 @@ namespace ante_toki {
     size_t UTF8LaNanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen) {
         assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
         
-        if (ijoCPiTokiWile == nullptr)
-            return std::min(pokiNimi.size() - open, nanpaSitelen);
-        
         size_t nanpa = 0;
 
         for (; open < pokiNimi.size() && nanpaSitelen > 0; nanpaSitelen--) {
-            size_t suliSitelen = mbrlen(
-                &pokiNimi.at(open), 
-                std::min(pokiNimi.size() - open, static_cast<size_t>(MB_CUR_MAX)), 
-                nullptr);
-            
-            suliSitelen = UTF8LaSuliSitelen(pokiNimi, open);
+            size_t suliSitelen = static_cast<size_t>(std::abs(
+                        UTF8LaSuliSitelen(pokiNimi, open)));
+
+            if (suliSitelen == 0)
+                suliSitelen = 1;
 
             open += suliSitelen;
             nanpa += suliSitelen;
@@ -141,4 +162,26 @@ namespace ante_toki {
 
         return nanpa;
     }
+
+    /*void ponaESitelenUTF8(std::string& pokiSitelen) {
+        for (size_t i = 0; i < pokiSitelen.size();) {
+            int suliSitelen = UTF8LaSuliSitelen(pokiSitelen, i);
+            if (suliSitelen == 0) {
+                suliSitelen = 1;
+            } else 
+                suliSitelen = std::abs(suliSitelen);
+            if (suliSitelen < 1) {
+                if (suliSitelen == 0) {         
+                    pokiSitelen.erase(i, 1);
+                
+                } else 
+                    pokiSitelen.erase(i, suliSitelen * -1);
+
+                pokiSitelen.insert(i, "\uFFFD");
+                suliSitelen = 4;
+            }
+
+            i += suliSitelen;
+        }
+    }*/
 }

@@ -212,7 +212,7 @@ namespace ilo {
 
         sonaKipisi.alasaSitelen++;
         for (; sonaKipisi.alasaSitelen < sonaKipisi.linja.cend(); sonaKipisi.alasaSitelen++) {
-            if ((*sonaKipisi.alasaSitelen & 0b10000000) == 0
+            if ((*sonaKipisi.alasaSitelen & 0b1'0000000) == 0
                     && !std::regex_match( sonaKipisi.alasaSitelen
                                         , sonaKipisi.alasaSitelen + 1
                                         , SITELEN_PI_POKI_NANPA))
@@ -300,8 +300,10 @@ namespace ilo {
 
 
                             // sitelen li wile ala la li ike.
-							size_t lonSitelen = kamaJoELonSitelen(linja, alasaSitelen);
-							size_t suliSitelen = ante_toki::UTF8LaSuliSitelen(linja, lonSitelen - 1);
+							size_t lonSitelen  = kamaJoELonSitelen(linja, alasaSitelen);
+							size_t suliSitelen = std::abs(ante_toki::UTF8LaSuliSitelen(linja, lonSitelen - 1));
+                            if (suliSitelen == 0)
+                                suliSitelen = 1;
                             // sitelen li suli tawa 1 la mi wile tawa pini ona.
 							alasaSitelen += suliSitelen - 1;
 

@@ -49,19 +49,19 @@ namespace ante_toki {
 
     /**
      * @brief li kama jo e suli e nanpa Byte tawa sitelen UTF-8 1.
-     * @attention sina wile kepeken e alasaETokiWile() lon monsi kepeken. ni ala la li sama std::string::size().
      * 
      * @param pokiNimi li lukin lon poki ni.
      * @param open     open sitelen li lon ni.
      * @param pini     li pini lukin lon ni. li pana ala la li pini lon pini poki.
      * 
-     * @return suli pi sitelen UTF-8 1.
+     * @return li pona                      la suli pi sitelen UTF-8.
+     *         li open pi sitelen ike UTF-8 la suli * -1.
+     *         li pini pi sitelen UTF-8     la 0
      */
-    size_t UTF8LaSuliSitelen(const std::string& pokiNimi, const size_t open, const size_t pini = std::string::npos);
+    int UTF8LaSuliSitelen(const std::string& pokiNimi, const size_t open);
 
     /**
      * @brief li kama jo e nanpa sitelen pana lon insa pi open en pini tan poki nimi UTF-8.
-     * @attention sina wile kepeken e alasaETokiWile() lon monsi kepeken. ni ala la li sama std::string::size().
      *
      * @param pokiNimi li nanpa e nanpa sitelen pana lon poki ni.
      * @param open     li open nanpa e sitelen lon ni.
@@ -82,4 +82,7 @@ namespace ante_toki {
      * @return nanpa pi nanpa Byte tawa nanpa sitelen pana.
      */
     size_t UTF8LaNanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen);
+
+    
+    //void ponaESitelenUTF8(std::string& pokiSitelen);
 }

@@ -16,13 +16,12 @@ sina wile kama sona e nasin kepeken pi toki ni la o lukin e [lipu pi nasin kepek
 
 ## **nasin pali**
 
-sina wile e ilo CMake en Python lon ilo nanpa sina.
+sina wile e ilo CMake en Python pi nanpa 3 lon ilo nanpa sina.
 
 o tawa lon poki lipu "ilo li sina" o toki e nimi wawa ni tawa pali e lipu wawa pini:
 
 ```console
-$ cmake .
-$ make
+cmake --build .
 ```
 
 ona li kama lon poki li jo e nimi "ilo_li_sina".

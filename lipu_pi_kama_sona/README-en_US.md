@@ -14,13 +14,12 @@ You can find the [documentation here.](nasin_kepeken-en_US.md "ilo li sina docum
 
 ## **How to build**
 
-You will need CMake and Python installed on your system.
+You will need CMake and Python 3 installed on your system.
 
 Move into the project directory and run the following commands:
 
 ```console
-$ cmake .
-$ make
+cmake --build .
 ```
 
 The final executable will be named "ilo li sina."

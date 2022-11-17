@@ -327,7 +327,7 @@ pini:
 
 ### **kama jo e poki tan lipu ante**
 
-ken la sin wile pana e poki e nimi wawa lon lipu ante en kama jo e ona lon lipu wawa sina. ni li ken kepeken `lawaELipu()`. `lawaELipu()` li lawa e ilo nanpa kepeken lipu wawa pana li pana e poki e nimi wawa tan ona lon lipu wawa sina. pana la:
+ken la sina wile pana e poki e nimi wawa lon lipu ante en kama jo e ona lon lipu wawa sina. ni li ken kepeken `lawaELipu()`. `lawaELipu()` li lawa e ilo nanpa kepeken lipu wawa pana li pana e poki e nimi wawa tan ona lon lipu wawa sina. pana la:
 
 nasinAla.ils:
 ```ilo li sina

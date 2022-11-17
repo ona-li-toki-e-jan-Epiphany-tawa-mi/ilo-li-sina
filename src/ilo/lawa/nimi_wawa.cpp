@@ -288,6 +288,36 @@ void lawa(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
 }
 
 /**
+ * @brief lawaELipu(lonLipu [lonLipu...]) -> ala
+ * 
+ * li lawa e lipu lon lon pana. poki lon ona li kama lon lipu wawa sina. poki li lon lipu sina en
+ * lipu pana la poki lon lipu pana li awen.
+ */
+void llawaELipu(ilo::SonaLawa& sonaLawa, unsigned int nanpaIjo) {
+    for (; nanpaIjo > 0; nanpaIjo--) {
+        std::string nimiLipu = std::move(sonaLawa.pokiPali.top());
+        sonaLawa.pokiPali.pop();
+        ilo::KasiOpen lipuPali;
+
+        try {
+            std::list<ilo::Ijo> lipuKipisi = ilo::kipisiELipu(nimiLipu);
+            lipuPali = ilo::pali(lipuKipisi, nimiLipu);
+
+        } catch (const std::invalid_argument& liOpenAla) {
+            throw std::runtime_error(liOpenAla.what());
+        }
+
+        std::unordered_map<std::string, std::string> pokiAliSin;
+        ilo::lawaELipu(lipuPali, pokiAliSin, nimiLipu);
+
+        sonaLawa.pokiAli.swap(pokiAliSin);
+        sonaLawa.pokiAli.merge(pokiAliSin);
+    }
+
+    sonaLawa.pokiPali.push("");
+}
+
+/**
  * @brief ikeLaTawaAla() -> ala
  * 
  * lon tawa tawa lon tenpo ike li lon (kepeken ikeLaTawa()) la ni li weka e ona.
@@ -516,7 +546,8 @@ namespace ilo {
 
         {"pokiPiLawaOS",   NimiWawa(1, &pokiPiLawaOS)},
 
-        {"lawa",           NimiWawa(&lawa)},
+        {"lawa",           NimiWawa(   &lawa)},
+        {"lawaELipu",      NimiWawa(1, &llawaELipu)},
 
         {"ikeLaTawaAla",   NimiWawa(&ikeLaTawaAla, 0)},
         {"ike",            NimiWawa(&ike)}

@@ -123,6 +123,10 @@ If none of the given variables have a value, then `nothing` is returned.
 
 Converts the given `lines` into code and runs it, where each `line` is like a line in a file. The execution inside `lawa()` shares the same memory space for variables as the calling program. Any changes to variables within `lawa()` will show outside of it. It is possible to create subroutines using this; look above for more information.
 
+#### **lawaELipu(fileName \[fileNames...\]) -> nothing**
+
+See [Importing.](nasin_kepeken-en_US.md#importing "Importing")
+
 #### **ikeLaTawaAla() -> nothing**
 
 See [Exception Handling.](nasin_kepeken-en_US#exception-handling "Exception Handling")
@@ -313,6 +317,61 @@ Error:
     tokiELinja("'" age "' is not a number!")
     tawa(Start)
 End:
+```
+
+### **Importing**
+
+You can run and import variables from other files using `lawaELipu()`. `lawaELipu()` runs the given files and loads any variables created within into the current variable memory space, overwriting duplicates.
+
+random.ils:
+```ilo li sina
+    ##
+    # Returns "rChar": a random character.
+    rChar = ""
+    randomChar = wanKepeken("\n"                                                            \
+            "rChar = pilin('a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' \\"  \
+            "              'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z' '1' '2' '3' '4' \\"  \
+            "              '5' '6' '7' '8' '9' '0')                                      ")
+
+    ##
+    # Returns "rString": a random 20 character string.
+    rString = ""
+    randomString = wanKepeken("\n"                            \
+            "rString = ``                                  "  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)"  \
+            "rString = wan(rString lawa(randomChar) rChar)")
+
+    ##
+    # A nice phrase for your significant other. ;)
+    nice = "I love you!"
+```
+
+yourProgram.ils:
+```ilo li sina
+    lawaELipu("random.ils")
+
+    tokiELinja(lawa(randomChar) rChar)     # Possibly "4".
+    tokiELinja(lawa(randomString) rString) # Possibly "yyea84t3q7vx0x3b9poj7".
+    tokiELinja(nice)                       # "I love you!".
 ```
 
 ### ***Smaller Features***

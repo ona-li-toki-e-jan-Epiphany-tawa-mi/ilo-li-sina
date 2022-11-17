@@ -125,6 +125,10 @@ poki li lon ala la li pana e `ala`.
 
 li pali e lipu wawa tan `linja` li lawa e ilo nanpa kepeken ona. lawa pi lipu wawa ni li kepeken e poki sama lipu wawa suli. sina ante e poki lon ona la ona li ante lon ali pi lipu wawa sina. kepeken ni la sina ken pali e nimi wawa sin. o lukin lon sewi tawa sona pona.
 
+#### **lawaELipu(lonLipu \[lonLipu...\]) -> ala**
+
+o lukin e [kama jo e poki tan lipu ante.](nasin_kepeken-tok.md#kama-jo-e-poki-tan-lipu-ante "kama jo e poki tan lipu ante")
+
 #### **ikeLaTawaAla() -> ala**
 
 o lukin e ["ike la seme?".](nasin_kepeken-tok.md#ike-la-seme "ike la seme?")
@@ -319,6 +323,61 @@ ike:
     tokiELinja("'" suli "' li nanpa ala!")
     tawa(open)
 pini:
+```
+
+### **kama jo e poki tan lipu ante**
+
+ken la sin wile pana e poki e nimi wawa lon lipu ante en kama jo e ona lon lipu wawa sina. ni li ken kepeken `lawaELipu()`. `lawaELipu()` li lawa e ilo nanpa kepeken lipu wawa pana li pana e poki e nimi wawa tan ona lon lipu wawa sina. pana la:
+
+nasinAla.ils:
+```ilo li sina
+    ##
+    # li pana "pilin": sitelen anu nanpa pi nasin ala 
+    pilin = ""
+    pilinESitelenPNA = wanKepeken("\n"                                                         \
+            "pilin = pilin('a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' \\"  \
+            "              'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z' '1' '2' '3' '4' \\"  \
+            "              '5' '6' '7' '8' '9' '0')                                      ")
+
+    ##
+    # li pana "pokiNimi": poki nimi pi suli 20 pi nasin ala.
+    pokiNimi = ""
+    paliEPokiNimiPNA = wanKepeken("\n"                            \
+            "pokiNimi = ``                                     "  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)"  \
+            "pokiNimi = wan(pokiNimi lawa(pilinESitelenPNA) pilin)")
+
+    ##
+    # nimi pona tawa jan suli sina ;).
+    nimiPona = "mi olin e sina!"
+```
+
+lipuWawaSina.ils:
+```ilo li sina
+    lawaELipu("nasinAla.ils")
+
+    tokiELinja(lawa(pilinESitelenPNA) pilin)    # ken la li "4".
+    tokiELinja(lawa(paliEPokiNimiPNA) pokiNimi) # ken la li "yyea84t3q7vx0x3b9poj7".
+    tokiELinja(nimiPona)                        # kin la li "mi olin e sina!".
 ```
 
 ### ***ijo lili***

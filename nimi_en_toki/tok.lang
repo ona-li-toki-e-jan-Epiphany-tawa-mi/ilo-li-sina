@@ -5,8 +5,8 @@ ilo_CLI.nasin_kepeken=nasin kepeken
 ilo_CLI.sona=sona
 ilo_CLI.sona.nimi=ilo tawa lawa e ilo nanpa kepeken toki \"ilo li sina\". toki \"ilo li sina\" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi.
 ilo_CLI.ilo_pilin=ilo pilin
-ilo_CLI.ilo_pilin.toki_e_nimi=li toki e kulupu nimi pi lipu wawa pana.
-ilo_CLI.ilo_pilin.toki_e_kasi=li toki e kasi pi kasi suli pi lipu wawa pana.
+ilo_CLI.ilo_pilin.toki_e_ijo=li toki e ijo tan kipisi pi lipu wawa pana.
+ilo_CLI.ilo_pilin.toki_e_kasi=li toki e kasi tan pali e lipu wawa pana.
 ilo_CLI.ilo_pilin.help=li toki e nimi ni e sona kepeken li pini.
 ilo_CLI.ilo_pilin.version=li toki e nanpa pi lipu wawa ni li pini.
 ilo_CLI.ilo_pilin.lipu_wawa=LIPU_WAWA
@@ -25,24 +25,22 @@ ilo_CLI.ijo_sin.nasin_kepeken=lipu pi kama sona pi nasin kepeken li lon lipu <ht
 toki.nanpa_linja=linja pi nanpa %d
 toki.li_jo_e_ala=li jo e ala...
 
-## ijo tawa toki e kasi pi kasi suli.
+## ijo tawa toki e kasi pi lipu wawa.
 toki.nimi_kasi.pana_lon_poki=PANA_LON_POKI
 toki.nimi_kasi.kama_jo_tan_poki=KAMA_JO_TAN_POKI
-toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=KAMA_JO_TAN_POKI_PI_ANTE_ALA
+toki.nimi_kasi.poki_nimi=KAMA_JO_TAN_POKI_NIMI
 toki.nimi_kasi.nimi_wawa=NIMI_WAWA
-toki.nimi_kasi.nimi_tawa=NIMI_TAWA
-toki.nimi_kasi.tawa=TAWA
-toki.nimi_kasi.ala=ALA
+toki.nimi_kasi.nimi_wawa_tawa=NIMI_WAWA_TAWA
+toki.nimi_kasi.pini=PINI
 
-## ijo tawa toki e kulupu nimi.
-toki.kulupu_nimi.poki_nanpa=POKI_NANPA
-toki.kulupu_nimi.pana_lon_poki_nanpa=PANA_LON_POKI_NANPA
-toki.kulupu_nimi.poki_sitelen=POKI_SITELEN
-toki.kulupu_nimi.nimi_wawa=NIMI_WAWA
-toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=POKI_PI_IJO_TAWA_NIMI_WAWA
-toki.kulupu_nimi.linja_sitelen_sin=LINJA_SITELEN_SIN
-toki.kulupu_nimi.nimi_tawa_tawa=NIMI_TAWA_TAWA
-toki.kulupu_nimi.ala=ALA
+## ijo tawa toki e ijo pi lipu kipisi.
+toki.ijo_kipisi.poki=POKI
+toki.ijo_kipisi.pana_lon_poki=PANA_LON_POKI
+toki.ijo_kipisi.poki_nimi=POKI_NIMI
+toki.ijo_kipisi.nimi_wawa=NIMI_WAWA
+toki.ijo_kipisi.poki_pi_ijo_pi_nimi_wawa=POKI_PI_IJO_PI_NIMI_WAWA
+toki.ijo_kipisi.linja_sin=LINJA_SIN
+toki.ijo_kipisi.nimi_tawa_tawa=NIMI_TAWA_TAWA
 
 
 
@@ -55,16 +53,16 @@ ike.ilo_CLI.o_lukin_e_sona_kepeken=sina ken kepeken e 'ilo_li_sina --help' tawa 
 
 # ike lon tenpo pali.
 ## ike pi nimi wawa.
-ike.pali.nimi_wawa.tawa.sitelen_ike=nimi tawa ike\nnimi tawa sama kulupu RegEx [a-zA-Z0-9_] li wile
+ike.pali.nimi_wawa.tawa.nimi_tawa_tawa_li_wile=nimi tawa tawa ike\nnimi tawa tawa sama kulupu RegEx [a-zA-Z0-9_] li wile
+ike.pali.nimi_wawa.tawa.nimi_tawa_mute_mute=nimi tawa tawa '%s' li mute, taso, 1 taso li wile\nlon pi nanpa 1 li lon (%d, %d)
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=tawa tawa nimi tawa '%s' pi sona ala
-ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=ijo pi nanpa ike tawa nimi wawa 'tawa' li lon\nni li wile: tawa(nimiTawa)
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'niLaTawa' li lon\nijo ni li wile: niLaTawa(nimiTawa nimiLon nimiPiLonAla [ijoTawaToki...])
-ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa 'alaLaTawa' li lon\nijo ni li wile: alaLaTawa(nimiTawa nimi [nimi...])
+ike.pali.nimi_wawa.nanpa_ijo_lili=ijo lili lili tawa nimi wawa '%s' li lon\nona %d li wile
+ike.pali.nimi_wawa.nanpa_ijo_suli=ijo suli suli tawa nimi wawa '%s' li lon\nona %d li wile
 ike.pali.nimi_wawa.li_jo_ala_e_pini=kepeken pi nimi wawa li jo ala e pini\nsitelen pini ')' li wile
 ike.pali.nimi_wawa.nimi_pi_sona_ala=nimi wawa '%s' pi sona ala
 
 ## ike pi poki nanpa.
-ike.pali.poki_nanpa.nimi_poki_li_wile=nimi pi poki nanpa li wile lon monsi pi sitelen '='
+ike.pali.poki_nanpa.nimi_poki_li_wile=nimi poki li wile lon monsi pi sitelen '='
 ike.pali.poki_nanpa.ijo_tawa_poki_li_wile=ijo tawa poki li wile lon sinpin pi sitelen '='
 ike.pali.poki_nanpa.ijo_ike_tawa_poki=ijo ike tawa poki lon sinpin pi sitelen '='\nli wile jo e ijo tawa poki lon poki nanpa
 
@@ -82,7 +80,7 @@ ike.kipisi.nimi_wawa.nimi_li_wile=nimi pi nimi wawa li wile lon monsi pi sitelen
 
 
 # ike lon tenpo lawa.
-ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=li lukin kama jo e ijo tan poki nanpa '%s' pi sona ala
+ike.lawa.poki_nimi.li_lukin_kama_jo_tan_poki_pi_sona_ala=li lukin kama jo e ijo tan poki '%s' pi sona ala
 
 ike.lawa.pini_lipu=li kama jo e sitelen EOF (pini lipu) tan ijo Stdin
 
@@ -91,8 +89,10 @@ ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=nimi lon pi nimi wawa '
 ike.lawa.awen.nanpa_ala=nanpa pi nanpa lili ala li wile la li kama jo e ijo '%s' sama ala nanpa
 ike.lawa.awen.nanpa_ike=li kama jo e nanpa ike '%s' pi nanpa lili ala. li suli suli kin anu lili lili kin
 
+ike.lawa.ala_e_ilo_pana.li_alasa_ala=alaEIloPana() li pali ala. ken la li ken ala alasa e nimi wawa wile pi lon ante, anu, ijo li ike. ken la lawa OS sina li pali ala tawa ni (lawa Windows anu lawa UNIX li wile)
+
 
 # ike ni li ken lon tenpo ali.
-ike.kulupu_nimi_pi_wile_ala=kulupu nimi '%s' pi sona ala
+ike.sitelen_pi_wile_ala=sitelen '%s' pi sona ala
 
 ike.nimi=ike

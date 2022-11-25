@@ -2,5 +2,5 @@
 
 # li toki e toki sina.
 open: 
-    tokiELinja(kamaJoTanJan())
+    tokiELinja(kamaJo())
     tawa(open)

@@ -1,86 +1,17 @@
 #include <functional>
 #include <cassert>
-#include "kipisi_pi_lipu_wawa/kipisi.hpp"
-#include "lawa_pi_ilo_nanpa/lawa.hpp"
+
 #include "ante_toki/ante_toki.hpp"
-#include "pali_pi_lipu_wawa_tan_kulupu_nimi/nimi_wawa.hpp"
-
-/**
- * @brief li sama kipisi::kipisiELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
- */
-std::vector<kipisi::KulupuNimi> kipisiELipuWawaLKP(const std::string& nimiPiLipuWawa) {
-	auto [lipuWawaKipisi, nanpaIke] = kipisi::kipisiELipuWawa(nimiPiLipuWawa);
-
-	if (!lipuWawaKipisi.has_value())
-		exit(nanpaIke);
-
-	return *lipuWawaKipisi;
-}
-
-/**
- * @brief li sama pali::paliELipuWawa. taso, ni li ken pini e lipu wawa "ilo li sina".
- */
-std::vector<std::shared_ptr<pali::KasiPiKasiSuli>> paliELipuWawaLKP(const std::string& nimiPiLipuWawa) {
-	auto [lipuWawaPali, nanpaIke] = pali::paliELipuWawa(
-		kipisiELipuWawaLKP(nimiPiLipuWawa), nimiPiLipuWawa);
-
-	if (!lipuWawaPali.has_value())
-		exit(nanpaIke);
-
-	return *lipuWawaPali;
-}
-
-/**
- * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
- * 
- * @param nimiPiLipuWawa nimi pi lipu wawa tawa lawa.
- */
-void lawaEIloNanpa(const std::string& nimiPiLipuWawa) {
-	std::unordered_map<std::string, std::string> pokiNanpaOpen;
-
-	// nimi ni li lon open pi lipu wawa ali.
-	pokiNanpaOpen["__nanpa_Ilo_Li_Sina"] = "0.0";
-	pokiNanpaOpen["__nimi_Ilo_Li_Sina"]  = kepeken::kamaJoENimiPiILO_LI_SINA();
-	pokiNanpaOpen["__nimi_lipu"] 		 = nimiPiLipuWawa;
-	pali::string_lqueue pokiOSPiNimiJan(std::list<std::string>({"USER", "USERNAME", "LOGNAME"})); 
-	const std::optional<std::string> nimiJan = *pali::kamaJoEPokiNanpaPiLawaOS(
-		"", nullptr, pokiOSPiNimiJan);
-	pokiNanpaOpen["__nimi_jan"] 		 = nimiJan.has_value() ? *nimiJan : "";
-	pokiNanpaOpen["_"] 					 = "";
-
-	int nanpaIke = lawa::lawaEIloNanpa(
-		paliELipuWawaLKP(nimiPiLipuWawa), 
-		pokiNanpaOpen,
-		nimiPiLipuWawa);
-
-	exit(nanpaIke);
-}
-
-/**
- * @brief li toki e kulupu nimi tan lipu wawa pana.
- * 
- * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
- */
-void tokiEKulupuNimi(const std::string& nimiPiLipuWawa) {
-	kipisi::tokiELipuWawa(kipisiELipuWawaLKP(nimiPiLipuWawa), nimiPiLipuWawa);
-}
-
-/**
- * @brief li toki e kasi pi kasi suli tan lipu wawa pana.
- * 
- * @param nimiPiLipuWawa nimi pi lipu wawa tawa toki.
- */
-void tokiEKasiSuli(const std::string& nimiPiLipuWawa) {
-	pali::tokiEKasiSuli(paliELipuWawaLKP(nimiPiLipuWawa), nimiPiLipuWawa);
-}
-
-
+#include "kepeken/toki.hpp"
+#include "kepeken/ike.hpp"
+#include "ilo/toki.hpp"
+#include "ilo/lawa/lawa.hpp"
 
 /**
  * @brief nimi pi ilo pilin ali. li tawa poki en kama jo.
  */
 enum class NimiPiIloPilin {
-	TOKI_E_NIMI,
+	TOKI_E_IJO,
 	TOKI_E_KASI,
 	HELP,
 	VERSION
@@ -106,28 +37,30 @@ struct IloPilin {
  * ni li lon tan ni: pana e ilo pilin sin li ken lon tenpo lili.
  */
 std::unordered_map<NimiPiIloPilin, IloPilin> iloPilinAli = {
-	{NimiPiIloPilin::TOKI_E_NIMI, {'n',  "toki-e-nimi", "ilo_CLI.ilo_pilin.toki_e_nimi", false}},
+	{NimiPiIloPilin::TOKI_E_IJO,  {'i',  "toki-e-ijo",  "ilo_CLI.ilo_pilin.toki_e_ijo",  false}},
 	{NimiPiIloPilin::TOKI_E_KASI, {'k',  "toki-e-kasi", "ilo_CLI.ilo_pilin.toki_e_kasi", false}},
 	{NimiPiIloPilin::HELP,		  {'h',  "help", 		"ilo_CLI.ilo_pilin.help",		 false}},
 	{NimiPiIloPilin::VERSION,     {'\0', "version", 	"ilo_CLI.ilo_pilin.version", 	 false}}
 };
+
+
 
 /**
  * @brief li toki e sona kepeken pi ilo ni tawa jan.
  */
 void tokiESonaKepeken() {
 	// nimi lipu.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.nimi_lipu") << ":\n"; 
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		"ilo_li_sina - " + ante_toki::kamaJoENimiTawaJan("ilo_CLI.nimi_lipu.nimi"),
-		8, 0);
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.nimi_lipu") << ":\n"; 
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , "ilo_li_sina - " + ante_toki::nimiTawaJan("ilo_CLI.nimi_lipu.nimi")
+								  , 8, 0);
 	
 
 	std::cout << '\n';
 
 
 	// nasin kepeken.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.nasin_kepeken") << ":\n";
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.nasin_kepeken") << ":\n";
 	std::string nimiPiNasinKepeken("ilo_li_sina ");
 
 	if (!iloPilinAli.empty()) {
@@ -138,26 +71,26 @@ void tokiESonaKepeken() {
 		nimiPiNasinKepeken.append("] ");
 	}
 
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		nimiPiNasinKepeken + ante_toki::kamaJoENimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa") + "...",
-		8, 8);
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , nimiPiNasinKepeken + ante_toki::nimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa") + "..."
+								  , 8, 8);
 
 
 	std::cout << '\n';
 
 
 	// sona.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.sona") << ":\n";
-	kepeken::tokiELinjaPiLukinPona(std::cout,
-		ante_toki::kamaJoENimiTawaJan("ilo_CLI.sona.nimi"),
-		8, 0);
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.sona") << ":\n";
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , ante_toki::nimiTawaJan("ilo_CLI.sona.nimi")
+								  , 8, 0);
 
 
 	std::cout << '\n';
 
 
 	// ilo pilin.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.ilo_pilin") << ":\n";
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.ilo_pilin") << ":\n";
 
 	if (!iloPilinAli.empty()) {
 		for (const auto& [nimiPiIloPilin, iloPilin] : iloPilinAli) {
@@ -168,74 +101,116 @@ void tokiESonaKepeken() {
 				nimi.append(", ");
 			if (!iloPilin.nimiSuli.empty())
 				nimi.append("--").append(iloPilin.nimiSuli);
-			kepeken::tokiELinjaPiLukinPona(std::cout,
-				nimi,
-				8, 8);
+			kepeken::tokiELinjaPiLukinPona( std::cout
+										  , nimi
+				 					      , 8, 8);
 
-			kepeken::tokiELinjaPiLukinPona(std::cout,
-				ante_toki::kamaJoENimiTawaJan(iloPilin.sonaKepeken),
-				16, 0);
+			kepeken::tokiELinjaPiLukinPona( std::cout
+										  , ante_toki::nimiTawaJan(iloPilin.sonaKepeken)
+										  , 16, 0);
 			std::cout << '\n';
 		}
 	}
 
-	kepeken::tokiELinjaPiLukinPona(std::cout,
-		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa"),
-		8, 8);
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa.sona"),
-		16, 0);
+	kepeken::tokiELinjaPiLukinPona( std::cout
+							      , ante_toki::nimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa")
+								  , 8, 8);
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , ante_toki::nimiTawaJan("ilo_CLI.ilo_pilin.lipu_wawa.sona")
+								  , 16, 0);
 
 	
 	std::cout << '\n';
 
 
 	// jan pali.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.jan_pali") << ":\n";
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		"ona li toki e jan Epiphany tawa mi.",
-		8, 0);
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.jan_pali") << ":\n";
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , "ona li toki e jan Epiphany tawa mi."
+								  , 8, 0);
 
 
 	std::cout << '\n';
 
 
 	// ike.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.ike") << ":\n";
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ike.ma_pi_toki_ike"),
-		8, 0);
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.ike") << ":\n";
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , ante_toki::nimiTawaJan("ilo_CLI.ike.ma_pi_toki_ike")
+								  , 8, 0);
 
 
 	std::cout << '\n';
 
 
 	// jo lipu.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.jo_lipu") << ":\n";
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		ante_toki::kamaJoENimiTawaJan("ilo_CLI.jo_lipu.nimi"),
-		8, 0);
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.jo_lipu") << ":\n";
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , ante_toki::nimiTawaJan("ilo_CLI.jo_lipu.nimi")
+								  , 8, 0);
 
 
 	std::cout << '\n';
 
 
 	// ijo sin.
-	std::cout << ante_toki::kamaJoENimiTawaJan("ilo_CLI.ijo_sin") << ":\n";
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ijo_sin.nimi_wawa"),
-		8, 8);
-	kepeken::tokiELinjaPiLukinPona(std::cout, 
-		ante_toki::kamaJoENimiTawaJan("ilo_CLI.ijo_sin.nasin_kepeken"),
-		8, 8);
+	std::cout << ante_toki::nimiTawaJan("ilo_CLI.ijo_sin") << ":\n";
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , ante_toki::nimiTawaJan("ilo_CLI.ijo_sin.nimi_wawa")
+								  , 8, 8);
+	kepeken::tokiELinjaPiLukinPona( std::cout
+								  , ante_toki::nimiTawaJan("ilo_CLI.ijo_sin.nasin_kepeken")
+								  , 8, 8);
 }
 
 /**
  * @brief li toki e nanpa pi ilo ni tawa jan.
  */
 void tokiENanpaPiIloNi() {
-	std::cout << "ilo_li_sina 0.0\n";
+	std::cout << "ilo_li_sina " << NANPA_PI_ILO_PI_ILO_LI_SINA << '\n';
 }
+
+/**
+ * @brief li toki e ijo tan kipisi pi lipu wawa.
+ * @param lonLipu lon pi lipu wawa.
+ */
+void tokiELipuKipisi(const std::string& lonLipu) {
+	ilo::tokiELipuKipisi(ilo::kipisiELipu(lonLipu), lonLipu);
+}
+
+/**
+ * @brief li toki e kasi tan pali pi lipu wawa.
+ * @param lonLipu lon pi lipu wawa.
+ */
+void tokiEKasiLipu(const std::string& lonLipu) {
+	ilo::KasiOpen kasiOpen;
+	
+	{
+		std::list<ilo::Ijo> lipuKipisi = ilo::kipisiELipu(lonLipu);
+		kasiOpen                       = ilo::pali(lipuKipisi, lonLipu);
+	}
+
+	ilo::tokiELipuPali(kasiOpen, lonLipu);
+}
+
+/**
+ * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
+ * @param lonLipu lon pi lipu wawa.
+ */
+void lawaEIloNanpa(const std::string& lonLipu) {
+	ilo::KasiOpen kasiOpen;
+	
+	{
+		std::list<ilo::Ijo> lipuKipisi = ilo::kipisiELipu(lonLipu);
+		kasiOpen                       = ilo::pali(lipuKipisi, lonLipu);
+	}
+
+	std::unordered_map<std::string, std::string> pokiAli;
+	ilo::panaEPokiOpenLonPokiAli(pokiAli, lonLipu);
+	ilo::lawaELipu(kasiOpen, pokiAli, lonLipu);
+}
+
+
 
 /**
  * ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo 
@@ -282,10 +257,9 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 
 			if (!liLon) {
 				kepeken::tokiEIke({
-					ante_toki::anteENimi(ante_toki::kamaJoENimiTawaJan(
-						"ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala"),
-						"%s", *alasaIloPilin)});
-				std::cout << ante_toki::kamaJoENimiTawaJan("ike.ilo_CLI.o_lukin_e_sona_kepeken") << '\n';
+					ante_toki::anteENimi( ante_toki::nimiTawaJan("ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala")
+										, "%s", *alasaIloPilin)});
+				std::cout << ante_toki::nimiTawaJan("ike.ilo_CLI.o_lukin_e_sona_kepeken") << '\n';
 
 				return 1;
 			}
@@ -305,13 +279,13 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 
 				if (!liLon) {
 					// li kama jo e suli pi sitelen e ilo pilin tan ni: ni la li ken toki pona e sitelen UTF-8 (sama п anu 草.)
-					size_t suliPiIloPilin = ante_toki::UTF8LaKamaJoESuliSitelen(*alasaIloPilin, alasaNimiLili);
+					size_t suliPiIloPilin = ante_toki::UTF8LaSuliSitelen(*alasaIloPilin, alasaNimiLili);
 
 					kepeken::tokiEIke({
-						ante_toki::anteENimi(ante_toki::kamaJoENimiTawaJan(
-							"ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala"),
-							"%s", std::string("-") + alasaIloPilin->substr(alasaNimiLili, suliPiIloPilin))});
-					std::cout << ante_toki::kamaJoENimiTawaJan("ike.ilo_CLI.o_lukin_e_sona_kepeken") << '\n';
+						ante_toki::anteENimi( ante_toki::nimiTawaJan("ike.ilo_CLI.ilo_pilin.ilo_pi_sona_ala")
+											, "%s", std::string("-") + alasaIloPilin->substr( alasaNimiLili
+																							, suliPiIloPilin))});
+					std::cout << ante_toki::nimiTawaJan("ike.ilo_CLI.o_lukin_e_sona_kepeken") << '\n';
 
 					return 1;
 				}
@@ -333,22 +307,32 @@ int main(const int nanpaPiNimiPilin, const char *const *const nimiPilin) {
 
 
 	if (lipuWawaPana.empty()) {
-		kepeken::tokiEIke({ante_toki::kamaJoENimiTawaJan("ike.ilo_CLI.ilo_pilin.lipu_lawa_li_wile")});
-		std::cout << ante_toki::kamaJoENimiTawaJan("ike.ilo_CLI.o_lukin_e_sona_kepeken") << '\n';
+		kepeken::tokiEIke({ante_toki::nimiTawaJan("ike.ilo_CLI.ilo_pilin.lipu_lawa_li_wile")});
+		std::cout << ante_toki::nimiTawaJan("ike.ilo_CLI.o_lukin_e_sona_kepeken") << '\n';
 
 		return 1;
 	}
 
+
+	
 	std::function<void(const std::string&)> paliWile = &lawaEIloNanpa;
 
-	if (iloPilinAli[NimiPiIloPilin::TOKI_E_NIMI].liLon) {
-		paliWile = &tokiEKulupuNimi;
+	if (iloPilinAli[NimiPiIloPilin::TOKI_E_IJO].liLon) {
+		paliWile = &tokiELipuKipisi;
 
 	} else if (iloPilinAli[NimiPiIloPilin::TOKI_E_KASI].liLon)
-		paliWile = &tokiEKasiSuli;
+		paliWile = &tokiEKasiLipu;
 	
-	for (const std::string *const lipuWawa : lipuWawaPana)
-		paliWile(*lipuWawa);
+	for (const std::string *const lipuWawa : lipuWawaPana) 
+		try {
+			paliWile(*lipuWawa);
+		
+		} catch(const std::runtime_error& liIke) {
+			return 1;
+		
+		} catch(const std::invalid_argument& lipuLiLonAla) {
+			return -1;
+		}
 
 	return 0;
 }

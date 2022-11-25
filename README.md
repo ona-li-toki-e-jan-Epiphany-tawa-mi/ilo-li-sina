@@ -4,11 +4,9 @@ lukin kepeken toki ante: [English](lipu_pi_kama_sona/README-en_US.md "View in En
 
 # **ilo li sina**
 
-ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki pi sitelen nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)
+ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki pi lawa e ilo nanpa li kepeken e nimi wawa GOTO li lawa e nimi wawa lon nasin pona li kepeken e jan tawa nanpa e nanpa li kepeken taso e poki nimi li tawa ilo nanpa pi wile pi pali ala en awen lon tomo. ;)
 
 "ilo li sina" li toki musi (jan pi toki Inli li kepeken e nimi "esoteric" tawa toki sama ni). ona li tawa ala pali suli. ona li tawa musi.
-
-toki li lili li tawa taso kama jo en toki e nimi. taso, kepeken ni taso la sina ken pali e ijo mute. o lukin e [quadratic.ils](lipu_pana/quadratic.ils "ilo tawa pini e ilo nanpa Quadratic lon toki \"ilo li sina\"") tawa lipu wawa suli lon ona.
 
 ali lon toki ni li nimi. sina ken kepeken e nimi taso.
 
@@ -16,13 +14,14 @@ sina wile kama sona e nasin kepeken pi toki ni la o lukin e [lipu pi nasin kepek
 
 ## **nasin pali**
 
-sina wile e ilo CMake en Python lon ilo nanpa sina.
+sina wile e ilo CMake en Python pi nanpa 3 lon ilo nanpa sina.
+
+ilo pali C++ sina li wile ken pali e C++11 anu suli tawa C++11.
 
 o tawa lon poki lipu "ilo li sina" o toki e nimi wawa ni tawa pali e lipu wawa pini:
 
 ```console
-$ cmake .
-$ make
+cmake --build .
 ```
 
 ona li kama lon poki li jo e nimi "ilo_li_sina".

@@ -4,10 +4,10 @@
     i = "0"
 Start:
     output = _
-    niLaTawa(NotModulo3 "no" "yes" "Is " i " divisible by 3?")
+    niLaTawa(NotModulo3 "no" "yes" "Is " i " divisible by 3? [yes/no] ")
     output = "fizz"
 NotModulo3:
-    niLaTawa(NotModulo5 "no" "yes" "Is " i " divisible by 5?")
+    niLaTawa(NotModulo5 "no" "yes" "Is " i " divisible by 5? [yes/no] ")
     output = wan(output "buzz")
     tawa(Print)
 NotModulo5:
@@ -17,5 +17,5 @@ NoModulo:
     output = i
 Print:
     tokiELinja("output: " output)
-    i = kamaJoTanJan("What is " i "+1?")
+    i = kamaJo("What is " i " + 1? ")
     tawa(Start)

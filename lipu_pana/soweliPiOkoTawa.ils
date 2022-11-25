@@ -1,0 +1,24 @@
+#!/usr/bin/env ilo_li_sina
+
+# li toki e soweli. oko ona li tawa a!
+# mi open pali e ni la mi lukin pali e jan kasi Rosemi-sama pi oko tawa. taso, mi ken ala ;(.
+    ##
+    # li ala e ilo pana li toki e soweli li awen lon tenpo 1 Sekon.
+    # ^ijo_jo oko: oko soweli
+    tokiESoweli = wanKepeken("\n"                  \
+            "alaEIloPana()                      "  \
+            "tokiELinja(`^__^`)                 "  \
+            "tokiELinja(`(` oko `)\\\\_______`) "  \
+            "tokiELinja(`(__)\\\\       )\\\\/`)"  \
+            "tokiELinja(`    ||----w |`)        "  \
+            "tokiELinja(`    ||     ||`)        "  \
+            "awen(`1000`)                       ")
+
+sinLaToki:
+    oko = "oo"
+    lawa(tokiESoweli)
+    oko = "uo"
+    lawa(tokiESoweli)
+    tawa(sinLaToki)
+
+    

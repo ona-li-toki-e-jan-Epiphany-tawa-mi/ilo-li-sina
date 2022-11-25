@@ -5,7 +5,7 @@ ilo_CLI.nasin_kepeken=SYNOPSIS
 ilo_CLI.sona=DESCRIPTION
 ilo_CLI.sona.nimi=An interpreter for ilo li sina, an unstructured procedural human-oriented possibly turing-complete string-manipulating programming language.
 ilo_CLI.ilo_pilin=COMMAND LINE OPTIONS
-ilo_CLI.ilo_pilin.toki_e_nimi=Prints out the tokens generated from the given programs.
+ilo_CLI.ilo_pilin.toki_e_ijo=Prints out the tokens generated from the given programs.
 ilo_CLI.ilo_pilin.toki_e_kasi=Prints out the abstract syntax trees generated from the given programs.
 ilo_CLI.ilo_pilin.help=Displays this help menu and exits.
 ilo_CLI.ilo_pilin.version=Displays version information and exits.
@@ -28,21 +28,19 @@ toki.li_jo_e_ala=Empty...
 ## Messages for printing out abstract syntax trees.
 toki.nimi_kasi.pana_lon_poki=VARIABLE_ASSIGNMENT
 toki.nimi_kasi.kama_jo_tan_poki=VARIABLE_ACCESSOR
-toki.nimi_kasi.kama_jo_tan_poki_pi_ante_ala=CONSTANT_ACCESSOR
+toki.nimi_kasi.poki_nimi=CONSTANT_ACCESSOR
 toki.nimi_kasi.nimi_wawa=FUNCTION
-toki.nimi_kasi.nimi_tawa=LABEL
-toki.nimi_kasi.tawa=GOTO
-toki.nimi_kasi.ala=NOOP
+toki.nimi_kasi.nimi_wawa_tawa=GOTO
+toki.nimi_kasi.pini=END
 
 ## Messages for printing out tokens.
-toki.kulupu_nimi.poki_nanpa=VARIABLE_NAME
-toki.kulupu_nimi.pana_lon_poki_nanpa=ASSIGNMENT
-toki.kulupu_nimi.poki_sitelen=STRING
-toki.kulupu_nimi.nimi_wawa=FUNCTION
-toki.kulupu_nimi.poki_pi_ijo_tawa_nimi_wawa=ARGUMENT_CAPTURE
-toki.kulupu_nimi.linja_sitelen_sin=NEW_LINE
-toki.kulupu_nimi.nimi_tawa_tawa=LABEL
-toki.kulupu_nimi.ala=UNDEFINED
+toki.ijo_kipisi.poki=VARIABLE_NAME
+toki.ijo_kipisi.pana_lon_poki=ASSIGNMENT
+toki.ijo_kipisi.poki_nimi=STRING
+toki.ijo_kipisi.nimi_wawa=FUNCTION
+toki.ijo_kipisi.poki_pi_ijo_pi_nimi_wawa=ARGUMENT_CAPTURE
+toki.ijo_kipisi.linja_sin=NEW_LINE
+toki.ijo_kipisi.nimi_tawa_tawa=LABEL
 
 
 
@@ -55,11 +53,11 @@ ike.ilo_CLI.o_lukin_e_sona_kepeken=You can use 'ilo_li_sina --help' for more inf
 
 # Parsing errors.
 ## Function parsing errors.
-ike.pali.nimi_wawa.tawa.sitelen_ike=Invalid label name\nExpected token matching [a-zA-Z0-9_]
+ike.pali.nimi_wawa.tawa.nimi_tawa_tawa_li_wile=Invalid label name\nExpected token matching [a-zA-Z0-9_]
+ike.pali.nimi_wawa.tawa.nimi_tawa_mute_mute=Duplicate label definition of '%s'\nOrignally defined at (%d, %d)
 ike.pali.nimi_wawa.tawa.nimi_tawa_pi_sona_ala=Jump to undefined label '%s'
-ike.pali.nimi_wawa.tawa.nanpa_ijo_ike=Incorrect number of arguments for function 'tawa'\nExpected: tawa(label)
-ike.pali.nimi_wawa.niLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'niLaTawa'\nExpected: niLaTawa(label yesMessage noMessage [messages...])
-ike.pali.nimi_wawa.alaLaTawa.nanpa_ijo_lili=Insufficient arguments for function 'alaLaTawa'\nExpected: alaLaTawa(label string [strings...])
+ike.pali.nimi_wawa.nanpa_ijo_lili=Insufficient arguments for function '%s'\nExpected %d
+ike.pali.nimi_wawa.nanpa_ijo_suli=Too many arguments for function '%s'\nExpected %d
 ike.pali.nimi_wawa.li_jo_ala_e_pini=Unterminated function call\nExpected ending ')' symbol
 ike.pali.nimi_wawa.nimi_pi_sona_ala=Unknown function '%s'
 
@@ -91,8 +89,10 @@ ike.lawa.tawa_ken.nimi_pi_lon_en_lon_ala_li_ken_ala_sama=The yes and no messages
 ike.lawa.awen.nanpa_ala=Expected an integer but got '%s' instead
 ike.lawa.awen.nanpa_ike=Received an integer '%s' outside of the representable range
 
+ike.lawa.ala_e_ilo_pana.li_alasa_ala=alaEIloPana() is not working. Either unable to find correct libraries, or something else went wrong. Your operating system may be incompatible (supported on Windows and UNIX)
+
 
 # General error messages.
-ike.kulupu_nimi_pi_wile_ala=Unexpected token '%s'
+ike.sitelen_pi_wile_ala=Unexpected token '%s'
 
 ike.nimi=Error

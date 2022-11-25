@@ -8,13 +8,13 @@ An interpreter for ilo li sina (meaning "the tool is you"). ilo li sina is an un
 
 ilo li sina is a small esoteric language, not for solving problems or building applications, but for fun.
 
-ilo li sina is mostly just input and output, and only works with strings; however, you can still build interesting and useful things with it. Look at [quadratic.ils](../lipu_pana/quadratic.ils "Quadratic solver in ilo li sina") to see such a program.
-
 You can find the [documentation here.](nasin_kepeken-en_US.md "ilo li sina documentation")
 
 ## **How to build**
 
 You will need CMake and Python 3 installed on your system.
+
+A C++ compiler that is compatibile with c++11 or higher is required.
 
 Move into the project directory and run the following commands:
 

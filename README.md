@@ -8,8 +8,6 @@ ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki
 
 "ilo li sina" li toki musi (jan pi toki Inli li kepeken e nimi "esoteric" tawa toki sama ni). ona li tawa ala pali suli. ona li tawa musi.
 
-toki li lili li tawa taso kama jo en toki e nimi. taso, kepeken ni taso la sina ken pali e ijo mute. o lukin e [quadratic.ils](lipu_pana/quadratic.ils "ilo tawa pini e ilo nanpa Quadratic lon toki \"ilo li sina\"") tawa lipu wawa suli lon ona.
-
 ali lon toki ni li nimi. sina ken kepeken e nimi taso.
 
 sina wile kama sona e nasin kepeken pi toki ni la o lukin e [lipu pi nasin kepeken.](lipu_pi_kama_sona/nasin_kepeken-tok.md "lipu pi nasin kepeken pi toki \"ilo li sina\"")
@@ -17,6 +15,8 @@ sina wile kama sona e nasin kepeken pi toki ni la o lukin e [lipu pi nasin kepek
 ## **nasin pali**
 
 sina wile e ilo CMake en Python pi nanpa 3 lon ilo nanpa sina.
+
+ilo pali C++ sina li wile ken pali e C++11 anu suli tawa C++11.
 
 o tawa lon poki lipu "ilo li sina" o toki e nimi wawa ni tawa pali e lipu wawa pini:
 

@@ -1,5 +1,7 @@
 View in a different language: [toki pona](../README.md "lukin kepeken toki pona"), [Русский](README-ru_RU.md "Смотреть на русском")
 
+**NOTICE: I am no longer going to maintain the non-toki-pona documentation of ilo li sina as of version 1.0.0!**
+
 ![ilo li sina logo](../sitelen-suli.png)
 
 # **ilo li sina**

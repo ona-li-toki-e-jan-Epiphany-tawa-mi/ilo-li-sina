@@ -1,5 +1,7 @@
 Смотреть на другом языке: [English](README-en_US.md "View in English"), [toki pona](../README.md "lukin kepeken toki pona")
- 
+
+**ВНИМАНИЕ: Я теперь не создаю документатция ilo li sina, которая не на токи поне, от версии 1.0.0**
+
 ![значок ilo li sina](../sitelen-suli.png)
 
 # **ilo li sina (ило ли сина)**

@@ -1,5 +1,7 @@
 View in a different language: [toki pona](nasin_kepeken-tok.md "lukin kepeken toki pona"), [Русский](nasin_kepeken-ru_RU.md "Смотреть на русском")
 
+**NOTICE: I am no longer going to maintain the non-toki-pona documentation of ilo li sina as of version 1.0.0!**
+
 # **Documentation for ilo li sina**
 
 ilo li sina is a small, string-only esoteric programming language, but you can still build interesting and useful things with it despite that fact.

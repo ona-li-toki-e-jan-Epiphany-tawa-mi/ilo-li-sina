@@ -26,6 +26,18 @@ cmake --build .
 
 ona li kama lon poki li jo e nimi "ilo_li_sina".
 
+## **nasin pi pana e lipu wawa lon ilo nanpa sina**
+
+sina ken pona kepeken e lipu "ilo_li_sina" kepeken ala ante.
+
+taso, ken la sina wile pana e nimi "ilo_li_sina" lon ilo Terminal li kepeken e ona kepeken ala ni: lipu wawa li wile lon poki lipu ni. ni la o toki e nimi wawa ni:
+
+```console
+sudo cp <nimi pi lipu "ilo_li_sina"> /usr/local/bin/ilo_li_sina
+sudo chown root:root /usr/local/bin/ilo_li_sina
+sudo chmod u=w,a+rx /usr/local/bin/ilo_li_sina
+```
+
 ## **lipu wawa pi pana toki**
 
 sina ken alasa e lipu wawa pana lon poki "lipu_pana".

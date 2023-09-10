@@ -4,8 +4,32 @@ import pathlib
 import os
 import sys
 
+################################################################################
+# MIT License                                                                  #
+#                                                                              #
+# Copyright (c) 2022 Nathaniel Needham                                         #
+#                                                                              #
+# Permission is hereby granted, free of charge, to any person obtaining a copy #
+# of this software and associated documentation files (the "Software"), to     #
+# deal in the Software without restriction, including without limitation the   #
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or  #
+# sell copies of the Software, and to permit persons to whom the Software is   #
+# furnished to do so, subject to the following conditions:                     #
+#                                                                              #
+# The above copyright notice and this permission notice shall be included in   #
+# all copies or substantial portions of the Software.                          #
+#                                                                              #
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR   #
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,     #
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  #
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER       #
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING      #
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS #
+# IN THE SOFTWARE.                                                             #
+################################################################################
+
 ##
-# lipu ni li tawa pali e poki Map tan nimi nimi (sama 'test.example' tawa nimi tawa jan 
+# lipu ni li tawa pali e poki Map tan nimi nimi (sama 'test.example' tawa nimi tawa jan
 #   sama 'This is an example' anu 'Это пример'.
 #
 # sina wile pali e ala. ilo Cmake li lawa e ilo nanpa kepeken lipu ni tawa pali e poki.
@@ -64,10 +88,10 @@ with open(pokiTawaNimiWawa, mode='w', encoding='utf-8') as nimiWawaSin:
                 if linjaLonSinpin == '':
                     linjaLonSinpin = nimiToki.readline()
                     continue
-                
+
                 try:
                     # li tu e nimi nimi e nimi tawa jan kepeken sitelen '='.
-                    # li weka e sitelen pi lukin ala tan nimi nimi en nimi tawa jan. 
+                    # li weka e sitelen pi lukin ala tan nimi nimi en nimi tawa jan.
                     nimiNimi, nimiTawaJan = [nimi.strip() for nimi in linjaLonSinpin.split('=', maxsplit=1)]
                     nimiWawaSin.write(f'{sitelenTAB}{sitelenTAB}{{"{nimiNimi}", "{nimiTawaJan}"}}')
 
@@ -83,7 +107,7 @@ with open(pokiTawaNimiWawa, mode='w', encoding='utf-8') as nimiWawaSin:
             nimiWawaSin.write('\t};\n')
 
 
-    # li pali e poki pi poki Map ali tawa pilin e poki tawa toki jan. 
+    # li pali e poki pi poki Map ali tawa pilin e poki tawa toki jan.
     nimiWawaSin.writelines([
         '\n',
         '\tconst std::unordered_map<std::string, const std::unordered_map<std::string, std::string>&> nimiTokiAli = {\n'])

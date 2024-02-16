@@ -42,4 +42,4 @@ The interpreter respects the value stored in LANG (enviroment variable.) You can
 
 ## **Links**
 
-[Video demonstration](https://youtu.be/OQuuAVNZ0P8 "ilo li sina video demonstration")
+[Video demonstration](https://odysee.com/toki-nasa-lili-mi-ilo-li-sina-pi-lawa-e-ilo-nanpa:54b96d2ce3e6ab4cde57a4522a8ac90c8a140796?r=HYroMZaqrVN4gL5oSJ35gcTgt3K56r39 "ilo li sina video demonstration")

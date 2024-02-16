@@ -54,4 +54,4 @@ ilo ni li kepeken e poki nanpa LANG pi lawa OS tawa kama jo e toki wile. sina ke
 
 ## **lupa tawa lipu ante**
 
-[sitelen tawa pana](https://youtu.be/OQuuAVNZ0P8 "sitelen tawa pana pi toki 'ilo li sina'")
+[sitelen tawa pana](https://odysee.com/toki-nasa-lili-mi-ilo-li-sina-pi-lawa-e-ilo-nanpa:54b96d2ce3e6ab4cde57a4522a8ac90c8a140796?r=HYroMZaqrVN4gL5oSJ35gcTgt3K56r39 "sitelen tawa pana pi toki 'ilo li sina'")

@@ -36,12 +36,11 @@ ona li kama lon poki li jo e nimi "ilo_li_sina".
 
 sina ken pona kepeken e lipu "ilo_li_sina" kepeken ala ante.
 
-taso, ken la sina wile pana e nimi "ilo_li_sina" lon ilo Terminal li kepeken e ona kepeken ala ni: lipu wawa li wile lon poki lipu ni. ni la o toki e nimi wawa ni:
+sin la sina ken kama jo e ona kepeken ilo Nix tan poki [(kulupu CLEARNET) NUR](https://github.com/nix-community/NUR)
+kepeken nimi ni:
 
-```console
-sudo cp <nimi pi lipu "ilo_li_sina"> /usr/local/bin/ilo_li_sina
-sudo chown root:root /usr/local/bin/ilo_li_sina
-sudo chmod u=w,a+rx /usr/local/bin/ilo_li_sina
+```nix
+nur.repos.ona-li-toki-e-jan-Epiphany-tawa-mi.ilo-li-sina
 ```
 
 ## **lipu wawa pi pana toki**

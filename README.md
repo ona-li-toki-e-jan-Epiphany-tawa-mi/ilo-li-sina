@@ -1,5 +1,3 @@
-lukin kepeken toki ante: [English](lipu_pi_kama_sona/README-en_US.md "View in English"), [Русский](lipu_pi_kama_sona/README-ru_RU.md "Смотреть на русском")
-
 ![sitelen suli "ilo li sina"](sitelen-suli.png)
 
 # **ilo li sina**
@@ -10,7 +8,7 @@ ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki
 
 ali lon toki ni li nimi. sina ken kepeken e nimi taso.
 
-sina wile kama sona e nasin kepeken pi toki ni la o lukin e [lipu pi nasin kepeken.](lipu_pi_kama_sona/nasin_kepeken-tok.md "lipu pi nasin kepeken pi toki \"ilo li sina\"")
+sina wile kama sona e nasin kepeken pi toki ni la o lukin e `nasin_kepeken.md`.
 
 ## **nasin pali**
 
@@ -54,4 +52,5 @@ ilo ni li kepeken e poki nanpa LANG pi lawa OS tawa kama jo e toki wile. sina ke
 
 ## **lupa tawa lipu ante**
 
-[sitelen tawa pana](https://odysee.com/toki-nasa-lili-mi-ilo-li-sina-pi-lawa-e-ilo-nanpa:54b96d2ce3e6ab4cde57a4522a8ac90c8a140796?r=HYroMZaqrVN4gL5oSJ35gcTgt3K56r39 "sitelen tawa pana pi toki 'ilo li sina'")
+sitelen tawa pana:<br>
+https://odysee.com/toki-nasa-lili-mi-ilo-li-sina-pi-lawa-e-ilo-nanpa:54b96d2ce3e6ab4cde57a4522a8ac90c8a140796?r=HYroMZaqrVN4gL5oSJ35gcTgt3K56r39

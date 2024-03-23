@@ -1,5 +1,3 @@
-lukin kepeken toki ante: [English](nasin_kepeken-en_US.md "View in English"), [Русский](nasin_kepeken-ru_RU.md "Смотреть на русском")
-
 # **nasin kepeken pi toki "ilo li sina"**
 
 "ilo li sina" li toki pi lawa e ilo nanpa li lili li tawa taso kama jo en toki e nimi. taso, kepeken ni taso la sina ken pali e ijo mute.
@@ -31,7 +29,7 @@ sina ken pana e nimi wawa tawa nimi ante:
 
 ```ilo li sina
     # li toki e nimi jan.
-    tokiELinja("sina toki e ni: " kamaJo()) 
+    tokiELinja("sina toki e ni: " kamaJo())
 
     tokiELinja("sina jan " kamaJo("nimi sina li seme? "))
 ```
@@ -40,7 +38,7 @@ sina ken pali e nimi wawa sin kepeken `lawa()`. sina wile pana e ali pi nimi waw
 
 ```ilo li sina
     tokiEToki = "tokiELinja(nimi ` o, toki!`)"
-    
+
     nimi = __nimi_jan
     lawa(tokiEToki) # li toki e toki tawa jan.
     nimi = "ma"
@@ -97,7 +95,7 @@ li ala (weka e sitelen) e ilo pana.
 
 #### **wan(nimi nimi \[nimi...\]) -> nimi wan tan nimi pana**
 
-li wan e `nimi` lon `nimi wan`. 
+li wan e `nimi` lon `nimi wan`.
 
 #### **wanKepeken(nimiKepeken nimi nimi \[nimi...\]) -> nimi wan tan nimi pana kepeken nimi.**
 
@@ -193,7 +191,7 @@ sonaPona:
 
     # tokiELinja() li toki e wile jan kepeken nimi tan niLaTawa().
     #
-    # sin la niLaTawa() li tawa ala tawa la awen() li awen() li toki e ike ala tan ni: 
+    # sin la niLaTawa() li tawa ala tawa la awen() li awen() li toki e ike ala tan ni:
     #   tokiELinja li pana e ala. awen() li pali e ala kepeken nimi ala.
     awen("1500" tokiELinja(                          \
         "sina pilin "                                \
@@ -279,28 +277,28 @@ taso, ni li pini ala. ona li toki e ijo pi nanpa ala la `kamaJo()` li lawa sin l
 
 ```console
 tenpo sike pi nanpa seme la sina lon? nanpa
-ilo_li_sina: <nimi lipu>(5,5): ike: awen(): nanpa pi nanpa lili 
+ilo_li_sina: <nimi lipu>(5,5): ike: awen(): nanpa pi nanpa lili
         ala li wile la li kama jo e ijo 'nanpa' sama ala nanpa
 'nanpa' li nanpa ala!
 tenpo sike pi nanpa seme la sina lon?
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
 tenpo sike pi nanpa seme la sina lon?
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
-tenpo sike pi nanpa seme la sina lon? 
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
+tenpo sike pi nanpa seme la sina lon?
 ...
 ```
 
@@ -332,7 +330,7 @@ ken la sina wile pana e poki e nimi wawa lon lipu ante en kama jo e ona lon lipu
 nasinAla.ils:
 ```ilo li sina
     ##
-    # li pana "pilin": sitelen anu nanpa pi nasin ala 
+    # li pana "pilin": sitelen anu nanpa pi nasin ala
     pilin = ""
     pilinESitelenPNA = wanKepeken("\n"                                                         \
             "pilin = pilin('a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' \\"  \
@@ -432,7 +430,7 @@ pini:
 
 #### *kama jo pi sitelen EOF (pini lipu):*
 
-nimi wawa `kamaJo()` en `niLaTawa()` li kama jo e sitelen EOF la li pini e lipu wawa. 
+nimi wawa `kamaJo()` en `niLaTawa()` li kama jo e sitelen EOF la li pini e lipu wawa.
 
 ni li tan ni: ali pi toki ni li kama jo e nimi li toki e nimi. nimi li lon ala tawa kama la "ilo li sina" li ken pali e ala. taso, ona li ken e ni: kama jo e nimi tan lipu. pana la sina ken pana e nimi wile lon lipu `temp.txt` li sitelen e `temp.txt | ilo_li_sina <nimi pi lipu wawa>"`. lipu wawa li kama jo e nimi ali tan `temp.txt` la li pini li awen ala lon tenpo ali.
 

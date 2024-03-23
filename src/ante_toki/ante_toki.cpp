@@ -11,7 +11,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ namespace ante_toki {
 
         // li wile tawa kama jo e suli pi poki nimi UTF-8 tawa ijo toki ante.
         if (setlocale(LC_ALL, "") == nullptr)
-            setlocale(LC_ALL, "C"); 
+            setlocale(LC_ALL, "C");
 
         // li ante e nasin pi toki ijo tawa toki wile.
         try {
@@ -53,7 +53,7 @@ namespace ante_toki {
 
         // lawa OS mute li pana e toki wile lon "LANG". sin la ni li ken ni: jan li pilin e toki pi ilo ni.
         const char *const tokiJan = getenv("LANG");
-        
+
         if (tokiJan != nullptr) {
             std::string nimiTokiPona = tokiJan;
             // li weka e ijo sama ".utf8". mi mute li wile e nimi toki taso.
@@ -104,7 +104,7 @@ namespace ante_toki {
 
     /**
      * @brief li kama sona e ni: sitelen UTF-8 pi nanpa Byte mute li pona ala pona.
-     * 
+     *
      * @param pokiNimi li lukin lon poki ni.
      * @param open     open sitelen li lon ni.
      * @param suli     suli sitelen.
@@ -139,13 +139,13 @@ namespace ante_toki {
 
         // li open pi sitelen UTF-8 pi nanpa Byte mute la mi wile alasa e suli li kama sona e ni: ona li
         //      jo e nanpa pi nanpa wile lon pini, en, ona li sitelen pini pona (sama 0b10xxxxxx).
-        if ((sitelen & 0b0'11'00000) == 0b0'10'00000) 
+        if ((sitelen & 0b0'11'00000) == 0b0'10'00000)
             return liSitelenPona(pokiNimi, open, 2);
 
         if ((sitelen & 0b0'111'0000) == 0b0'110'0000)
             return liSitelenPona(pokiNimi, open, 3);
 
-        if ((sitelen & 0b0'1111'000) == 0b0'1110'000) 
+        if ((sitelen & 0b0'1111'000) == 0b0'1110'000)
             return liSitelenPona(pokiNimi, open, 4);
 
         return -1;
@@ -171,7 +171,7 @@ namespace ante_toki {
 
     size_t UTF8LaNanpaBYTE(const std::string& pokiNimi, size_t open, size_t nanpaSitelen) {
         assert(open <= pokiNimi.size() && "open alasa lon poki nimi li ken ala suli tawa suli pi poki ni");
-        
+
         size_t nanpa = 0;
 
         for (; open < pokiNimi.size() && nanpaSitelen > 0; nanpaSitelen--) {
@@ -193,13 +193,13 @@ namespace ante_toki {
             int suliSitelen = UTF8LaSuliSitelen(pokiSitelen, i);
             if (suliSitelen == 0) {
                 suliSitelen = 1;
-            } else 
+            } else
                 suliSitelen = std::abs(suliSitelen);
             if (suliSitelen < 1) {
-                if (suliSitelen == 0) {         
+                if (suliSitelen == 0) {
                     pokiSitelen.erase(i, 1);
-                
-                } else 
+
+                } else
                     pokiSitelen.erase(i, suliSitelen * -1);
 
                 pokiSitelen.insert(i, "\uFFFD");

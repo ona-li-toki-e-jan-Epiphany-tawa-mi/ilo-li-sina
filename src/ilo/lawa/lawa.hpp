@@ -5,7 +5,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@
 namespace ilo {
     /**
      * @brief li pana e poki open lon poki ali lon tenpo open pi lipu wawa.
-     * 
+     *
      * @param pokiAli poki en nimi lon ona lon tenpo open pi lipu wawa.
      * @param lonLipu lon pi lipu wawa.
      */
@@ -42,7 +42,7 @@ namespace ilo {
     /**
      * @brief li lawa e ilo nanpa kepeken lipu wawa pana. li pali e poki ali pi poki ala. li kepeken ala
      *      e {@see ilo::panaEPokiOpenLonPokiAli};
-     * 
+     *
      * @param lipuWawa kasi pi lipu wawa.
      * @param lonLipu  lon pi lipu wawa.
      * @throws std::runtime_error lawa la ike li kama.
@@ -52,7 +52,7 @@ namespace ilo {
     /**
      * @brief li lawa e ilo nanpa kepeken lipu wawa pana.
      * @attention o kepeken e {@see ilo::panaEPokiOpenLonPokiAli} tawa pana e poki open lon ona.
-     * 
+     *
      * @param lipuWawa kasi pi lipu wawa.
      * @param pokiAli  poki en nimi lon ona lon tenpo open pi lipu wawa.
      * @param lonLipu  lon pi lipu wawa.

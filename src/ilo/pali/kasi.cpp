@@ -3,7 +3,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@ namespace ilo {
         *this = std::move(ante);
     }
 
-	KasiOpen& KasiOpen::operator=(KasiOpen&& ante) noexcept {
+    KasiOpen& KasiOpen::operator=(KasiOpen&& ante) noexcept {
         if (this != &ante)
             this->kasiLonAnpa = std::move(ante.kasiLonAnpa);
 
@@ -67,7 +67,7 @@ namespace ilo {
     }
 
     std::string KasiPini::nimiPiNimiKasi() const {
-        return "toki.nimi_kasi.pini"; 
+        return "toki.nimi_kasi.pini";
     }
 
     KasiPini::~KasiPini() {}
@@ -82,13 +82,13 @@ namespace ilo {
         *this = std::move(ante);
     }
 
-	KasiPiPokiNimi& KasiPiPokiNimi::operator=(KasiPiPokiNimi&& ante) noexcept {
+    KasiPiPokiNimi& KasiPiPokiNimi::operator=(KasiPiPokiNimi&& ante) noexcept {
         if (this != &ante)
             this->nimi = std::move(ante.nimi);
 
         return *this;
     }
-    
+
     std::string KasiPiPokiNimi::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.poki_nimi";
     }
@@ -105,7 +105,7 @@ namespace ilo {
         *this = std::move(ante);
     }
 
-	KasiPoki& KasiPoki::operator=(KasiPoki&& ante) noexcept {
+    KasiPoki& KasiPoki::operator=(KasiPoki&& ante) noexcept {
         if (this != &ante)
             this->nimiPoki = std::move(ante.nimiPoki);
 
@@ -115,7 +115,7 @@ namespace ilo {
     std::string KasiPoki::nimiPiNimiKasi() const {
         return "toki.nimi_kasi.kama_jo_tan_poki";
     }
-    
+
     KasiPoki::~KasiPoki() {}
 
 
@@ -124,7 +124,7 @@ namespace ilo {
         *this = std::move(ante);
     }
 
-	KasiTomoPiNimiWawa& KasiTomoPiNimiWawa::operator=(KasiTomoPiNimiWawa&& ante) noexcept {
+    KasiTomoPiNimiWawa& KasiTomoPiNimiWawa::operator=(KasiTomoPiNimiWawa&& ante) noexcept {
         if (this != &ante)
             this->ijoPiNimiWawa = std::move(ante.ijoPiNimiWawa);
 
@@ -139,7 +139,7 @@ namespace ilo {
 
 
 
-    KasiPiNimiWawa::KasiPiNimiWawa(const NimiWawa* nimiWawa) 
+    KasiPiNimiWawa::KasiPiNimiWawa(const NimiWawa* nimiWawa)
         : nimiWawa(nimiWawa) {}
 
     KasiPiNimiWawa* KasiPiNimiWawa::paliSama() const {
@@ -150,7 +150,7 @@ namespace ilo {
         *this = std::move(ante);
     }
 
-	KasiPiNimiWawa& KasiPiNimiWawa::operator=(KasiPiNimiWawa&& ante) noexcept {
+    KasiPiNimiWawa& KasiPiNimiWawa::operator=(KasiPiNimiWawa&& ante) noexcept {
         if (this != &ante) {
             this->nimiWawa = ante.nimiWawa;
             ante.nimiWawa = nullptr;
@@ -200,7 +200,7 @@ namespace ilo {
     }
 
     std::string KasiPiNimiWawaTawa::nimiPiNimiKasi() const {
-        return "toki.nimi_kasi.nimi_wawa_tawa"; 
+        return "toki.nimi_kasi.nimi_wawa_tawa";
     }
 
     const TomoPiNimiWawa* KasiPiNimiWawaTawa::tomoPiNimiWawa() const {
@@ -208,7 +208,7 @@ namespace ilo {
     }
 
     KasiPiNimiWawaTawa::KasiPiNimiWawaTawa(const KasiPiNimiWawaTawa& ante) {
-        this->nimiWawaTawa = ante.nimiWawaTawa; 
+        this->nimiWawaTawa = ante.nimiWawaTawa;
         this->lonTawaTawa  = ante.lonTawaTawa;
     }
 
@@ -224,7 +224,7 @@ namespace ilo {
         *this = std::move(ante);
     }
 
-	KasiPiPanaLonPoki& KasiPiPanaLonPoki::operator=(KasiPiPanaLonPoki&& ante) noexcept {
+    KasiPiPanaLonPoki& KasiPiPanaLonPoki::operator=(KasiPiPanaLonPoki&& ante) noexcept {
         if (this != &ante) {
             this->nimiPoki = std::move(ante.nimiPoki);
             this->ijoPana  = std::move(ante.ijoPana);

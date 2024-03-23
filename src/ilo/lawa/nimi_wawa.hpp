@@ -9,7 +9,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,8 +53,8 @@ namespace ilo {
             unsigned int nanpaSuliPiIjoWile;
 
             /**
-             * @param nanpaLiliPiIjoWile lawa() la nanpa nanpaIjo li wile sama anu suli tawa nanpa ni. 
-             * @param nanpaSuliPiIjoWile lawa() la nanpa nanpaIjo li wile sama anu lili tawa nanpa ni. 
+             * @param nanpaLiliPiIjoWile lawa() la nanpa nanpaIjo li wile sama anu suli tawa nanpa ni.
+             * @param nanpaSuliPiIjoWile lawa() la nanpa nanpaIjo li wile sama anu lili tawa nanpa ni.
              */
             TomoPiNimiWawa(unsigned int nanpaLiliPiIjoWile, unsigned int nanpaSuliPiIjoWile);
             virtual ~TomoPiNimiWawa() = 0;
@@ -76,9 +76,9 @@ namespace ilo {
 
             /**
              * @brief li lawa e ilo nanpa kepeken nimi wawa kiwen lon ni. li moku e ijo pi nanpa nanpaIjo
-             *      tan poki pokiPali. 
+             *      tan poki pokiPali.
              * @attention nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
-             * 
+             *
              * @param nanpaIjo li moku e ijo pi nanpa ni tan pokiPali.
              * @throws std::runtime_error ike li kama.
              */
@@ -97,15 +97,15 @@ namespace ilo {
                         , unsigned int nanpaSuliPiIjoWile);
 
             /**
-             * @brief li lawa e ilo nanpa kepeken nimi wawa tawa kiwen lon ni. li moku e ijo pi nanpa 
+             * @brief li lawa e ilo nanpa kepeken nimi wawa tawa kiwen lon ni. li moku e ijo pi nanpa
              *      nanpaIjo tan poki pokiPali. li ken tawa lon ante lon lipu wawa.
              * @attention nanpaIjo li wile lon nasin nanpa (nanpaLiliPiIjoWile-nanpaSuliPiIjoWile).
-             * 
+             *
              * @param nanpaIjo    li moku e ijo pi nanpa ni tan pokiPali.
              * @param lonTawaTawa li ken tawa lon ni.
              * @throws std::runtime_error ike li kama.
              */
-            void lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo, size_t lonTawaTawa) const 
+            void lawa(SonaLawa& sonaLawa, unsigned int nanpaIjo, size_t lonTawaTawa) const
                     noexcept(false);
     };
 
@@ -117,14 +117,14 @@ namespace ilo {
     extern const std::unordered_map<std::string, NimiWawa> nimiTawaNimiWawa;
 
     /**
-     * @brief li kama jo e nimi wawa tawa tawa pana lon kasi pi kasi lipu kepeken nimi pi nimi wawa tawa 
+     * @brief li kama jo e nimi wawa tawa tawa pana lon kasi pi kasi lipu kepeken nimi pi nimi wawa tawa
      *      tan lipu jan.
      */
     extern const std::unordered_map<std::string, NimiWawaTawa> nimiTawaNimiWawaTawa;
 
     /**
      * @brief li kama jo e nimi pi nimi wawa tawa jan.
-     * @throws std::out_of_range nimi wawa kiwen anu nimi wawa tawa kiwen lon tomo li lon ala poki 
+     * @throws std::out_of_range nimi wawa kiwen anu nimi wawa tawa kiwen lon tomo li lon ala poki
      *      nimiTawaNimiWawa anu nimiTawaNimiWawaTawa.
      */
     const std::string& tomoPiNimiWawaTawaNimi(const TomoPiNimiWawa* tomoPiNimiWawa) noexcept(false);

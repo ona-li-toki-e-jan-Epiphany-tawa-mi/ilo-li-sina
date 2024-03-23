@@ -9,7 +9,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -65,31 +65,31 @@ namespace ilo {
 
 
 
-	/**
-	 * @brief li kipisi e lipu wawa.
-	 * 
+    /**
+     * @brief li kipisi e lipu wawa.
+     *
      * @param nimiLipu nimi wawa tan lipu wawa anu ante.
-	 * @param lonLipu  lon pi lipu wawa. tawa toki e ike.
-	 * @return std::list<Ijo> lipu wawa kipisi.
+     * @param lonLipu  lon pi lipu wawa. tawa toki e ike.
+     * @return std::list<Ijo> lipu wawa kipisi.
      * @throw std::runtime_error    ike li kama.
-	 */
-	std::list<Ijo> kipisi(std::istream& lipu, const std::string& lonLipu) noexcept(false);
+     */
+    std::list<Ijo> kipisi(std::istream& lipu, const std::string& lonLipu) noexcept(false);
 
     /**
-	 * @brief li kipisi e lipu wawa.
-	 *
-	 * @param lonLipu lon pi lipu wawa.
-	 * @return poki pi ijo pi lipu wawa.
+     * @brief li kipisi e lipu wawa.
+     *
+     * @param lonLipu lon pi lipu wawa.
+     * @return poki pi ijo pi lipu wawa.
      * @throw std::invalid_argument li ken ala open e lipu.
      * @throw std::runtime_error    ike li kama.
-	 */
+     */
     std::list<Ijo> kipisiELipu(const std::string& lonLipu) noexcept(false);
 
 
 
     /**
      * @brief li kama jo e nimi pi nimi ijo tawa toki tawa jan.
-     * 
+     *
      * @param nimiIjo nimi ijo tawa kama e nimi pi nimi ijo.
      * @return        nimi pi nimi ijo.
      */

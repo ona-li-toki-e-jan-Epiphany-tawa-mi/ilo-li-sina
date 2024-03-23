@@ -4,38 +4,34 @@ import pathlib
 import os
 import sys
 
-################################################################################
-# MIT License                                                                  #
-#                                                                              #
-# Copyright (c) 2022 Nathaniel Needham                                         #
-#                                                                              #
-# Permission is hereby granted, free of charge, to any person obtaining a copy #
-# of this software and associated documentation files (the "Software"), to     #
-# deal in the Software without restriction, including without limitation the   #
-# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or  #
-# sell copies of the Software, and to permit persons to whom the Software is   #
-# furnished to do so, subject to the following conditions:                     #
-#                                                                              #
-# The above copyright notice and this permission notice shall be included in   #
-# all copies or substantial portions of the Software.                          #
-#                                                                              #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR   #
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,     #
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  #
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER       #
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING      #
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS #
-# IN THE SOFTWARE.                                                             #
-################################################################################
+# MIT License
+#
+# Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
 
-##
 # lipu ni li tawa pali e poki Map tan nimi nimi (sama 'test.example' tawa nimi tawa jan
 #   sama 'This is an example' anu 'Это пример'.
 #
 # sina wile pali e ala. ilo Cmake li lawa e ilo nanpa kepeken lipu ni tawa pali e poki.
 #
 # poki li kama lon 'src/ante_toki/nimi_toki.hpp'
-##
 
 # sina ken ala kepeken e sitelen '\' lon poki Fstring. tan ni la sitelen nasa li poki lon poki nanpa
 #   li pana lon ona lon tenpo kama.

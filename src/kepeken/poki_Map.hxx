@@ -5,7 +5,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,11 +30,11 @@ namespace kepeken {
     /**
      * @brief li pali e poki Map sin tan poki ante lon nasin ante.
      * @attention nimi ken lon tenpo 1 taso. ijo mute sama li lon poki la 1 taso li awen.
-     * 
+     *
      * @param nimiIjo nimi ijo lon poki. li kama ijo pi poki sin.
      * @param ijo     ijo pi poki Map. li kama nimi ijo pi poki sin.
      * @param pokiMAP poki tawa pali e ante.
-     * 
+     *
      * @return poki lon nasin ante.
      */
     template<typename nimiIjo, typename ijo>

@@ -13,7 +13,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,10 +53,10 @@ namespace ilo {
 
 
     const std::regex SITELEN_PI_POKI_NANPA("[a-zA-Z0-9_]", std::regex_constants::optimize);
-	const std::regex SITELEN_PI_LUKIN_ALA ("\\s",          std::regex_constants::optimize);
+    const std::regex SITELEN_PI_LUKIN_ALA ("\\s",          std::regex_constants::optimize);
     // jan li sitelen e sitelen lon poka pilin la ni li pali e sitelen lon poka pi pilin ala.
-	const std::unordered_map<char, char> nimiTawaSitelenNasa = {
-		{'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\'', '\''}, {'`', '`'}, 
+    const std::unordered_map<char, char> nimiTawaSitelenNasa = {
+        {'n', '\n'}, {'t', '\t'}, {'b', '\b'}, {'v', '\v'}, {'"', '"'}, {'\'', '\''}, {'`', '`'},
         {'\\', '\\'}};
 
     /**
@@ -73,13 +73,13 @@ namespace ilo {
 
     /**
      * @brief li kama jo e suli tan open linja tawa sitelen lon alasaSitelen.
-     * 
+     *
      * @param  linja li kama jo tan open pi linja ni.
      * @param  alasaSitelen li kama jo e lon pi sitelen lon ni.
      * @return lon sitelen.
      */
     size_t kamaJoELonSitelen(const std::string& linja, std::string::const_iterator alasaSitelen) {
-        // nanpa ni li tawa jan. ni li open tan 0, taso, ni li pona ala tawa jan. tan ni la mi li en 
+        // nanpa ni li tawa jan. ni li open tan 0, taso, ni li pona ala tawa jan. tan ni la mi li en
         //      e 1.
         return static_cast<size_t>(std::distance(linja.cbegin(), alasaSitelen)) + 1;
     }
@@ -92,7 +92,7 @@ namespace ilo {
      * @return li pali pona la true. ike li lon la false.
      */
     bool paliENimiTawaTawa(SonaKipisi& sonaKipisi) {
-        bool liPona = true; 
+        bool liPona = true;
         bool liPaliELonTawaTawa = false;
 
         if (sonaKipisi.pokiIjo.size() >= 1) {
@@ -113,7 +113,7 @@ namespace ilo {
             liPona = false;
         }
 
-        if (sonaKipisi.pokiIjo.size() >= 2) { 
+        if (sonaKipisi.pokiIjo.size() >= 2) {
             auto ijoLonMonsi = sonaKipisi.pokiIjo.cend();
             for (int i = 0; i < 2; i++) ijoLonMonsi--;
 
@@ -159,8 +159,8 @@ namespace ilo {
 
                     try {
                         pokiNimi.push_back(nimiTawaSitelenNasa.at(*sonaKipisi.alasaSitelen));
-                    
-                    } catch (const std::out_of_range& liSitelenAlaTawaSitelenNasa) {	
+
+                    } catch (const std::out_of_range& liSitelenAlaTawaSitelenNasa) {
                         kepeken::tokiEIke({ sonaKipisi.lonLipu
                                           , sonaKipisi.nanpaLinja, kamaJoELonSitelen( sonaKipisi.linja
                                                                                     , sonaKipisi.alasaSitelen)
@@ -254,124 +254,124 @@ namespace ilo {
 
 
 
-	std::list<Ijo> kipisi(std::istream& lipu, const std::string& lonLipu) noexcept(false) {
-		std::list<Ijo> pokiIjo;
+    std::list<Ijo> kipisi(std::istream& lipu, const std::string& lonLipu) noexcept(false) {
+        std::list<Ijo> pokiIjo;
 
-		std::string linja;
-		size_t      nanpaLinja   = 1;
+        std::string linja;
+        size_t      nanpaLinja   = 1;
         auto        alasaSitelen = linja.cbegin();
         SonaKipisi  sonaKipisi   = {lonLipu, pokiIjo, linja, nanpaLinja, alasaSitelen};
 
         bool liLipuPona = true;
 
-		// ona li lon la li weka e sitelen BOM.
-		std::getline(lipu, linja);
-		if (linja.compare(0, 3, "\xEF\xBB\xBF") == 0)
-			linja.erase(0, 3);
-    
-		do {
-			if (linja.size() != 0) 
-				for (alasaSitelen = linja.cbegin(); alasaSitelen < linja.cend(); alasaSitelen++) {
+        // ona li lon la li weka e sitelen BOM.
+        std::getline(lipu, linja);
+        if (linja.compare(0, 3, "\xEF\xBB\xBF") == 0)
+            linja.erase(0, 3);
+
+        do {
+            if (linja.size() != 0)
+                for (alasaSitelen = linja.cbegin(); alasaSitelen < linja.cend(); alasaSitelen++) {
                     sonaKipisi.alasaSitelen = alasaSitelen;
 
-					switch (*alasaSitelen) {
-						case '=': {
-							pokiIjo.emplace_back( NimiIjo::PANA_LON_POKI
+                    switch (*alasaSitelen) {
+                        case '=': {
+                            pokiIjo.emplace_back( NimiIjo::PANA_LON_POKI
                                                 , sonaKipisi.nanpaLinja
                                                 , kamaJoELonSitelen( sonaKipisi.linja
                                                                    , sonaKipisi.alasaSitelen));
-							break;
-						}
+                            break;
+                        }
 
-						case ':': {
+                        case ':': {
                             liLipuPona = paliENimiTawaTawa(sonaKipisi) && liLipuPona;
-							break;
-						}
+                            break;
+                        }
 
-						case '"':
+                        case '"':
                         case '\'':
                         case '`': {
                             liLipuPona = paliEPokiNimi(sonaKipisi) && liLipuPona;
-							break;
-						}
+                            break;
+                        }
 
-						// li ken e ni: jan li sitelen e nimi sona tawa toki e sona.
-						case '#':
-							goto liNimiSona;
+                        // li ken e ni: jan li sitelen e nimi sona tawa toki e sona.
+                        case '#':
+                            goto liNimiSona;
 
-						// li ken e ni: jan li sitelen e ijo wan lon linja mute.
-						case '\\':
-							goto linjaSinLiWileAla;
+                        // li ken e ni: jan li sitelen e ijo wan lon linja mute.
+                        case '\\':
+                            goto linjaSinLiWileAla;
 
-						case '(':
-						case ')': {
-							liLipuPona = paliEPokiPiIjoPiNimiWawa(sonaKipisi) && liLipuPona;
-							break;
-						}
+                        case '(':
+                        case ')': {
+                            liLipuPona = paliEPokiPiIjoPiNimiWawa(sonaKipisi) && liLipuPona;
+                            break;
+                        }
 
-						default:
-							// sitelen li lon ala kulupu ASCII la ona li ken lon nimi poki. '& 0b1000_0000' li alasa e ona.
-							if ((*alasaSitelen & 0b10000000) != 0
-									|| std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_POKI_NANPA)) {
-								paliEPoki(sonaKipisi);
-								break;
-							}
+                        default:
+                            // sitelen li lon ala kulupu ASCII la ona li ken lon nimi poki. '& 0b1000_0000' li alasa e ona.
+                            if ((*alasaSitelen & 0b10000000) != 0
+                                    || std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_POKI_NANPA)) {
+                                paliEPoki(sonaKipisi);
+                                break;
+                            }
 
-							// li weka e sitelen pi lukin ala.
-							if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_LUKIN_ALA))
-								break;
+                            // li weka e sitelen pi lukin ala.
+                            if (std::regex_match(alasaSitelen, alasaSitelen+1, SITELEN_PI_LUKIN_ALA))
+                                break;
 
 
 
                             // sitelen li wile ala la li ike.
-							size_t lonSitelen  = kamaJoELonSitelen(linja, alasaSitelen);
-							size_t suliSitelen = std::abs(ante_toki::UTF8LaSuliSitelen(linja, lonSitelen - 1));
+                            size_t lonSitelen  = kamaJoELonSitelen(linja, alasaSitelen);
+                            size_t suliSitelen = std::abs(ante_toki::UTF8LaSuliSitelen(linja, lonSitelen - 1));
                             if (suliSitelen == 0)
                                 suliSitelen = 1;
                             // sitelen li suli tawa 1 la mi wile tawa pini ona.
-							alasaSitelen += suliSitelen - 1;
+                            alasaSitelen += suliSitelen - 1;
 
-							kepeken::tokiEIke({ lonLipu 
-								              , nanpaLinja, lonSitelen
-								              , ante_toki::anteENimi( ante_toki::nimiTawaJan("ike.sitelen_pi_wile_ala")
-									                                , "%s", linja.substr(lonSitelen - 1, suliSitelen))});
-							liLipuPona = false;
-					}
-				}
-		liNimiSona:
+                            kepeken::tokiEIke({ lonLipu
+                                              , nanpaLinja, lonSitelen
+                                              , ante_toki::anteENimi( ante_toki::nimiTawaJan("ike.sitelen_pi_wile_ala")
+                                                                    , "%s", linja.substr(lonSitelen - 1, suliSitelen))});
+                            liLipuPona = false;
+                    }
+                }
+        liNimiSona:
 
             // linja sin mute lon poka ona li wile ala. 1 taso li wile.
             if (pokiIjo.back().nimiIjo != NimiIjo::LINJA_SIN)
-			    pokiIjo.emplace_back( NimiIjo::LINJA_SIN
+                pokiIjo.emplace_back( NimiIjo::LINJA_SIN
                                     , nanpaLinja, linja.size() + 1);
-		linjaSinLiWileAla:
-			nanpaLinja++;
+        linjaSinLiWileAla:
+            nanpaLinja++;
 
-		} while (std::getline(lipu, linja));
+        } while (std::getline(lipu, linja));
 
         if (!liLipuPona)
             throw std::runtime_error("lipu wawa ike!");
 
-        // tenpo ali la linja li wile jo e LINJA_SIN lon pini. ken la linja pini lon pokiIjo li jo ala 
+        // tenpo ali la linja li wile jo e LINJA_SIN lon pini. ken la linja pini lon pokiIjo li jo ala
         //      e ni. ni li pona e ni.
-		if (!pokiIjo.empty() && pokiIjo.back().nimiIjo != NimiIjo::LINJA_SIN)
-			pokiIjo.emplace_back( NimiIjo::LINJA_SIN
+        if (!pokiIjo.empty() && pokiIjo.back().nimiIjo != NimiIjo::LINJA_SIN)
+            pokiIjo.emplace_back( NimiIjo::LINJA_SIN
                                 , nanpaLinja, linja.size() + 1);
 
 
-		return pokiIjo;
-	}
+        return pokiIjo;
+    }
 
     std::list<Ijo> kipisiELipu(const std::string& lonLipu) noexcept(false) {
         std::ifstream lipu(lonLipu);
 
-		if (!lipu.is_open()) {
-			kepeken::tokiEIke({ 
-				ante_toki::anteENimi(
-					ante_toki::nimiTawaJan("ike.kipisi.li_ken_ala_open_e_lipu"),
-					"%s", lonLipu)});
+        if (!lipu.is_open()) {
+            kepeken::tokiEIke({
+                ante_toki::anteENimi(
+                    ante_toki::nimiTawaJan("ike.kipisi.li_ken_ala_open_e_lipu"),
+                    "%s", lonLipu)});
             throw std::invalid_argument("li ken ala open e poki '" + lonLipu + "'");
-		}
+        }
 
         return kipisi(lipu, lonLipu);
     }
@@ -379,34 +379,34 @@ namespace ilo {
 
 
     std::string nimiIjoTawaNimiPiNimiIjo(NimiIjo nimiIjo) {
-		switch (nimiIjo) {
-			case NimiIjo::POKI:
-				return "toki.ijo_kipisi.poki";
-			case NimiIjo::PANA_LON_POKI:
-				return "toki.ijo_kipisi.pana_lon_poki";
-			case NimiIjo::POKI_NIMI:
-				return "toki.ijo_kipisi.poki_nimi";
-			case NimiIjo::NIMI_WAWA:
-				return "toki.ijo_kipisi.nimi_wawa";
-			case NimiIjo::POKI_PI_IJO_PI_NIMI_WAWA:
-				return "toki.ijo_kipisi.poki_pi_ijo_pi_nimi_wawa";
-			case NimiIjo::LINJA_SIN:
-				return "toki.ijo_kipisi.linja_sin";
-			case NimiIjo::NIMI_TAWA_TAWA:
-				return "toki.ijo_kipisi.nimi_tawa_tawa";
+        switch (nimiIjo) {
+            case NimiIjo::POKI:
+                return "toki.ijo_kipisi.poki";
+            case NimiIjo::PANA_LON_POKI:
+                return "toki.ijo_kipisi.pana_lon_poki";
+            case NimiIjo::POKI_NIMI:
+                return "toki.ijo_kipisi.poki_nimi";
+            case NimiIjo::NIMI_WAWA:
+                return "toki.ijo_kipisi.nimi_wawa";
+            case NimiIjo::POKI_PI_IJO_PI_NIMI_WAWA:
+                return "toki.ijo_kipisi.poki_pi_ijo_pi_nimi_wawa";
+            case NimiIjo::LINJA_SIN:
+                return "toki.ijo_kipisi.linja_sin";
+            case NimiIjo::NIMI_TAWA_TAWA:
+                return "toki.ijo_kipisi.nimi_tawa_tawa";
 
-			default:
-				assert(false && "li kama jo e nimi pi kulupu nimi pi sona ala");
+            default:
+                assert(false && "li kama jo e nimi pi kulupu nimi pi sona ala");
                 return "ERROR";
-		}
-	}
+        }
+    }
 
     const std::unordered_map<char, char>& sitelenNasaTawaNimi() {
-		static std::optional<std::unordered_map<char, char>> sitelenNasaTawaNimi = std::nullopt;
+        static std::optional<std::unordered_map<char, char>> sitelenNasaTawaNimi = std::nullopt;
 
-		if (!sitelenNasaTawaNimi.has_value())
-			sitelenNasaTawaNimi = std::optional(kepeken::pokiMAPLonNasinAnte(nimiTawaSitelenNasa));
+        if (!sitelenNasaTawaNimi.has_value())
+            sitelenNasaTawaNimi = std::optional(kepeken::pokiMAPLonNasinAnte(nimiTawaSitelenNasa));
 
-		return *sitelenNasaTawaNimi;
-	}
+        return *sitelenNasaTawaNimi;
+    }
 }

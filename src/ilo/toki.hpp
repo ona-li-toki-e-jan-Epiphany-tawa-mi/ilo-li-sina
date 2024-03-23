@@ -3,7 +3,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,18 +29,18 @@
  */
 namespace ilo {
     /**
-	 * @brief li toki e ijo pi lipu wawa tawa jan pi lawa e ilo nanpa.
-	 * 
-	 * @param ijoLipu ijoLipu tan kipisi().
-	 * @param lonLipu lon pi lipu wawa.
-	 */
-	void tokiELipuKipisi(const std::list<Ijo>& ijoLipu, const std::string& lonLipu);
+     * @brief li toki e ijo pi lipu wawa tawa jan pi lawa e ilo nanpa.
+     *
+     * @param ijoLipu ijoLipu tan kipisi().
+     * @param lonLipu lon pi lipu wawa.
+     */
+    void tokiELipuKipisi(const std::list<Ijo>& ijoLipu, const std::string& lonLipu);
 
     /**
-	 * @brief li pana e lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
-	 *
-	 * @param kasiOpen lipu wawa pali.
-	 * @param lonLipu  lon pi lipu wawa.
-	 */
-	void tokiELipuPali(const KasiOpen& kasiOpen, const std::string& lonLipu);
+     * @brief li pana e lipu wawa lon nimi li toki e ona lon ilo pi pana nimi.
+     *
+     * @param kasiOpen lipu wawa pali.
+     * @param lonLipu  lon pi lipu wawa.
+     */
+    void tokiELipuPali(const KasiOpen& kasiOpen, const std::string& lonLipu);
 }

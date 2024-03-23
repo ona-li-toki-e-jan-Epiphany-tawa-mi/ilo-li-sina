@@ -5,7 +5,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,19 +27,19 @@
  */
 
 /**
- * lawa OS la ijo ni li ken ante. nimi wawa ni li pana e nasin 1 pi kepeken ona. lawa OS li kama suli 
+ * lawa OS la ijo ni li ken ante. nimi wawa ni li pana e nasin 1 pi kepeken ona. lawa OS li kama suli
  *      ala.
  */
 namespace kepeken {
     /**
-     * @brief li lukin ala (weka e sitelen) e ilo pana. 
+     * @brief li lukin ala (weka e sitelen) e ilo pana.
      * @return true la li ala e ilo nanpa. false la li ala ala.
      */
     bool alaEIloPana();
 
     /**
      * @brief li lukin kama jo e nimi jan tan lawa OS.
-     * 
+     *
      * @return li kama jo e ona la nimi jan. li kama jo ala la li "".
      */
     const std::string& nimiJan();

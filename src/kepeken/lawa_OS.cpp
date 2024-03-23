@@ -17,7 +17,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -52,7 +52,7 @@ namespace kepeken {
         if (lupaSTDOUT == INVALID_HANDLE_VALUE
                 || !GetConsoleScreenBufferInfo(lupaSTDOUT, &sonaPiIloPana))
             return false;
-        
+
         // li pali e ni: poki sitelen ali li kama ' ' tawa ni: ilo pana li kama ala.
         nanpaPiPokiSitelen = sonaPiIloPana.dwSize.X * sonaPiIloPana.dwSize.Y;
         if (!FillConsoleOutputCharacter( lupaSTDOUT
@@ -86,7 +86,7 @@ namespace kepeken {
         }
 
         // li kama jo e nimi wawa "clear" li lawa e ona.
-        return putp(tigetstr("clear")) == 0;  
+        return putp(tigetstr("clear")) == 0;
 }
 #endif
 
@@ -102,19 +102,19 @@ namespace kepeken {
 
 
     // li lukin kama jo e nimi tan lawa OS.
-#ifdef WINDOWS 
+#ifdef WINDOWS
 {
-        DWORD suliNimi  = UNLEN + 1; 
+        DWORD suliNimi  = UNLEN + 1;
         auto nimiJanKen = std::make_unique<CHAR[]>(suliNimi);
-        
+
         if (GetUserNameA(nimiJanKen.get(), &suliNimi))
             return *(nimiJan = std::string(nimiJanKen.get(), suliNimi));
 }
-#elif UNIX 
+#elif UNIX
 {
         passwd* tomoPiSonaJan = getpwuid(geteuid());
 
-        if (tomoPiSonaJan != nullptr) 
+        if (tomoPiSonaJan != nullptr)
             return *(nimiJan = tomoPiSonaJan->pw_name);
 }
 #endif
@@ -126,7 +126,7 @@ namespace kepeken {
         for (auto& poki : pokiOSPiNimiJan) {
             const char* nimiJanKen = getenv(poki.c_str());
 
-            if (nimiJanKen != nullptr && strcmp(nimiJanKen, "") != 0) 
+            if (nimiJanKen != nullptr && strcmp(nimiJanKen, "") != 0)
                 return *(nimiJan = nimiJanKen);
         }
 

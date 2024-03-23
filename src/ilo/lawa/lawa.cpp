@@ -10,7 +10,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2022 Nathaniel Needham
+ * Copyright (c) 2022 ona-li-toki-e-jan-Epiphany-tawa-mi
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -63,9 +63,9 @@ namespace ilo {
         size_t suliPiPokiPali = sonaLawa.pokiPali.size(); // li lon tawa assert() taso.
 #endif
 
-        // li alasa e ijo tan pini tawa open tawa ni: ni li pona e pali pi nimi wawa sin pi toki 
+        // li alasa e ijo tan pini tawa open tawa ni: ni li pona e pali pi nimi wawa sin pi toki
         //      "ilo li sina".
-        for (auto alasaIjo = this->ijoPiNimiWawa.rbegin() 
+        for (auto alasaIjo = this->ijoPiNimiWawa.rbegin()
                 ; alasaIjo != this->ijoPiNimiWawa.rend()
                 ; alasaIjo++)
             (*alasaIjo)->lawa(sonaLawa);
@@ -90,9 +90,9 @@ namespace ilo {
         size_t suliPiPokiPali = sonaLawa.pokiPali.size(); // li lon tawa assert() taso.
 #endif
 
-        // li alasa e ijo tan pini tawa open tawa ni: ni li pona e pali pi nimi wawa sin pi toki 
+        // li alasa e ijo tan pini tawa open tawa ni: ni li pona e pali pi nimi wawa sin pi toki
         //      "ilo li sina".
-        for (auto alasaIjo = this->ijoPiNimiWawa.rbegin() 
+        for (auto alasaIjo = this->ijoPiNimiWawa.rbegin()
                 ; alasaIjo != this->ijoPiNimiWawa.rend()
                 ; alasaIjo++)
             (*alasaIjo)->lawa(sonaLawa);
@@ -161,7 +161,7 @@ namespace ilo {
                 assert( pokiPali.size() == 1
                     && "lawa e nimi wawa la nanpa ijo ike lon poki pali!");
                 pokiPali.pop();
-            
+
             } catch (const std::runtime_error& ikeLiKama) {
                 // ike la lon tawa tawa lon tenpo ike li lon la mi tawa lon ona. ni ala la lipu li wile
                 //      pini.
@@ -170,7 +170,7 @@ namespace ilo {
 
                     while (!pokiPali.empty())
                         pokiPali.pop();
-                
+
                 } else
                     throw;
             }

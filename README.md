@@ -36,8 +36,8 @@ ona li kama lon poki li jo e nimi "ilo_li_sina".
 
 sina ken pona kepeken e lipu "ilo_li_sina" kepeken ala ante.
 
-sin la sina ken kama jo e ona kepeken ilo Nix tan poki [(kulupu CLEARNET) NUR](https://github.com/nix-community/NUR)
-kepeken nimi ni:
+sin la sina ken kama jo e ona kepeken ilo Nix tan poki NUR
+(https://github.com/nix-community/NUR) kepeken nimi ni:
 
 ```nix
 nur.repos.ona-li-toki-e-jan-Epiphany-tawa-mi.ilo-li-sina

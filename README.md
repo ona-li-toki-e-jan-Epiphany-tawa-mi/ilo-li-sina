@@ -1,5 +1,7 @@
 ![sitelen suli "ilo li sina"](sitelen-suli.png)
 
+**!!o sona!!:** tenpo pi ni en kama la mi pali ala e pali ni li pona ala e pali ni.
+
 # **ilo li sina**
 
 ilo tawa lawa e ilo nanpa kepeken toki "ilo li sina". toki "ilo li sina" li toki
